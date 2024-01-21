@@ -38,8 +38,8 @@
 
  - [2022] NFT Hub : NFT Asset Portfolio Platform
    - Perform overall tasks including buisness planning as project leader
-   - Selected in 2022 Pohang-si innopolis campus buisness team
-   - Selected and completed in 2022 student start-up 300 team
+   - Selected in [2022 Pohang-si innopolis campus buisness team](http://innopolis.postech.ac.kr/business_notice/?mod=document&uid=402)
+   - Selected and completed in [2022 student start-up 300 team](http://u300.kr)
    - Exhibited in 2022 industry & academic cooperation EXPO
 
   - [2022. - 2023.] R_coingecko : R Script Project for cryptocurrency data analysis using [Coingecko's R API](https://github.com/next-game-solutions/geckor)
@@ -48,10 +48,20 @@
 ## Skills & Interests
 
  - R, Python, C / C++
- - Blockchain & Cryptocurrency, Macro economics, Investing
+ - Blockchain & Cryptocurrency, Macro economics, Investment theory, Data Analysis
 
 ## Awards & Scholarships
 
  - [2022.05.] POSTECH Metaverse Contest (3rd price), POSTECH
- - [2021.03. - 2023.12.] Local Talent Scholarship, KOSAF
+ - [2021.03. - 2023.12.] Local Talent Scholarship, [KOSAF](https://www.kosaf.go.kr/ko/main.do)
+
+
+## Miscs
+
+ - [2022] Join in 'APGC-Lab Ideathon'
+   - Topic : Business Model Development - 'Joint purchase community platform for single-person households in their 20s and 30s'
+ - [2022] Join in 'Tech Review Techathon'
+   - Topic : Business Model Development - 'Marketing Assistance Platform Based on Density Data Analysis with CSI Technology'
+ 
+
 
