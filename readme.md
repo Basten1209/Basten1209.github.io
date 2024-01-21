@@ -34,8 +34,24 @@
  - [2021.10. - 2021.12.] Undergraduate Researcher, POSTECH KLE Lab
    - Join a freshmen research program, studied NLP theories (Advisor : Prof. Jong-Hyuck Lee)
 
+## Projects
+
+ - [2022] NFT Hub : NFT Asset Portfolio Platform
+   - Perform overall tasks including buisness planning as project leader
+   - Selected in 2022 Pohang-si innopolis campus buisness team
+   - Selected and completed in 2022 student start-up 300 team
+   - Exhibited in 2022 industry & academic cooperation EXPO
+
+  - [2022. - 2023.] R_coingecko : R Script Project for cryptocurrency data analysis using [Coingecko's R API](https://github.com/next-game-solutions/geckor)
+    - Private side project in Bithumb Research Center
+
 ## Skills & Interests
 
  - R, Python, C / C++
  - Blockchain & Cryptocurrency, Macro economics, Investing
+
+## Awards & Scholarships
+
+ - [2022.05.] POSTECH Metaverse Contest (3rd price), POSTECH
+ - [2021.03. - 2023.12.] Local Talent Scholarship, KOSAF
 
