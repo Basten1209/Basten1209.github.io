@@ -9,6 +9,11 @@
 [2021 - Present] [Pohang University of Science and Technology (POSTECH)](https://www.postech.ac.kr/)
 - B.S. in Computer Science and Engineering
 
+## Skills & Interests
+
+ - R, Python, C / C++
+ - Blockchain & Cryptocurrency, Macro economics, Investment theory, Data Analysis
+
 ## Experiences
 
  - [2023 - Present] System Developer, ROKAF (Military service)
@@ -45,16 +50,43 @@
   - [2022. - 2023.] R_coingecko : R Script Project for cryptocurrency data analysis using [Coingecko's R API](https://github.com/next-game-solutions/geckor)
     - Private side project in Bithumb Research Center
 
-## Skills & Interests
-
- - R, Python, C / C++
- - Blockchain & Cryptocurrency, Macro economics, Investment theory, Data Analysis
-
 ## Awards & Scholarships
 
  - [2022.05.] POSTECH Metaverse Contest (3rd price), POSTECH
  - [2021.03. - 2023.12.] Local Talent Scholarship, [KOSAF](https://www.kosaf.go.kr/ko/main.do)
 
+## Certificate
+
+ - Craftsman Information Processing / Human Resources Development Service of Korea
+ - SQL Developer / Kdata
+ - ITQ OA Master / Korea Productivity Center
+ - TESAT S Grade / Korea Economic Magazine
+ - TOEIC (Speaking : IH, Writing : AM)
+
+## Posting & Talks
+
+ - REPORTS
+   - [CRYPTO NOTES 1 - The Big Wave is Coming](https://cafe.bithumb.com/view/board-contents/1643426)
+   - [CRYPTO NOTES 2 - Unstoppable Ethereum](https://cafe.bithumb.com/view/board-contents/1643513)
+ - REPORTS (Assistant)
+   - [Crypto Insights 7 - Ethereum Price Scenario after The Merge](https://cafe.bithumb.com/view/board-contents/1643142)
+   - [Crypto Insights 8 - 2022 Sep FOMC Review](https://cafe.bithumb.com/view/board-contents/1643166)
+   - [Crypto Insights 9 - Relationship about Fiat Money & Bitcoin](https://cafe.bithumb.com/view/board-contents/1643203)
+   - [Crypto Insights 10 - SOL, BNB Chain Hacked](https://cafe.bithumb.com/view/board-contents/1643244)
+   - [Crypto Insights 11 - Effect about US midterm elections](https://cafe.bithumb.com/view/board-contents/1643271)
+   - [Crypto Insights 12 - FTX Collaspe](https://cafe.bithumb.com/view/board-contents/1643331)
+   - [Crypto Insights 13 - 2022 Dec FOMC Preview](https://cafe.bithumb.com/view/board-contents/1643379)
+   - [Crypto Insights 14 - 2023 Crypto Market Outlook](https://cafe.bithumb.com/view/board-contents/1643474)
+ - SEMINARS
+   - [Crypto Insight Meetup (Off-line)](https://cafe.bithumb.com/view/board-contents/1643596)
+ - YOUTUBE
+   - [Sustainability of Stablecoin](https://www.youtube.com/watch?v=JPWadiUZbDk)
+   - [2023 Scenario with Bitcoin Price Forecasting Model](https://www.youtube.com/watch?v=eEGywng_f70)
+   - [2023 Ethereum Upgrade](https://www.youtube.com/watch?v=MC3TAsfnIWQ)
+ - NEWS
+   - [Report is quoted in 'Digital Today'.(2023.01.03)](https://www.digitaltoday.co.kr/news/articleView.html?idxno=467696)
+ - BOOKS
+   - [Digital Asset Era is Coming - ISBN : 9791192445502 / Co-Author](https://product.kyobobook.co.kr/detail/S000209213039)
 
 ## Miscs
 
@@ -62,6 +94,6 @@
    - Topic : Business Model Development - 'Joint purchase community platform for single-person households in their 20s and 30s'
  - [2022] Join in 'Tech Review Techathon'
    - Topic : Business Model Development - 'Marketing Assistance Platform Based on Density Data Analysis with CSI Technology'
- 
 
 
+Last Updated : 2024.01.21.
