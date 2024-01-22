@@ -39,6 +39,19 @@
  - [2021.10. - 2021.12.] Undergraduate Researcher, POSTECH KLE Lab
    - Join a freshmen research program, studied NLP theories (Advisor : Prof. Jong-Hyuck Lee)
 
+## Awards & Scholarships
+
+ - [2022.05.] POSTECH Metaverse Contest (3rd price), POSTECH
+ - [2021.03. - 2023.12.] Local Talent Scholarship(Full Scholarship), [KOSAF](https://www.kosaf.go.kr/ko/main.do)
+
+## Certificate
+
+ - Craftsman Information Processing / Human Resources Development Service of Korea
+ - SQL Developer / Kdata
+ - ITQ OA Master / Korea Productivity Center
+ - TESAT S Grade / Korea Economic Magazine
+ - TOEIC (Speaking : IH, Writing : AM)
+
 ## Projects
 
  - [2022] NFT Hub : NFT Asset Portfolio Platform
@@ -50,19 +63,10 @@
   - [2022. - 2023.] R_coingecko : R Script Project for cryptocurrency data analysis using [Coingecko's R API](https://github.com/next-game-solutions/geckor)
     - Private side project in Bithumb Research Center
 
-## Awards & Scholarships
+## Publication
 
- - [2022.05.] POSTECH Metaverse Contest (3rd price), POSTECH
- - [2021.03. - 2023.12.] Local Talent Scholarship, [KOSAF](https://www.kosaf.go.kr/ko/main.do)
-
-## Certificate
-
- - Craftsman Information Processing / Human Resources Development Service of Korea
- - SQL Developer / Kdata
- - ITQ OA Master / Korea Productivity Center
- - TESAT S Grade / Korea Economic Magazine
- - TOEIC (Speaking : IH, Writing : AM)
-
+ - [Digital Asset Era is Coming - ISBN : 9791192445502 / Co-Author](https://product.kyobobook.co.kr/detail/S000209213039)
+   
 ## Posting & Talks
 
  - REPORTS
@@ -79,14 +83,13 @@
    - [Crypto Insights 14 - 2023 Crypto Market Outlook](https://cafe.bithumb.com/view/board-contents/1643474)
  - SEMINARS
    - [Crypto Insight Meetup (Off-line)](https://cafe.bithumb.com/view/board-contents/1643596)
- - YOUTUBE
-   - [Sustainability of Stablecoin](https://www.youtube.com/watch?v=JPWadiUZbDk)
+ - YOUTUBES
+   - [PDAO Seminar - Sustainability of Stablecoin](https://www.youtube.com/watch?v=JPWadiUZbDk)
    - [2023 Scenario with Bitcoin Price Forecasting Model](https://www.youtube.com/watch?v=eEGywng_f70)
    - [2023 Ethereum Upgrade](https://www.youtube.com/watch?v=MC3TAsfnIWQ)
  - NEWS
    - [Report is quoted in 'Digital Today'.(2023.01.03)](https://www.digitaltoday.co.kr/news/articleView.html?idxno=467696)
- - BOOKS
-   - [Digital Asset Era is Coming - ISBN : 9791192445502 / Co-Author](https://product.kyobobook.co.kr/detail/S000209213039)
+
 
 ## Miscs
 
