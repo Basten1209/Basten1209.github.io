@@ -20,7 +20,7 @@
    - Reviewed new AI-related system
    - Analyzed aircraft sensor data
    - Management in personal information
-   - Completed in ['AI-SW training for military personnel (advanced AI course)'](https://goor.me/v2oqY)
+   - Completed in 'AI-SW training for military personnel'  (advanced AI course) / [Outstanding student](https://www.broof.io/search/4e1ec599?token=f15f71a6-3b49-43fb-879d-e5284e070580&utm_source=email&utm_medium=link&utm_campaign=view)
      
  - [2022.09. - 2023.03.] Researcher in Economy Institute / Research Center, [Bithumb Korea](https://www.bithumbcorp.com)
    - Participate in macro/cryptocurrency report 'Crypto Insights' series
