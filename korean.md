@@ -1,4 +1,4 @@
-[Eng Ver.](./index.html)
+[Eng Ver.](./readme.md)
 
 ## 학력
 
