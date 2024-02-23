@@ -1,3 +1,5 @@
+[한국어 이력서](./korean.md)
+
 ## Contact
 
  - linkedin : [/basten1209](https://www.linkedin.com/in/basten1209/)
@@ -13,6 +15,10 @@
 
  - R, Python, C / C++
  - Blockchain & Cryptocurrency, Macro economics, Investment theory, Data Analysis
+
+## Publication
+
+ - [Digital Asset Era is Coming - ISBN : 9791192445502 / Co-Author](https://product.kyobobook.co.kr/detail/S000209213039)
 
 ## Experiences
 
@@ -62,10 +68,6 @@
 
   - [2022. - 2023.] R_coingecko : R Script Project for cryptocurrency data analysis using [Coingecko's R API](https://github.com/next-game-solutions/geckor)
     - Private side project in Bithumb Research Center
-
-## Publication
-
- - [Digital Asset Era is Coming - ISBN : 9791192445502 / Co-Author](https://product.kyobobook.co.kr/detail/S000209213039)
    
 ## Posting & Talks
 
@@ -99,4 +101,4 @@
    - Topic : Business Model Development - 'Marketing Assistance Platform Based on Density Data Analysis with CSI Technology'
 
 
-Last Updated : 2024.01.21.
+Last Updated : 2024.02.24.
