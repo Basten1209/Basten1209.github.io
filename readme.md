@@ -1,43 +1,39 @@
 [한국어 이력서](./korean.md)
 
-# Contact
+
+
+## Contact
 
 - linkedin : [/basten1209](https://www.linkedin.com/in/basten1209/)
 - Telegram : [@basten1209](htps:/t.me/basten1209)
 - email : seungjunoh@postech.ac.kr
 
-# Education
+
+
+
+## Education
 
 [2021 - Present] [Pohang University of Science and Technology (POSTECH)](https://www.postech.ac.kr/)
 
 - B.S. in Computer Science and Engineering
 
-# Certificate
-
-- Craftsman Information Processing / Human Resources Development Service of Korea
-- SQL Developer / Kdata
-- ITQ OA Master / Korea Productivity Center
-- TESAT S Grade / Korea Economic Magazine
-- TOEIC (Speaking : IH, Writing : AM)
-
-# Awards & Scholarships
-
-- [2022.05.] POSTECH Metaverse Contest (3rd price), POSTECH
-- [2021.03. - 2023.12.] Local Talent Scholarship(Full Scholarship), [KOSAF](https://www.kosaf.go.kr/ko/main.do)
 
 
-# Experiences
+
 
 ## Publication
 
 ### [Digital Asset Era is Coming - ISBN : 9791192445502 / Co-Author](https://product.kyobobook.co.kr/detail/S000209213039)
 - wrote about bitcoin/blockchain introduction and technology chapter.
 
+
+
 ## Work Experiences
+
 
 ### [2022.09. - 2023.03.] Researcher in Economy Institute / Research Center, [Bithumb Korea](https://www.bithumbcorp.com)
 
-stack : R, Python, Excel, Figma, Blockchain & Cryptocurrency, Research
+stack : R, Python, Excel, Figma, Tableau
 
 - Participate in macro/cryptocurrency report 'Crypto Insights' series (8 reports)
   > Contributing to improving the positive image of companies through assistance in publishing reports.   
@@ -66,14 +62,14 @@ stack : R, Python, Excel, Figma, Blockchain & Cryptocurrency, Research
 
 ### [2022.06. - Present] Launch member, [PDAO](https://dao.postech.ac.kr)
 
-stack : blockchain
+stack : git
 - PDAO chain initial [governance commitee](https://github.com/postech-dao/pdao/blob/finalized/reserved/members/%EC%98%A4%EC%8A%B9%EC%A4%80.json)
 - Participate in consulting 'cyptocurrency donation process for universities'
 - Coorinating in dev-NEAR team (NEAR Protocol Colony-chain)
 
 
 ### [2022.06. - 2022.08.] Undergraduate Researcher, [POSTECH DPNM Lab](https://dpnm.postech.ac.kr)
-stack : Blockchain & Cryptocurrency
+stack : -
 - Studied Blockchain & cryptocurrency (Advisor : Prof. James Won-ki Hong)
 
 
@@ -82,17 +78,21 @@ stack : AI, NLP
  - Join a freshmen research program, studied NLP theories (Advisor : Prof. Jong-Hyuck Lee)
 
 
+
+
+
 ## Military services
 
 
-### [2024.01. - Present] System Developer in Logistic Training System Development team, ROKAF Intelligence Information System Management Group
-stack : ?
+### [2024.01. - Present] System Developer in Logistic Training System Development team, ROKAF Intelligent Information System Management Group
+stack : SQL, Tibero
 
- - ?
+ - .
+
 
 
 ### [2023.05. - 2023.12.] Fusion System Developer in Fusion System Office, ROKAF Logistic Command I&C Dept.
-stack : AI, Data Analysis, Python, Excel
+stack : AI, Python, Excel
 - Completed in 'AI-SW training for military personnel' (AI course)
 	> [Outstanding student](https://www.broof.io/search/4e1ec599?token=f15f71a6-3b49-43fb-879d-e5284e070580&utm_source=email&utm_medium=link&utm_campaign=view) - completed advanced course
  
@@ -102,7 +102,6 @@ stack : AI, Data Analysis, Python, Excel
   > Management in personal information
 
 
-​
 
 ## Projects
 
@@ -121,6 +120,27 @@ stack : Blockchain, Buisness modeling
 stack : R
 
 - Private side project in Bithumb Research Center
+
+
+
+# Certificate
+
+
+- Craftsman Information Processing / Human Resources Development Service of Korea
+- SQL Developer / Kdata
+- ITQ OA Master / Korea Productivity Center
+- TESAT S Grade / Korea Economic Magazine
+- TOEIC (Speaking : IH, Writing : AM)
+
+
+
+## Awards & Scholarships
+
+- [2022.05.] POSTECH Metaverse Contest (3rd price), POSTECH
+- [2021.03. - 2023.12.] Local Talent Scholarship(Full Scholarship), [KOSAF](https://www.kosaf.go.kr/ko/main.do)
+
+
+
 
 ## Posting & Talks
 
@@ -174,4 +194,4 @@ stack : R
 	> Topic : Business Model Development - 'Marketing Assistance Platform Based on Density Data Analysis with CSI Technology'
 
 
-Last Updated : 2024.03.02.​
+Last Updated : 2024.04.13.​
