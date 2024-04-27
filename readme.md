@@ -8,8 +8,7 @@
 - Telegram : [@basten1209](htps:/t.me/basten1209)
 - email : seungjunoh@postech.ac.kr
 
-
-
+<br/>
 
 ## Education
 
@@ -17,16 +16,14 @@
 
 - B.S. in Computer Science and Engineering
 
-
-
-
+<br/>
 
 ## Publication
 
 ### [Digital Asset Era is Coming - ISBN : 9791192445502 / Co-Author](https://product.kyobobook.co.kr/detail/S000209213039)
 - wrote about bitcoin/blockchain introduction and technology chapter.
 
-
+<br/>
 
 ## Work Experiences
 
@@ -59,6 +56,7 @@ stack : R, Python, Excel, Figma, Tableau
   > Participated in the script inspection and video editing inspection of the 'Crypto Talk' series.   
   > Participated in hiring video editors for the creation of content in the department.
 
+<br/>
 
 ### [2022.06. - Present] Launch member, [PDAO](https://dao.postech.ac.kr)
 
@@ -67,19 +65,19 @@ stack : git
 - Participate in consulting 'cyptocurrency donation process for universities'
 - Coorinating in dev-NEAR team (NEAR Protocol Colony-chain)
 
+<br/>
 
 ### [2022.06. - 2022.08.] Undergraduate Researcher, [POSTECH DPNM Lab](https://dpnm.postech.ac.kr)
 stack : -
 - Studied Blockchain & cryptocurrency (Advisor : Prof. James Won-ki Hong)
 
+<br/>
 
 ### [2021.10. - 2021.12.] Undergraduate Researcher, POSTECH KLE Lab
 stack : AI, NLP
  - Join a freshmen research program, studied NLP theories (Advisor : Prof. Jong-Hyuck Lee)
 
-
-
-
+<br/>
 
 ## Military services
 
@@ -87,9 +85,9 @@ stack : AI, NLP
 ### [2024.01. - Present] System Developer in Logistic Training System Development team, ROKAF Intelligent Information System Management Group
 stack : SQL, Tibero
 
- - .
+ - 
 
-
+<br/>
 
 ### [2023.05. - 2023.12.] Fusion System Developer in Fusion System Office, ROKAF Logistic Command I&C Dept.
 stack : AI, Python, Excel
@@ -101,7 +99,7 @@ stack : AI, Python, Excel
   > Analyzed aircraft sensor data   
   > Management in personal information
 
-
+<br/>
 
 ## Projects
 
@@ -111,9 +109,10 @@ stack : Blockchain, Buisness modeling
 
 - Perform overall tasks including buisness planning as project leader
 	> Selected in [2022 Pohang-si innopolis campus buisness team](http://innopolis.postech.ac.kr/business_notice/?mod=document&uid=402)   
-  > Selected and completed in [2022 student start-up 300 team](http://u300.kr)   
-  > Exhibited in 2022 industry & academic cooperation EXPO
+  > Selected and completed in [2022 student start-up 300 team](http://u300.kr)
+  > Rewarded for exhibition in 2022 industry-education cooperation EXPO (2022.11.)
 
+<br/>
 
 ### [2022. 09.- 2022.12.] R_coingecko : R Script Project for cryptocurrency data analysis using [Coingecko's R API](https://github.com/next-game-solutions/geckor)
 
@@ -121,26 +120,25 @@ stack : R
 
 - Private side project in Bithumb Research Center
 
-
+<br/>
 
 ## Certificate
-
 
 - Craftsman Information Processing / Human Resources Development Service of Korea
 - SQL Developer / Kdata
 - ITQ OA Master / Korea Productivity Center
 - TESAT S Grade / Korea Economic Magazine
+- Financial Planner / Korea Banking Institute
 - TOEIC (Speaking : IH, Writing : AM)
 
-
+<br/>
 
 ## Awards & Scholarships
 
 - [2022.05.] POSTECH Metaverse Contest (3rd price), POSTECH
 - [2021.03. - 2023.12.] Local Talent Scholarship(Full Scholarship), [KOSAF](https://www.kosaf.go.kr/ko/main.do)
 
-
-
+<br/>
 
 ## Posting & Talks
 
@@ -184,6 +182,7 @@ stack : R
 
 - [Report is quoted in 'Digital Today'.(2023.01.03)](https://www.digitaltoday.co.kr/news/articleView.html?idxno=467696)
 
+<br/>
 
 ## Miscs
 
@@ -194,4 +193,4 @@ stack : R
 	> Topic : Business Model Development - 'Marketing Assistance Platform Based on Density Data Analysis with CSI Technology'
 
 
-Last Updated : 2024.04.13.​
+Last Updated : 2024.04.27.
