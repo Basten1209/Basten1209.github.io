@@ -110,7 +110,7 @@ stack : Blockchain, Buisness modeling
 - Perform overall tasks including buisness planning as project leader
 	> Selected in [2022 Pohang-si innopolis campus buisness team](http://innopolis.postech.ac.kr/business_notice/?mod=document&uid=402)   
   > Selected and completed in [2022 student start-up 300 team](http://u300.kr)
-  > Rewarded for exhibition in 2022 industry-education cooperation EXPO (2022.11.)
+  > Rewarded for exhibition in 2022 industry & academic cooperation EXPO (2022.11.)
 
 <br/>
 
