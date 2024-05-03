@@ -23,6 +23,8 @@
 - Interests : Blockchain & Cryptocurrency, Macro Economics, Investment Theory, Data Analysis, AI(CV, NLP, ML)
 - Skills : R, Python, C/C++, SQL, Git, MS Office
 
+<br/>
+
 ## Certificate
 
 - Financial Planner / Korea Banking Institute
@@ -49,28 +51,32 @@
 stack : R, Python, Excel, Figma, Tableau
 
 - Participate in macro/cryptocurrency report 'Crypto Insights' series (8 reports)
-  > Contributing to improving the positive image of companies through assistance in publishing reports.   
-  > Hundreds of press reports based on the content of the report.
+> Contributing to improving the positive image of companies through assistance in publishing reports.
+> 
+> Hundreds of press reports based on the content of the report.
 
 
 - published blockchain research report 'CRYPTO NOTES' series (2 reports)
-	> Planning a new report series and participating in the production of the initial two episodes.   
-  > Creating a chance for successive research assistants to publish reports.
+> Planning a new report series and participating in the production of the initial two episodes.
+> 
+> Creating a chance for successive research assistants to publish reports.
 
 
 - Participate in offline seminar - "Crypto Insight meetup"
-	> In an offline seminar for customers and influencers, about 15 minutes of personal session  was conducted under the theme of "2023 Ethereum Upgrade."
-
+> In an offline seminar for customers and influencers, about 15 minutes of personal session  was conducted under the theme of "2023 Ethereum Upgrade."
 
 - production of daily industry report for reporting to financial authorities(FIU)
-	> Summerizing global current events related to virtual assets and internal information of companies.   
-  > reported about 40 times.
+> Summerizing global current events related to virtual assets and internal information of companies.
+> 
+> reported about 40 times.
 
 
 - filming assistance of company's official Youtube contents 'Bitconomy report', 'Crypto talk'
-	> Appearing in two 'Bitcomy Report' videos and participating in the video editing inspection. (about 4k views)   
-  > Participated in the script inspection and video editing inspection of the 'Crypto Talk' series.   
-  > Participated in hiring video editors for the creation of content in the department.
+> Appearing in two 'Bitcomy Report' videos and participating in the video editing inspection. (about 4k views)
+> 
+> Participated in the script inspection and video editing inspection of the 'Crypto Talk' series.
+> 
+> Participated in hiring video editors for the creation of content in the department.
 
 <br/>
 
@@ -104,9 +110,11 @@ stack : AI, NLP
 stack : Blockchain, Buisness modeling
 
 - Perform overall tasks including buisness planning as project leader
-	> Selected in [2022 Pohang-si innopolis campus buisness team](http://innopolis.postech.ac.kr/business_notice/?mod=document&uid=402)   
-  > Selected and completed in [2022 student start-up 300 team](http://u300.kr)
-  > Rewarded for exhibition in 2022 industry & academic cooperation EXPO (2022.11.)
+> Selected in [2022 Pohang-si innopolis campus buisness team](http://innopolis.postech.ac.kr/business_notice/?mod=document&uid=402)
+> 
+> Selected and completed in [2022 student start-up 300 team](http://u300.kr)
+> 
+> Rewarded for exhibition in 2022 industry & academic cooperation EXPO (2022.11.)
 
 <br/>
 
@@ -168,19 +176,21 @@ stack : R
 ### [2024.01. - Present] System Developer in Logistic Training System Development team, ROKAF Intelligent Information System Management Group
 stack : SQL, Tibero
 
- - 
+ - Database Operation & Management for all departments of the Air Force
 
 <br/>
 
 ### [2023.05. - 2023.12.] Fusion System Developer in Fusion System Office, ROKAF Logistic Command I&C Dept.
 stack : AI, Python, Excel
 - Completed in 'AI-SW training for military personnel' (AI course)
-	> [Outstanding student](https://www.broof.io/search/4e1ec599?token=f15f71a6-3b49-43fb-879d-e5284e070580&utm_source=email&utm_medium=link&utm_campaign=view) - completed advanced course
+> [Outstanding student](https://www.broof.io/search/4e1ec599?token=f15f71a6-3b49-43fb-879d-e5284e070580&utm_source=email&utm_medium=link&utm_campaign=view) - completed advanced course
  
 - supported overall office tasks about AI/data analysis & paperwork like
-	> Reviewed new AI-related system   
-  > Analyzed aircraft sensor data   
-  > Management in personal information
+> Reviewed new AI-related system
+> 
+> Analyzed aircraft sensor data
+> 
+> Management in personal information
 
 <br/>
 
