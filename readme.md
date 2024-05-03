@@ -18,6 +18,22 @@
 
 <br/>
 
+## Interests & Skills
+
+- Interests : Blockchain & Cryptocurrency, Macro Economics, Investment Theory, Data Analysis, AI(CV, NLP, ML)
+- Skills : R, Python, C/C++, SQL, Git, MS Office
+
+## Certificate
+
+- Financial Planner / Korea Banking Institute
+- TESAT S Grade / Korea Economic Magazine
+- SQL Developer / Kdata
+- Craftsman Information Processing / Human Resources Development Service of Korea
+- ITQ OA Master / Korea Productivity Center
+- TOEIC (Speaking : IH, Writing : AM)
+
+<br/>
+
 ## Publication
 
 ### [Digital Asset Era is Coming - ISBN : 9791192445502 / Co-Author](https://product.kyobobook.co.kr/detail/S000209213039)
@@ -79,27 +95,7 @@ stack : AI, NLP
 
 <br/>
 
-## Military services
 
-
-### [2024.01. - Present] System Developer in Logistic Training System Development team, ROKAF Intelligent Information System Management Group
-stack : SQL, Tibero
-
- - 
-
-<br/>
-
-### [2023.05. - 2023.12.] Fusion System Developer in Fusion System Office, ROKAF Logistic Command I&C Dept.
-stack : AI, Python, Excel
-- Completed in 'AI-SW training for military personnel' (AI course)
-	> [Outstanding student](https://www.broof.io/search/4e1ec599?token=f15f71a6-3b49-43fb-879d-e5284e070580&utm_source=email&utm_medium=link&utm_campaign=view) - completed advanced course
- 
-- supported overall office tasks about AI/data analysis & paperwork like
-	> Reviewed new AI-related system   
-  > Analyzed aircraft sensor data   
-  > Management in personal information
-
-<br/>
 
 ## Projects
 
@@ -119,24 +115,6 @@ stack : Blockchain, Buisness modeling
 stack : R
 
 - Private side project in Bithumb Research Center
-
-<br/>
-
-## Certificate
-
-- Craftsman Information Processing / Human Resources Development Service of Korea
-- SQL Developer / Kdata
-- ITQ OA Master / Korea Productivity Center
-- TESAT S Grade / Korea Economic Magazine
-- Financial Planner / Korea Banking Institute
-- TOEIC (Speaking : IH, Writing : AM)
-
-<br/>
-
-## Awards & Scholarships
-
-- [2022.05.] POSTECH Metaverse Contest (3rd price), POSTECH
-- [2021.03. - 2023.12.] Local Talent Scholarship(Full Scholarship), [KOSAF](https://www.kosaf.go.kr/ko/main.do)
 
 <br/>
 
@@ -184,13 +162,42 @@ stack : R
 
 <br/>
 
+## Military services
+
+
+### [2024.01. - Present] System Developer in Logistic Training System Development team, ROKAF Intelligent Information System Management Group
+stack : SQL, Tibero
+
+ - 
+
+<br/>
+
+### [2023.05. - 2023.12.] Fusion System Developer in Fusion System Office, ROKAF Logistic Command I&C Dept.
+stack : AI, Python, Excel
+- Completed in 'AI-SW training for military personnel' (AI course)
+	> [Outstanding student](https://www.broof.io/search/4e1ec599?token=f15f71a6-3b49-43fb-879d-e5284e070580&utm_source=email&utm_medium=link&utm_campaign=view) - completed advanced course
+ 
+- supported overall office tasks about AI/data analysis & paperwork like
+	> Reviewed new AI-related system   
+  > Analyzed aircraft sensor data   
+  > Management in personal information
+
+<br/>
+
+## Awards & Scholarships
+
+- [2022.05.] POSTECH Metaverse Contest (3rd price), POSTECH
+- [2021.03. - 2023.12.] Local Talent Scholarship(Full Scholarship), [KOSAF](https://www.kosaf.go.kr/ko/main.do)
+
+<br/>
+
+
 ## Miscs
 
 - [2022] Join in 'APGC-Lab Ideathon'
-	> Topic : Business Model Development - 'Joint purchase community platform for single-person households in their 20s and 30s'
+	> Topic : Business Model Development - 'Joint purchase community platform for single-person households in their 20s and 30s' 
 
 - [2022] Join in 'Tech Review Techathon'
 	> Topic : Business Model Development - 'Marketing Assistance Platform Based on Density Data Analysis with CSI Technology'
 
-
-Last Updated : 2024.04.27.
+Last Updated : 2024.05.03.
