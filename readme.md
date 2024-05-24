@@ -1,11 +1,8 @@
-[한국어 이력서](./korean.md)
-
 
 
 ## Contact
 
 - linkedin : [/basten1209](https://www.linkedin.com/in/basten1209/)
-- Telegram : [@basten1209](htps:/t.me/basten1209)
 - email : seungjunoh@postech.ac.kr
 
 <br/>
@@ -90,13 +87,13 @@ stack : git
 <br/>
 
 ### [2022.06. - 2022.08.] Undergraduate Researcher, [POSTECH DPNM Lab](https://dpnm.postech.ac.kr)
-stack : -
+
 - Studied Blockchain & cryptocurrency (Advisor : Prof. James Won-ki Hong)
 
 <br/>
 
 ### [2021.10. - 2021.12.] Undergraduate Researcher, POSTECH KLE Lab
-stack : AI, NLP
+
  - Join a freshmen research program, studied NLP theories (Advisor : Prof. Jong-Hyuck Lee)
 
 <br/>
@@ -106,8 +103,6 @@ stack : AI, NLP
 ## Projects
 
 ### [2022] NFT Hub : NFT Asset Portfolio Platform
-
-stack : Blockchain, Buisness modeling
 
 - Perform overall tasks including buisness planning as project leader
 > Selected in [2022 Pohang-si innopolis campus buisness team](http://innopolis.postech.ac.kr/business_notice/?mod=document&uid=402)
@@ -130,31 +125,31 @@ stack : R
 
 ### REPORTS
 
-- [CRYPTO NOTES 1 - The Big Wave is Coming](https://cafe.bithumb.com/view/board-contents/1643426)
+- [CRYPTO NOTES 1 - The Big Wave is Coming](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643559)
 
-- [CRYPTO NOTES 2 - Unstoppable Ethereum](https://cafe.bithumb.com/view/board-contents/1643513)
+- [CRYPTO NOTES 2 - Unstoppable Ethereum](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643659)
 
 ### REPORTS (Assistant)
 
-- [Crypto Insights 7 - Ethereum Price Scenario after The Merge](https://cafe.bithumb.com/view/board-contents/1643142)
+- [Crypto Insights 7 - Ethereum Price Scenario after The Merge](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643209)
 
-- [Crypto Insights 8 - 2022 Sep FOMC Review](https://cafe.bithumb.com/view/board-contents/1643166)
+- [Crypto Insights 8 - 2022 Sep FOMC Review](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643233)
 
-- [Crypto Insights 9 - Relationship about Fiat Money & Bitcoin](https://cafe.bithumb.com/view/board-contents/1643203)
+- [Crypto Insights 9 - Relationship about Fiat Money & Bitcoin](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643296)
 
-- [Crypto Insights 10 - SOL, BNB Chain Hacked](https://cafe.bithumb.com/view/board-contents/1643244)
+- [Crypto Insights 10 - SOL, BNB Chain Hacked](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643323)
 
-- [Crypto Insights 11 - Effect about US midterm elections](https://cafe.bithumb.com/view/board-contents/1643271)
+- [Crypto Insights 11 - Effect about US midterm elections](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643354)
 
-- [Crypto Insights 12 - FTX Collaspe](https://cafe.bithumb.com/view/board-contents/1643331)
+- [Crypto Insights 12 - FTX Collaspe](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643416)
 
-- [Crypto Insights 13 - 2022 Dec FOMC Preview](https://cafe.bithumb.com/view/board-contents/1643379)
+- [Crypto Insights 13 - 2022 Dec FOMC Preview](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643462)
 
-- [Crypto Insights 14 - 2023 Crypto Market Outlook](https://cafe.bithumb.com/view/board-contents/1643474)
+- [Crypto Insights 14 - 2023 Crypto Market Outlook](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643615)
 
 ### SEMINARS
 
-- [Crypto Insight Meetup (Off-line)](https://cafe.bithumb.com/view/board-contents/1643596)
+- [Crypto Insight Meetup (Off-line)](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643750)
 
 ### YOUTUBES
 
@@ -210,4 +205,7 @@ stack : AI, Python, Excel
 - [2022] Join in 'Tech Review Techathon'
 	> Topic : Business Model Development - 'Marketing Assistance Platform Based on Density Data Analysis with CSI Technology'
 
-Last Updated : 2024.05.03.
+- [2022] Join in 'POSTECH CDPlayer Program (Buisness Planning - Customer Discovery Program)'
+ > Topic : Joint purchase platform -> NFT Investment Portfolio (Pivot)
+
+Last Updated : 2024.05.24.
