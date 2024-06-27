@@ -24,6 +24,7 @@
 
 ## Certificate
 
+- Certified Investment Manager / KOFIA
 - Financial Planner / Korea Banking Institute
 - TESAT S Grade / Korea Economic Magazine
 - SQL Developer / Kdata
@@ -208,4 +209,4 @@ stack : AI, Python, Excel
 - [2022] Join in 'POSTECH CDPlayer Program (Buisness Planning - Customer Discovery Program)'
  > Topic : Joint purchase platform -> NFT Investment Portfolio (Pivot)
 
-Last Updated : 2024.05.24.
+Last Updated : 2024.06.27.
