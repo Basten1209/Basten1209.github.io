@@ -24,6 +24,7 @@
 
 ## Certificate
 
+- Certified Foreign Exchange Specialist I (CFES I) / Korea Banking Institute
 - Certified Investment Manager / KOFIA
 - Financial Planner / Korea Banking Institute
 - TESAT S Grade / Korea Economic Magazine
@@ -56,8 +57,6 @@ stack : R, Python, Excel, Figma, Tableau
 
 - published blockchain research report 'CRYPTO NOTES' series (2 reports)
 > Planning a new report series and participating in the production of the initial two episodes.
-> 
-> Creating a chance for successive research assistants to publish reports.
 
 
 - Participate in offline seminar - "Crypto Insight meetup"
@@ -169,10 +168,10 @@ stack : R
 ## Military services
 
 
-### [2024.01. - Present] System Developer in Logistic Training System Development team, ROKAF Intelligent Information System Management Group
-stack : SQL, Tibero
+### [2024.01. - Present] System Developer in Logistic-Training System Development team, ROKAF Intelligent Information System Management Group
+stack : SQL, Tibero, git
 
- - Database Operation & Management for all departments of the Air Force
+ - Participate in Database Operation & Management in Logistic systems for all departments of the Air Force
 
 <br/>
 
@@ -209,4 +208,4 @@ stack : AI, Python, Excel
 - [2022] Join in 'POSTECH CDPlayer Program (Buisness Planning - Customer Discovery Program)'
  > Topic : Joint purchase platform -> NFT Investment Portfolio (Pivot)
 
-Last Updated : 2024.06.27.
+Last Updated : 2024.08.01.
