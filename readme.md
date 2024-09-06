@@ -29,8 +29,11 @@
 - Financial Planner / Korea Banking Institute
 - TESAT S Grade / Korea Economic Magazine
 - SQL Developer / Kdata
+- Advanced Data Analytics Semi-Professional (ADsP) / Kdata
 - Craftsman Information Processing / Human Resources Development Service of Korea
 - ITQ OA Master / Korea Productivity Center
+- Word Processer Specialist / The Korea Chamber of Commerce & Industry
+- Secretarial Administrator Level- I / The Korea Chamber of Commerce & Industry
 - TOEIC (Speaking : IH, Writing : AM)
 
 <br/>
@@ -208,4 +211,4 @@ stack : AI, Python, Excel
 - [2022] Join in 'POSTECH CDPlayer Program (Buisness Planning - Customer Discovery Program)'
  > Topic : Joint purchase platform -> NFT Investment Portfolio (Pivot)
 
-Last Updated : 2024.08.01.
+Last Updated : 2024.09.06.
