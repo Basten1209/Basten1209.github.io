@@ -30,7 +30,7 @@
 - TESAT S Grade / Korea Economic Magazine
 - SQL Developer / Kdata
 - Advanced Data Analytics Semi-Professional (ADsP) / Kdata
-- Craftsman Information Processing / Human Resources Development Service of Korea
+- Craftsman Information Industrial Engineer / Human Resources Development Service of Korea
 - ITQ OA Master / Korea Productivity Center
 - Word Processer Specialist / The Korea Chamber of Commerce & Industry
 - Secretarial Administrator Level- I / The Korea Chamber of Commerce & Industry
