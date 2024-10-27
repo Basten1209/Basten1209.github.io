@@ -71,6 +71,7 @@
 
 ### 경제, 금융 관련
  - 투자자산운용사 / 한국금융협회
+ - 재경관리사 / 삼일회계법인
  - 자산관리사(FP) / 한국금융연수원
  - 외환전문역 I종 / 힌극금융연수원
  - TESAT S등급 / 한국경제
@@ -105,23 +106,25 @@
 ## Posting & Talks
 
  - REPORTS
-   - [CRYPTO NOTES 1 - The Big Wave is Coming - 전통 금융기관, 크립토 시장 진출 시작되다](https://cafe.bithumb.com/view/board-contents/1643426)
-   - [CRYPTO NOTES 2 - Unstoppable Ethereum - 2023 이더리움 업그레이드 정리](https://cafe.bithumb.com/view/board-contents/1643513)
+   - [CRYPTO NOTES 1 - The Big Wave is Coming - 전통 금융기관, 크립토 시장 진출 시작되다](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635512251688)
+   - [CRYPTO NOTES 2 - Unstoppable Ethereum - 2023 이더리움 업그레이드 정리](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635515643674)
+
  <br/>
  
  - REPORTS (Assistant)
-   - [Crypto Insights 7 - Merge 이후 ETH 시나리오 전망](https://cafe.bithumb.com/view/board-contents/1643142)
-   - [Crypto Insights 8 - 9월 FOMC와 Market Implication](https://cafe.bithumb.com/view/board-contents/1643166)
-   - [Crypto Insights 9 - 흔들리는 Fiat Money, 비트코인 수요 급증?](https://cafe.bithumb.com/view/board-contents/1643203)
-   - [Crypto Insights 10 - SOL, BNB 기반 체인 해킹, 안전한 DeFi 선택 방법은?](https://cafe.bithumb.com/view/board-contents/1643244)
-   - [Crypto Insights 11 - 미국 중간선거, 가상자산 시장에 미칠 영향](https://cafe.bithumb.com/view/board-contents/1643271)
-   - [Crypto Insights 12 - FTX 파산 근본적인 배경과 우리가 마주하게 될 미래](https://cafe.bithumb.com/view/board-contents/1643331)
-   - [Crypto Insights 13 - 12월 FOMC Preview - 금리인상, 더이상 악재 아닌 이유](https://cafe.bithumb.com/view/board-contents/1643379)
-   - [Crypto Insights 14 - 2023 가상자산시장 전망, Crypto Adoption - Kick Off](https://cafe.bithumb.com/view/board-contents/1643474)
+   - [Crypto Insights 7 - Merge 이후 ETH 시나리오 전망](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635506113747)
+   - [Crypto Insights 8 - 9월 FOMC와 Market Implication](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635506114654)
+
+   - [Crypto Insights 9 - 흔들리는 Fiat Money, 비트코인 수요 급증?](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635506117304)
+   - [Crypto Insights 10 - SOL, BNB 기반 체인 해킹, 안전한 DeFi 선택 방법은?](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635506115545)
+   - [Crypto Insights 11 - 미국 중간선거, 가상자산 시장에 미칠 영향](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635509822493)
+   - [Crypto Insights 12 - FTX 파산 근본적인 배경과 우리가 마주하게 될 미래](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635510517650)
+   - [Crypto Insights 13 - 12월 FOMC Preview - 금리인상, 더이상 악재 아닌 이유](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635510521248)
+   - [Crypto Insights 14 - 2023 가상자산시장 전망, Crypto Adoption - Kick Off](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635514080255)
   <br/>
   
  - SEMINARS
-   - [Crypto Insight Meetup 강연 자료 공유](https://cafe.bithumb.com/view/board-contents/1643596)
+   - [Crypto Insight Meetup 스케치 영상](https://www.youtube.com/watch?v=u_HYu8At6aI))
   <br/>
   
  - YOUTUBES
@@ -143,6 +146,7 @@
  - [2022] 'POSTECH Tech Review 테커톤' 참여
    - 주제 : 비즈니스 모델 개발 - 'CSI 기술 기반 밀집도 데이터 분석을 활용한 마케팅 보조 플랫폼'
 
+- [2022] 'POSTECH CDPlayer Program (Buisness Planning - Customer Discovery Program)' 참여
+   - 주제 : 공동구매 커뮤니티 플랫폼 -> NFT 투자 포트폴리오 플랫폼 (Pivot)
 
-
-Last Updated : 2024.09.06.
+Last Updated : 2024.10.27.
