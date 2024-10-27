@@ -26,6 +26,7 @@
 
 - Certified Foreign Exchange Specialist I (CFES I) / Korea Banking Institute
 - Certified Investment Manager / KOFIA
+- Certified Accounting Manager / Samil PricewaterhouseCoopers (PwC)
 - Financial Planner / Korea Banking Institute
 - TESAT S Grade / Korea Economic Magazine
 - SQL Developer / Kdata
@@ -128,31 +129,31 @@ stack : R
 
 ### REPORTS
 
-- [CRYPTO NOTES 1 - The Big Wave is Coming](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643559)
+- [CRYPTO NOTES 1 - The Big Wave is Coming](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635512251688)
 
-- [CRYPTO NOTES 2 - Unstoppable Ethereum](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643659)
+- [CRYPTO NOTES 2 - Unstoppable Ethereum](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635515643674)
 
 ### REPORTS (Assistant)
 
-- [Crypto Insights 7 - Ethereum Price Scenario after The Merge](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643209)
+- [Crypto Insights 7 - Ethereum Price Scenario after The Merge](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635506113747)
 
-- [Crypto Insights 8 - 2022 Sep FOMC Review](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643233)
+- [Crypto Insights 8 - 2022 Sep FOMC Review](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635506114654)
 
-- [Crypto Insights 9 - Relationship about Fiat Money & Bitcoin](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643296)
+- [Crypto Insights 9 - Relationship about Fiat Money & Bitcoin](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635506117304)
 
-- [Crypto Insights 10 - SOL, BNB Chain Hacked](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643323)
+- [Crypto Insights 10 - SOL, BNB Chain Hacked](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635506115545)
 
-- [Crypto Insights 11 - Effect about US midterm elections](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643354)
+- [Crypto Insights 11 - Effect about US midterm elections](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635509822493)
 
-- [Crypto Insights 12 - FTX Collaspe](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643416)
+- [Crypto Insights 12 - FTX Collaspe](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635510517650)
 
-- [Crypto Insights 13 - 2022 Dec FOMC Preview](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643462)
+- [Crypto Insights 13 - 2022 Dec FOMC Preview](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635510521248)
 
-- [Crypto Insights 14 - 2023 Crypto Market Outlook](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643615)
+- [Crypto Insights 14 - 2023 Crypto Market Outlook](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635514080255)
 
 ### SEMINARS
 
-- [Crypto Insight Meetup (Off-line)](https://safe.bithumb.com/boardView/CPC_ECONOMIC_RESEARCH/1643750)
+- [Crypto Insight Meetup (Off-line)](https://www.youtube.com/watch?v=u_HYu8At6aI)
 
 ### YOUTUBES
 
