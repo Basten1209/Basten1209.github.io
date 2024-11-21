@@ -99,28 +99,29 @@
 <br/>
 
   - [2022. - 2023.] R_coingecko : 가상자산 데이터 분석을 위한 스크립트 작성 [Coingecko's R API](https://github.com/next-game-solutions/geckor)
-    - 빗썸리서치센터 내 개별 프로젝트
+
+   - 2022년 Coingecko 사에서 제공한 R 라이브러리 Coingeckor를 활용
+   - 주요 가상자산의 가격 관련 시계열 정보를 수집하는 R 스크립트 작성
 <br/>
 <br/>
 
 ## Posting & Talks
 
  - REPORTS
-   - [CRYPTO NOTES 1 - The Big Wave is Coming - 전통 금융기관, 크립토 시장 진출 시작되다](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635512251688)
-   - [CRYPTO NOTES 2 - Unstoppable Ethereum - 2023 이더리움 업그레이드 정리](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635515643674)
+   - [CRYPTO NOTES 1 - The Big Wave is Coming - 전통 금융기관, 크립토 시장 진출 시작되다](files/CRYPTO NOTES 1호.pdf)
+   - [CRYPTO NOTES 2 - Unstoppable Ethereum - 2023 이더리움 업그레이드 정리](files/CRYPTO NOTES 2호.pdf)
 
  <br/>
  
  - REPORTS (Assistant)
-   - [Crypto Insights 7 - Merge 이후 ETH 시나리오 전망](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635506113747)
-   - [Crypto Insights 8 - 9월 FOMC와 Market Implication](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635506114654)
-
-   - [Crypto Insights 9 - 흔들리는 Fiat Money, 비트코인 수요 급증?](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635506117304)
-   - [Crypto Insights 10 - SOL, BNB 기반 체인 해킹, 안전한 DeFi 선택 방법은?](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635506115545)
-   - [Crypto Insights 11 - 미국 중간선거, 가상자산 시장에 미칠 영향](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635509822493)
-   - [Crypto Insights 12 - FTX 파산 근본적인 배경과 우리가 마주하게 될 미래](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635510517650)
-   - [Crypto Insights 13 - 12월 FOMC Preview - 금리인상, 더이상 악재 아닌 이유](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635510521248)
-   - [Crypto Insights 14 - 2023 가상자산시장 전망, Crypto Adoption - Kick Off](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635514080255)
+   - [Crypto Insights 7 - Merge 이후 ETH 시나리오 전망](files/Crypto Insights 7호.pdf)
+   - [Crypto Insights 8 - 9월 FOMC와 Market Implication](files/Crypto Insights 8호.pdf)
+   - [Crypto Insights 9 - 흔들리는 Fiat Money, 비트코인 수요 급증?](files/Crypto Insights 9호.pdf)
+   - [Crypto Insights 10 - SOL, BNB 기반 체인 해킹, 안전한 DeFi 선택 방법은?](files/Crypto Insights 10호.pdf)
+   - [Crypto Insights 11 - 미국 중간선거, 가상자산 시장에 미칠 영향](files/Crypto Insights 11호.pdf)
+   - [Crypto Insights 12 - FTX 파산 근본적인 배경과 우리가 마주하게 될 미래](files/Crypto Insights 12호.pdf)
+   - [Crypto Insights 13 - 12월 FOMC Preview - 금리인상, 더이상 악재 아닌 이유](files/Crypto Insights 13호.pdf)
+   - [Crypto Insights 14 - 2023 가상자산시장 전망, Crypto Adoption - Kick Off](files/Crypto Insights 14호.pdf)
   <br/>
   
  - SEMINARS
@@ -149,4 +150,4 @@
 - [2022] 'POSTECH CDPlayer Program (Buisness Planning - Customer Discovery Program)' 참여
    - 주제 : 공동구매 커뮤니티 플랫폼 -> NFT 투자 포트폴리오 플랫폼 (Pivot)
 
-Last Updated : 2024.10.27.
+Last Updated : 2024.11.21.

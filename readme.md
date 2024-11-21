@@ -117,11 +117,12 @@ stack : git
 
 <br/>
 
-### [2022. 09.- 2022.12.] R_coingecko : R Script Project for cryptocurrency data analysis using [Coingecko's R API](https://github.com/next-game-solutions/geckor)
+### [2022. 09.- 2022.12.] [R_coingecko](https://github.com/Basten1209/coingecko_r) : R Script Project for cryptocurrency data analysis using [Coingecko's R API](https://github.com/next-game-solutions/geckor)
 
 stack : R
 
-- Private side project in Bithumb Research Center
+- Utilize the R library 'geckor' provided by Coingecko in 2022
+- Create an R Script that collects time-series information on the pricing of major crypto assets
 
 <br/>
 
@@ -129,27 +130,26 @@ stack : R
 
 ### REPORTS
 
-- [CRYPTO NOTES 1 - The Big Wave is Coming](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635512251688)
-
-- [CRYPTO NOTES 2 - Unstoppable Ethereum](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635515643674)
+- [CRYPTO NOTES 1 - The Big Wave is Coming](files/CRYPTO NOTES 1호.pdf)
+- [CRYPTO NOTES 2 - Unstoppable Ethereum](files/CRYPTO NOTES 2호.pdf)
 
 ### REPORTS (Assistant)
 
-- [Crypto Insights 7 - Ethereum Price Scenario after The Merge](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635506113747)
+- [Crypto Insights 7 - Ethereum Price Scenario after The Merge](files/Crypto Insights 7호.pdf)
 
-- [Crypto Insights 8 - 2022 Sep FOMC Review](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635506114654)
+- [Crypto Insights 8 - 2022 Sep FOMC Review](files/Crypto Insights 8호.pdf)
 
-- [Crypto Insights 9 - Relationship about Fiat Money & Bitcoin](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635506117304)
+- [Crypto Insights 9 - Relationship about Fiat Money & Bitcoin](files/Crypto Insights 9호.pdf)
 
-- [Crypto Insights 10 - SOL, BNB Chain Hacked](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635506115545)
+- [Crypto Insights 10 - SOL, BNB Chain Hacked](files/Crypto Insights 10호.pdf)
 
-- [Crypto Insights 11 - Effect about US midterm elections](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635509822493)
+- [Crypto Insights 11 - Effect about US midterm elections](files/Crypto Insights 11호.pdf)
 
-- [Crypto Insights 12 - FTX Collaspe](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635510517650)
+- [Crypto Insights 12 - FTX Collaspe](files/Crypto Insights 12호.pdf)
 
-- [Crypto Insights 13 - 2022 Dec FOMC Preview](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635510521248)
+- [Crypto Insights 13 - 2022 Dec FOMC Preview](files/Crypto Insights 13호.pdf)
 
-- [Crypto Insights 14 - 2023 Crypto Market Outlook](https://www.linkedin.com/in/basten1209/overlay/experience/2036171387/multiple-media-viewer/?profileId=ACoAADOsvjUBwUhv1o9pSZHu-26_bnzA6yH3ukA&treasuryMediaId=1635514080255)
+- [Crypto Insights 14 - 2023 Crypto Market Outlook](files/Crypto Insights 14호.pdf)
 
 ### SEMINARS
 
@@ -212,4 +212,4 @@ stack : AI, Python, Excel
 - [2022] Join in 'POSTECH CDPlayer Program (Buisness Planning - Customer Discovery Program)'
  > Topic : Joint purchase platform -> NFT Investment Portfolio (Pivot)
 
-Last Updated : 2024.09.06.
+Last Updated : 2024.11.21.
