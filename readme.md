@@ -1,5 +1,5 @@
 [한국어 이력서](./korean.md)
-
+Last Updated : 2024.11.21.
 ## Contact
 
 - linkedin : [/basten1209](https://www.linkedin.com/in/basten1209/)
@@ -24,14 +24,17 @@
 
 ## Certificate
 
-- Certified Foreign Exchange Specialist I (CFES I) / Korea Banking Institute
+### finance
 - Certified Investment Manager / KOFIA
 - Certified Accounting Manager / Samil PricewaterhouseCoopers (PwC)
 - Financial Planner / Korea Banking Institute
+- Certified Foreign Exchange Specialist I (CFES I) / Korea Banking Institute
 - TESAT S Grade / Korea Economic Magazine
+### Computer Science
 - SQL Developer / Kdata
 - Advanced Data Analytics Semi-Professional (ADsP) / Kdata
 - Craftsman Information Industrial Engineer / Human Resources Development Service of Korea
+### general office work
 - ITQ OA Master / Korea Productivity Center
 - Word Processer Specialist / The Korea Chamber of Commerce & Industry
 - Secretarial Administrator Level- I / The Korea Chamber of Commerce & Industry
@@ -51,26 +54,19 @@
 
 ### [2022.09. - 2023.03.] Researcher in Economy Institute / Research Center, [Bithumb Korea](https://www.bithumbcorp.com)
 
-stack : R, Python, Excel, Figma, Tableau
+stack : R, Python, Excel, Figma
 
 - Participate in macro/cryptocurrency report 'Crypto Insights' series (8 reports)
 > Contributing to improving the positive image of companies through assistance in publishing reports.
-> 
-> Hundreds of press reports based on the content of the report.
-
 
 - published blockchain research report 'CRYPTO NOTES' series (2 reports)
 > Planning a new report series and participating in the production of the initial two episodes.
-
 
 - Participate in offline seminar - "Crypto Insight meetup"
 > In an offline seminar for customers and influencers, about 15 minutes of personal session  was conducted under the theme of "2023 Ethereum Upgrade."
 
 - production of daily industry report for reporting to financial authorities(FIU)
-> Summerizing global current events related to virtual assets and internal information of companies.
-> 
-> reported about 40 times.
-
+> Summerizing global current events related to virtual assets and internal information of companies. 
 
 - filming assistance of company's official Youtube contents 'Bitconomy report', 'Crypto talk'
 > Appearing in two 'Bitcomy Report' videos and participating in the video editing inspection. (about 4k views)
@@ -172,11 +168,11 @@ stack : R
 ## Military services
 
 
-### [2024.01. - Present] System Developer in Logistic-Training System Development team, ROKAF Intelligent Information System Management Group
+### [2024.01. - 2024.12.] System Developer in Logistic-Training System Development team, ROKAF Intelligent Information System Management Group
 stack : SQL, Tibero, git
 
  - Participate in Database Operation & Management in Logistic systems for all departments of the Air Force
-
+ - appointment as squad leader (2024.08. ~ 2024.12.)
 <br/>
 
 ### [2023.05. - 2023.12.] Fusion System Developer in Fusion System Office, ROKAF Logistic Command I&C Dept.
@@ -212,4 +208,4 @@ stack : AI, Python, Excel
 - [2022] Join in 'POSTECH CDPlayer Program (Buisness Planning - Customer Discovery Program)'
  > Topic : Joint purchase platform -> NFT Investment Portfolio (Pivot)
 
-Last Updated : 2024.11.21.
+
