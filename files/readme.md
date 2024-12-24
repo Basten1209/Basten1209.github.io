@@ -2,21 +2,25 @@
 <br/>
 Last Updated : 2024.11.21.
 <br/>
+
 ## Contact
 - linkedin : [/basten1209](https://www.linkedin.com/in/basten1209/)
 - email : seungjunoh@postech.ac.kr
 <br/>
 <br/>
+
 ## Education
 [2021 - Present] [Pohang University of Science and Technology (POSTECH)](https://www.postech.ac.kr/)
 - B.S. in Computer Science and Engineering
 <br/>
 <br/>
+
 ## Interests & Skills
 - Interests : Blockchain & Cryptocurrency, Macro Economics, Investment Theory, Data Analysis, AI(CV, NLP, ML)
 - Skills : R, Python, C/C++, SQL, Git, MS Office
 <br/>
 <br/>
+
 ## Certificate
 ### finance
 - Certified Investment Manager / KOFIA
@@ -35,11 +39,13 @@ Last Updated : 2024.11.21.
 - TOEIC (Speaking : IH, Writing : AM)
 <br/>
 <br/>
+
 ## Publication
 ### [Digital Asset Era is Coming - ISBN : 9791192445502 / Co-Author](https://product.kyobobook.co.kr/detail/S000209213039)
 - wrote about bitcoin/blockchain introduction and technology chapter.
 <br/>
 <br/>
+
 ## Work Experiences
 ### [2022.09. - 2023.03.] Researcher in Economy Institute / Research Center, [Bithumb Korea](https://www.bithumbcorp.com)
 stack : R, Python, Excel, Figma
@@ -57,6 +63,7 @@ stack : R, Python, Excel, Figma
     - Participated in hiring video editors for the creation of content in the department.
 <br/>
 <br/>
+
 ### [2022.06. - Present] Launch member, [PDAO](https://dao.postech.ac.kr)
 stack : git
 - PDAO chain initial [governance commitee](https://github.com/postech-dao/pdao/blob/finalized/reserved/members/%EC%98%A4%EC%8A%B9%EC%A4%80.json)
@@ -64,14 +71,17 @@ stack : git
 - Coorinating in dev-NEAR team (NEAR Protocol Colony-chain)
 <br/>
 <br/>
+
 ### [2022.06. - 2022.08.] Undergraduate Researcher, [POSTECH DPNM Lab](https://dpnm.postech.ac.kr)
 - Studied Blockchain & cryptocurrency (Advisor : Prof. James Won-ki Hong)
 <br/>
 <br/>
+
 ### [2021.10. - 2021.12.] Undergraduate Researcher, POSTECH KLE Lab
  - Join a freshmen research program, studied NLP theories (Advisor : Prof. Jong-Hyuck Lee)
 <br/>
 <br/>
+
 ## Projects
 ### [2022] NFT Hub : NFT Asset Portfolio Platform
 - Perform overall tasks including buisness planning as project leader
@@ -80,6 +90,7 @@ stack : git
     - Rewarded for exhibition in 2022 industry & academic cooperation EXPO (2022.11.)
 <br/>
 <br/>
+
 ### [2022. 09.- 2022.12.] [R_coingecko](https://github.com/Basten1209/coingecko_r) : R Script Project for cryptocurrency data analysis using [Coingecko's R API](https://github.com/next-game-solutions/geckor)
 <br/>
 stack : R
@@ -87,11 +98,13 @@ stack : R
 - Create an R Script that collects time-series information on the pricing of major crypto assets
 <br/>
 <br/>
+
 ## Posting & Talks
 ### REPORTS
 - [CRYPTO NOTES 1 - The Big Wave is Coming](CRYPTO NOTES 1호.pdf)
 - [CRYPTO NOTES 2 - Unstoppable Ethereum](CRYPTO NOTES 2호.pdf)
 <br/>
+
 ### REPORTS (Assistant)
 - [Crypto Insights 7 - Ethereum Price Scenario after The Merge](Crypto Insights 7호.pdf)
 - [Crypto Insights 8 - 2022 Sep FOMC Review](Crypto Insights 8호.pdf)
@@ -102,14 +115,17 @@ stack : R
 - [Crypto Insights 13 - 2022 Dec FOMC Preview](Crypto Insights 13호.pdf)
 - [Crypto Insights 14 - 2023 Crypto Market Outlook](Crypto Insights 14호.pdf)
 <br/>
+
 ### SEMINARS
 - [Crypto Insight Meetup (Off-line)](https://www.youtube.com/watch?v=u_HYu8At6aI)
 <br/>
+
 ### YOUTUBES
 - [PDAO Seminar - Sustainability of Stablecoin](https://www.youtube.com/watch?v=JPWadiUZbDk)
 - [2023 Scenario with Bitcoin Price Forecasting Model](https://www.youtube.com/watch?v=eEGywng_f70)
 - [2023 Ethereum Upgrade](https://www.youtube.com/watch?v=MC3TAsfnIWQ)
 <br/>
+
 ### NEWS
 - [Report is quoted in 'Digital Today'.(2023.01.03)](https://www.digitaltoday.co.kr/news/articleView.html?idxno=467696)
 <br/>
@@ -135,11 +151,13 @@ stack : AI, Python, Excel
     - Management in personal information
 <br/>
 <br/>
+
 ## Awards & Scholarships
 - [2022.05.] POSTECH Metaverse Contest (3rd price), POSTECH
 - [2021.03. - 2023.12.] Local Talent Scholarship(Full Scholarship), [KOSAF](https://www.kosaf.go.kr/ko/main.do)
 <br/>
 <br/>
+
 ## Miscs
 - [2022] Join in 'APGC-Lab Ideathon'
 	> Topic : Business Model Development - 'Joint purchase community platform for single-person households in their 20s and 30s' 
