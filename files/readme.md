@@ -1,11 +1,12 @@
 [한국어 이력서](./korean.md)
 <br/>
-Last Updated : 2024.11.21.
+Last Updated : 2025.01.09.
 <br/>
 
 ## Contact
 - linkedin : [/basten1209](https://www.linkedin.com/in/basten1209/)
 - email : seungjunoh@postech.ac.kr
+- blog : [basten1209.tistory.com](https://basten1209.tistory.com/)
 <br/>
 <br/>
 
