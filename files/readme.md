@@ -51,17 +51,10 @@ Last Updated : 2025.01.09.
 ### [2022.09. - 2023.03.] Researcher in Economy Institute / Research Center, [Bithumb Korea](https://www.bithumbcorp.com)
 stack : R, Python, Excel, Figma
 - Participate in macro/cryptocurrency report 'Crypto Insights' series (8 reports)
-    - Contributing to improving the positive image of companies through assistance in publishing reports.
 - published blockchain research report 'CRYPTO NOTES' series (2 reports)
-    - Planning a new report series and participating in the production of the initial two episodes.
 - Participate in offline seminar - "Crypto Insight meetup"
-    - In an offline seminar for customers and influencers, about 15 minutes of personal session  was conducted under the theme of "2023 Ethereum Upgrade.
 - production of daily industry report for reporting to financial authorities(FIU)
-    - Summerizing global current events related to virtual assets and internal information of companies. 
 - filming assistance of company's official Youtube contents 'Bitconomy report', 'Crypto talk'
-    - Appearing in two 'Bitcomy Report' videos and participating in the video editing inspection. (about 4k views)
-    - Participated in the script inspection and video editing inspection of the 'Crypto Talk' series.
-    - Participated in hiring video editors for the creation of content in the department.
 <br/>
 <br/>
 
@@ -102,19 +95,19 @@ stack : R
 
 ## Posting & Talks
 ### REPORTS
-- [CRYPTO NOTES 1 - The Big Wave is Coming](CRYPTO NOTES 1호.pdf)
-- [CRYPTO NOTES 2 - Unstoppable Ethereum](CRYPTO NOTES 2호.pdf)
+- [CRYPTO NOTES 1 - The Big Wave is Coming](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/CRYPTO%20NOTES%201%ED%98%B8.pdf)
+- [CRYPTO NOTES 2 - Unstoppable Ethereum](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/CRYPTO%20NOTES%202%ED%98%B8.pdf)
 <br/>
 
 ### REPORTS (Assistant)
-- [Crypto Insights 7 - Ethereum Price Scenario after The Merge](Crypto Insights 7호.pdf)
-- [Crypto Insights 8 - 2022 Sep FOMC Review](Crypto Insights 8호.pdf)
-- [Crypto Insights 9 - Relationship about Fiat Money & Bitcoin](Crypto Insights 9호.pdf)
-- [Crypto Insights 10 - SOL, BNB Chain Hacked](Crypto Insights 10호.pdf)
-- [Crypto Insights 11 - Effect about US midterm elections](Crypto Insights 11호.pdf)
-- [Crypto Insights 12 - FTX Collaspe](Crypto Insights 12호.pdf)
-- [Crypto Insights 13 - 2022 Dec FOMC Preview](Crypto Insights 13호.pdf)
-- [Crypto Insights 14 - 2023 Crypto Market Outlook](Crypto Insights 14호.pdf)
+- [Crypto Insights 7 - Ethereum Price Scenario after The Merge](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/Crypto%20Insights%207%ED%98%B8.pdf)
+- [Crypto Insights 8 - 2022 Sep FOMC Review](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/Crypto%20Insights%208%ED%98%B8.pdf)
+- [Crypto Insights 9 - Relationship about Fiat Money & Bitcoin](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/Crypto%20Insights%209%ED%98%B8.pdf)
+- [Crypto Insights 10 - SOL, BNB Chain Hacked](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/Crypto%20Insights%2010%ED%98%B8.pdf)
+- [Crypto Insights 11 - Effect about US midterm elections](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/Crypto%20Insights%2011%ED%98%B8.pdf)
+- [Crypto Insights 12 - FTX Collaspe](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/Crypto%20Insights%2012%ED%98%B8.pdf)
+- [Crypto Insights 13 - 2022 Dec FOMC Preview](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/Crypto%20Insights%2013%ED%98%B8.pdf)
+- [Crypto Insights 14 - 2023 Crypto Market Outlook](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/Crypto%20Insights%2014%ED%98%B8.pdf)
 <br/>
 
 ### SEMINARS
@@ -137,7 +130,7 @@ stack : R
 ### [2024.01. - 2024.12.] System Developer in Logistic-Training System Development team, ROKAF Intelligent Information System Management Group
 stack : SQL, Tibero, git
 
- - Participate in Database Operation & Management in Logistic systems for all departments of the Air Force
+ - Participate in Database Operation & Management in Logistic systems for departments of the Air Force
  - appointment as squad leader (2024.08. ~ 2024.12.)
 <br/>
 
