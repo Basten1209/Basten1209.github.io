@@ -28,7 +28,6 @@ Last Updated : 2025.01.09.
 - Certified Accounting Manager / Samil PricewaterhouseCoopers (PwC)
 - Financial Planner / Korea Banking Institute
 - Certified Foreign Exchange Specialist I (CFES I) / Korea Banking Institute
-- TESAT S Grade / Korea Economic Magazine
 ### Computer Science
 - SQL Developer / Kdata
 - Advanced Data Analytics Semi-Professional (ADsP) / Kdata
@@ -48,6 +47,25 @@ Last Updated : 2025.01.09.
 <br/>
 
 ## Work Experiences
+
+### [2025.02. - Present] Guild Lead, [Superteam Korea](https://kr.superteam.fun/)
+- Working as a Guild Lead with Superteam Korea
+- Planning and Operating several projects about Solana Ecosystem with PDAO / Superteam Korea
+<br/>
+<br/>
+
+### [2025.02. - Present] ???, [PDAO](https://dao.postech.ac.kr)
+- Managing overall tasks about operating PDAO
+<br/>
+
+### [2022.06. - Present] Committee Member, PDAO
+stack : git
+- Join in PDAO Launch Project(2022.06. - 2022.12.), Work as a Dev-Near Team Cooridator and Strategy team member (worked on general tasks)
+- PDAO chain initial [governance commitee](https://github.com/postech-dao/pdao/blob/finalized/reserved/members/%EC%98%A4%EC%8A%B9%EC%A4%80.json)
+
+<br/>
+<br/>
+
 ### [2022.09. - 2023.03.] Researcher in Economy Institute / Research Center, [Bithumb Korea](https://www.bithumbcorp.com)
 stack : R, Python, Excel, Figma
 - Participate in macro/cryptocurrency report 'Crypto Insights' series (8 reports)
@@ -58,13 +76,7 @@ stack : R, Python, Excel, Figma
 <br/>
 <br/>
 
-### [2022.06. - Present] Launch member, [PDAO](https://dao.postech.ac.kr)
-stack : git
-- PDAO chain initial [governance commitee](https://github.com/postech-dao/pdao/blob/finalized/reserved/members/%EC%98%A4%EC%8A%B9%EC%A4%80.json)
-- Participate in consulting 'cyptocurrency donation process for universities'
-- Coorinating in dev-NEAR team (NEAR Protocol Colony-chain)
-<br/>
-<br/>
+
 
 ### [2022.06. - 2022.08.] Undergraduate Researcher, [POSTECH DPNM Lab](https://dpnm.postech.ac.kr)
 - Studied Blockchain & cryptocurrency (Advisor : Prof. James Won-ki Hong)
