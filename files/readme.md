@@ -54,7 +54,7 @@ Last Updated : 2025.01.09.
 <br/>
 <br/>
 
-### [2025.02. - Present] ???, [PDAO](https://dao.postech.ac.kr)
+### [2025.02. - Present] Organizer, [PDAO](https://dao.postech.ac.kr)
 - Managing overall tasks about operating PDAO
 <br/>
 
