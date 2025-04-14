@@ -1,12 +1,10 @@
-[한국어 이력서](./korean.md)
 <br/>
-Last Updated : 2025.01.09.
+Last Updated : 2025.04.15.
 <br/>
 
 ## Contact
 - linkedin : [/basten1209](https://www.linkedin.com/in/basten1209/)
 - email : seungjunoh@postech.ac.kr
-- blog : [basten1209.tistory.com](https://basten1209.tistory.com/)
 <br/>
 <br/>
 
@@ -19,24 +17,6 @@ Last Updated : 2025.01.09.
 ## Interests & Skills
 - Interests : Blockchain & Cryptocurrency, Macro Economics, Investment Theory, Data Analysis, AI(CV, NLP, ML)
 - Skills : R, Python, C/C++, SQL, Git, MS Office
-<br/>
-<br/>
-
-## Certificate
-### finance
-- Certified Investment Manager / KOFIA
-- Certified Accounting Manager / Samil PricewaterhouseCoopers (PwC)
-- Financial Planner / Korea Banking Institute
-- Certified Foreign Exchange Specialist I (CFES I) / Korea Banking Institute
-### Computer Science
-- SQL Developer / Kdata
-- Advanced Data Analytics Semi-Professional (ADsP) / Kdata
-- Craftsman Information Industrial Engineer / Human Resources Development Service of Korea
-### general office work
-- ITQ OA Master / Korea Productivity Center
-- Word Processer Specialist / The Korea Chamber of Commerce & Industry
-- Secretarial Administrator Level- I / The Korea Chamber of Commerce & Industry
-- TOEIC (Speaking : IH, Writing : AM)
 <br/>
 <br/>
 
@@ -76,8 +56,6 @@ stack : R, Python, Excel, Figma
 <br/>
 <br/>
 
-
-
 ### [2022.06. - 2022.08.] Undergraduate Researcher, [POSTECH DPNM Lab](https://dpnm.postech.ac.kr)
 - Studied Blockchain & cryptocurrency (Advisor : Prof. James Won-ki Hong)
 <br/>
@@ -109,6 +87,7 @@ stack : R
 ### REPORTS
 - [CRYPTO NOTES 1 - The Big Wave is Coming](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/CRYPTO%20NOTES%201%ED%98%B8.pdf)
 - [CRYPTO NOTES 2 - Unstoppable Ethereum](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/CRYPTO%20NOTES%202%ED%98%B8.pdf)
+- [PDAO 스터디 - 비트코인 채굴기업 산업 분석](https://medium.com/postech-dao/비트코인-채굴기업-산업-분석-45e8d7e7b701)
 <br/>
 
 ### REPORTS (Assistant)
@@ -164,6 +143,23 @@ stack : AI, Python, Excel
 <br/>
 <br/>
 
+## Certificate
+### finance
+- Certified Investment Manager / KOFIA
+- Certified Accounting Manager / Samil PricewaterhouseCoopers (PwC)
+- Financial Planner / Korea Banking Institute
+- Certified Foreign Exchange Specialist I (CFES I) / Korea Banking Institute
+### Computer Science
+- SQL Developer / Kdata
+- Advanced Data Analytics Semi-Professional (ADsP) / Kdata
+- Craftsman Information Industrial Engineer / Human Resources Development Service of Korea
+### general office work
+- ITQ OA Master / Korea Productivity Center
+- Word Processer Specialist / The Korea Chamber of Commerce & Industry
+- Secretarial Administrator Level- I / The Korea Chamber of Commerce & Industry
+- TOEIC (Speaking : IH, Writing : AM)
+<br/>
+
 ## Miscs
 - [2022] Join in 'APGC-Lab Ideathon'
 	> Topic : Business Model Development - 'Joint purchase community platform for single-person households in their 20s and 30s' 
@@ -171,6 +167,8 @@ stack : AI, Python, Excel
 	> Topic : Business Model Development - 'Marketing Assistance Platform Based on Density Data Analysis with CSI Technology'
 - [2022] Join in 'POSTECH CDPlayer Program (Buisness Planning - Customer Discovery Program)'
  > Topic : Joint purchase platform -> NFT Investment Portfolio (Pivot)
+- [2022] Join in 'RC trivia tutering' as a tutor - after tutering, opearted POSTECH investment Open-kakaotalk channel in a year. (about 100 members)
+ > Topic : Stock Investment guide for newbie
 <br/>
 <br/>
 
