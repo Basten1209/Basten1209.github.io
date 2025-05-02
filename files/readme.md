@@ -1,5 +1,5 @@
 <br/>
-Last Updated : 2025.04.15.
+Last Updated : 2025.05.02.
 <br/>
 
 ## Contact
@@ -36,6 +36,8 @@ Last Updated : 2025.04.15.
 
 ### [2025.02. - Present] Organizer, [PDAO](https://dao.postech.ac.kr)
 - Managing overall tasks about operating PDAO
+- Hosting ["Dive in Crypto-Blockchain! (in Pohang)"](https://lu.ma/memo9l05) Offline Events (attend about 50 peoples)
+
 <br/>
 
 ### [2022.06. - Present] Committee Member, PDAO
@@ -103,6 +105,7 @@ stack : R
 
 ### SEMINARS
 - [Crypto Insight Meetup (Off-line)](https://www.youtube.com/watch?v=u_HYu8At6aI)
+- ["Dive in Crypto-Blockchain! (in Pohang)"](https://lu.ma/memo9l05)
 <br/>
 
 ### YOUTUBES
