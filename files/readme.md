@@ -1,10 +1,13 @@
 <br/>
-Last Updated : 2025.05.24.
+Last Updated : 2025.07.25.
 <br/>
+
+# Seungjun Oh
 
 ## Contact
 - linkedin : [/basten1209](https://www.linkedin.com/in/basten1209/)
-- email : seungjunoh@postech.ac.kr
+- X (former Twitter) : @seungjun_x
+- email : seungjunoh@postech.ac.kr / seungjun@postech-dao.xyz
 <br/>
 
 ## Education
@@ -13,7 +16,7 @@ Last Updated : 2025.05.24.
 <br/>
 
 ## Interests & Skills
-- Interests : Blockchain & Cryptocurrency, Macro Economics, Investment Theory, Data Analysis, AI(CV, NLP, ML)
+- Interests : Blockchain & Cryptocurrency, Macro Economics, Investment Theory, Data Analysis, Econometrics, High-Frequency Trading
 - Skills : R, Python, C/C++, SQL, Git, MS Office
 <br/>
 
@@ -23,6 +26,9 @@ Last Updated : 2025.05.24.
 <br/>
 
 ## Experiences
+### [2025.06. - Present] Undergraduate Researcher, [POSTECH FBDA Lab](https://sites.google.com/view/minseokshin)
+- Study High-frequency finance (Advisor : Prof. Min-seok Shin)
+
 ### [2025.02. - Present] Organizer, [PDAO](https://dao.postech.ac.kr)
 - Managing overall tasks about operating PDAO
 - Hosting ["Dive in Crypto-Blockchain! (in Pohang)"](https://lu.ma/memo9l05) Offline Events (attend about 50 peoples)
@@ -33,6 +39,23 @@ Last Updated : 2025.05.24.
 stack : git
 - Join in PDAO Launch Project(2022.06. - 2022.12.), Work as a Dev-Near Team Cooridator and Strategy team member (worked on general tasks)
 - PDAO chain initial [governance commitee](https://github.com/postech-dao/pdao/blob/finalized/reserved/members/%EC%98%A4%EC%8A%B9%EC%A4%80.json)
+<br/>
+
+### [2024.01. - 2024.12.] System Developer in Logistic-Training System Development team, ROKAF Intelligent Information System Management Group (Millitary Service)
+stack : SQL, Tibero, git
+ - Participate in Database Operation & Management in Logistic systems for departments of the Air Force
+ - appointment as squad leader (2024.08. ~ 2024.12.)
+<br/>
+
+### [2023.05. - 2023.12.] Fusion System Developer in Fusion System Office, ROKAF Logistic Command I&C Dept. (Millitary Service)
+stack : AI, Python, Excel
+- Completed in 'AI-SW training for military personnel' (AI course)
+> [Outstanding student](https://www.broof.io/search/4e1ec599?token=f15f71a6-3b49-43fb-879d-e5284e070580&utm_source=email&utm_medium=link&utm_campaign=view) - completed advanced course
+ 
+- supported overall office tasks about AI/data analysis & paperwork like
+    - Reviewed new AI-related system
+    - Analyzed aircraft sensor data 
+    - Management in personal information
 <br/>
 
 ### [2022.09. - 2023.03.] Researcher in Economy Institute / Research Center, [Bithumb Korea](https://www.bithumbcorp.com)
@@ -60,7 +83,7 @@ stack : R, Python, Excel, Figma
     - Rewarded for exhibition in 2022 industry & academic cooperation EXPO (2022.11.)
 <br/>
 
-### [2022. 09.- 2022.12.] [R_coingecko](https://github.com/Basten1209/coingecko_r) : R Script Project for cryptocurrency data analysis using [Coingecko's R API](https://github.com/next-game-solutions/geckor)
+### [2022. 09.- 2022.12.] [R_coingecko](https://github.com/Basten1209/coingecko_r) : R Script for cryptocurrency data analysis using [Coingecko's R API](https://github.com/next-game-solutions/geckor)
 stack : R
 - Utilize the R library 'geckor' provided by Coingecko in 2022
 - Create an R Script that collects time-series information on the pricing of major crypto assets
@@ -99,28 +122,13 @@ stack : R
 - [Report is quoted in 'Digital Today'.(2023.01.03)](https://www.digitaltoday.co.kr/news/articleView.html?idxno=467696)
 <br/>
 
-## Military services
-
-### [2024.01. - 2024.12.] System Developer in Logistic-Training System Development team, ROKAF Intelligent Information System Management Group
-stack : SQL, Tibero, git
- - Participate in Database Operation & Management in Logistic systems for departments of the Air Force
- - appointment as squad leader (2024.08. ~ 2024.12.)
-<br/>
-
-### [2023.05. - 2023.12.] Fusion System Developer in Fusion System Office, ROKAF Logistic Command I&C Dept.
-stack : AI, Python, Excel
-- Completed in 'AI-SW training for military personnel' (AI course)
-> [Outstanding student](https://www.broof.io/search/4e1ec599?token=f15f71a6-3b49-43fb-879d-e5284e070580&utm_source=email&utm_medium=link&utm_campaign=view) - completed advanced course
- 
-- supported overall office tasks about AI/data analysis & paperwork like
-    - Reviewed new AI-related system
-    - Analyzed aircraft sensor data 
-    - Management in personal information
-<br/>
 
 ## Awards & Scholarships
-- [2022.05.] POSTECH Metaverse Contest (3rd price), POSTECH
-- [2021.03. - 2023.12.] Local Talent Scholarship(Full Scholarship), [KOSAF](https://www.kosaf.go.kr/ko/main.do)
+
+- [2025.07.] Monad Blitz Seoul 4th prize, Monad Foundation / B-harvest / Chainlink
+- [2025.07.] 2025 WorldQuant Brain International Quant Contest (IQC) Korea 3rd, WorldQuant
+- [2022.05.] POSTECH Metaverse Contest 3rd price, POSTECH
+- [2021.03. - 2022.12.] Local Talent Scholarship(Full Scholarship), [KOSAF](https://www.kosaf.go.kr/ko/main.do)
 <br/>
 <br/>
 
@@ -130,7 +138,7 @@ stack : AI, Python, Excel
 - Certified Accounting Manager / Samil PricewaterhouseCoopers (PwC)
 - Financial Planner / Korea Banking Institute
 - Certified Foreign Exchange Specialist I (CFES I) / Korea Banking Institute
-- WorldQuant Challenge Gold Level / WorldQuant BRAIN
+
 ### Computer Science
 - SQL Developer / Kdata
 - Advanced Data Analytics Semi-Professional (ADsP) / Kdata
@@ -148,8 +156,7 @@ stack : AI, Python, Excel
 - [2022] Join in 'Tech Review Techathon'
 	> Topic : Business Model Development - 'Marketing Assistance Platform Based on Density Data Analysis with CSI Technology'
 - [2022] Join in 'POSTECH CDPlayer Program (Buisness Planning - Customer Discovery Program)'
- > Topic : Joint purchase platform -> NFT Investment Portfolio (Pivot)
+    > Topic : Joint purchase platform -> NFT Investment Portfolio (Pivot)
 - [2022] Join in 'RC trivia tutering' as a tutor - after tutering, opearted POSTECH investment Open-kakaotalk channel in a year. (about 100 members)
- > Topic : Stock Investment guide for newbie
+    > Topic : Stock Investment guide for newbie
 <br/>
-
