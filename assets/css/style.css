@@ -204,8 +204,8 @@ main {
 }
 
 .home-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
 }
 
@@ -495,10 +495,6 @@ main {
 }
 
 @media (max-width: 1024px) {
-  .home-grid {
-    grid-template-columns: 1fr;
-  }
-
   .profile-card {
     grid-template-columns: minmax(0, 180px) minmax(0, 1fr);
   }
