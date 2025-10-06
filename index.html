@@ -1,22 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>Seungjun Oh</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Seungjun Oh Portfolio">
+  <title>Seungjun Oh | Portfolio</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/dompurify@3.1.5/dist/purify.min.js"></script>
+  <script defer src="assets/js/main.js"></script>
 </head>
 <body>
-  <div id="resume"></div>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script>
-    // Fetch the markdown file
-    fetch('files/readme.md')
-      .then(response => response.text())
-      .then(markdown => {
-        // Convert markdown to HTML
-        const htmlContent = marked.parse(markdown);
-        document.getElementById('resume').innerHTML = htmlContent;
-      })
-      .catch(error => console.error('Error fetching the markdown file:', error));
-  </script>
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand__name">Seungjun Oh</span>
+      <span class="brand__role">Portfolio</span>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="메뉴 열기">
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+    </button>
+    <nav class="site-nav" id="siteNav" aria-label="주요 메뉴">
+      <ul class="nav__list">
+        <li><a class="nav__link active" data-section="home" href="#home">Home</a></li>
+        <li><a class="nav__link" data-section="cv" href="#cv">CV</a></li>
+        <li><a class="nav__link" data-section="journey" href="#journey">My Journey</a></li>
+        <li><a class="nav__link" data-section="contact" href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="section section--active" aria-labelledby="home-heading">
+      <div class="section__inner home-grid">
+        <div class="profile-card">
+          <div class="profile-photo" data-src="assets/images/profile.jpg" role="img" aria-label="Seungjun Oh profile photo placeholder">
+            <span class="profile-photo__placeholder">Add profile photo</span>
+          </div>
+          <div class="profile-summary">
+            <h1 id="home-heading">안녕하세요, Seungjun Oh입니다.</h1>
+            <p>
+              분산원장 기술과 데이터로 새로운 금융 생태계를 설계하는 것을 목표로 활동하고 있습니다.
+              POSTECH에서 컴퓨터공학을 전공하며 연구와 커뮤니티 운영, 산업 프로젝트를 통해 블록체인과
+              퀀트 리서치 역량을 쌓아왔습니다. 운영 경험과 분석 역량을 바탕으로, 빠르게 진화하는 Web3 환경에서
+              책임감 있게 성장하는 빌더가 되고자 합니다.
+            </p>
+            <p class="profile-summary__highlight">
+              FBDA 연구실에서 고빈도 금융 데이터를 다루고 있으며, PDAO 운영을 통해 생태계 구축과 커뮤니티 경험을
+              함께 쌓고 있습니다.
+            </p>
+          </div>
+        </div>
+        <article class="markdown-card">
+          <header class="markdown-card__header">
+            <h2>최근 활동 한눈에 보기</h2>
+            <a class="markdown-card__link" href="summary.md" target="_blank" rel="noopener">summary.md 보기</a>
+          </header>
+          <div id="summaryContent" class="markdown-body" aria-live="polite"></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="cv" class="section" aria-labelledby="cv-heading">
+      <div class="section__inner">
+        <header class="section__header">
+          <h2 id="cv-heading">Curriculum Vitae</h2>
+          <div class="section__actions">
+            <a class="button" href="files/readme.md" target="_blank" rel="noopener">원본 Markdown 보기</a>
+          </div>
+        </header>
+        <article id="cvContent" class="markdown-body" aria-live="polite"></article>
+      </div>
+    </section>
+
+    <section id="journey" class="section" aria-labelledby="journey-heading">
+      <div class="section__inner">
+        <header class="section__header">
+          <h2 id="journey-heading">My Journey</h2>
+          <p class="section__description">
+            활동 내역을 태그와 기관별로 탐색할 수 있는 대시보드입니다. 검색 또는 정렬을 활용해 관심있는 경험을 찾아보세요.
+          </p>
+        </header>
+
+        <div class="journey-controls">
+          <label class="journey-controls__search" for="journeySearch">
+            <span class="journey-controls__label">검색</span>
+            <input type="search" id="journeySearch" placeholder="키워드로 검색 (예: PDAO, Research, 2025)" autocomplete="off">
+          </label>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="journey-table" aria-describedby="journey-heading">
+            <thead>
+              <tr>
+                <th data-sort-key="startDate" scope="col">Start Date</th>
+                <th data-sort-key="endDate" scope="col">End Date</th>
+                <th data-sort-key="tags" scope="col">Tag</th>
+                <th data-sort-key="organizations" scope="col">Organization</th>
+                <th data-sort-key="activity" scope="col">Activity</th>
+                <th data-sort-key="notes" scope="col">Notes</th>
+              </tr>
+            </thead>
+            <tbody id="journeyTableBody">
+              <tr>
+                <td colspan="6" class="journey-table__loading">데이터를 불러오는 중입니다…</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section" aria-labelledby="contact-heading">
+      <div class="section__inner">
+        <header class="section__header">
+          <h2 id="contact-heading">Contact</h2>
+          <p class="section__description">
+            다양한 채널에서 제 활동을 확인하고 연락해 주세요.
+          </p>
+        </header>
+        <div class="contact-grid">
+          <a class="contact-card" href="mailto:seungjunoh@postech.ac.kr">
+            <span class="contact-card__label">Email</span>
+            <span class="contact-card__value">seungjunoh@postech.ac.kr</span>
+          </a>
+          <a class="contact-card" href="mailto:seungjun@postech-dao.xyz">
+            <span class="contact-card__label">DAO Team Email</span>
+            <span class="contact-card__value">seungjun@postech-dao.xyz</span>
+          </a>
+          <a class="contact-card" href="https://www.linkedin.com/in/basten1209/" target="_blank" rel="noopener">
+            <span class="contact-card__label">LinkedIn</span>
+            <span class="contact-card__value">/basten1209</span>
+          </a>
+          <a class="contact-card" href="https://x.com/seungjun_x" target="_blank" rel="noopener">
+            <span class="contact-card__label">X (Twitter)</span>
+            <span class="contact-card__value">@seungjun_x</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>© <span id="currentYear"></span> Seungjun Oh. All rights reserved.</small>
+  </footer>
 </body>
 </html>
