@@ -1,32 +1,24 @@
-# 주요이력
+# Summary
 
- [2025-] POSTECH 금융빅데이터분석(FBDA) 연구실 연구참여
+Work Experience
+ - [2025 - ] Organizer, PDAO
+ - [2023-2024] System Developer (Military Service), ROKAF
+ - [2022-2023] Researcher (Intern), Bithumb
 
- [2025-] 크립토-블록체인 커뮤니티 PDAO Organizer(대표 운영자)
- - 경부권 대학생 및 개발자 대상 크립토-블록체인 오프라인 행사 기획 및 개최
- - 국내외 각종 크립토-블록체인 단체와 프로젝트 진행
+Study
+ - [2025 - ] Undergraduate Researcher, POSTECH FBDA Lab
+ - [2022] Undergraduate Researcher, POSTECH DPNM Lab
+ - [2021 - ] BS Program in Industrial Management & Engineering, POSTECH
 
-[2025] Monad Blitz Seoul 4th prize
+Publication
+ - [2023] “디지털자산 시대가 온다” (공저)
 
-[2025] WorldQuant Brain International Quant Championship (IQC) Korea 3rd Place
+Award
+ - [2025] 4th prize in Monad Blitz Seoul, Monad & B-Harvest & Chainlink
+ - [2025] Korea 3rd in IQC, WorldQuant
 
-[2023-2024] 대한민국공군 병장 만기전역
-
- - 공군 컴퓨터자산관리체계 유지보수요원 임명
- - 2023 국방SW-AI 역량강화 사업 우수 수료생
- - 복무기간 중 투자자산운용사, 재경관리사, 자산관리사 등 11개 자격증 취득
-
-[2023] 도서 '디지털자산 시대가 온다' 공저
-
-[2022-2023] 빗썸 빗썸경제연구소 리서치센터 연구원(인턴)
- - 고객 대상 리포트 발간, 국가기관 대상 산업동향 보고 등 수행
-
-[2022] POSTECH 분산처리 및 네트워크관리(DPNM) 연구실 연구참여
-
-[2022] 포항 강소연구 개발특구 이노폴리스캠퍼스 사업 참여
- - 포항 강소특구 이노폴리스캠퍼스 사업 예비창업팀 선정
- - 포항 강소특구 이노폴리스캠퍼스 창업역량 강화교육 수료
-
-[2022] 학생창업유망팀300 인증
- - 학생창업유망팀 300 경진대회 성장트랙 최종선정
- - 산학협력EXPO 학생창업유망팀300 제품전시회 참여
+Organization
+ - [2025 - ]Member, POSTECH CCBR
+ - [2025 - ]Member, Injective Korea Contributer hub (Ninja Labs Korea)
+ - [2025 - ]Member, Superteam Korea
+ - [2022 - ]Genesis Member, PDAO
