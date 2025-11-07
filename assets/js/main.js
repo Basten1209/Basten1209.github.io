@@ -1,32 +1,21 @@
 (() => {
+  // State
   const sections = Array.from(document.querySelectorAll('.section'));
   const navLinks = Array.from(document.querySelectorAll('.nav__link'));
-  const navToggle = document.getElementById('navToggle');
-  const siteNav = document.getElementById('siteNav');
   const currentYearEl = document.getElementById('currentYear');
 
-  const markdownSources = [
-    { url: 'summary.md', targetId: 'summaryContent' },
-    { url: 'files/readme.md', targetId: 'cvContent' }
-  ];
-
-  let journeyData = [];
-  let filteredJourneyData = [];
-  let sortState = { key: 'startDate', direction: 'desc' };
-
-  const journeyTableBody = document.getElementById('journeyTableBody');
-  const journeySearchInput = document.getElementById('journeySearch');
-  const journeyHeaders = Array.from(document.querySelectorAll('.journey-table th'));
-
+  // Set current year
   const setYear = () => {
     if (currentYearEl) {
       currentYearEl.textContent = String(new Date().getFullYear());
     }
   };
 
-  const tryLoadProfilePhoto = () => {
+  // Load profile photo
+  const loadProfilePhoto = () => {
     const photoEl = document.querySelector('.profile-photo');
     if (!photoEl) return;
+
     const imageSrc = photoEl.dataset.src;
     if (!imageSrc) return;
 
@@ -41,14 +30,8 @@
     img.src = imageSrc;
   };
 
-  const toggleNav = (forceState) => {
-    if (!navToggle || !siteNav) return;
-    const expanded = typeof forceState === 'boolean' ? forceState : navToggle.getAttribute('aria-expanded') !== 'true';
-    navToggle.setAttribute('aria-expanded', String(expanded));
-    siteNav.classList.toggle('site-nav--open', expanded);
-  };
-
-  const setActiveSection = (sectionId, { scrollIntoView = false } = {}) => {
+  // Navigation
+  const setActiveSection = (sectionId) => {
     const targetSection = sections.find((section) => section.id === sectionId) || sections[0];
     if (!targetSection) return;
 
@@ -62,14 +45,6 @@
         link.removeAttribute('aria-current');
       }
     });
-
-    if (scrollIntoView) {
-      targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    if (siteNav?.classList.contains('site-nav--open')) {
-      toggleNav(false);
-    }
   };
 
   const initNavigation = () => {
@@ -79,253 +54,156 @@
         const targetId = link.dataset.section;
         if (!targetId) return;
         history.replaceState(null, '', `#${targetId}`);
-        setActiveSection(targetId, { scrollIntoView: true });
+        setActiveSection(targetId);
       });
     });
 
-    navToggle?.addEventListener('click', () => toggleNav());
-
     window.addEventListener('hashchange', () => {
       const sectionId = window.location.hash.replace('#', '') || 'home';
-      setActiveSection(sectionId, { scrollIntoView: false });
+      setActiveSection(sectionId);
     });
 
     const initialSectionId = window.location.hash.replace('#', '') || 'home';
-    setActiveSection(initialSectionId, { scrollIntoView: false });
+    setActiveSection(initialSectionId);
   };
 
-  const renderMarkdown = (markdown, targetEl) => {
-    if (!targetEl) return;
-    const html = DOMPurify.sanitize(marked.parse(markdown));
-    targetEl.innerHTML = html;
-  };
-
-  const loadMarkdown = async () => {
-    marked.setOptions({ breaks: true, gfm: true });
-
-    await Promise.all(
-      markdownSources.map(async ({ url, targetId }) => {
-        const targetEl = document.getElementById(targetId);
-        if (!targetEl) return;
-        try {
-          const response = await fetch(url);
-          if (!response.ok) {
-            throw new Error(`Response not ok (${response.status})`);
-          }
-          const markdown = await response.text();
-          renderMarkdown(markdown, targetEl);
-        } catch (error) {
-          targetEl.innerHTML = `<p class="error-message">콘텐츠를 불러오지 못했습니다. 파일 위치를 확인해주세요.</p>`;
-          console.error(`Failed to load markdown from ${url}`, error);
-        }
-      })
-    );
-  };
-
-  const parseDateValue = (value) => {
-    if (!value) return null;
-    if (value.toLowerCase() === 'present') return new Date();
-    const parsed = new Date(value);
-    return Number.isNaN(parsed.valueOf()) ? null : parsed;
-  };
-
-  const getComparableValue = (item, key) => {
-    switch (key) {
-      case 'startDate':
-        return parseDateValue(item.startDate) ?? new Date(0);
-      case 'endDate':
-        return parseDateValue(item.endDate) ?? new Date(0);
-      case 'tags':
-        return (item.tags || []).join(', ').toLowerCase();
-      case 'organizations':
-        return (item.organizations || []).join(', ').toLowerCase();
-      case 'activity':
-        return (item.activity || '').toLowerCase();
-      case 'notes':
-        return (item.notes || '').toLowerCase();
-      default:
-        return '';
-    }
-  };
-
-  const formatDate = (value) => {
-    if (!value) return '';
-    if (value.toLowerCase() === 'present') return 'Present';
-    const date = parseDateValue(value);
-    if (!date) return value;
-
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}.${month}.${day}`;
-  };
-
-  const createBadge = (text) => {
-    const badge = document.createElement('span');
-    badge.className = 'badge';
-    badge.textContent = text;
-    return badge;
-  };
-
-  const renderJourneyTable = (data) => {
-    if (!journeyTableBody) return;
-    journeyTableBody.replaceChildren();
-
-    if (!data.length) {
-      const emptyRow = document.createElement('tr');
-      const emptyCell = document.createElement('td');
-      emptyCell.colSpan = 6;
-      emptyCell.className = 'journey-table__empty';
-      emptyCell.textContent = '검색 결과가 없습니다.';
-      emptyRow.appendChild(emptyCell);
-      journeyTableBody.append(emptyRow);
-      return;
-    }
-
-    const fragment = document.createDocumentFragment();
-    data.forEach((item) => {
-      const row = document.createElement('tr');
-
-      const startDateCell = document.createElement('td');
-      startDateCell.textContent = formatDate(item.startDate);
-
-      const endDateCell = document.createElement('td');
-      endDateCell.textContent = item.endDate ? formatDate(item.endDate) : '';
-
-      const tagCell = document.createElement('td');
-      (item.tags || []).forEach((tag) => tagCell.appendChild(createBadge(tag)));
-
-      const orgCell = document.createElement('td');
-      (item.organizations || []).forEach((org) => orgCell.appendChild(createBadge(org)));
-
-      const activityCell = document.createElement('td');
-      activityCell.textContent = item.activity || '';
-
-      const notesCell = document.createElement('td');
-      notesCell.textContent = item.notes || '';
-
-      row.append(startDateCell, endDateCell, tagCell, orgCell, activityCell, notesCell);
-      fragment.appendChild(row);
-    });
-
-    journeyTableBody.appendChild(fragment);
-  };
-
-  const applySort = (data, key = sortState.key, direction = sortState.direction) => {
-    const sorted = data.slice().sort((a, b) => {
-      const aValue = getComparableValue(a, key);
-      const bValue = getComparableValue(b, key);
-
-      if (aValue instanceof Date && bValue instanceof Date) {
-        const result = aValue - bValue;
-        return direction === 'asc' ? result : -result;
-      }
-
-      if (aValue > bValue) return direction === 'asc' ? 1 : -1;
-      if (aValue < bValue) return direction === 'asc' ? -1 : 1;
-      return 0;
-    });
-
-    sortState = { key, direction };
-    journeyHeaders.forEach((header) => {
-      const headerKey = header.dataset.sortKey;
-      if (headerKey === key) {
-        header.setAttribute('aria-sort', direction === 'asc' ? 'ascending' : 'descending');
-        header.dataset.sortDirection = direction;
-      } else {
-        header.removeAttribute('aria-sort');
-        delete header.dataset.sortDirection;
-      }
-    });
-
-    return sorted;
-  };
-
-  const handleSortClick = (event) => {
-    const header = event.currentTarget;
-    const key = header.dataset.sortKey;
-    if (!key) return;
-
-    const nextDirection = header.dataset.sortDirection === 'asc' ? 'desc' : 'asc';
-    const dataToSort = filteredJourneyData.length ? filteredJourneyData : journeyData;
-    const sorted = applySort(dataToSort, key, nextDirection);
-    if (filteredJourneyData.length) {
-      filteredJourneyData = sorted;
-    } else {
-      journeyData = sorted;
-    }
-    renderJourneyTable(sorted);
-  };
-
-  const applySearchFilter = (keyword) => {
-    const trimmed = keyword.trim().toLowerCase();
-    if (!trimmed) {
-      filteredJourneyData = [];
-      const sorted = applySort(journeyData);
-      journeyData = sorted;
-      renderJourneyTable(journeyData);
-      return;
-    }
-
-    const filtered = journeyData.filter((item) => {
-      const haystack = [
-        item.startDate,
-        item.endDate,
-        item.activity,
-        item.notes,
-        ...(item.tags || []),
-        ...(item.organizations || [])
-      ]
-        .filter(Boolean)
-        .join(' ')
-        .toLowerCase();
-
-      return haystack.includes(trimmed);
-    });
-
-    filteredJourneyData = applySort(filtered);
-    renderJourneyTable(filteredJourneyData);
-  };
-
-  const loadJourneyData = async () => {
-    if (!journeyTableBody) return;
+  // Load CV markdown
+  const loadCV = async () => {
+    const cvContent = document.getElementById('cvContent');
+    if (!cvContent) return;
 
     try {
-      const response = await fetch('data/journey-data.json');
+      marked.setOptions({ breaks: true, gfm: true });
+      const response = await fetch('files/readme.md');
       if (!response.ok) {
-        throw new Error(`Response not ok (${response.status})`);
+        throw new Error(`Failed to load CV: ${response.status}`);
       }
-      const data = await response.json();
-      journeyData = Array.isArray(data) ? data : [];
-      journeyData = applySort(journeyData);
-      renderJourneyTable(journeyData);
+      const markdown = await response.text();
+      const html = DOMPurify.sanitize(marked.parse(markdown));
+      cvContent.innerHTML = html;
     } catch (error) {
-      console.error('Failed to load journey data', error);
-      journeyTableBody.innerHTML = `
-        <tr>
-          <td colspan="6" class="journey-table__error">
-            데이터를 불러오는 중 문제가 발생했습니다. data/journey-data.json 파일을 확인해주세요.
-          </td>
-        </tr>
-      `;
+      console.error('Error loading CV:', error);
+      cvContent.innerHTML = '<p class="error-message">Failed to load CV. Please check the file path.</p>';
     }
   };
 
-  const initJourneyInteractions = () => {
-    journeyHeaders.forEach((header) => header.addEventListener('click', handleSortClick));
-    journeySearchInput?.addEventListener('input', (event) => {
-      applySearchFilter(event.target.value);
+  // Resume/CV Tab Switching
+  const initResumeTabs = () => {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const targetTab = button.dataset.tab;
+
+        // Update button states
+        tabButtons.forEach((btn) => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Update content visibility
+        tabContents.forEach((content) => {
+          if (content.id === `${targetTab}-tab`) {
+            content.classList.add('active');
+          } else {
+            content.classList.remove('active');
+          }
+        });
+      });
     });
   };
 
-  const init = () => {
-    setYear();
-    tryLoadProfilePhoto();
-    initNavigation();
-    loadMarkdown();
-    initJourneyInteractions();
-    loadJourneyData();
+  // PDF Viewer
+  const initPDFViewer = () => {
+    const pdfSelector = document.getElementById('pdf-selector');
+    const pdfViewer = document.getElementById('pdfViewer');
+    if (!pdfSelector || !pdfViewer) return;
+
+    // Scan files directory for PDFs
+    const pdfFiles = [
+      'Crypto Insights 7호.pdf',
+      'Crypto Insights 8호.pdf',
+      'Crypto Insights 9호.pdf',
+      'Crypto Insights 10호.pdf',
+      'Crypto Insights 11호.pdf',
+      'Crypto Insights 12호.pdf',
+      'Crypto Insights 13호.pdf',
+      'Crypto Insights 14호.pdf',
+      'CRYPTO NOTES 1호.pdf',
+      'CRYPTO NOTES 2호.pdf'
+    ];
+
+    // Populate selector
+    pdfFiles.forEach((filename) => {
+      const option = document.createElement('option');
+      option.value = `files/${encodeURIComponent(filename)}`;
+      option.textContent = filename;
+      pdfSelector.appendChild(option);
+    });
+
+    // Handle selection
+    pdfSelector.addEventListener('change', (event) => {
+      const selectedPDF = event.target.value;
+      if (!selectedPDF) {
+        pdfViewer.innerHTML = '<p class="placeholder-text">Select a PDF file to view</p>';
+        return;
+      }
+
+      pdfViewer.innerHTML = `<iframe src="${selectedPDF}" title="PDF Viewer"></iframe>`;
+    });
   };
 
-  document.addEventListener('DOMContentLoaded', init);
+  // Excel Viewer
+  const initExcelViewer = async () => {
+    const excelViewer = document.getElementById('excelViewer');
+    if (!excelViewer) return;
+
+    // Specify the Excel file to load automatically
+    // Change this path to your actual Excel file
+    const excelFilePath = 'data/proof-of-work.xlsx';
+
+    try {
+      excelViewer.innerHTML = '<p class="placeholder-text">Loading...</p>';
+
+      const response = await fetch(excelFilePath);
+      if (!response.ok) {
+        throw new Error(`Failed to load Excel file: ${response.status}`);
+      }
+
+      const arrayBuffer = await response.arrayBuffer();
+      const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+
+      // Get first sheet
+      const firstSheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[firstSheetName];
+
+      // Convert to HTML table
+      const html = XLSX.utils.sheet_to_html(worksheet, {
+        id: 'excel-table',
+        editable: false
+      });
+
+      excelViewer.innerHTML = html;
+    } catch (error) {
+      console.error('Error loading Excel file:', error);
+      excelViewer.innerHTML = '<p class="placeholder-text">No Excel file available. Please add "proof-of-work.xlsx" to the data directory.</p>';
+    }
+  };
+
+  // Initialize everything
+  const init = () => {
+    setYear();
+    loadProfilePhoto();
+    initNavigation();
+    loadCV();
+    initResumeTabs();
+    initPDFViewer();
+    initExcelViewer();
+  };
+
+  // Run on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();

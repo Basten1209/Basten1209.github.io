@@ -4,140 +4,104 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Seungjun Oh Portfolio">
-  <title>Seungjun Oh | Portfolio</title>
+  <title>Seungjun Oh</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/dompurify@3.1.5/dist/purify.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script defer src="assets/js/main.js"></script>
 </head>
 <body>
   <header class="site-header">
     <div class="brand">
       <span class="brand__name">Seungjun Oh</span>
-      <span class="brand__role">Portfolio</span>
     </div>
-    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="메뉴 열기">
-      <span class="nav-toggle__bar"></span>
-      <span class="nav-toggle__bar"></span>
-      <span class="nav-toggle__bar"></span>
-    </button>
     <nav class="site-nav" id="siteNav" aria-label="주요 메뉴">
       <ul class="nav__list">
         <li><a class="nav__link active" data-section="home" href="#home">Home</a></li>
-        <li><a class="nav__link" data-section="cv" href="#cv">CV</a></li>
-        <li><a class="nav__link" data-section="journey" href="#journey">My Journey</a></li>
-        <li><a class="nav__link" data-section="contact" href="#contact">Contact</a></li>
+        <li><a class="nav__link" data-section="resume" href="#resume">Resume/CV</a></li>
+        <li><a class="nav__link" data-section="proof-of-work" href="#proof-of-work">Proof of Work</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
+    <!-- Home Section -->
     <section id="home" class="section section--active" aria-labelledby="home-heading">
-      <div class="section__inner home-grid">
-        <div class="profile-card">
-          <div class="profile-photo" data-src="assets/images/profile.jpg" role="img" aria-label="Seungjun Oh profile photo placeholder">
-            <span class="profile-photo__placeholder">Add profile photo</span>
+      <div class="section__inner">
+        <div class="home-content">
+          <div class="profile-photo" data-src="assets/images/profile.jpg" role="img" aria-label="Seungjun Oh profile photo">
+            <span class="profile-photo__placeholder">Loading...</span>
           </div>
-          <div class="profile-summary">
-            <h1 id="home-heading">안녕하세요, Seungjun Oh입니다.</h1>
-            <p>
-              크립토-블록체인 산업과 금융투자에 관심을 가지고 있습니다. 새로 등장한 이 산업에 빠져들어 이 산업에 기여할 수 있는 사람이 되고자 합니다.
-              마켓/생태계 리서치에 가장 많은 관심을 가지고 있으며, 깊이 있는 연구를 위해 크립토 커뮤니티 운영, 크립토 밋업 개최, 블록체인 기술 공부, 해커톤 개발 경험, 퀀트 트레이딩 등 다양한 방면으로 크립토 산업을 경험하고자 노력하고 있습니다.
-            </p>
-            <p class="profile-summary__highlight">
-              대학에서는 산업경영공학을 전공 중이며, 그 중에서도 금융공학, 금융빅데이터분석을 배우고 있습니다. 졸업 전 까지 고차원/고빈도 금융데이터 분석에 대한 학습을 바탕으로 크립토 마켓에서의 초과수익 모델, 혹은 예측 모델을 구현하는 것을 목표로 하고 있습니다.
-
-            </p>
+          <div class="intro">
+            <h1 id="home-heading">Seungjun Oh</h1>
+            <div class="intro-text">
+              <p>
+                크립토-블록체인 산업과 금융투자에 관심을 가지고 있습니다. 새로 등장한 이 산업에 빠져들어 이 산업에 기여할 수 있는 사람이 되고자 합니다.
+              </p>
+              <p>
+                마켓/생태계 리서치에 가장 많은 관심을 가지고 있으며, 깊이 있는 연구를 위해 크립토 커뮤니티 운영, 크립토 밋업 개최, 블록체인 기술 공부, 해커톤 개발 경험, 퀀트 트레이딩 등 다양한 방면으로 크립토 산업을 경험하고자 노력하고 있습니다.
+              </p>
+              <p>
+                대학에서는 산업경영공학을 전공 중이며, 그 중에서도 금융공학, 금융빅데이터분석을 배우고 있습니다. 졸업 전 까지 고차원/고빈도 금융데이터 분석에 대한 학습을 바탕으로 크립토 마켓에서의 초과수익 모델, 혹은 예측 모델을 구현하는 것을 목표로 하고 있습니다.
+              </p>
+            </div>
           </div>
         </div>
-        <article class="markdown-card">
-          <header class="markdown-card__header">
-            <h2>최근 활동 한눈에 보기</h2>
-          </header>
-          <div id="summaryContent" class="markdown-body" aria-live="polite"></div>
-        </article>
       </div>
     </section>
 
-    <section id="cv" class="section" aria-labelledby="cv-heading">
+    <!-- Resume/CV Section -->
+    <section id="resume" class="section" aria-labelledby="resume-heading">
       <div class="section__inner">
-        <header class="section__header">
-          <h2 id="cv-heading">Curriculum Vitae</h2>
-        </header>
-        <article id="cvContent" class="markdown-body" aria-live="polite"></article>
-      </div>
-    </section>
+        <h2 id="resume-heading">Resume/CV</h2>
 
-    <section id="journey" class="section" aria-labelledby="journey-heading">
-      <div class="section__inner">
-        <header class="section__header">
-          <h2 id="journey-heading">My Journey</h2>
-          <p class="section__description">
-            활동 내역을 태그와 기관별로 탐색할 수 있는 대시보드입니다. 검색 또는 정렬을 활용해 관심있는 경험을 찾아보세요.
-          </p>
-        </header>
-
-        <div class="journey-controls">
-          <label class="journey-controls__search" for="journeySearch">
-            <span class="journey-controls__label">검색</span>
-            <input type="search" id="journeySearch" placeholder="키워드로 검색 (예: PDAO, Research, 2025)" autocomplete="off">
-          </label>
+        <div class="resume-tabs">
+          <button class="tab-button active" data-tab="pdf">Resume (PDF)</button>
+          <button class="tab-button" data-tab="cv">CV (Markdown)</button>
         </div>
 
-        <div class="table-wrapper">
-          <table class="journey-table" aria-describedby="journey-heading">
-            <thead>
-              <tr>
-                <th data-sort-key="startDate" scope="col">Start Date</th>
-                <th data-sort-key="endDate" scope="col">End Date</th>
-                <th data-sort-key="tags" scope="col">Tag</th>
-                <th data-sort-key="organizations" scope="col">Organization</th>
-                <th data-sort-key="activity" scope="col">Activity</th>
-                <th data-sort-key="notes" scope="col">Notes</th>
-              </tr>
-            </thead>
-            <tbody id="journeyTableBody">
-              <tr>
-                <td colspan="6" class="journey-table__loading">데이터를 불러오는 중입니다…</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="tab-content active" id="pdf-tab">
+          <div class="pdf-controls">
+            <label for="pdf-selector">Select Resume:</label>
+            <select id="pdf-selector">
+              <option value="">-- Select a PDF --</option>
+            </select>
+          </div>
+          <div class="pdf-viewer" id="pdfViewer">
+            <p class="placeholder-text">Select a PDF file to view</p>
+          </div>
+        </div>
+
+        <div class="tab-content" id="cv-tab">
+          <article id="cvContent" class="markdown-body" aria-live="polite"></article>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="section" aria-labelledby="contact-heading">
+    <!-- Proof of Work Section -->
+    <section id="proof-of-work" class="section" aria-labelledby="pow-heading">
       <div class="section__inner">
-        <header class="section__header">
-          <h2 id="contact-heading">Contact</h2>
-          <p class="section__description">
-            다양한 채널에서 제 활동을 확인하고 연락해 주세요.
-          </p>
-        </header>
-        <div class="contact-grid">
-          <a class="contact-card" href="mailto:seungjunoh@postech.ac.kr">
-            <span class="contact-card__label">Email</span>
-            <span class="contact-card__value">seungjunoh@postech.ac.kr</span>
-          </a>
-          <a class="contact-card" href="mailto:seungjun@postech-dao.xyz">
-            <span class="contact-card__label">About PDAO</span>
-            <span class="contact-card__value">seungjun@postech-dao.xyz</span>
-          </a>
-          <a class="contact-card" href="https://www.linkedin.com/in/basten1209/" target="_blank" rel="noopener">
-            <span class="contact-card__label">LinkedIn</span>
-            <span class="contact-card__value">/basten1209</span>
-          </a>
-          <a class="contact-card" href="https://x.com/seungjun_x" target="_blank" rel="noopener">
-            <span class="contact-card__label">X (Twitter)</span>
-            <span class="contact-card__value">@seungjun_x</span>
-          </a>
+        <h2 id="pow-heading">Proof of Work</h2>
+
+        <div class="excel-viewer" id="excelViewer">
+          <p class="placeholder-text">Loading...</p>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <small>© <span id="currentYear"></span> Seungjun Oh. All rights reserved.</small>
+    <div class="footer-links">
+      <a href="mailto:seungjunoh@postech.ac.kr">seungjunoh@postech.ac.kr</a>
+      <span class="separator">|</span>
+      <a href="mailto:seungjun@postech-dao.xyz">seungjun@postech-dao.xyz</a>
+      <span class="separator">|</span>
+      <a href="https://www.linkedin.com/in/basten1209/" target="_blank" rel="noopener">LinkedIn</a>
+      <span class="separator">|</span>
+      <a href="https://x.com/seungjun_x" target="_blank" rel="noopener">X/Twitter</a>
+    </div>
+    <small>© <span id="currentYear"></span> Seungjun Oh</small>
   </footer>
 </body>
 </html>
