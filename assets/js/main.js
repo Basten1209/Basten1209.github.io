@@ -74,7 +74,7 @@
 
     try {
       marked.setOptions({ breaks: true, gfm: true });
-      const response = await fetch('files/readme.md');
+      const response = await fetch('data/cv.md');
       if (!response.ok) {
         throw new Error(`Failed to load CV: ${response.status}`);
       }
@@ -87,55 +87,57 @@
     }
   };
 
-  // Resume/CV Tab Switching
-  const initResumeTabs = () => {
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    tabButtons.forEach((button) => {
+  // Tab Switching (for Resume/CV and Proof of Work)
+  const initTabs = () => {
+    // Handle Resume/CV tabs
+    const resumeTabButtons = document.querySelectorAll('.resume-tabs .tab-button');
+    resumeTabButtons.forEach((button) => {
       button.addEventListener('click', () => {
         const targetTab = button.dataset.tab;
 
-        // Update button states
-        tabButtons.forEach((btn) => btn.classList.remove('active'));
+        // Update button states within resume tabs
+        resumeTabButtons.forEach((btn) => btn.classList.remove('active'));
         button.classList.add('active');
 
-        // Update content visibility
-        tabContents.forEach((content) => {
-          if (content.id === `${targetTab}-tab`) {
-            content.classList.add('active');
-          } else {
-            content.classList.remove('active');
-          }
-        });
+        // Update content visibility for resume tabs
+        document.getElementById('pdf-tab').classList.toggle('active', targetTab === 'pdf');
+        document.getElementById('cv-tab').classList.toggle('active', targetTab === 'cv');
+      });
+    });
+
+    // Handle Proof of Work tabs
+    const powTabButtons = document.querySelectorAll('.pow-tabs .tab-button');
+    powTabButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const targetTab = button.dataset.tab;
+
+        // Update button states within pow tabs
+        powTabButtons.forEach((btn) => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Update content visibility for pow tabs
+        document.getElementById('report-tab').classList.toggle('active', targetTab === 'report');
+        document.getElementById('history-tab').classList.toggle('active', targetTab === 'history');
       });
     });
   };
 
-  // PDF Viewer
+  // PDF Viewer for Resume
   const initPDFViewer = () => {
     const pdfSelector = document.getElementById('pdf-selector');
     const pdfViewer = document.getElementById('pdfViewer');
     if (!pdfSelector || !pdfViewer) return;
 
-    // Scan files directory for PDFs
+    // Resume PDF files
     const pdfFiles = [
-      'Crypto Insights 7호.pdf',
-      'Crypto Insights 8호.pdf',
-      'Crypto Insights 9호.pdf',
-      'Crypto Insights 10호.pdf',
-      'Crypto Insights 11호.pdf',
-      'Crypto Insights 12호.pdf',
-      'Crypto Insights 13호.pdf',
-      'Crypto Insights 14호.pdf',
-      'CRYPTO NOTES 1호.pdf',
-      'CRYPTO NOTES 2호.pdf'
+      'resume_eng.pdf',
+      'resume_kor.pdf',
     ];
 
     // Populate selector
     pdfFiles.forEach((filename) => {
       const option = document.createElement('option');
-      option.value = `files/${encodeURIComponent(filename)}`;
+      option.value = `data/resume/${encodeURIComponent(filename)}`;
       option.textContent = filename;
       pdfSelector.appendChild(option);
     });
@@ -152,13 +154,56 @@
     });
   };
 
-  // Excel Viewer
+  // Report PDF Viewer for Proof of Work
+  const initReportViewer = () => {
+    const reportSelector = document.getElementById('report-selector');
+    const reportViewer = document.getElementById('reportViewer');
+    if (!reportSelector || !reportViewer) return;
+
+    // Report PDF files - Add your report PDFs to data/reports/ folder
+    const reportFiles = [
+      'Crypto Insights 7호.pdf',
+      'Crypto Insights 8호.pdf',
+      'Crypto Insights 9호.pdf',
+      'Crypto Insights 10호.pdf',
+      'Crypto Insights 11호.pdf',
+      'Crypto Insights 12호.pdf',
+      'Crypto Insights 13호.pdf',
+      'Crypto Insights 14호.pdf',
+      'CRYPTO NOTES 1호.pdf',
+      'CRYPTO NOTES 2호.pdf'
+    ];
+
+    // Populate selector
+    reportFiles.forEach((filename) => {
+      const option = document.createElement('option');
+      option.value = `data/reports/${encodeURIComponent(filename)}`;
+      option.textContent = filename;
+      reportSelector.appendChild(option);
+    });
+
+    // Handle selection
+    reportSelector.addEventListener('change', (event) => {
+      const selectedPDF = event.target.value;
+      if (!selectedPDF) {
+        reportViewer.innerHTML = '<p class="placeholder-text">Select a PDF file to view</p>';
+        return;
+      }
+
+      reportViewer.innerHTML = `<iframe src="${selectedPDF}" title="Report Viewer"></iframe>`;
+    });
+  };
+
+  // Excel Viewer with sorting and filtering
+  let excelTableData = [];
+  let currentSortColumn = -1;
+  let currentSortDirection = 'asc';
+
   const initExcelViewer = async () => {
     const excelViewer = document.getElementById('excelViewer');
     if (!excelViewer) return;
 
     // Specify the Excel file to load automatically
-    // Change this path to your actual Excel file
     const excelFilePath = 'data/proof-of-work.xlsx';
 
     try {
@@ -176,17 +221,149 @@
       const firstSheetName = workbook.SheetNames[0];
       const worksheet = workbook.Sheets[firstSheetName];
 
-      // Convert to HTML table
-      const html = XLSX.utils.sheet_to_html(worksheet, {
-        id: 'excel-table',
-        editable: false
-      });
+      // Convert to JSON for data manipulation
+      const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+      excelTableData = jsonData;
 
-      excelViewer.innerHTML = html;
+      // Render table
+      renderExcelTable(excelTableData);
+
+      // Add sorting functionality
+      initExcelSorting();
+
+      // Add search functionality
+      initExcelSearch();
     } catch (error) {
       console.error('Error loading Excel file:', error);
       excelViewer.innerHTML = '<p class="placeholder-text">No Excel file available. Please add "proof-of-work.xlsx" to the data directory.</p>';
     }
+  };
+
+  const renderExcelTable = (data) => {
+    const excelViewer = document.getElementById('excelViewer');
+    if (!data || data.length === 0) {
+      excelViewer.innerHTML = '<p class="placeholder-text">No data available</p>';
+      return;
+    }
+
+    let html = '<table id="excel-table"><thead><tr>';
+
+    // Headers
+    const headers = data[0];
+    headers.forEach((header, index) => {
+      const sortClass = currentSortColumn === index
+        ? currentSortDirection
+        : 'sortable';
+      html += `<th class="${sortClass}" data-column="${index}">${header || ''}</th>`;
+    });
+    html += '</tr></thead><tbody>';
+
+    // Data rows
+    for (let i = 1; i < data.length; i++) {
+      html += '<tr>';
+      const row = data[i];
+      headers.forEach((_, colIndex) => {
+        html += `<td>${row[colIndex] || ''}</td>`;
+      });
+      html += '</tr>';
+    }
+
+    html += '</tbody></table>';
+    excelViewer.innerHTML = html;
+  };
+
+  const initExcelSorting = () => {
+    const table = document.getElementById('excel-table');
+    if (!table) return;
+
+    const headers = table.querySelectorAll('th');
+    headers.forEach((header) => {
+      header.addEventListener('click', () => {
+        const column = parseInt(header.dataset.column);
+        sortExcelTable(column);
+      });
+    });
+  };
+
+  const sortExcelTable = (columnIndex) => {
+    if (excelTableData.length <= 1) return;
+
+    // Toggle sort direction
+    if (currentSortColumn === columnIndex) {
+      currentSortDirection = currentSortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      currentSortColumn = columnIndex;
+      currentSortDirection = 'asc';
+    }
+
+    // Extract headers and data
+    const headers = excelTableData[0];
+    const dataRows = excelTableData.slice(1);
+
+    // Sort data
+    dataRows.sort((a, b) => {
+      const aVal = a[columnIndex] || '';
+      const bVal = b[columnIndex] || '';
+
+      // Try to parse as numbers
+      const aNum = parseFloat(aVal);
+      const bNum = parseFloat(bVal);
+
+      let comparison = 0;
+      if (!isNaN(aNum) && !isNaN(bNum)) {
+        comparison = aNum - bNum;
+      } else {
+        comparison = String(aVal).localeCompare(String(bVal));
+      }
+
+      return currentSortDirection === 'asc' ? comparison : -comparison;
+    });
+
+    // Reconstruct data with sorted rows
+    const sortedData = [headers, ...dataRows];
+    renderExcelTable(sortedData);
+
+    // Re-initialize sorting listeners
+    initExcelSorting();
+
+    // Re-apply search filter if active
+    const searchInput = document.getElementById('excelSearch');
+    if (searchInput && searchInput.value) {
+      filterExcelTable(searchInput.value);
+    }
+  };
+
+  const initExcelSearch = () => {
+    const searchInput = document.getElementById('excelSearch');
+    if (!searchInput) return;
+
+    searchInput.addEventListener('input', (e) => {
+      filterExcelTable(e.target.value);
+    });
+  };
+
+  const filterExcelTable = (searchTerm) => {
+    const table = document.getElementById('excel-table');
+    if (!table) return;
+
+    const tbody = table.querySelector('tbody');
+    const rows = tbody.querySelectorAll('tr');
+
+    const term = searchTerm.toLowerCase().trim();
+
+    rows.forEach((row) => {
+      if (!term) {
+        row.classList.remove('hidden');
+        return;
+      }
+
+      const text = row.textContent.toLowerCase();
+      if (text.includes(term)) {
+        row.classList.remove('hidden');
+      } else {
+        row.classList.add('hidden');
+      }
+    });
   };
 
   // Initialize everything
@@ -195,8 +372,9 @@
     loadProfilePhoto();
     initNavigation();
     loadCV();
-    initResumeTabs();
+    initTabs();
     initPDFViewer();
+    initReportViewer();
     initExcelViewer();
   };
 
