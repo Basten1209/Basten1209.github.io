@@ -155,10 +155,44 @@
   };
 
   // Report PDF Viewer for Proof of Work
-  const initReportViewer = () => {
+  let reportContributions = [];
+
+  const loadReportContributions = async () => {
+    try {
+      const response = await fetch('data/report-contributions.json');
+      if (!response.ok) {
+        throw new Error(`Failed to load contributions: ${response.status}`);
+      }
+      reportContributions = await response.json();
+    } catch (error) {
+      console.error('Error loading report contributions:', error);
+      reportContributions = [];
+    }
+  };
+
+  const showContribution = (filename) => {
+    const contributionInfo = document.getElementById('contributionInfo');
+    const contributionText = document.getElementById('contributionText');
+
+    if (!contributionInfo || !contributionText) return;
+
+    const report = reportContributions.find(r => r.filename === filename);
+
+    if (report && report.contribution) {
+      contributionText.textContent = report.contribution;
+      contributionInfo.style.display = 'block';
+    } else {
+      contributionInfo.style.display = 'none';
+    }
+  };
+
+  const initReportViewer = async () => {
     const reportSelector = document.getElementById('report-selector');
     const reportViewer = document.getElementById('reportViewer');
     if (!reportSelector || !reportViewer) return;
+
+    // Load contributions data
+    await loadReportContributions();
 
     // Report PDF files - Add your report PDFs to data/reports/ folder
     const reportFiles = [
@@ -171,7 +205,10 @@
       'Crypto Insights 13호.pdf',
       'Crypto Insights 14호.pdf',
       'CRYPTO NOTES 1호.pdf',
-      'CRYPTO NOTES 2호.pdf'
+      'CRYPTO NOTES 2호.pdf',
+      '[PDAO] ZK in SOL (KOR).pdf',
+      '[PDAO] ZK in SOL (ENG).pdf',
+      '[PDAO] KRWstablecoin (KOR).pdf'
     ];
 
     // Populate selector
@@ -179,17 +216,26 @@
       const option = document.createElement('option');
       option.value = `data/reports/${encodeURIComponent(filename)}`;
       option.textContent = filename;
+      option.dataset.filename = filename;
       reportSelector.appendChild(option);
     });
 
     // Handle selection
     reportSelector.addEventListener('change', (event) => {
       const selectedPDF = event.target.value;
+      const selectedOption = event.target.options[event.target.selectedIndex];
+      const filename = selectedOption.dataset.filename;
+
       if (!selectedPDF) {
         reportViewer.innerHTML = '<p class="placeholder-text">Select a PDF file to view</p>';
+        document.getElementById('contributionInfo').style.display = 'none';
         return;
       }
 
+      // Show contribution
+      showContribution(filename);
+
+      // Show PDF
       reportViewer.innerHTML = `<iframe src="${selectedPDF}" title="Report Viewer"></iframe>`;
     });
   };
