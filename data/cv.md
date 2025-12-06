@@ -26,6 +26,13 @@ Last Updated : 2025.07.25.
 <br/>
 
 ## Experiences
+
+### [2025.12. - ] Developer Relations (DevRel) Supporters, [Base Korea (Daehanbase)](https://x.com/daehan_base)
+ - Part-time work
+
+### [2025.07. - ] Consultant, [WorldQuant Brain](https://platform.worldquantbrain.com/)
+ - Freelance
+
 ### [2025.06. - Present] Undergraduate Researcher, [POSTECH FBDA Lab](https://sites.google.com/view/minseokshin)
 - Study High-frequency finance (Advisor : Prof. Min-seok Shin)
 

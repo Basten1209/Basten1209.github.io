@@ -9,6 +9,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/dompurify@3.1.5/dist/purify.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script defer src="assets/js/main.js"></script>
 </head>
 <body>
@@ -74,6 +75,13 @@
               <option value="">-- Select a PDF --</option>
             </select>
           </div>
+          <div class="pdf-nav" id="pdfNav" style="display: none;">
+            <button id="prevPage" class="pdf-nav-btn">← Prev</button>
+            <span class="pdf-page-info">
+              Page <span id="pageNum">1</span> / <span id="pageCount">1</span>
+            </span>
+            <button id="nextPage" class="pdf-nav-btn">Next →</button>
+          </div>
           <div class="pdf-viewer" id="pdfViewer">
             <p class="placeholder-text">Select a PDF file to view</p>
           </div>
@@ -107,6 +115,13 @@
           </div>
           <div class="contribution-info" id="contributionInfo" style="display: none;">
             <strong>Contribution:</strong> <span id="contributionText"></span>
+          </div>
+          <div class="pdf-nav" id="reportNav" style="display: none;">
+            <button id="reportPrevPage" class="pdf-nav-btn">← Prev</button>
+            <span class="pdf-page-info">
+              Page <span id="reportPageNum">1</span> / <span id="reportPageCount">1</span>
+            </span>
+            <button id="reportNextPage" class="pdf-nav-btn">Next →</button>
           </div>
           <div class="pdf-viewer" id="reportViewer">
             <p class="placeholder-text">Select a PDF file to view</p>
