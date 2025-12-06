@@ -158,6 +158,12 @@ main {
   margin-bottom: var(--spacing-unit);
 }
 
+.summary-section {
+  margin-top: calc(var(--spacing-unit) * 3);
+  padding-top: calc(var(--spacing-unit) * 2);
+  border-top: 1px solid var(--color-border);
+}
+
 /* Resume/CV Section & Proof of Work Section */
 .resume-tabs,
 .pow-tabs {

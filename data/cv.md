@@ -1,11 +1,11 @@
 <br/>
-Last Updated : 2025.07.25.
+Last Updated : 2025.12.07.
 <br/>
 
 # Seungjun Oh
 
 ## Contact
-- linkedin : [/basten1209](https://www.linkedin.com/in/basten1209/)
+- linkedin : [/seungjun5](https://www.linkedin.com/in/basten1209/)
 - X (former Twitter) : @seungjun_x
 - email : seungjunoh@postech.ac.kr / seungjun@postech-dao.xyz
 <br/>
@@ -25,24 +25,23 @@ Last Updated : 2025.07.25.
 - wrote about bitcoin/blockchain introduction and technology chapter.
 <br/>
 
-## Experiences
+## Work Experiences
 
 ### [2025.12. - ] Developer Relations (DevRel) Supporters, [Base Korea (Daehanbase)](https://x.com/daehan_base)
  - Part-time work
+ - Assistant builders in Base Ecosystem
 
 ### [2025.07. - ] Consultant, [WorldQuant Brain](https://platform.worldquantbrain.com/)
- - Freelance
+ - Freelance work
+ - As Awarded in 2025 IQC, I contracted as Freelance Consultant but now i'm inactive.
 
-### [2025.06. - Present] Undergraduate Researcher, [POSTECH FBDA Lab](https://sites.google.com/view/minseokshin)
-- Study High-frequency finance (Advisor : Prof. Min-seok Shin)
+### [2025.02. - Present] Organizer (Head), [PDAO](https://dao.postech.ac.kr)
 
-### [2025.02. - Present] Organizer, [PDAO](https://dao.postech.ac.kr)
-- Managing overall tasks about operating PDAO
-- Hosting ["Dive in Crypto-Blockchain! (in Pohang)"](https://lu.ma/memo9l05) Offline Events (attend about 50 peoples)
-- Working as a Guild Lead with [Superteam Korea](https://kr.superteam.fun/) - Planning and Operating several projects about Solana Ecosystem
+ - Representative as PDAO
+ - Managing overall tasks & Decision making for sustainable open crypto community
 <br/>
 
-### [2022.06. - Present] Committee Member, PDAO
+### [2022.06. - Present] Genesis Member, PDAO
 stack : git
 - Join in PDAO Launch Project(2022.06. - 2022.12.), Work as a Dev-Near Team Cooridator and Strategy team member (worked on general tasks)
 - PDAO chain initial [governance commitee](https://github.com/postech-dao/pdao/blob/finalized/reserved/members/%EC%98%A4%EC%8A%B9%EC%A4%80.json)
@@ -74,6 +73,11 @@ stack : R, Python, Excel, Figma
 - filming assistance of company's official Youtube contents 'Bitconomy report', 'Crypto talk'
 <br/>
 
+## Study
+
+### [2025.06. - Present] Undergraduate Researcher, [POSTECH FBDA Lab](https://sites.google.com/view/minseokshin)
+- Study Data Analysis about High-Dimensional statistics & High-Frequency Finance (Advisor : Prof. Minseok Shin)
+
 ### [2022.06. - 2022.08.] Undergraduate Researcher, [POSTECH DPNM Lab](https://dpnm.postech.ac.kr)
 - Studied Blockchain & cryptocurrency (Advisor : Prof. James Won-ki Hong)
 <br/>
@@ -83,6 +87,15 @@ stack : R, Python, Excel, Figma
 <br/>
 
 ## Projects
+
+### [2025] Robust Alpha Generation
+- this project was ran by WorldQuant 2025 IQC
+- Making Robust Alphas(Trading Strategies) on the WorldQuant Brain Platform
+- Contributions in Project
+    - Developed quantitative signals based on fundamental financial data
+    - Improved alpha performance through iterative refinement and validation
+    - Presented alpha strategies at the Korea regional finals, introducing alpha strategies based on fundamental and relationship data
+
 ### [2022] NFT Hub : NFT Asset Portfolio Platform
 - Perform overall tasks including buisness planning as project leader
     - Selected in [2022 Pohang-si innopolis campus buisness team](http://innopolis.postech.ac.kr/business_notice/?mod=document&uid=402)
@@ -90,39 +103,26 @@ stack : R, Python, Excel, Figma
     - Rewarded for exhibition in 2022 industry & academic cooperation EXPO (2022.11.)
 <br/>
 
-### [2022. 09.- 2022.12.] [R_coingecko](https://github.com/Basten1209/coingecko_r) : R Script for cryptocurrency data analysis using [Coingecko's R API](https://github.com/next-game-solutions/geckor)
-stack : R
-- Utilize the R library 'geckor' provided by Coingecko in 2022
-- Create an R Script that collects time-series information on the pricing of major crypto assets
-<br/>
+## Talking & Posting
 
-## Posting & Talks
-### REPORTS
-- [CRYPTO NOTES 1 - The Big Wave is Coming](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/CRYPTO%20NOTES%201%ED%98%B8.pdf)
-- [CRYPTO NOTES 2 - Unstoppable Ethereum](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/CRYPTO%20NOTES%202%ED%98%B8.pdf)
-- [PDAO 스터디 - 비트코인 채굴기업 산업 분석](https://medium.com/postech-dao/비트코인-채굴기업-산업-분석-45e8d7e7b701)
-<br/>
+### Reports & Articles
+ - You can see in "Proof of Work" Menu.
 
-### REPORTS (Assistant)
-- [Crypto Insights 7 - Ethereum Price Scenario after The Merge](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/Crypto%20Insights%207%ED%98%B8.pdf)
-- [Crypto Insights 8 - 2022 Sep FOMC Review](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/Crypto%20Insights%208%ED%98%B8.pdf)
-- [Crypto Insights 9 - Relationship about Fiat Money & Bitcoin](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/Crypto%20Insights%209%ED%98%B8.pdf)
-- [Crypto Insights 10 - SOL, BNB Chain Hacked](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/Crypto%20Insights%2010%ED%98%B8.pdf)
-- [Crypto Insights 11 - Effect about US midterm elections](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/Crypto%20Insights%2011%ED%98%B8.pdf)
-- [Crypto Insights 12 - FTX Collaspe](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/Crypto%20Insights%2012%ED%98%B8.pdf)
-- [Crypto Insights 13 - 2022 Dec FOMC Preview](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/Crypto%20Insights%2013%ED%98%B8.pdf)
-- [Crypto Insights 14 - 2023 Crypto Market Outlook](https://github.com/Basten1209/Basten1209.github.io/blob/main/files/Crypto%20Insights%2014%ED%98%B8.pdf)
-<br/>
-
-### SEMINARS
-- [Crypto Insight Meetup (Off-line)](https://www.youtube.com/watch?v=u_HYu8At6aI)
-- ["Dive in Crypto-Blockchain! (in Pohang)"](https://lu.ma/memo9l05)
+### Offline Events
+- [2023] Session Speaker in [Crypto Insight Meetup (Off-line)](https://www.youtube.com/watch?v=u_HYu8At6aI)
+- [2025] Host in ["Dive in Crypto-Blockchain! (in Pohang)"](https://lu.ma/memo9l05)
+- [2025] Host & Session Speaker in ["PDAO in Seoul!](https://luma.com/memo9l05)
+- [2025] Host in ["Blockchains for TradFi : 전통금융과 블록체인의 만남"](https://luma.com/q5q9xd9f)
+- [2025] Panel Speaker in [AI+Blockchain Autumn Camp - Korean Offline Workshop](https://x.com/QuackAI_AI/status/1985648838758334878?s=20)
 <br/>
 
 ### YOUTUBES
-- [PDAO Seminar - Sustainability of Stablecoin](https://www.youtube.com/watch?v=JPWadiUZbDk)
-- [2023 Scenario with Bitcoin Price Forecasting Model](https://www.youtube.com/watch?v=eEGywng_f70)
-- [2023 Ethereum Upgrade](https://www.youtube.com/watch?v=MC3TAsfnIWQ)
+- [2022] [PDAO Seminar - Sustainability of Stablecoin](https://www.youtube.com/watch?v=JPWadiUZbDk)
+- [2023] [2023 Scenario with Bitcoin Price Forecasting Model](https://www.youtube.com/watch?v=eEGywng_f70)
+- [2023] [2023 Ethereum Upgrade](https://www.youtube.com/watch?v=MC3TAsfnIWQ)
+- [2025] [비트코인 채굴기업 산업 분석](https://youtu.be/9BQOVS4WDWg?si=9rzmY1x_WTxVgzh9)
+- [2025] [블록체인 컨센서스 스터디 4주차 - HotStuff](https://youtu.be/lbSwDg0nD_0?si=KUrvzb59778J_Lzb)
+- [2025] [ZKP부터 SP1 Hypercube까지 : Succinct는 어떻게 Realtime Proving을 실현했는가?](https://youtu.be/PkEyXIlEVtA?si=O6Z56f7biuVlX2Vf)
 <br/>
 
 ### NEWS
@@ -132,9 +132,10 @@ stack : R
 
 ## Awards & Scholarships
 
+- [2025.12.] Overseas Assignment Scholar for Nobel Week 2025 (2.5 million won), POSTECH
 - [2025.07.] Monad Blitz Seoul 4th prize, Monad Foundation / B-harvest / Chainlink
 - [2025.07.] 2025 WorldQuant Brain International Quant Contest (IQC) Korea 3rd, WorldQuant
-- [2022.05.] POSTECH Metaverse Contest 3rd price, POSTECH
+- [2022.05.] POSTECH Metaverse Contest encourage award, POSTECH
 - [2021.03. - 2022.12.] Local Talent Scholarship(Full Scholarship), [KOSAF](https://www.kosaf.go.kr/ko/main.do)
 <br/>
 <br/>

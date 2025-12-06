@@ -67,6 +67,26 @@
     setActiveSection(initialSectionId);
   };
 
+  // Load Summary markdown for home page
+  const loadSummary = async () => {
+    const summaryContent = document.getElementById('summaryContent');
+    if (!summaryContent) return;
+
+    try {
+      marked.setOptions({ breaks: true, gfm: true });
+      const response = await fetch('summary.md');
+      if (!response.ok) {
+        throw new Error(`Failed to load summary: ${response.status}`);
+      }
+      const markdown = await response.text();
+      const html = DOMPurify.sanitize(marked.parse(markdown));
+      summaryContent.innerHTML = html;
+    } catch (error) {
+      console.error('Error loading summary:', error);
+      summaryContent.innerHTML = '<p class="error-message">Failed to load summary.</p>';
+    }
+  };
+
   // Load CV markdown
   const loadCV = async () => {
     const cvContent = document.getElementById('cvContent');
@@ -574,6 +594,7 @@
     setYear();
     loadProfilePhoto();
     initNavigation();
+    loadSummary();
     loadCV();
     initTabs();
     initPDFViewer();
