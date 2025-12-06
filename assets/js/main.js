@@ -308,7 +308,8 @@
       'CRYPTO NOTES 2호.pdf',
       '[PDAO] ZK in SOL (KOR).pdf',
       '[PDAO] ZK in SOL (ENG).pdf',
-      '[PDAO] KRWstablecoin (KOR).pdf'
+      '[PDAO] KRWstablecoin (KOR).pdf',
+      '[PDAO] From ZKP to SP1 Hypercube (KOR).pdf'
     ];
 
     // Populate selector
