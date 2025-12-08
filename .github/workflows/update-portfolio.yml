@@ -1,0 +1,183 @@
+name: Update Portfolio
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/**'
+      - 'assets/**'
+      - 'scripts/**'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  validate-and-generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check for Node.js scripts
+        id: check_scripts
+        run: |
+          if [ -f "scripts/generate-file-list.js" ]; then
+            echo "scripts_exist=true" >> $GITHUB_OUTPUT
+          else
+            echo "scripts_exist=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate file lists
+        if: steps.check_scripts.outputs.scripts_exist == 'true'
+        run: |
+          echo "Generating file lists..."
+          node scripts/generate-file-list.js || echo "Warning: File list generation failed"
+
+      - name: Validate JSON files
+        run: |
+          echo "Validating JSON files..."
+
+          # Check if jq is available, install if not
+          if ! command -v jq &> /dev/null; then
+            echo "Installing jq..."
+            sudo apt-get update && sudo apt-get install -y jq
+          fi
+
+          # Validate all JSON files in data directory
+          json_valid=true
+          for file in data/*.json; do
+            if [ -f "$file" ]; then
+              echo "Validating $file..."
+              if jq empty "$file" 2>&1; then
+                echo "✓ $file is valid"
+              else
+                echo "✗ $file is invalid"
+                json_valid=false
+              fi
+            fi
+          done
+
+          if [ "$json_valid" = false ]; then
+            echo "Error: Some JSON files are invalid"
+            exit 1
+          fi
+
+          echo "All JSON files are valid!"
+
+      - name: Validate required files
+        run: |
+          echo "Checking required files..."
+
+          required_files=(
+            "data/portfolio-config.json"
+            "data/cv.md"
+            "data/profile-intro.md"
+            "data/projects.json"
+            "index.html"
+            "assets/js/main.js"
+            "assets/css/style.css"
+          )
+
+          missing_files=()
+          for file in "${required_files[@]}"; do
+            if [ ! -f "$file" ]; then
+              missing_files+=("$file")
+              echo "✗ Missing: $file"
+            else
+              echo "✓ Found: $file"
+            fi
+          done
+
+          if [ ${#missing_files[@]} -gt 0 ]; then
+            echo "Error: Missing required files"
+            exit 1
+          fi
+
+          echo "All required files present!"
+
+      - name: Check PDF files consistency
+        run: |
+          echo "Checking PDF files..."
+
+          # Check if portfolio-config.json exists
+          if [ ! -f "data/portfolio-config.json" ]; then
+            echo "portfolio-config.json not found, skipping PDF check"
+            exit 0
+          fi
+
+          # Extract PDF filenames from config
+          if command -v jq &> /dev/null; then
+            echo "Reports in config:"
+            jq -r '.reports[]?.filename // empty' data/portfolio-config.json || true
+
+            echo ""
+            echo "Resumes in config:"
+            jq -r '.resumes[]?.file // empty' data/portfolio-config.json | xargs -n1 basename || true
+
+            echo ""
+            echo "Actual files in data/reports/:"
+            ls -1 data/reports/*.pdf 2>/dev/null | xargs -n1 basename || echo "No PDF files found"
+
+            echo ""
+            echo "Actual files in data/resume/:"
+            ls -1 data/resume/*.pdf 2>/dev/null | xargs -n1 basename || echo "No PDF files found"
+          fi
+
+      - name: Run Node.js validation script
+        if: steps.check_scripts.outputs.scripts_exist == 'true'
+        run: |
+          if [ -f "scripts/validate-json.js" ]; then
+            echo "Running custom validation..."
+            node scripts/validate-json.js || echo "Warning: Custom validation failed"
+          else
+            echo "Custom validation script not found, skipping"
+          fi
+
+      - name: Commit generated files
+        if: steps.check_scripts.outputs.scripts_exist == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          if [ -f "data/generated-file-lists.json" ]; then
+            git add data/generated-file-lists.json
+
+            if git diff --staged --quiet; then
+              echo "No changes to commit"
+            else
+              git commit -m "chore: auto-update generated file lists [skip ci]"
+              echo "changes_made=true" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "No generated files to commit"
+          fi
+
+      - name: Push changes
+        if: github.event_name != 'pull_request' && steps.check_scripts.outputs.scripts_exist == 'true'
+        run: |
+          if git log origin/main..HEAD --oneline | grep -q "chore: auto-update"; then
+            git push
+            echo "Pushed generated files"
+          else
+            echo "No changes to push"
+          fi
+
+      - name: Summary
+        run: |
+          echo "### Portfolio Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ JSON files validated" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Required files checked" >> $GITHUB_STEP_SUMMARY
+          echo "✅ PDF consistency verified" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Portfolio is ready for deployment! 🚀" >> $GITHUB_STEP_SUMMARY

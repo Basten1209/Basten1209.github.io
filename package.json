@@ -1,0 +1,18 @@
+{
+  "name": "seungjun-oh-portfolio",
+  "version": "1.0.0",
+  "description": "Personal portfolio website for Seungjun Oh",
+  "scripts": {
+    "generate-lists": "node scripts/generate-file-list.js",
+    "validate-json": "node scripts/validate-json.js",
+    "prebuild": "npm run generate-lists && npm run validate-json",
+    "serve": "python -m http.server 8080"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Basten1209/Basten1209.github.io.git"
+  },
+  "author": "Seungjun Oh",
+  "license": "MIT",
+  "devDependencies": {}
+}

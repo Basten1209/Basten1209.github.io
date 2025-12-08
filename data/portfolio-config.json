@@ -1,0 +1,143 @@
+{
+  "profile": {
+    "name": "Seungjun Oh",
+    "nameKor": "오승준",
+    "email": "seungjunoh@postech.ac.kr",
+    "emailAlt": "seungjun@postech-dao.xyz",
+    "image": "assets/images/profile.jpg",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/basten1209/",
+      "twitter": "https://x.com/seungjun_x",
+      "github": "https://github.com/Basten1209",
+      "medium": "https://medium.com/@seungjun-oh"
+    }
+  },
+  "resumes": [
+    {
+      "id": "resume_eng",
+      "title": "Resume (English)",
+      "file": "data/resume/resume_eng.pdf",
+      "language": "en"
+    },
+    {
+      "id": "resume_kor",
+      "title": "이력서 (한글)",
+      "file": "data/resume/resume_kor.pdf",
+      "language": "ko"
+    }
+  ],
+  "reports": [
+    {
+      "id": "pdao-zkp-sp1",
+      "filename": "[PDAO] From ZKP to SP1 Hypercube (KOR).pdf",
+      "title": "[PDAO] From ZKP to SP1 Hypercube (KOR)",
+      "contribution": "주 저자",
+      "date": "2024-12",
+      "category": "PDAO"
+    },
+    {
+      "id": "pdao-krw-stablecoin",
+      "filename": "[PDAO] KRWstablecoin (KOR).pdf",
+      "title": "[PDAO] KRWstablecoin (KOR)",
+      "contribution": "리포트 코디네이팅, 일부 범위 리포트 작성/교열 및 편집",
+      "date": "2024-09",
+      "category": "PDAO"
+    },
+    {
+      "id": "pdao-zk-sol-eng",
+      "filename": "[PDAO] ZK in SOL (ENG).pdf",
+      "title": "[PDAO] ZK in SOL (ENG)",
+      "contribution": "리포트 코디네이팅, 전 범위 리포트 교열 및 편집",
+      "date": "2024-06",
+      "category": "PDAO"
+    },
+    {
+      "id": "pdao-zk-sol-kor",
+      "filename": "[PDAO] ZK in SOL (KOR).pdf",
+      "title": "[PDAO] ZK in SOL (KOR)",
+      "contribution": "리포트 코디네이팅, 전 범위 리포트 교열 및 편집",
+      "date": "2024-06",
+      "category": "PDAO"
+    },
+    {
+      "id": "crypto-notes-2",
+      "filename": "CRYPTO NOTES 2호.pdf",
+      "title": "CRYPTO NOTES 2호 - Unstoppable Ethereum",
+      "contribution": "주 저자",
+      "date": "2023-04",
+      "category": "Personal"
+    },
+    {
+      "id": "crypto-notes-1",
+      "filename": "CRYPTO NOTES 1호.pdf",
+      "title": "CRYPTO NOTES 1호 - The Big Wave is Coming",
+      "contribution": "주 저자",
+      "date": "2023-02",
+      "category": "Personal"
+    },
+    {
+      "id": "crypto-insights-14",
+      "filename": "Crypto Insights 14호.pdf",
+      "title": "Crypto Insights 14호 - 2023 Crypto Market Outlook",
+      "contribution": "Research Assistant로 참여",
+      "date": "2023-01",
+      "category": "Bithumb"
+    },
+    {
+      "id": "crypto-insights-13",
+      "filename": "Crypto Insights 13호.pdf",
+      "title": "Crypto Insights 13호 - 2022 Dec FOMC Preview",
+      "contribution": "Research Assistant로 참여",
+      "date": "2022-12",
+      "category": "Bithumb"
+    },
+    {
+      "id": "crypto-insights-12",
+      "filename": "Crypto Insights 12호.pdf",
+      "title": "Crypto Insights 12호 - FTX Collaspe",
+      "contribution": "Research Assistant로 참여",
+      "date": "2022-11",
+      "category": "Bithumb"
+    },
+    {
+      "id": "crypto-insights-11",
+      "filename": "Crypto Insights 11호.pdf",
+      "title": "Crypto Insights 11호 - Effect about US midterm elections",
+      "contribution": "Research Assistant로 참여",
+      "date": "2022-11",
+      "category": "Bithumb"
+    },
+    {
+      "id": "crypto-insights-10",
+      "filename": "Crypto Insights 10호.pdf",
+      "title": "Crypto Insights 10호 - SOL, BNB Chain Hacked",
+      "contribution": "Research Assistant로 참여",
+      "date": "2022-10",
+      "category": "Bithumb"
+    },
+    {
+      "id": "crypto-insights-9",
+      "filename": "Crypto Insights 9호.pdf",
+      "title": "Crypto Insights 9호 - Relationship about Fiat Money & Bitcoin",
+      "contribution": "Research Assistant로 참여",
+      "date": "2022-10",
+      "category": "Bithumb"
+    },
+    {
+      "id": "crypto-insights-8",
+      "filename": "Crypto Insights 8호.pdf",
+      "title": "Crypto Insights 8호 - 2022 Sep FOMC Review",
+      "contribution": "Research Assistant로 참여",
+      "date": "2022-09",
+      "category": "Bithumb"
+    },
+    {
+      "id": "crypto-insights-7",
+      "filename": "Crypto Insights 7호.pdf",
+      "title": "Crypto Insights 7호 - Ethereum Price Scenario after The Merge",
+      "contribution": "Research Assistant로 참여",
+      "date": "2022-09",
+      "category": "Bithumb"
+    }
+  ]
+}

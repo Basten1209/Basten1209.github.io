@@ -67,6 +67,42 @@
     setActiveSection(initialSectionId);
   };
 
+  // Load portfolio configuration
+  let portfolioConfig = null;
+
+  const loadPortfolioConfig = async () => {
+    try {
+      const response = await fetch('data/portfolio-config.json');
+      if (!response.ok) {
+        throw new Error(`Failed to load config: ${response.status}`);
+      }
+      portfolioConfig = await response.json();
+      return portfolioConfig;
+    } catch (error) {
+      console.error('Error loading portfolio config:', error);
+      return null;
+    }
+  };
+
+  // Load profile intro markdown
+  const loadProfileIntro = async () => {
+    const introText = document.querySelector('.intro-text');
+    if (!introText) return;
+
+    try {
+      marked.setOptions({ breaks: true, gfm: true });
+      const response = await fetch('data/profile-intro.md');
+      if (!response.ok) {
+        throw new Error(`Failed to load intro: ${response.status}`);
+      }
+      const markdown = await response.text();
+      const html = DOMPurify.sanitize(marked.parse(markdown));
+      introText.innerHTML = html;
+    } catch (error) {
+      console.error('Error loading profile intro:', error);
+    }
+  };
+
   // Load Summary markdown for home page
   const loadSummary = async () => {
     const summaryContent = document.getElementById('summaryContent');
@@ -147,7 +183,7 @@
   let currentPage = 1;
   let totalPages = 0;
 
-  const renderPdfPage = async (pdf, pageNum, canvas) => {
+  const renderPdfPage = async (pdf, pageNum, canvas, progressCallback) => {
     const page = await pdf.getPage(pageNum);
     const viewport = page.getViewport({ scale: 1.5 });
 
@@ -155,13 +191,44 @@
     canvas.height = viewport.height;
     canvas.width = viewport.width;
 
-    await page.render({
+    const renderTask = page.render({
       canvasContext: context,
       viewport: viewport
-    }).promise;
+    });
+
+    // Show progress if callback provided
+    if (progressCallback) {
+      progressCallback(50); // Mid-render
+    }
+
+    await renderTask.promise;
+
+    if (progressCallback) {
+      progressCallback(100); // Complete
+    }
   };
 
-  const initPDFViewer = () => {
+  const showLoadingProgress = (container, progress) => {
+    let progressBar = container.querySelector('.pdf-progress-bar');
+    if (!progressBar) {
+      progressBar = document.createElement('div');
+      progressBar.className = 'pdf-progress-bar';
+      progressBar.innerHTML = '<div class="pdf-progress-fill"></div>';
+      container.appendChild(progressBar);
+    }
+    const fill = progressBar.querySelector('.pdf-progress-fill');
+    fill.style.width = `${progress}%`;
+
+    if (progress >= 100) {
+      setTimeout(() => {
+        if (progressBar.parentNode) {
+          progressBar.remove();
+        }
+      }, 300);
+    }
+  };
+
+  const initPDFViewer = async () => {
     const pdfSelector = document.getElementById('pdf-selector');
     const pdfViewer = document.getElementById('pdfViewer');
     const pdfNav = document.getElementById('pdfNav');
@@ -177,19 +244,28 @@
       pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     }
 
-    // Resume PDF files
-    const pdfFiles = [
-      'resume_eng.pdf',
-      'resume_kor.pdf',
-    ];
-
-    // Populate selector
-    pdfFiles.forEach((filename) => {
-      const option = document.createElement('option');
-      option.value = `data/resume/${encodeURIComponent(filename)}`;
-      option.textContent = filename;
-      pdfSelector.appendChild(option);
-    });
+    // Load config and populate selector from portfolio-config.json
+    const config = await loadPortfolioConfig();
+    if (config && config.resumes) {
+      config.resumes.forEach((resume) => {
+        const option = document.createElement('option');
+        option.value = resume.file;
+        option.textContent = resume.title;
+        pdfSelector.appendChild(option);
+      });
+    } else {
+      // Fallback to hardcoded list if config fails
+      const pdfFiles = [
+        { file: 'data/resume/resume_eng.pdf', title: 'Resume (English)' },
+        { file: 'data/resume/resume_kor.pdf', title: '이력서 (한글)' }
+      ];
+      pdfFiles.forEach((resume) => {
+        const option = document.createElement('option');
+        option.value = resume.file;
+        option.textContent = resume.title;
+        pdfSelector.appendChild(option);
+      });
+    }
 
     // Load and render PDF
     const loadPdf = async (url) => {
@@ -197,8 +273,16 @@
         pdfViewer.innerHTML = '<p class="placeholder-text">Loading PDF...</p>';
         pdfNav.style.display = 'none';
 
+        showLoadingProgress(pdfViewer, 0);
+
         const loadingTask = pdfjsLib.getDocument(url);
+        loadingTask.onProgress = (progress) => {
+          const percent = (progress.loaded / progress.total) * 50; // 0-50% for loading
+          showLoadingProgress(pdfViewer, percent);
+        };
+
         const pdf = await loadingTask.promise;
+        showLoadingProgress(pdfViewer, 50);
 
         currentPdf = pdf;
         totalPages = pdf.numPages;
@@ -209,8 +293,10 @@
         pdfViewer.innerHTML = '';
         pdfViewer.appendChild(canvas);
 
-        // Render first page
-        await renderPdfPage(pdf, currentPage, canvas);
+        // Render first page with progress
+        await renderPdfPage(pdf, currentPage, canvas, (progress) => {
+          showLoadingProgress(pdfViewer, 50 + (progress / 2)); // 50-100% for rendering
+        });
 
         // Update UI
         pageNumSpan.textContent = currentPage;
@@ -259,28 +345,11 @@
   };
 
   // Report PDF Viewer for Proof of Work
-  let reportContributions = [];
-
-  const loadReportContributions = async () => {
-    try {
-      const response = await fetch('data/report-contributions.json');
-      if (!response.ok) {
-        throw new Error(`Failed to load contributions: ${response.status}`);
-      }
-      reportContributions = await response.json();
-    } catch (error) {
-      console.error('Error loading report contributions:', error);
-      reportContributions = [];
-    }
-  };
-
-  const showContribution = (filename) => {
+  const showContribution = (report) => {
     const contributionInfo = document.getElementById('contributionInfo');
     const contributionText = document.getElementById('contributionText');
 
     if (!contributionInfo || !contributionText) return;
-
-    const report = reportContributions.find(r => r.filename === filename);
 
     if (report && report.contribution) {
       contributionText.textContent = report.contribution;
@@ -311,35 +380,22 @@
       pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     }
 
-    // Load contributions data
-    await loadReportContributions();
+    // Load config and populate selector from portfolio-config.json
+    const config = portfolioConfig || await loadPortfolioConfig();
+    if (config && config.reports) {
+      // Sort by date descending (newest first)
+      const sortedReports = [...config.reports].sort((a, b) => {
+        return (b.date || '').localeCompare(a.date || '');
+      });
 
-    // Report PDF files
-    const reportFiles = [
-      'Crypto Insights 7호.pdf',
-      'Crypto Insights 8호.pdf',
-      'Crypto Insights 9호.pdf',
-      'Crypto Insights 10호.pdf',
-      'Crypto Insights 11호.pdf',
-      'Crypto Insights 12호.pdf',
-      'Crypto Insights 13호.pdf',
-      'Crypto Insights 14호.pdf',
-      'CRYPTO NOTES 1호.pdf',
-      'CRYPTO NOTES 2호.pdf',
-      '[PDAO] ZK in SOL (KOR).pdf',
-      '[PDAO] ZK in SOL (ENG).pdf',
-      '[PDAO] KRWstablecoin (KOR).pdf',
-      '[PDAO] From ZKP to SP1 Hypercube (KOR).pdf'
-    ];
-
-    // Populate selector
-    reportFiles.forEach((filename) => {
-      const option = document.createElement('option');
-      option.value = `data/reports/${encodeURIComponent(filename)}`;
-      option.textContent = filename;
-      option.dataset.filename = filename;
-      reportSelector.appendChild(option);
-    });
+      sortedReports.forEach((report) => {
+        const option = document.createElement('option');
+        option.value = `data/reports/${encodeURIComponent(report.filename)}`;
+        option.textContent = report.title;
+        option.dataset.reportData = JSON.stringify(report);
+        reportSelector.appendChild(option);
+      });
+    }
 
     // Load and render report PDF
     const loadReportPdf = async (url) => {
@@ -347,8 +403,16 @@
         reportViewer.innerHTML = '<p class="placeholder-text">Loading PDF...</p>';
         reportNav.style.display = 'none';
 
+        showLoadingProgress(reportViewer, 0);
+
         const loadingTask = pdfjsLib.getDocument(url);
+        loadingTask.onProgress = (progress) => {
+          const percent = (progress.loaded / progress.total) * 50;
+          showLoadingProgress(reportViewer, percent);
+        };
+
         const pdf = await loadingTask.promise;
+        showLoadingProgress(reportViewer, 50);
 
         currentReportPdf = pdf;
         totalReportPages = pdf.numPages;
@@ -359,8 +423,10 @@
         reportViewer.innerHTML = '';
         reportViewer.appendChild(canvas);
 
-        // Render first page
-        await renderPdfPage(pdf, currentReportPage, canvas);
+        // Render first page with progress
+        await renderPdfPage(pdf, currentReportPage, canvas, (progress) => {
+          showLoadingProgress(reportViewer, 50 + (progress / 2));
+        });
 
         // Update UI
         pageNumSpan.textContent = currentReportPage;
@@ -397,7 +463,7 @@
     reportSelector.addEventListener('change', (event) => {
       const selectedPDF = event.target.value;
       const selectedOption = event.target.options[event.target.selectedIndex];
-      const filename = selectedOption.dataset.filename;
+      const reportData = selectedOption.dataset.reportData;
 
       if (!selectedPDF) {
         reportViewer.innerHTML = '<p class="placeholder-text">Select a PDF file to view</p>';
@@ -407,7 +473,10 @@
       }
 
       // Show contribution
-      showContribution(filename);
+      if (reportData) {
+        const report = JSON.parse(reportData);
+        showContribution(report);
+      }
 
       // Load PDF
       loadReportPdf(selectedPDF);
@@ -590,13 +659,15 @@
   };
 
   // Initialize everything
-  const init = () => {
+  const init = async () => {
     setYear();
     loadProfilePhoto();
     initNavigation();
+    loadProfileIntro();
     loadSummary();
     loadCV();
     initTabs();
+    await loadPortfolioConfig(); // Load config early
     initPDFViewer();
     initReportViewer();
     initExcelViewer();

@@ -2,7 +2,7 @@
 
 Work Experience
  - [2025 - ] DevRel Supporters(Part-time Work), Base Korea
- - [2025 - ] Organizer, PDAO
+ - [2025 - ] Organizer (Head), PDAO
  - [2025 - ] Consultant (Freelance), WorldQuant Brain
  - [2023-2024] System Developer (Military Service), ROKAF
  - [2022-2023] Researcher (Intern), Bithumb
