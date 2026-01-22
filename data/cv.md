@@ -1,18 +1,18 @@
 <br/>
-Last Updated : 2025.12.07.
+Last Updated : 2026.01.22.
 <br/>
 
 # Seungjun Oh
 
 ## Contact
-- linkedin : [/seungjun5](https://www.linkedin.com/in/basten1209/)
+- linkedin : [/seungjun5](https://www.linkedin.com/in/seungjun5)
 - X (former Twitter) : @seungjun_x
 - email : seungjunoh@postech.ac.kr / seungjun@postech-dao.xyz
 <br/>
 
 ## Education
 [2021 - Present] [Pohang University of Science and Technology (POSTECH)](https://www.postech.ac.kr/)
-- B.S. in Computer Science and Engineering
+- B.S. in Industrial Management Engineering
 <br/>
 
 ## Interests & Skills
@@ -20,52 +20,45 @@ Last Updated : 2025.12.07.
 - Skills : R, Python, C/C++, SQL, Git, MS Office
 <br/>
 
-## Publication
-### [Digital Asset Era is Coming - ISBN : 9791192445502 / Co-Author](https://product.kyobobook.co.kr/detail/S000209213039)
-- wrote about bitcoin/blockchain introduction and technology chapter.
-<br/>
-
 ## Work Experiences
 
-### [2025.12. - ] Developer Relations (DevRel) Supporters, [Base Korea (Daehanbase)](https://x.com/daehan_base)
+### [2025.12. - ] Technical Writer (Intern) in TechBD team, [B-Harvest](https://bharvest.io)
+- Joined 8 weeks intership program
+- studied blockchain core technology / had an internal seminar about Tempo blockchain
+- TBD
+
+### [2025.12. - ] Based Advocate (Ambassador), [Base Korea (Daehanbase)](https://x.com/daehan_base)
  - Part-time work
- - Assistant builders in Base Ecosystem
+ - Support Base Korea's Offline Meetup
+ - Wrote Articles about Base Builders in South Korea / Building tips on Base Chain
 
 ### [2025.07. - ] Consultant, [WorldQuant Brain](https://platform.worldquantbrain.com/)
  - Freelance work
  - As Awarded in 2025 IQC, I contracted as Freelance Consultant but now i'm inactive.
 
-### [2025.02. - Present] Organizer (Head), [PDAO](https://dao.postech.ac.kr)
+### [2025.02. - Present] Organizer (Head) / Genesis Member, [PDAO](https://dao.postech.ac.kr)
 
  - Representative as PDAO
  - Managing overall tasks & Decision making for sustainable open crypto community
+ - Join in PDAO Launch Project(2022.06. - 2022.12.), Work as a Dev-Near Team Cooridator and Strategy team member (worked on general tasks)
+ - PDAO chain initial [governance commitee](https://github.com/postech-dao/pdao/blob/finalized/reserved/members/%EC%98%A4%EC%8A%B9%EC%A4%80.json)
 <br/>
 
-### [2022.06. - Present] Genesis Member, PDAO
-stack : git
-- Join in PDAO Launch Project(2022.06. - 2022.12.), Work as a Dev-Near Team Cooridator and Strategy team member (worked on general tasks)
-- PDAO chain initial [governance commitee](https://github.com/postech-dao/pdao/blob/finalized/reserved/members/%EC%98%A4%EC%8A%B9%EC%A4%80.json)
-<br/>
-
-### [2024.01. - 2024.12.] System Developer in Logistic-Training System Development team, ROKAF Intelligent Information System Management Group (Millitary Service)
-stack : SQL, Tibero, git
+### [2024.01. - 2024.12.] System Developer in Logistic-Training System Development team, R.O.K.A.F. HQ (Millitary Service)
  - Participate in Database Operation & Management in Logistic systems for departments of the Air Force
  - appointment as squad leader (2024.08. ~ 2024.12.)
 <br/>
 
-### [2023.05. - 2023.12.] Fusion System Developer in Fusion System Office, ROKAF Logistic Command I&C Dept. (Millitary Service)
-stack : AI, Python, Excel
+### [2023.05. - 2023.12.] Fusion System Developer in Fusion System Office, R.O.K.A.F. Logistic Command (Millitary Service)
 - Completed in 'AI-SW training for military personnel' (AI course)
-> [Outstanding student](https://www.broof.io/search/4e1ec599?token=f15f71a6-3b49-43fb-879d-e5284e070580&utm_source=email&utm_medium=link&utm_campaign=view) - completed advanced course
+    - [Outstanding student](https://www.broof.io/search/4e1ec599?token=f15f71a6-3b49-43fb-879d-e5284e070580&utm_source=email&utm_medium=link&utm_campaign=view) - completed advanced course
  
 - supported overall office tasks about AI/data analysis & paperwork like
     - Reviewed new AI-related system
     - Analyzed aircraft sensor data 
-    - Management in personal information
 <br/>
 
-### [2022.09. - 2023.03.] Researcher in Economy Institute / Research Center, [Bithumb Korea](https://www.bithumbcorp.com)
-stack : R, Python, Excel, Figma
+### [2022.09. - 2023.03.] Researcher (Intern) in Economy Institute / Research Center, [Bithumb Korea](https://www.bithumbcorp.com)
 - Participate in macro/cryptocurrency report 'Crypto Insights' series (8 reports)
 - published blockchain research report 'CRYPTO NOTES' series (2 reports)
 - Participate in offline seminar - "Crypto Insight meetup"
@@ -82,8 +75,9 @@ stack : R, Python, Excel, Figma
 - Studied Blockchain & cryptocurrency (Advisor : Prof. James Won-ki Hong)
 <br/>
 
-### [2021.10. - 2021.12.] Undergraduate Researcher, POSTECH KLE Lab
- - Join a freshmen research program, studied NLP theories (Advisor : Prof. Jong-Hyuck Lee)
+## Publication
+### [Digital Asset Era is Coming - ISBN : 9791192445502 / Co-Author](https://product.kyobobook.co.kr/detail/S000209213039)
+- wrote about bitcoin/blockchain introduction and technology chapter.
 <br/>
 
 ## Projects
