@@ -1,324 +1,182 @@
-# 포트폴리오 업데이트 가이드
+# 포트폴리오 콘텐츠 업데이트 가이드
 
-이 문서는 포트폴리오 사이트의 콘텐츠를 쉽게 업데이트하는 방법을 안내합니다.
-
-## 📋 목차
-
-- [빠른 업데이트 (코드 수정 불필요)](#빠른-업데이트-코드-수정-불필요)
-- [리포트 추가](#리포트-추가)
-- [이력서 추가](#이력서-추가)
-- [프로필 정보 수정](#프로필-정보-수정)
-- [자동화 도구 사용](#자동화-도구-사용)
-- [배포 방법](#배포-방법)
+이 문서는 포트폴리오 사이트의 콘텐츠를 업데이트하는 방법을 안내합니다.
+모든 콘텐츠는 `data/portfolio-config.json` 중앙 설정 파일에서 관리됩니다.
 
 ---
 
-## 빠른 업데이트 (코드 수정 불필요)
+## 1. Home 섹션 텍스트 수정
 
-### 📝 CV 업데이트
+**파일**: `data/portfolio-config.json` > `profile`
 
-**파일**: `data/cv.md`
-
-1. Markdown 형식으로 작성
-2. 저장 후 커밋 & 푸시
-3. 자동으로 사이트에 반영됨
-
-```bash
-git add data/cv.md
-git commit -m "docs: update CV"
-git push origin main
-```
-
-### 🏠 홈 소개 업데이트
-
-**파일**: `data/profile-intro.md`
-
-간단한 소개 텍스트를 Markdown 형식으로 작성합니다.
-
-```markdown
-크립토 마켓과 산업에 관심이 많은 유저입니다...
-
-과거 빗썸경제연구소 리서치센터 인턴 경험...
-```
-
-### 📊 요약 섹션 업데이트
-
-**파일**: `summary.md`
-
-홈 페이지 하단에 표시되는 요약 정보를 작성합니다.
-
----
-
-## 리포트 추가
-
-### 1단계: PDF 파일 추가
-
-새 리포트 PDF를 `data/reports/` 폴더에 추가합니다.
-
-```bash
-cp "New Report.pdf" data/reports/
-```
-
-### 2단계: 메타데이터 추가
-
-**파일**: `data/portfolio-config.json`의 `reports` 배열에 추가
+| 필드 | 설명 |
+|------|------|
+| `tagline` | 히어로 영역 태그라인 (HTML `<strong>` 지원) |
+| `status` | 상태 배지 텍스트 (예: "Available for Technical Research") |
+| `focusAreas[]` | 3개 포커스 카드 (`icon`, `title`, `description`) |
 
 ```json
 {
-  "id": "new-report",
-  "filename": "New Report.pdf",
-  "title": "New Report - Subtitle",
+  "profile": {
+    "tagline": "Investigating the convergence of <strong>Crypto Markets</strong>...",
+    "status": "Available for Technical Research",
+    "focusAreas": [
+      { "icon": "token", "title": "Crypto Markets", "description": "..." }
+    ]
+  }
+}
+```
+
+---
+
+## 2. 리포트/아티클 추가 (Articles 섹션)
+
+**파일**: `data/portfolio-config.json` > `reports[]`
+
+### PDF 리포트 추가
+
+1. PDF 파일을 `data/reports/` 폴더에 추가
+2. `reports[]` 배열에 메타데이터 추가:
+
+```json
+{
+  "id": "unique-id",
+  "filename": "파일명.pdf",
+  "title": "리포트 제목",
+  "description": "리포트 요약 설명 (카드에 표시됨)",
   "contribution": "주 저자",
-  "date": "2024-12",
-  "category": "Research"
+  "date": "2025-03",
+  "category": "PDAO",
+  "type": "pdf"
+}
+```
+
+### 외부 링크 (Medium, 블로그 등) 추가
+
+PDF 없이 외부 URL로 연결할 수 있습니다:
+
+```json
+{
+  "id": "medium-article-1",
+  "title": "아티클 제목",
+  "description": "아티클 요약 설명",
+  "contribution": "주 저자",
+  "date": "2025-03",
+  "category": "Personal",
+  "type": "url",
+  "url": "https://medium.com/@seungjun-oh/article-slug"
 }
 ```
 
 ### 필드 설명
 
-- `id`: 고유 식별자
-- `filename`: 실제 PDF 파일명 (정확히 일치해야 함)
-- `title`: 리포트 제목
-- `contribution`: 기여도 설명 (예: "주 저자", "Research Assistant로 참여")
-- `date`: 발간 날짜 (YYYY-MM 형식, 최신순 정렬에 사용)
-- `category`: 카테고리 (예: "Bithumb", "PDAO", "Personal")
-
-### 3단계: 커밋 & 푸시
-
-```bash
-git add data/reports/"New Report.pdf" data/portfolio-config.json
-git commit -m "docs: add new research report"
-git push origin main
-```
-
-### 리포트 순서
-
-리포트는 `date` 필드를 기준으로 **최신순 자동 정렬**됩니다.
+| 필드 | 필수 | 설명 |
+|------|------|------|
+| `id` | O | 고유 식별자 |
+| `title` | O | 제목 |
+| `description` | O | 요약 설명 (카드 미리보기에 표시) |
+| `contribution` | O | 기여도 (예: "주 저자", "Research Assistant로 참여") |
+| `date` | O | 발간 날짜 (YYYY-MM 형식, 최신순 정렬) |
+| `category` | O | 카테고리 (Bithumb, PDAO, Personal 등) |
+| `type` | O | `"pdf"` 또는 `"url"` |
+| `filename` | PDF일 때 | PDF 파일명 (`data/reports/` 내 파일명과 일치) |
+| `url` | URL일 때 | 외부 링크 주소 |
 
 ---
 
-## 이력서 추가
+## 3. Experience History 수정
 
-### 1단계: PDF 파일 추가
+**파일**: `data/proof-of-work.xlsx`
 
-새 이력서 PDF를 `data/resume/` 폴더에 추가합니다.
+스프레드시트를 직접 수정 후 저장합니다. Experience 섹션에서 자동으로 로딩됩니다.
 
-```bash
-cp resume_2024.pdf data/resume/
-```
-
-### 2단계: 메타데이터 추가
-
-**파일**: `data/portfolio-config.json`의 `resumes` 배열에 추가
+또는 `data/portfolio-config.json` > `cv.experience[]`에서 구조화 데이터를 수정할 수 있습니다:
 
 ```json
 {
-  "id": "resume_2024",
-  "title": "Resume 2024",
-  "file": "data/resume/resume_2024.pdf",
+  "period": "2025.12 -",
+  "role": "Technical Writer (Intern)",
+  "team": "TechBD team",
+  "organization": "B-Harvest",
+  "url": "https://bharvest.io",
+  "type": "Technical",
+  "highlights": ["업무 내용 1", "업무 내용 2"]
+}
+```
+
+**type 값**: `Technical`, `Military`, `Community`, `Leadership`
+
+---
+
+## 4. CV 업데이트
+
+### 방법 A: 구조화 데이터 (권장)
+
+`data/portfolio-config.json` > `cv` 섹션의 각 카테고리를 직접 수정:
+
+- `cv.education[]` - 학력
+- `cv.experience[]` - 경력
+- `cv.research[]` - 연구 경험
+- `cv.skills` - 기술 스택 및 관심 분야
+- `cv.publication[]` - 출판물
+- `cv.projects[]` - 프로젝트
+- `cv.events[]` - 발표 및 이벤트
+- `cv.awards[]` - 수상 및 장학금
+- `cv.certificates` - 자격증 (finance, cs, general)
+
+### 방법 B: 마크다운 (레거시)
+
+`data/cv.md` 파일을 직접 수정. CV 섹션에서 마크다운 렌더링으로 표시됩니다.
+
+---
+
+## 5. 이력서 PDF 추가
+
+**파일**: `data/portfolio-config.json` > `resumes[]`
+
+1. PDF 파일을 `data/resume/` 폴더에 추가
+2. 메타데이터 추가:
+
+```json
+{
+  "id": "resume_2025",
+  "title": "Resume 2025",
+  "file": "data/resume/resume_2025.pdf",
   "language": "en"
 }
 ```
 
-### 3단계: 커밋 & 푸시
+---
 
-```bash
-git add data/resume/resume_2024.pdf data/portfolio-config.json
-git commit -m "docs: add 2024 resume"
-git push origin main
-```
+## 6. 프로필 정보 수정
+
+**파일**: `data/portfolio-config.json` > `profile`
+
+- `email`, `emailAlt` - 이메일
+- `social.linkedin`, `social.twitter`, `social.github`, `social.medium` - 소셜 링크
+- `image` - 프로필 사진 경로 (`assets/images/profile.jpg` 교체)
 
 ---
 
-## 프로필 정보 수정
-
-**파일**: `data/portfolio-config.json`
-
-### 이메일 변경
-
-```json
-{
-  "profile": {
-    "email": "new-email@example.com",
-    "emailAlt": "alt-email@example.com"
-  }
-}
-```
-
-### 소셜 링크 변경
-
-```json
-{
-  "profile": {
-    "social": {
-      "linkedin": "https://linkedin.com/in/your-profile",
-      "twitter": "https://twitter.com/your-handle",
-      "github": "https://github.com/your-username",
-      "medium": "https://medium.com/@your-username"
-    }
-  }
-}
-```
-
-### 프로필 사진 변경
-
-**파일**: `assets/images/profile.jpg`를 새 이미지로 교체
+## 배포
 
 ```bash
-cp new-profile-photo.jpg assets/images/profile.jpg
-git add assets/images/profile.jpg
-git commit -m "chore: update profile photo"
-git push origin main
-```
-
----
-
-## 자동화 도구 사용
-
-### 파일 목록 자동 생성
-
-새 PDF 파일을 추가한 후 자동으로 목록을 생성할 수 있습니다.
-
-```bash
-# Node.js 설치 필요
-npm run generate-lists
-```
-
-이 명령은:
-- `data/reports/`와 `data/resume/` 폴더를 스캔
-- 새로운 PDF 파일을 감지
-- 누락된 파일 경고
-
-### JSON 파일 유효성 검증
-
-설정 파일이 올바른지 확인합니다.
-
-```bash
+# JSON 유효성 검증
 npm run validate-json
-```
 
-에러가 발생하면 JSON 형식이나 필수 필드 누락을 확인하세요.
-
----
-
-## 배포 방법
-
-### GitHub Pages 자동 배포
-
-이 사이트는 GitHub Pages를 사용하여 자동으로 배포됩니다.
-
-#### 배포 프로세스
-
-1. 변경사항을 `main` 브랜치에 푸시
-2. GitHub이 자동으로 사이트 빌드
-3. 1-2분 후 사이트 업데이트 완료
-
-#### 배포 확인
-
-```bash
-# 변경사항 푸시
-git push origin main
-
-# 브라우저에서 확인
-# https://basten1209.github.io
-```
-
-### 로컬 테스트
-
-배포하기 전에 로컬에서 테스트할 수 있습니다.
-
-```bash
-# Python HTTP 서버 실행
+# 로컬 테스트
 npm run serve
+# http://localhost:8080 접속
 
-# 또는 직접 실행
-python -m http.server 8080
-
-# 브라우저에서 http://localhost:8080 접속
+# 배포 (main 브랜치에 푸시)
+git add data/portfolio-config.json
+git commit -m "docs: update portfolio content"
+git push origin main
 ```
 
----
-
-## 자주 묻는 질문 (FAQ)
-
-### Q: JSON 파일을 수정했는데 사이트에 반영이 안 됩니다.
-
-**A**: 다음을 확인하세요:
-1. JSON 문법이 올바른지 (`npm run validate-json`)
-2. 파일을 저장했는지
-3. Git에 커밋하고 푸시했는지
-4. 브라우저 캐시를 클리어했는지 (Ctrl+Shift+R)
-
-### Q: PDF 파일을 추가했는데 드롭다운에 나타나지 않습니다.
-
-**A**: `portfolio-config.json`에 메타데이터를 추가했는지 확인하세요. 파일명이 정확히 일치해야 합니다.
-
-### Q: 사이트가 다크모드를 지원하나요?
-
-**A**: 네! 시스템 설정(OS)의 다크모드가 자동으로 적용됩니다.
-
-### Q: 리포트 순서를 변경하려면?
-
-**A**: `portfolio-config.json`에서 `date` 필드를 수정하면 자동으로 최신순 정렬됩니다.
-
-### Q: 에러 메시지가 표시됩니다.
-
-**A**: 브라우저 콘솔(F12)을 열어 에러 로그를 확인하세요. 일반적인 원인:
-- 파일 경로 오류
-- JSON 문법 오류
-- 네트워크 문제
+GitHub Pages가 자동으로 1-2분 내 배포합니다.
 
 ---
 
-## 체크리스트
-
-### 새 리포트 추가 시
-
-- [ ] PDF 파일을 `data/reports/`에 추가
-- [ ] `portfolio-config.json`에 메타데이터 추가
-- [ ] JSON 유효성 검증 (`npm run validate-json`)
-- [ ] 로컬 테스트 (`npm run serve`)
-- [ ] Git 커밋 & 푸시
-- [ ] 사이트 확인 (1-2분 후)
-
-### 프로필 정보 변경 시
-
-- [ ] `portfolio-config.json` 또는 해당 `.md` 파일 수정
-- [ ] 이메일/링크 정확성 확인
-- [ ] 프로필 사진 교체 (필요시)
-- [ ] JSON 유효성 검증
-- [ ] Git 커밋 & 푸시
-
----
-
-## 추가 도움말
-
-문제가 해결되지 않으면:
-
-1. GitHub Issues에 문제 등록
-2. 브라우저 개발자 도구 콘솔 확인
-3. JSON 유효성 검사 도구 사용 (jsonlint.com)
-
-## 관련 파일
-
-- 📄 [README.md](README.md) - 프로젝트 개요
-- 📊 [portfolio-config.json](data/portfolio-config.json) - 메인 설정 파일 ⭐
-- 🎨 [style.css](assets/css/style.css) - 스타일 설정
-- ⚙️ [main.js](assets/js/main.js) - 기능 구현
-
----
-
-## 변경 이력
-
-### v2.0 (2024-12-09)
-- ✅ 통합 설정 파일(`portfolio-config.json`) 도입
-- ✅ 다크모드 지원
-- ✅ PDF 로딩 프로그레스 바
-- ✅ 자동화 스크립트 추가
-- ✅ GitHub Actions 워크플로우
-- 🗑️ 레거시 파일 삭제 (`report-contributions.json` - portfolio-config.json에 통합됨)
-
----
-
-**업데이트 날짜**: 2024-12-09
-**버전**: 2.0
+**업데이트 날짜**: 2026-03-23
+**버전**: 3.0

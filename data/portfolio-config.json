@@ -5,6 +5,25 @@
     "email": "seungjunoh@postech.ac.kr",
     "emailAlt": "seungjun@postech-dao.xyz",
     "image": "assets/images/profile.jpg",
+    "tagline": "Investigating the convergence of <strong>Crypto Markets</strong>, <strong>Technical Writing</strong>, and <strong>Socio-Technical Systems</strong> to decode complex digital economies.",
+    "status": "Available for Technical Research",
+    "focusAreas": [
+      {
+        "icon": "token",
+        "title": "Crypto Markets",
+        "description": "Analyzing liquidity dynamics and incentive structures in decentralized protocols."
+      },
+      {
+        "icon": "hub",
+        "title": "Socio-Technical Systems",
+        "description": "Mapping the intersection of governance, human behavior, and algorithmic rules."
+      },
+      {
+        "icon": "description",
+        "title": "Technical Writing",
+        "description": "Drafting protocol specifications and comprehensive research documentation."
+      }
+    ],
     "social": {
       "linkedin": "https://www.linkedin.com/in/basten1209/",
       "twitter": "https://x.com/seungjun_x",
@@ -31,113 +50,327 @@
       "id": "pdao-zkp-sp1",
       "filename": "[PDAO] From ZKP to SP1 Hypercube (KOR).pdf",
       "title": "[PDAO] From ZKP to SP1 Hypercube (KOR)",
+      "description": "ZKP(영지식 증명)의 기초부터 Succinct의 SP1 Hypercube까지, Realtime Proving 실현 과정을 분석한 기술 리포트.",
       "contribution": "주 저자",
       "date": "2024-12",
-      "category": "PDAO"
+      "category": "PDAO",
+      "type": "pdf"
     },
     {
       "id": "pdao-krw-stablecoin",
       "filename": "[PDAO] KRWstablecoin (KOR).pdf",
       "title": "[PDAO] KRWstablecoin (KOR)",
+      "description": "한국 원화 기반 스테이블코인의 설계, 규제 환경, 그리고 시장 가능성에 대한 종합 분석.",
       "contribution": "리포트 코디네이팅, 일부 범위 리포트 작성/교열 및 편집",
       "date": "2024-09",
-      "category": "PDAO"
+      "category": "PDAO",
+      "type": "pdf"
     },
     {
       "id": "pdao-zk-sol-eng",
       "filename": "[PDAO] ZK in SOL (ENG).pdf",
       "title": "[PDAO] ZK in SOL (ENG)",
+      "description": "Examining Zero-Knowledge proof implementations on the Solana blockchain ecosystem.",
       "contribution": "리포트 코디네이팅, 전 범위 리포트 교열 및 편집",
       "date": "2024-06",
-      "category": "PDAO"
+      "category": "PDAO",
+      "type": "pdf"
     },
     {
       "id": "pdao-zk-sol-kor",
       "filename": "[PDAO] ZK in SOL (KOR).pdf",
       "title": "[PDAO] ZK in SOL (KOR)",
+      "description": "솔라나 블록체인 생태계에서의 영지식 증명 구현에 대한 분석.",
       "contribution": "리포트 코디네이팅, 전 범위 리포트 교열 및 편집",
       "date": "2024-06",
-      "category": "PDAO"
+      "category": "PDAO",
+      "type": "pdf"
     },
     {
       "id": "crypto-notes-2",
       "filename": "CRYPTO NOTES 2호.pdf",
       "title": "CRYPTO NOTES 2호 - Unstoppable Ethereum",
+      "description": "이더리움의 기술적 발전과 생태계 확장에 대한 심층 분석 리포트.",
       "contribution": "주 저자",
       "date": "2023-04",
-      "category": "Personal"
+      "category": "Personal",
+      "type": "pdf"
     },
     {
       "id": "crypto-notes-1",
       "filename": "CRYPTO NOTES 1호.pdf",
       "title": "CRYPTO NOTES 1호 - The Big Wave is Coming",
+      "description": "크립토 시장의 거시적 흐름과 다가올 대규모 변화에 대한 전망 리포트.",
       "contribution": "주 저자",
       "date": "2023-02",
-      "category": "Personal"
+      "category": "Personal",
+      "type": "pdf"
     },
     {
       "id": "crypto-insights-14",
       "filename": "Crypto Insights 14호.pdf",
       "title": "Crypto Insights 14호 - 2023 Crypto Market Outlook",
+      "description": "2023년 크립토 시장 전망 및 주요 트렌드 분석.",
       "contribution": "Research Assistant로 참여",
       "date": "2023-01",
-      "category": "Bithumb"
+      "category": "Bithumb",
+      "type": "pdf"
     },
     {
       "id": "crypto-insights-13",
       "filename": "Crypto Insights 13호.pdf",
       "title": "Crypto Insights 13호 - 2022 Dec FOMC Preview",
+      "description": "2022년 12월 FOMC 회의 프리뷰 및 크립토 시장 영향 분석.",
       "contribution": "Research Assistant로 참여",
       "date": "2022-12",
-      "category": "Bithumb"
+      "category": "Bithumb",
+      "type": "pdf"
     },
     {
       "id": "crypto-insights-12",
       "filename": "Crypto Insights 12호.pdf",
       "title": "Crypto Insights 12호 - FTX Collaspe",
+      "description": "FTX 거래소 붕괴 사건의 원인, 영향, 그리고 시장 여파 분석.",
       "contribution": "Research Assistant로 참여",
       "date": "2022-11",
-      "category": "Bithumb"
+      "category": "Bithumb",
+      "type": "pdf"
     },
     {
       "id": "crypto-insights-11",
       "filename": "Crypto Insights 11호.pdf",
       "title": "Crypto Insights 11호 - Effect about US midterm elections",
+      "description": "미국 중간선거가 크립토 시장에 미치는 영향 분석.",
       "contribution": "Research Assistant로 참여",
       "date": "2022-11",
-      "category": "Bithumb"
+      "category": "Bithumb",
+      "type": "pdf"
     },
     {
       "id": "crypto-insights-10",
       "filename": "Crypto Insights 10호.pdf",
       "title": "Crypto Insights 10호 - SOL, BNB Chain Hacked",
+      "description": "솔라나 및 BNB 체인 해킹 사건 분석과 보안 시사점.",
       "contribution": "Research Assistant로 참여",
       "date": "2022-10",
-      "category": "Bithumb"
+      "category": "Bithumb",
+      "type": "pdf"
     },
     {
       "id": "crypto-insights-9",
       "filename": "Crypto Insights 9호.pdf",
       "title": "Crypto Insights 9호 - Relationship about Fiat Money & Bitcoin",
+      "description": "법정화폐와 비트코인의 관계성에 대한 거시경제학적 분석.",
       "contribution": "Research Assistant로 참여",
       "date": "2022-10",
-      "category": "Bithumb"
+      "category": "Bithumb",
+      "type": "pdf"
     },
     {
       "id": "crypto-insights-8",
       "filename": "Crypto Insights 8호.pdf",
       "title": "Crypto Insights 8호 - 2022 Sep FOMC Review",
+      "description": "2022년 9월 FOMC 회의 리뷰 및 크립토 시장 영향.",
       "contribution": "Research Assistant로 참여",
       "date": "2022-09",
-      "category": "Bithumb"
+      "category": "Bithumb",
+      "type": "pdf"
     },
     {
       "id": "crypto-insights-7",
       "filename": "Crypto Insights 7호.pdf",
       "title": "Crypto Insights 7호 - Ethereum Price Scenario after The Merge",
+      "description": "이더리움 머지 이후 가격 시나리오 전망.",
       "contribution": "Research Assistant로 참여",
       "date": "2022-09",
-      "category": "Bithumb"
+      "category": "Bithumb",
+      "type": "pdf"
     }
-  ]
+  ],
+  "cv": {
+    "lastUpdated": "2026.01.22",
+    "subtitle": "Web3 Researcher & Technical Writer bridging the gap between Crypto Markets and Socio-Technical Systems.",
+    "education": [
+      {
+        "period": "2021 - Present",
+        "institution": "Pohang University of Science and Technology (POSTECH)",
+        "url": "https://www.postech.ac.kr/",
+        "degree": "B.S. in Industrial Management Engineering"
+      }
+    ],
+    "skills": {
+      "interests": ["Blockchain & Cryptocurrency", "Macro Economics", "Investment Theory", "Data Analysis", "Econometrics", "High-Frequency Trading"],
+      "technical": ["R", "Python", "C/C++", "SQL", "Git", "MS Office"]
+    },
+    "experience": [
+      {
+        "period": "2025.12 -",
+        "role": "Technical Writer (Intern)",
+        "team": "TechBD team",
+        "organization": "B-Harvest",
+        "url": "https://bharvest.io",
+        "type": "Technical",
+        "highlights": [
+          "Joined 8 weeks internship program",
+          "Studied blockchain core technology / had an internal seminar about Tempo blockchain"
+        ]
+      },
+      {
+        "period": "2025.12 -",
+        "role": "Based Advocate (Ambassador)",
+        "organization": "Base Korea (Daehanbase)",
+        "url": "https://x.com/daehan_base",
+        "type": "Community",
+        "highlights": [
+          "Part-time work",
+          "Support Base Korea's Offline Meetup",
+          "Wrote Articles about Base Builders in South Korea / Building tips on Base Chain"
+        ]
+      },
+      {
+        "period": "2025.07 -",
+        "role": "Consultant",
+        "organization": "WorldQuant Brain",
+        "url": "https://platform.worldquantbrain.com/",
+        "type": "Technical",
+        "highlights": [
+          "Freelance work",
+          "Contracted as Freelance Consultant after 2025 IQC award (currently inactive)"
+        ]
+      },
+      {
+        "period": "2025.02 - Present",
+        "role": "Organizer (Head) / Genesis Member",
+        "organization": "PDAO",
+        "url": "https://dao.postech.ac.kr",
+        "type": "Leadership",
+        "highlights": [
+          "Representative as PDAO",
+          "Managing overall tasks & Decision making for sustainable open crypto community",
+          "Joined PDAO Launch Project (2022.06 - 2022.12), Dev-Near Team Coordinator and Strategy team",
+          "PDAO chain initial governance committee"
+        ]
+      },
+      {
+        "period": "2024.01 - 2024.12",
+        "role": "System Developer",
+        "team": "Logistic-Training System Development team",
+        "organization": "R.O.K.A.F. HQ",
+        "type": "Military",
+        "highlights": [
+          "Database Operation & Management in Logistic systems for Air Force departments",
+          "Appointed as squad leader (2024.08 - 2024.12)"
+        ]
+      },
+      {
+        "period": "2023.05 - 2023.12",
+        "role": "Fusion System Developer",
+        "team": "Fusion System Office",
+        "organization": "R.O.K.A.F. Logistic Command",
+        "type": "Military",
+        "highlights": [
+          "Completed 'AI-SW training for military personnel' - Outstanding student in advanced course",
+          "Reviewed new AI-related systems",
+          "Analyzed aircraft sensor data"
+        ]
+      },
+      {
+        "period": "2022.09 - 2023.03",
+        "role": "Researcher (Intern)",
+        "team": "Economy Institute / Research Center",
+        "organization": "Bithumb Korea",
+        "url": "https://www.bithumbcorp.com",
+        "type": "Technical",
+        "highlights": [
+          "Participated in 'Crypto Insights' macro/cryptocurrency report series (8 reports)",
+          "Published 'CRYPTO NOTES' blockchain research report series (2 reports)",
+          "Participated in offline seminar - 'Crypto Insight meetup'",
+          "Produced daily industry reports for financial authorities (FIU)",
+          "Filming assistance for official YouTube contents"
+        ]
+      }
+    ],
+    "research": [
+      {
+        "period": "2025.06 - Present",
+        "role": "Undergraduate Researcher",
+        "lab": "POSTECH FBDA Lab",
+        "url": "https://sites.google.com/view/minseokshin",
+        "advisor": "Prof. Minseok Shin",
+        "focus": "High-Dimensional Statistics & High-Frequency Finance"
+      },
+      {
+        "period": "2022.06 - 2022.08",
+        "role": "Undergraduate Researcher",
+        "lab": "POSTECH DPNM Lab",
+        "url": "https://dpnm.postech.ac.kr",
+        "advisor": "Prof. James Won-ki Hong",
+        "focus": "Blockchain & Cryptocurrency"
+      }
+    ],
+    "publication": [
+      {
+        "title": "Digital Asset Era is Coming",
+        "isbn": "9791192445502",
+        "role": "Co-Author",
+        "url": "https://product.kyobobook.co.kr/detail/S000209213039",
+        "description": "Wrote bitcoin/blockchain introduction and technology chapter."
+      }
+    ],
+    "projects": [
+      {
+        "year": "2025",
+        "title": "Robust Alpha Generation",
+        "description": "Making Robust Alphas (Trading Strategies) on the WorldQuant Brain Platform for 2025 IQC.",
+        "highlights": [
+          "Developed quantitative signals based on fundamental financial data",
+          "Improved alpha performance through iterative refinement and validation",
+          "Presented alpha strategies at the Korea regional finals"
+        ]
+      },
+      {
+        "year": "2022",
+        "title": "NFT Hub: NFT Asset Portfolio Platform",
+        "description": "Project leader for NFT asset portfolio platform.",
+        "highlights": [
+          "Selected in 2022 Pohang-si innopolis campus business team",
+          "Selected and completed in 2022 student start-up 300 team",
+          "Rewarded for exhibition in 2022 industry & academic cooperation EXPO"
+        ]
+      }
+    ],
+    "events": [
+      { "year": "2025", "role": "Panel Speaker", "title": "AI+Blockchain Autumn Camp - Korean Offline Workshop" },
+      { "year": "2025", "role": "Host", "title": "Blockchains for TradFi: 전통금융과 블록체인의 만남" },
+      { "year": "2025", "role": "Host & Speaker", "title": "PDAO in Seoul!" },
+      { "year": "2025", "role": "Host", "title": "Dive in Crypto-Blockchain! (in Pohang)" },
+      { "year": "2023", "role": "Session Speaker", "title": "Crypto Insight Meetup (Off-line)" }
+    ],
+    "awards": [
+      { "date": "2025.12", "title": "Overseas Assignment Scholar for Nobel Week 2025", "value": "2.5 million won", "issuer": "POSTECH" },
+      { "date": "2025.07", "title": "Monad Blitz Seoul 4th Prize", "issuer": "Monad Foundation / B-Harvest / Chainlink" },
+      { "date": "2025.07", "title": "2025 IQC Korea 3rd", "issuer": "WorldQuant" },
+      { "date": "2022.05", "title": "POSTECH Metaverse Contest Encourage Award", "issuer": "POSTECH" },
+      { "date": "2021.03 - 2022.12", "title": "Local Talent Scholarship (Full Scholarship)", "issuer": "KOSAF" }
+    ],
+    "certificates": {
+      "finance": [
+        { "name": "Certified Investment Manager", "issuer": "KOFIA" },
+        { "name": "Certified Accounting Manager", "issuer": "Samil PwC" },
+        { "name": "Financial Planner", "issuer": "Korea Banking Institute" },
+        { "name": "Certified Foreign Exchange Specialist I", "issuer": "Korea Banking Institute" }
+      ],
+      "cs": [
+        { "name": "SQL Developer", "issuer": "Kdata" },
+        { "name": "ADsP (Advanced Data Analytics Semi-Professional)", "issuer": "Kdata" },
+        { "name": "Craftsman Information Industrial Engineer", "issuer": "HRD Korea" }
+      ],
+      "general": [
+        { "name": "ITQ OA Master", "issuer": "Korea Productivity Center" },
+        { "name": "Word Processor Specialist", "issuer": "KCCI" },
+        { "name": "Secretarial Administrator Level-I", "issuer": "KCCI" },
+        { "name": "TOEIC Speaking: IH / Writing: AM", "issuer": "ETS" }
+      ]
+    }
+  }
 }
