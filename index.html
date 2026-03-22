@@ -199,22 +199,78 @@
 
     </section>
 
-    <!-- ==================== ARTICLES SECTION (Placeholder) ==================== -->
+    <!-- ==================== ARTICLES SECTION ==================== -->
     <section id="articles" class="section">
-      <div class="max-w-7xl mx-auto px-8 py-24">
-        <span class="font-label text-sm uppercase tracking-[0.2em] text-on-surface-variant mb-4 block">The Editorial Archive</span>
-        <h2 class="font-headline font-extrabold text-5xl lg:text-6xl mb-8">
-          Articles & <span class="text-primary italic font-body font-normal">Research</span>
-        </h2>
-        <p class="font-body text-xl text-on-surface-variant max-w-2xl">
-          Research papers, technical guides, and articles will be displayed here with filtering and PDF viewing capabilities.
-        </p>
-        <div class="mt-16 p-12 bg-surface-container-low rounded-xl text-center">
-          <span class="material-symbols-outlined text-on-surface-variant/30 text-[80px] mb-4">construction</span>
-          <p class="font-headline font-bold text-on-surface-variant">Coming Soon</p>
+
+      <!-- Hero: Featured Publication -->
+      <div class="max-w-7xl mx-auto px-8 pt-8 pb-24 lg:pb-32">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+          <div class="lg:col-span-7">
+            <span class="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant mb-6 block">Featured Publication</span>
+            <h1 id="featuredArticleTitle" class="font-headline font-extrabold text-5xl md:text-7xl lg:text-8xl text-on-surface leading-[1.1] tracking-tight mb-8"></h1>
+            <p id="featuredArticleDesc" class="font-body text-xl md:text-2xl text-on-surface-variant leading-relaxed max-w-2xl italic mb-10"></p>
+            <button id="featuredArticleCta" class="bg-primary text-on-primary px-8 py-3 rounded-md font-headline font-bold text-sm tracking-wide hover:bg-primary-dim transition-all">
+              READ MONOGRAPH
+            </button>
+          </div>
+          <div class="lg:col-span-5">
+            <div class="relative group">
+              <div class="absolute -inset-4 bg-surface-container-low rounded-xl -z-10 transition-all group-hover:bg-surface-container-high"></div>
+              <div class="aspect-[4/5] bg-gradient-to-br from-surface-container-low via-primary-container/20 to-secondary-container/30 rounded-xl overflow-hidden flex items-center justify-center">
+                <div class="text-center">
+                  <span class="material-symbols-outlined text-primary/20 text-[120px]">auto_stories</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- Filter / Archive Navigation -->
+      <div class="max-w-7xl mx-auto px-8">
+        <div class="flex flex-wrap gap-8 mb-16 items-baseline border-b border-outline-variant/15 pb-6">
+          <h2 class="font-headline font-extrabold text-2xl uppercase tracking-tighter">Archive</h2>
+          <nav id="articleFilters" class="flex gap-6 font-label text-sm font-semibold text-on-surface-variant">
+            <!-- Populated by JS -->
+          </nav>
+        </div>
+      </div>
+
+      <!-- Bento Archive Grid -->
+      <div class="max-w-7xl mx-auto px-8 pb-24 lg:pb-32">
+        <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-12 gap-10">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
     </section>
+
+    <!-- PDF Viewer Modal -->
+    <div id="pdfModal" class="fixed inset-0 z-[100] hidden">
+      <div class="absolute inset-0 bg-on-surface/60 backdrop-blur-sm" id="pdfModalBackdrop"></div>
+      <div class="relative z-10 flex flex-col h-full max-w-5xl mx-auto p-4 md:p-8">
+        <!-- Toolbar -->
+        <div class="flex items-center justify-between bg-surface-container-lowest rounded-xl px-6 py-3 mb-4 shadow-lg">
+          <span id="pdfModalTitle" class="font-headline font-bold text-sm text-on-surface truncate mr-4"></span>
+          <div class="flex items-center gap-4">
+            <button id="pdfPrevPage" class="p-1 hover:bg-surface-container-low rounded-md transition-colors">
+              <span class="material-symbols-outlined text-on-surface-variant">chevron_left</span>
+            </button>
+            <span id="pdfPageInfo" class="font-label text-xs text-on-surface-variant whitespace-nowrap"></span>
+            <button id="pdfNextPage" class="p-1 hover:bg-surface-container-low rounded-md transition-colors">
+              <span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+            </button>
+            <button id="pdfCloseBtn" class="p-1 hover:bg-surface-container-low rounded-md transition-colors ml-2">
+              <span class="material-symbols-outlined text-on-surface">close</span>
+            </button>
+          </div>
+        </div>
+        <!-- Canvas Container -->
+        <div class="flex-1 overflow-auto bg-surface-container-lowest rounded-xl flex items-start justify-center p-4">
+          <canvas id="pdfCanvas" class="max-w-full"></canvas>
+        </div>
+      </div>
+    </div>
 
     <!-- ==================== EXPERIENCE SECTION ==================== -->
     <section id="experience" class="section">
