@@ -103,63 +103,57 @@
   };
 
   // Render Case Studies (latest 2 reports)
-  const renderCaseStudies = (config) => {
-    const grid = document.getElementById('caseStudiesGrid');
-    if (!grid || !config.reports) return;
+  const renderAboutAndSummary = async () => {
+    const aboutEl = document.getElementById('aboutContent');
+    const summaryEl = document.getElementById('summaryContent');
 
-    // Sort by date descending, take top 2
-    const sorted = [...config.reports].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
-    const featured = sorted.slice(0, 2);
-
-    if (featured.length === 0) return;
-
-    let html = '';
-
-    // Large card (first report)
-    if (featured[0]) {
-      const r = featured[0];
-      html += `
-        <div class="lg:col-span-8 group cursor-pointer">
-          <div class="aspect-[16/9] bg-surface-container-low rounded-xl overflow-hidden mb-6 flex items-center justify-center">
-            <div class="text-center p-12">
-              <span class="font-label text-xs font-semibold text-primary uppercase tracking-widest mb-4 block">${r.category}</span>
-              <span class="material-symbols-outlined text-primary/20 text-[80px]">article</span>
-            </div>
-          </div>
-          <div class="max-w-2xl">
-            <span class="font-label text-xs font-semibold text-primary uppercase tracking-widest mb-2 block">${r.category} &middot; ${r.date}</span>
-            <h3 class="font-body font-semibold text-3xl mb-4 group-hover:text-primary transition-colors">${r.title}</h3>
-            <p class="font-body text-xl text-on-surface-variant">${r.contribution}</p>
-            <span class="inline-flex items-center gap-1 mt-4 font-headline font-bold text-primary text-sm group-hover:gap-2 transition-all">
-              Explore Findings
-              <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </span>
-          </div>
-        </div>
-      `;
+    // Load and render profile-intro.md
+    if (aboutEl) {
+      try {
+        const res = await fetch('data/profile-intro.md');
+        if (res.ok) {
+          const md = await res.text();
+          const html = typeof marked !== 'undefined' ? marked.parse(md) : md.replace(/\n\n/g, '</p><p>').replace(/^/, '<p>').replace(/$/, '</p>');
+          aboutEl.innerHTML = typeof DOMPurify !== 'undefined' ? DOMPurify.sanitize(html) : html;
+        }
+      } catch (e) {
+        console.warn('Failed to load profile-intro.md', e);
+      }
     }
 
-    // Small card (second report)
-    if (featured[1]) {
-      const r = featured[1];
-      html += `
-        <div class="lg:col-span-4 mt-0 lg:mt-24 group cursor-pointer">
-          <div class="aspect-square bg-surface-container-low rounded-xl overflow-hidden mb-6 flex items-center justify-center">
-            <div class="text-center p-8">
-              <span class="font-label text-xs font-semibold text-primary uppercase tracking-widest mb-4 block">${r.category}</span>
-              <span class="material-symbols-outlined text-primary/20 text-[64px]">description</span>
-            </div>
-          </div>
-          <div>
-            <span class="font-label text-xs font-semibold text-primary uppercase tracking-widest mb-2 block">${r.category} &middot; ${r.date}</span>
-            <h3 class="font-body font-semibold text-2xl mb-4 group-hover:text-primary transition-colors">${r.title}</h3>
-            <p class="font-body text-lg text-on-surface-variant italic">${r.contribution}</p>
-          </div>
-        </div>
-      `;
+    // Load and render summary.md
+    if (summaryEl) {
+      try {
+        const res = await fetch('summary.md');
+        if (res.ok) {
+          const md = await res.text();
+          const html = typeof marked !== 'undefined' ? marked.parse(md) : md;
+          const sanitized = typeof DOMPurify !== 'undefined' ? DOMPurify.sanitize(html) : html;
+          // Style the rendered markdown
+          const wrapper = document.createElement('div');
+          wrapper.innerHTML = sanitized;
+          // Style headings
+          wrapper.querySelectorAll('h1').forEach(el => {
+            el.className = 'font-headline font-extrabold text-lg text-on-surface mb-4 hidden';
+          });
+          wrapper.querySelectorAll('h2, h3').forEach(el => {
+            el.className = 'font-headline font-bold text-sm uppercase tracking-widest text-primary mb-3 mt-6 first:mt-0';
+          });
+          // Style lists
+          wrapper.querySelectorAll('ul').forEach(el => {
+            el.className = 'space-y-2 font-label text-sm text-on-surface-variant';
+          });
+          wrapper.querySelectorAll('li').forEach(el => {
+            el.className = 'flex gap-2 items-start';
+            el.innerHTML = '<span class="text-primary font-bold mt-0.5">/</span><span>' + el.innerHTML + '</span>';
+          });
+          summaryEl.innerHTML = '';
+          summaryEl.appendChild(wrapper);
+        }
+      } catch (e) {
+        console.warn('Failed to load summary.md', e);
+      }
     }
-
-    grid.innerHTML = html;
   };
 
   // ==================== ARTICLES SECTION ====================
@@ -964,7 +958,7 @@
       renderStatusBadge(config);
       renderTagline(config);
       renderFocusAreas(config);
-      renderCaseStudies(config);
+      renderAboutAndSummary();
       renderArticles(config);
       initArticleFilters(config);
       const xlsxEntries = await loadProofOfWork();

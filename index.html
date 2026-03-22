@@ -176,20 +176,28 @@
         </div>
       </div>
 
-      <!-- Recent Explorations (Case Studies) -->
+      <!-- About Me & Career Summary -->
       <div class="max-w-7xl mx-auto px-8 pb-24 lg:pb-32">
-        <div class="flex justify-between items-end mb-16">
-          <div>
-            <span class="font-label text-sm uppercase tracking-[0.2em] text-on-surface-variant mb-4 block">Selected Archive</span>
-            <h2 class="font-headline font-extrabold text-4xl lg:text-5xl">Recent Explorations</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <!-- About Me -->
+          <div class="lg:col-span-7">
+            <div class="flex items-center gap-4 text-on-surface-variant font-label text-sm uppercase tracking-[0.2em] mb-6">
+              <span class="w-12 h-[1px] bg-outline-variant"></span>
+              <span>About Me</span>
+            </div>
+            <div id="aboutContent" class="font-body text-xl text-on-surface-variant leading-relaxed space-y-4">
+              <!-- Populated by JS from data/profile-intro.md -->
+            </div>
           </div>
-          <a class="font-headline font-bold text-primary group flex items-center gap-2" href="#articles" data-section="articles">
-            All Projects
-            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
-          </a>
-        </div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12" id="caseStudiesGrid">
-          <!-- Populated by JS from portfolio-config.json reports -->
+          <!-- Career Summary -->
+          <div class="lg:col-span-5">
+            <div class="bg-surface-container-low p-10 rounded-xl">
+              <h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-8">Career Summary</h3>
+              <div id="summaryContent" class="font-body text-on-surface-variant leading-relaxed space-y-6">
+                <!-- Populated by JS from summary.md -->
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
