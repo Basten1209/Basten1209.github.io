@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Seungjun Oh | Research Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "on-surface-variant": "#586064",
+                "surface-dim": "#d1dce0",
+                "surface": "#f8f9fa",
+                "error-dim": "#4e0309",
+                "primary-dim": "#41546c",
+                "surface-container-high": "#e3e9ec",
+                "surface-bright": "#f8f9fa",
+                "secondary-dim": "#3d5762",
+                "on-error-container": "#752121",
+                "primary-fixed-dim": "#c2d6f3",
+                "secondary-fixed-dim": "#bdd9e6",
+                "secondary-fixed": "#cbe7f5",
+                "tertiary-container": "#dbdefe",
+                "on-background": "#2b3437",
+                "tertiary": "#595d78",
+                "tertiary-fixed": "#dbdefe",
+                "on-tertiary-container": "#4a4e69",
+                "on-surface": "#2b3437",
+                "on-tertiary": "#faf8ff",
+                "primary": "#4c6078",
+                "on-primary-fixed-variant": "#4a5d75",
+                "on-secondary-fixed-variant": "#455f6b",
+                "secondary": "#49636f",
+                "inverse-primary": "#cadefb",
+                "error-container": "#fe8983",
+                "surface-tint": "#4c6078",
+                "surface-container-highest": "#dbe4e7",
+                "on-secondary": "#f2faff",
+                "surface-variant": "#dbe4e7",
+                "error": "#9f403d",
+                "surface-container": "#eaeff1",
+                "on-secondary-container": "#3c5561",
+                "on-primary-fixed": "#2d4158",
+                "surface-container-lowest": "#ffffff",
+                "primary-fixed": "#d1e4ff",
+                "on-primary-container": "#40536b",
+                "inverse-surface": "#0c0f10",
+                "inverse-on-surface": "#9b9d9e",
+                "tertiary-fixed-dim": "#ccd0ef",
+                "on-tertiary-fixed": "#383c55",
+                "on-tertiary-fixed-variant": "#545873",
+                "background": "#f8f9fa",
+                "primary-container": "#d1e4ff",
+                "outline-variant": "#abb3b7",
+                "secondary-container": "#cbe7f5",
+                "on-secondary-fixed": "#29434e",
+                "on-primary": "#f5f7ff",
+                "on-error": "#fff7f6",
+                "tertiary-dim": "#4d526c",
+                "surface-container-low": "#f1f4f6",
+                "outline": "#737c7f"
+              },
+              fontFamily: {
+                "headline": ["Manrope"],
+                "body": ["Newsreader"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+            },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+      </style>
+</head>
+<body class="bg-surface text-on-surface font-label selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md">
+<nav class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-xl font-extrabold text-slate-900 dark:text-white uppercase tracking-widest font-manrope">
+                Research Portfolio
+            </div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-primary dark:text-primary-light border-b-2 border-primary dark:border-primary-light pb-1 font-bold" href="#">Articles</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-slate-800 dark:hover:text-slate-200 transition-colors" href="#">Experience</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-slate-800 dark:hover:text-slate-200 transition-colors" href="#">CV</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-lg transition-all duration-300 ease-in-out">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</nav>
+</header>
+<main class="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto">
+<!-- Hero Section: Featured Content -->
+<section class="mb-24">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+<div class="lg:col-span-7">
+<span class="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant mb-6 block">Featured Publication</span>
+<h1 class="font-headline font-extrabold text-5xl md:text-7xl lg:text-8xl text-on-surface leading-[1.1] tracking-tight mb-8">
+                        The Age of Digital Assets is Coming
+                    </h1>
+<p class="font-body text-xl md:text-2xl text-on-surface-variant leading-relaxed max-w-2xl italic">
+                        An extensive investigation into the architectural shift of global finance through the lens of decentralized protocols.
+                    </p>
+<div class="mt-10 flex gap-4">
+<button class="bg-primary text-on-primary px-8 py-3 rounded-md font-headline font-bold text-sm tracking-wide hover:bg-primary-dim transition-all">
+                            READ MONOGRAPH
+                        </button>
+</div>
+</div>
+<div class="lg:col-span-5">
+<div class="relative group">
+<div class="absolute -inset-4 bg-surface-container-low rounded-xl -z-10 transition-all group-hover:bg-surface-container-high"></div>
+<img alt="Digital Assets Concept" class="w-full aspect-[4/5] object-cover rounded shadow-2xl" data-alt="Abstract representation of digital finance and cryptography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1yezytdbhO79Rra7sgwd3Q8BFZj3IBVm4QlzJgAD1_-gEP1_6LIgCCe86DTVzQjlTsKVwYZmVUTH1HyVjVYT2qO6vgVev2ohPkeKi02a3FlVaYapq2S-NWckAW4fRn-R2Ydz82mY-W5yIvitdVvfBIBPjxJHggSq9Wl247eNeXgLvP_4pEPZGh1Tig3Wb3D2XoEjeud6L0NE5-SZq1O4Va1PUmexzQgoQHcDLO6EDBiWW5Jlxo5cYUqb_nEF2PYVSHUxS21AQ-Rs"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Filter / Navigation -->
+<div class="flex flex-wrap gap-8 mb-16 items-baseline border-b border-outline-variant/15 pb-6">
+<h2 class="font-headline font-extrabold text-2xl uppercase tracking-tighter">Archive</h2>
+<nav class="flex gap-6 font-label text-sm font-semibold text-on-surface-variant">
+<button class="text-primary border-b-2 border-primary pb-6 -mb-6">All Items</button>
+<button class="hover:text-primary transition-colors pb-6 -mb-6">Research Papers</button>
+<button class="hover:text-primary transition-colors pb-6 -mb-6">Technical Guides</button>
+<button class="hover:text-primary transition-colors pb-6 -mb-6">Medium Articles</button>
+</nav>
+</div>
+<!-- Bento Style Archive Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+<!-- Long Article (Span 8) -->
+<article class="md:col-span-8 group cursor-pointer">
+<div class="bg-surface-container-low p-10 rounded-lg transition-all hover:bg-surface-container-highest">
+<div class="flex justify-between items-start mb-12">
+<span class="px-3 py-1 bg-primary-container text-on-primary-container text-[10px] font-bold uppercase tracking-widest rounded-full">Research Paper</span>
+<span class="font-label text-xs text-on-surface-variant">March 2024 • 12 min read</span>
+</div>
+<h3 class="font-body text-4xl mb-6 group-hover:text-primary transition-colors leading-tight">Quantifying Latency in Distributed Consensus Engines</h3>
+<p class="font-body text-lg text-on-surface-variant mb-8 leading-relaxed line-clamp-3">
+                        A peer-reviewed study analyzing the performance bottlenecks of Byzantine Fault Tolerant algorithms in high-throughput environments. This research bridges the gap between theoretical limits and practical network constraints.
+                    </p>
+<div class="flex items-center gap-2 text-primary font-headline font-bold text-sm group-hover:gap-4 transition-all">
+                        EXPLORE FINDINGS <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</article>
+<!-- Small Card (Span 4) -->
+<article class="md:col-span-4 group cursor-pointer">
+<div class="h-full flex flex-col border-b border-outline-variant/20 pb-8">
+<div class="mb-6 overflow-hidden rounded-lg">
+<img alt="Technical Illustration" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Macro shot of circuitry and complex data patterns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKEJdmpRJ0txPhz9v72CetfC3pq-Fhxamge_ocFy-nXVNcI9HA6aoKAGFEdUhaokt5-OOpG0BONgRZ7Z5KbgxpuAUi995b-uzkH26mT44CGwtlSOaWwwMqU80q4eCCARTX9A28lyzMPD818LF1b_jA_Pw1WXa7Gq3D8WGEWQM2i8wLMbnLM25bkpXXswNd1eJmI2Abgm5CCWZy-rzhcU8EvlOr5P1FIibWi3Aa-UyPGl9rg5SxWd_koE3vZ5CetxrfFdjIpqePrE0"/>
+</div>
+<span class="font-label text-[10px] font-bold uppercase tracking-widest text-secondary mb-3">Technical Guide</span>
+<h3 class="font-body text-2xl mb-4 leading-snug group-hover:text-primary transition-colors">The Rust Developer's Guide to Memory Safety</h3>
+<p class="font-body text-on-surface-variant line-clamp-2">Explaining ownership and borrowing concepts through visual metaphors and production-grade examples.</p>
+</div>
+</article>
+<!-- Middle Row -->
+<article class="md:col-span-4 group cursor-pointer">
+<div class="h-full flex flex-col border-b border-outline-variant/20 pb-8">
+<span class="font-label text-[10px] font-bold uppercase tracking-widest text-tertiary mb-3">Medium Article</span>
+<h3 class="font-body text-2xl mb-4 leading-snug group-hover:text-primary transition-colors">Why Your API Strategy is Failing in 2024</h3>
+<p class="font-body text-on-surface-variant line-clamp-2">Moving from REST to GraphQL is not just a tech stack change, it's a culture shift.</p>
+<div class="mt-auto pt-6 flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="bookmark">bookmark</span>
+<span class="font-label text-xs text-on-surface-variant">5.2k Claps</span>
+</div>
+</div>
+</article>
+<article class="md:col-span-4 group cursor-pointer">
+<div class="h-full flex flex-col border-b border-outline-variant/20 pb-8">
+<span class="font-label text-[10px] font-bold uppercase tracking-widest text-primary mb-3">Research Paper</span>
+<h3 class="font-body text-2xl mb-4 leading-snug group-hover:text-primary transition-colors">Post-Quantum Cryptography: A Survival Kit</h3>
+<p class="font-body text-on-surface-variant line-clamp-2">Preparing enterprise infrastructure for the eventual arrival of Shor's algorithm and quantum supremacy.</p>
+</div>
+</article>
+<article class="md:col-span-4 group cursor-pointer">
+<div class="bg-surface-container p-8 rounded-lg flex flex-col">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="auto_stories">auto_stories</span>
+<span class="font-label text-[10px] font-bold uppercase tracking-widest">In Progress</span>
+</div>
+<h3 class="font-headline font-bold text-xl mb-4">Architecture of the Sovereign Individual</h3>
+<p class="font-body text-sm text-on-surface-variant italic mb-6">"How personal computing is shifting from data consumption to data sovereignty."</p>
+<div class="w-full bg-outline-variant/20 h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[65%]"></div>
+</div>
+</div>
+</article>
+<!-- Featured Image Column (Span 12) -->
+<article class="md:col-span-12 group cursor-pointer relative overflow-hidden rounded-xl">
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface to-transparent opacity-60 z-10"></div>
+<img alt="Cyber Security" class="w-full h-[400px] object-cover group-hover:scale-110 transition-transform duration-1000" data-alt="Futuristic data interface with glowing cyber security elements" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCasR9lazvCXDrJpAxotqYw8JAurGv-V8iG0vokRpa2RpKd8suZ0uOP7cfUHo5jWjohDSe5TXmeFp2lH9E4JtfLRVbv_BB5_4TG0mJfdAAp0_D6OL0v9LLGFUZq9NvPTD-IYXlNn__zKdPuNvEkyU0wJ-gqN3Tv_htR0n_oEfwYx-tnWYyxv_rDmIcomZ5M_2OrXzJizTK2_isRBgrd0JvANBQ5EISjtKn4DpgxnTTwkMCz6z1jytdPQFfFcsgUPhF9ZjIM16UJFYA"/>
+<div class="absolute bottom-0 left-0 p-12 z-20 max-w-2xl">
+<span class="font-label text-[10px] font-bold uppercase tracking-widest text-primary-fixed mb-4 block">Special Series</span>
+<h3 class="font-headline font-extrabold text-4xl text-surface mb-4 leading-tight">The Vulnerability Matrix: A 4-Part Deep Dive into Supply Chain Attacks</h3>
+<p class="font-body text-surface/80 text-lg mb-6">From SolarWinds to Log4j, we trace the genealogy of the most devastating exploits of the decade.</p>
+<button class="bg-surface text-on-surface px-6 py-2 rounded font-headline font-bold text-xs uppercase tracking-widest hover:bg-primary-container transition-colors">
+                        START READING
+                    </button>
+</div>
+</article>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-slate-200/15 dark:border-slate-800/15 bg-slate-50 dark:bg-slate-950 mt-20">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 w-full max-w-7xl mx-auto">
+<div class="font-manrope font-bold text-slate-400 mb-6 md:mb-0">
+                SEUNGJUN OH / RESEARCH PORTFOLIO
+            </div>
+<div class="flex gap-8 mb-6 md:mb-0">
+<a class="text-slate-400 hover:text-primary transition-colors font-inter text-xs tracking-wider uppercase" href="#">Privacy Policy</a>
+<a class="text-slate-400 hover:text-primary transition-colors font-inter text-xs tracking-wider uppercase" href="#">Contact</a>
+<a class="text-slate-400 hover:text-primary transition-colors font-inter text-xs tracking-wider uppercase" href="#">LinkedIn</a>
+</div>
+<div class="text-slate-600 dark:text-slate-400 font-inter text-xs tracking-wider uppercase">
+                © 2024 Editorial Archive. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>
