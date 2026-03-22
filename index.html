@@ -1,145 +1,273 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html class="scroll-smooth" lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Seungjun Oh Portfolio">
-  <title>Seungjun Oh</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="description" content="Seungjun Oh - Web3 Researcher & Technical Writer Portfolio">
+  <title>Seungjun Oh | Research & Technical Writing</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Config (Design Tokens from reference) -->
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "secondary-fixed": "#cbe7f5",
+            "on-tertiary-container": "#4a4e69",
+            "outline-variant": "#abb3b7",
+            "surface-bright": "#f8f9fa",
+            "secondary-dim": "#3d5762",
+            "surface-variant": "#dbe4e7",
+            "surface-container-lowest": "#ffffff",
+            "primary-container": "#d1e4ff",
+            "inverse-on-surface": "#9b9d9e",
+            "background": "#f8f9fa",
+            "on-primary": "#f5f7ff",
+            "tertiary-fixed": "#dbdefe",
+            "error-dim": "#4e0309",
+            "surface-container-high": "#e3e9ec",
+            "on-primary-fixed": "#2d4158",
+            "tertiary-fixed-dim": "#ccd0ef",
+            "on-primary-fixed-variant": "#4a5d75",
+            "primary": "#4c6078",
+            "surface-tint": "#4c6078",
+            "surface-container": "#eaeff1",
+            "inverse-primary": "#cadefb",
+            "secondary-container": "#cbe7f5",
+            "on-surface": "#2b3437",
+            "on-secondary-fixed-variant": "#455f6b",
+            "on-background": "#2b3437",
+            "surface-container-highest": "#dbe4e7",
+            "on-tertiary": "#faf8ff",
+            "on-primary-container": "#40536b",
+            "on-secondary-container": "#3c5561",
+            "on-secondary": "#f2faff",
+            "on-secondary-fixed": "#29434e",
+            "primary-fixed": "#d1e4ff",
+            "tertiary": "#595d78",
+            "error-container": "#fe8983",
+            "surface-container-low": "#f1f4f6",
+            "primary-dim": "#41546c",
+            "surface-dim": "#d1dce0",
+            "on-tertiary-fixed": "#383c55",
+            "on-tertiary-fixed-variant": "#545873",
+            "tertiary-dim": "#4d526c",
+            "secondary": "#49636f",
+            "primary-fixed-dim": "#c2d6f3",
+            "outline": "#737c7f",
+            "on-surface-variant": "#586064",
+            "error": "#9f403d",
+            "inverse-surface": "#0c0f10",
+            "on-error": "#fff7f6",
+            "tertiary-container": "#dbdefe",
+            "surface": "#f8f9fa",
+            "secondary-fixed-dim": "#bdd9e6",
+            "on-error-container": "#752121"
+          },
+          fontFamily: {
+            "headline": ["Manrope", "sans-serif"],
+            "body": ["Newsreader", "serif"],
+            "label": ["Inter", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "2xl": "0.75rem",
+            "3xl": "1.5rem"
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .tonal-layering-via-bg-shift {
+      box-shadow: inset 0 -1px 0 0 rgba(171, 179, 183, 0.1);
+    }
+    .section { display: none; }
+    .section--active { display: block; }
+  </style>
+
+  <!-- Libraries (preserved for future sections) -->
   <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/dompurify@3.1.5/dist/purify.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script defer src="assets/js/main.js"></script>
 </head>
-<body>
-  <header class="site-header">
-    <div class="brand">
-      <span class="brand__name">Seungjun Oh</span>
-    </div>
-    <nav class="site-nav" id="siteNav" aria-label="주요 메뉴">
-      <ul class="nav__list">
-        <li><a class="nav__link active" data-section="home" href="#home">Home</a></li>
-        <li><a class="nav__link" data-section="resume" href="#resume">Resume/CV</a></li>
-        <li><a class="nav__link" data-section="proof-of-work" href="#proof-of-work">Proof of Work</a></li>
-      </ul>
-    </nav>
-  </header>
+<body class="bg-background text-on-surface font-label selection:bg-primary-container selection:text-on-primary-container">
 
-  <main>
-    <!-- Home Section -->
-    <section id="home" class="section section--active" aria-labelledby="home-heading">
-      <div class="section__inner">
-        <div class="home-content">
-          <div class="profile-photo" data-src="assets/images/profile.jpg" role="img" aria-label="Seungjun Oh profile photo">
-            <span class="profile-photo__placeholder">Loading...</span>
-          </div>
-          <div class="intro">
-            <h1 id="home-heading">Seungjun Oh</h1>
-            <div class="intro-text">
-              <p class="placeholder-text">Loading...</p>
+  <!-- Navigation Bar (Glassmorphism) -->
+  <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md tonal-layering-via-bg-shift shadow-sm">
+    <div class="flex justify-between items-center max-w-7xl mx-auto px-8 py-4">
+      <span class="text-xl font-extrabold text-on-surface uppercase tracking-widest font-headline">Research Portfolio</span>
+      <div class="flex items-center gap-10 font-headline font-bold tracking-tight text-on-surface">
+        <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="home" href="#home">Home</a>
+        <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="articles" href="#articles">Articles</a>
+        <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="experience" href="#experience">Experience</a>
+        <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="cv" href="#cv">CV</a>
+      </div>
+      <a href="mailto:seungjunoh@postech.ac.kr" class="bg-primary text-on-primary px-6 py-2.5 rounded-md font-headline font-bold tracking-tight hover:bg-primary-dim transition-all">
+        Contact Me
+      </a>
+    </div>
+  </nav>
+
+  <main class="pt-32">
+
+    <!-- ==================== HOME SECTION ==================== -->
+    <section id="home" class="section section--active">
+
+      <!-- Hero -->
+      <div class="max-w-7xl mx-auto px-8 mb-24 lg:mb-32">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+          <!-- Text Column -->
+          <div class="lg:col-span-7">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-low rounded-[2rem] mb-8" id="statusBadge">
+              <span class="w-2 h-2 rounded-[2rem] bg-primary"></span>
+              <span class="text-xs font-label font-medium uppercase tracking-widest text-on-surface-variant" id="statusText">Available for Technical Research</span>
+            </div>
+            <h1 class="font-headline font-extrabold text-6xl lg:text-8xl text-on-surface leading-[1.05] tracking-tighter mb-8">
+              Seungjun <br>
+              <span class="text-primary italic font-body font-normal">Oh</span>
+            </h1>
+            <p class="font-body text-2xl text-on-surface-variant leading-relaxed max-w-2xl mb-12" id="heroTagline">
+              Investigating the convergence of <span class="text-on-surface font-semibold">Crypto Markets</span>, <span class="text-on-surface font-semibold">Technical Writing</span>, and <span class="text-on-surface font-semibold">Socio-Technical Systems</span> to decode complex digital economies.
+            </p>
+            <div class="flex flex-wrap gap-6 items-center">
+              <a class="bg-primary text-on-primary px-8 py-4 rounded-md font-headline font-bold text-lg hover:bg-primary-dim transition-colors shadow-lg shadow-primary/10" href="#articles" data-section="articles">
+                View My Research
+              </a>
+              <a class="font-headline font-bold text-lg text-primary flex items-center gap-2 group" href="data/resume/resume_eng.pdf" download>
+                Download CV
+                <span class="material-symbols-outlined group-hover:translate-y-0.5 transition-transform">download</span>
+              </a>
             </div>
           </div>
+          <!-- Visual Column -->
+          <div class="lg:col-span-5 relative">
+            <div class="aspect-[4/5] bg-surface-container-low rounded-xl overflow-hidden relative" id="heroVisual">
+              <div class="w-full h-full bg-gradient-to-br from-surface-container-low via-primary-container/20 to-secondary-container/30 flex items-center justify-center">
+                <div class="text-center">
+                  <span class="material-symbols-outlined text-primary/30 text-[120px]">science</span>
+                </div>
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent"></div>
+            </div>
+            <!-- Decorative Blurs -->
+            <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-secondary-container/50 blur-3xl -z-10 rounded-[2rem]"></div>
+            <div class="absolute -top-6 -right-6 w-48 h-48 bg-primary-container/30 blur-3xl -z-10 rounded-[2rem]"></div>
+          </div>
         </div>
-        <div class="summary-section">
-          <div id="summaryContent" class="markdown-body"></div>
+      </div>
+
+      <!-- Focus Areas -->
+      <div class="max-w-7xl mx-auto px-8 py-20 bg-surface-container-low rounded-3xl mb-24 lg:mb-32" id="focusAreasContainer">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="focusAreasGrid">
+          <!-- Populated by JS from portfolio-config.json -->
+        </div>
+      </div>
+
+      <!-- Recent Explorations (Case Studies) -->
+      <div class="max-w-7xl mx-auto px-8 pb-24 lg:pb-32">
+        <div class="flex justify-between items-end mb-16">
+          <div>
+            <span class="font-label text-sm uppercase tracking-[0.2em] text-on-surface-variant mb-4 block">Selected Archive</span>
+            <h2 class="font-headline font-extrabold text-4xl lg:text-5xl">Recent Explorations</h2>
+          </div>
+          <a class="font-headline font-bold text-primary group flex items-center gap-2" href="#articles" data-section="articles">
+            All Projects
+            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </a>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12" id="caseStudiesGrid">
+          <!-- Populated by JS from portfolio-config.json reports -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== ARTICLES SECTION (Placeholder) ==================== -->
+    <section id="articles" class="section">
+      <div class="max-w-7xl mx-auto px-8 py-24">
+        <span class="font-label text-sm uppercase tracking-[0.2em] text-on-surface-variant mb-4 block">The Editorial Archive</span>
+        <h2 class="font-headline font-extrabold text-5xl lg:text-6xl mb-8">
+          Articles & <span class="text-primary italic font-body font-normal">Research</span>
+        </h2>
+        <p class="font-body text-xl text-on-surface-variant max-w-2xl">
+          Research papers, technical guides, and articles will be displayed here with filtering and PDF viewing capabilities.
+        </p>
+        <div class="mt-16 p-12 bg-surface-container-low rounded-xl text-center">
+          <span class="material-symbols-outlined text-on-surface-variant/30 text-[80px] mb-4">construction</span>
+          <p class="font-headline font-bold text-on-surface-variant">Coming Soon</p>
         </div>
       </div>
     </section>
 
-    <!-- Resume/CV Section -->
-    <section id="resume" class="section" aria-labelledby="resume-heading">
-      <div class="section__inner">
-        <h2 id="resume-heading">Resume/CV</h2>
-
-        <div class="resume-tabs">
-          <button class="tab-button active" data-tab="pdf">Resume (PDF)</button>
-          <button class="tab-button" data-tab="cv">CV (Markdown)</button>
-        </div>
-
-        <div class="tab-content active" id="pdf-tab">
-          <div class="pdf-controls">
-            <label for="pdf-selector">Select Resume:</label>
-            <select id="pdf-selector">
-              <option value="">-- Select a PDF --</option>
-            </select>
-          </div>
-          <div class="pdf-nav" id="pdfNav" style="display: none;">
-            <button id="prevPage" class="pdf-nav-btn">← Prev</button>
-            <span class="pdf-page-info">
-              Page <span id="pageNum">1</span> / <span id="pageCount">1</span>
-            </span>
-            <button id="nextPage" class="pdf-nav-btn">Next →</button>
-          </div>
-          <div class="pdf-viewer" id="pdfViewer">
-            <p class="placeholder-text">Select a PDF file to view</p>
-          </div>
-        </div>
-
-        <div class="tab-content" id="cv-tab">
-          <article id="cvContent" class="markdown-body" aria-live="polite"></article>
+    <!-- ==================== EXPERIENCE SECTION (Placeholder) ==================== -->
+    <section id="experience" class="section">
+      <div class="max-w-7xl mx-auto px-8 py-24">
+        <span class="font-label text-sm uppercase tracking-[0.2em] text-on-surface-variant mb-4 block">The Editorial Archive</span>
+        <h2 class="font-headline font-extrabold text-5xl lg:text-6xl mb-8">
+          Experience <span class="text-primary italic font-body font-normal">History</span>
+        </h2>
+        <p class="font-body text-xl text-on-surface-variant max-w-2xl">
+          Professional experience, research history, and contributions will be displayed here with filtering and sorting.
+        </p>
+        <div class="mt-16 p-12 bg-surface-container-low rounded-xl text-center">
+          <span class="material-symbols-outlined text-on-surface-variant/30 text-[80px] mb-4">construction</span>
+          <p class="font-headline font-bold text-on-surface-variant">Coming Soon</p>
         </div>
       </div>
     </section>
 
-    <!-- Proof of Work Section -->
-    <section id="proof-of-work" class="section" aria-labelledby="pow-heading">
-      <div class="section__inner">
-        <h2 id="pow-heading">Proof of Work</h2>
-
-        <div class="pow-tabs">
-          <button class="tab-button active" data-tab="report">Report</button>
-          <button class="tab-button" data-tab="history">History</button>
-        </div>
-
-        <div class="tab-content active" id="report-tab">
-          <div class="medium-notice">
-            <a href="https://medium.com/@seungjun-oh" target="_blank" rel="noopener">https://medium.com/@seungjun-oh</a> 에서 더 많은 아티클을 확인할 수 있습니다
-          </div>
-          <div class="pdf-controls">
-            <label for="report-selector">Select Report:</label>
-            <select id="report-selector">
-              <option value="">-- Select a PDF --</option>
-            </select>
-          </div>
-          <div class="contribution-info" id="contributionInfo" style="display: none;">
-            <strong>Contribution:</strong> <span id="contributionText"></span>
-          </div>
-          <div class="pdf-nav" id="reportNav" style="display: none;">
-            <button id="reportPrevPage" class="pdf-nav-btn">← Prev</button>
-            <span class="pdf-page-info">
-              Page <span id="reportPageNum">1</span> / <span id="reportPageCount">1</span>
-            </span>
-            <button id="reportNextPage" class="pdf-nav-btn">Next →</button>
-          </div>
-          <div class="pdf-viewer" id="reportViewer">
-            <p class="placeholder-text">Select a PDF file to view</p>
-          </div>
-        </div>
-
-        <div class="tab-content" id="history-tab">
-          <div class="excel-controls">
-            <input type="search" id="excelSearch" placeholder="Search..." />
-          </div>
-          <div class="excel-viewer" id="excelViewer">
-            <p class="placeholder-text">Loading...</p>
-          </div>
+    <!-- ==================== CV SECTION (Placeholder) ==================== -->
+    <section id="cv" class="section">
+      <div class="max-w-7xl mx-auto px-8 py-24">
+        <span class="font-label text-sm uppercase tracking-[0.2em] text-on-surface-variant mb-4 block">Curriculum Vitae</span>
+        <h2 class="font-headline font-extrabold text-5xl lg:text-6xl mb-8">
+          Seungjun <span class="text-primary italic font-body font-normal">Oh</span>
+        </h2>
+        <p class="font-body text-xl text-on-surface-variant max-w-2xl">
+          Structured CV with education, research, experience, and expertise sections.
+        </p>
+        <div class="mt-16 p-12 bg-surface-container-low rounded-xl text-center">
+          <span class="material-symbols-outlined text-on-surface-variant/30 text-[80px] mb-4">construction</span>
+          <p class="font-headline font-bold text-on-surface-variant">Coming Soon</p>
         </div>
       </div>
     </section>
+
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-links">
-      <a href="mailto:seungjunoh@postech.ac.kr">seungjunoh@postech.ac.kr</a>
-      <span class="separator">|</span>
-      <a href="mailto:seungjun@postech-dao.xyz">seungjun@postech-dao.xyz</a>
-      <span class="separator">|</span>
-      <a href="https://www.linkedin.com/in/basten1209/" target="_blank" rel="noopener">LinkedIn</a>
-      <span class="separator">|</span>
-      <a href="https://x.com/seungjun_x" target="_blank" rel="noopener">X/Twitter</a>
+  <!-- Footer -->
+  <footer class="w-full py-16 px-8 mt-24 bg-surface-container-low">
+    <div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-8">
+      <div class="text-left">
+        <span class="font-headline font-semibold text-on-surface block mb-2">Seungjun Oh | Research Portfolio</span>
+        <p class="font-body italic text-lg text-on-surface-variant">&copy; <span id="currentYear"></span> Seungjun Oh. All rights reserved.</p>
+      </div>
+      <div class="flex gap-8 font-body italic text-lg" id="footerLinks">
+        <a class="text-on-surface-variant hover:text-primary transition-all hover:-translate-y-1" href="mailto:seungjunoh@postech.ac.kr">Email</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all hover:-translate-y-1" href="https://www.linkedin.com/in/basten1209/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all hover:-translate-y-1" href="https://medium.com/@seungjun-oh" target="_blank" rel="noopener">Medium</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all hover:-translate-y-1" href="https://x.com/seungjun_x" target="_blank" rel="noopener">Twitter</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all hover:-translate-y-1" href="https://github.com/Basten1209" target="_blank" rel="noopener">GitHub</a>
+      </div>
     </div>
-    <small>© <span id="currentYear"></span> Seungjun Oh</small>
   </footer>
+
 </body>
 </html>

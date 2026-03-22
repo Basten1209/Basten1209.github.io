@@ -1,8 +1,10 @@
 (() => {
   // State
-  const sections = Array.from(document.querySelectorAll('.section'));
-  const navLinks = Array.from(document.querySelectorAll('.nav__link'));
+  const sections = () => Array.from(document.querySelectorAll('.section'));
+  const navLinks = () => Array.from(document.querySelectorAll('.nav__link'));
   const currentYearEl = document.getElementById('currentYear');
+
+  let portfolioConfig = null;
 
   // Set current year
   const setYear = () => {
@@ -11,34 +13,23 @@
     }
   };
 
-  // Load profile photo
-  const loadProfilePhoto = () => {
-    const photoEl = document.querySelector('.profile-photo');
-    if (!photoEl) return;
-
-    const imageSrc = photoEl.dataset.src;
-    if (!imageSrc) return;
-
-    const img = new Image();
-    img.onload = () => {
-      photoEl.style.backgroundImage = `url(${imageSrc})`;
-      photoEl.classList.add('profile-photo--loaded');
-    };
-    img.onerror = () => {
-      photoEl.classList.remove('profile-photo--loaded');
-    };
-    img.src = imageSrc;
-  };
-
   // Navigation
   const setActiveSection = (sectionId) => {
-    const targetSection = sections.find((section) => section.id === sectionId) || sections[0];
+    const allSections = sections();
+    const allNavLinks = navLinks();
+    const targetSection = allSections.find((s) => s.id === sectionId) || allSections[0];
     if (!targetSection) return;
 
-    sections.forEach((section) => section.classList.toggle('section--active', section === targetSection));
-    navLinks.forEach((link) => {
+    allSections.forEach((section) => {
+      section.classList.toggle('section--active', section === targetSection);
+    });
+
+    allNavLinks.forEach((link) => {
       const isActive = link.dataset.section === targetSection.id;
-      link.classList.toggle('active', isActive);
+      link.classList.toggle('text-primary', isActive);
+      link.classList.toggle('border-b-2', isActive);
+      link.classList.toggle('border-primary', isActive);
+      link.classList.toggle('text-on-surface-variant', !isActive);
       if (isActive) {
         link.setAttribute('aria-current', 'page');
       } else {
@@ -48,34 +39,47 @@
   };
 
   const initNavigation = () => {
-    navLinks.forEach((link) => {
+    // Nav links
+    navLinks().forEach((link) => {
       link.addEventListener('click', (event) => {
         event.preventDefault();
         const targetId = link.dataset.section;
         if (!targetId) return;
         history.replaceState(null, '', `#${targetId}`);
         setActiveSection(targetId);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     });
 
+    // CTA links with data-section (e.g., "View My Research", "All Projects")
+    document.querySelectorAll('a[data-section]').forEach((link) => {
+      if (link.classList.contains('nav__link')) return; // skip nav links already handled
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const targetId = link.dataset.section;
+        if (!targetId) return;
+        history.replaceState(null, '', `#${targetId}`);
+        setActiveSection(targetId);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    // Hash change
     window.addEventListener('hashchange', () => {
       const sectionId = window.location.hash.replace('#', '') || 'home';
       setActiveSection(sectionId);
     });
 
+    // Initial section
     const initialSectionId = window.location.hash.replace('#', '') || 'home';
     setActiveSection(initialSectionId);
   };
 
   // Load portfolio configuration
-  let portfolioConfig = null;
-
   const loadPortfolioConfig = async () => {
     try {
       const response = await fetch('data/portfolio-config.json');
-      if (!response.ok) {
-        throw new Error(`Failed to load config: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`Failed to load config: ${response.status}`);
       portfolioConfig = await response.json();
       return portfolioConfig;
     } catch (error) {
@@ -84,596 +88,110 @@
     }
   };
 
-  // Load profile intro markdown
-  const loadProfileIntro = async () => {
-    const introText = document.querySelector('.intro-text');
-    if (!introText) return;
+  // Render Focus Areas
+  const renderFocusAreas = (config) => {
+    const grid = document.getElementById('focusAreasGrid');
+    if (!grid || !config.profile?.focusAreas) return;
 
-    try {
-      marked.setOptions({ breaks: true, gfm: true });
-      const response = await fetch('data/profile-intro.md');
-      if (!response.ok) {
-        throw new Error(`Failed to load intro: ${response.status}`);
-      }
-      const markdown = await response.text();
-      const html = DOMPurify.sanitize(marked.parse(markdown));
-      introText.innerHTML = html;
-    } catch (error) {
-      console.error('Error loading profile intro:', error);
+    grid.innerHTML = config.profile.focusAreas.map((area) => `
+      <div class="p-8 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow">
+        <span class="material-symbols-outlined text-primary text-4xl mb-4">${area.icon}</span>
+        <h3 class="font-headline font-bold text-xl mb-3">${area.title}</h3>
+        <p class="font-body text-lg text-on-surface-variant italic">${area.description}</p>
+      </div>
+    `).join('');
+  };
+
+  // Render Case Studies (latest 2 reports)
+  const renderCaseStudies = (config) => {
+    const grid = document.getElementById('caseStudiesGrid');
+    if (!grid || !config.reports) return;
+
+    // Sort by date descending, take top 2
+    const sorted = [...config.reports].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+    const featured = sorted.slice(0, 2);
+
+    if (featured.length === 0) return;
+
+    let html = '';
+
+    // Large card (first report)
+    if (featured[0]) {
+      const r = featured[0];
+      html += `
+        <div class="lg:col-span-8 group cursor-pointer">
+          <div class="aspect-[16/9] bg-surface-container-low rounded-xl overflow-hidden mb-6 flex items-center justify-center">
+            <div class="text-center p-12">
+              <span class="font-label text-xs font-semibold text-primary uppercase tracking-widest mb-4 block">${r.category}</span>
+              <span class="material-symbols-outlined text-primary/20 text-[80px]">article</span>
+            </div>
+          </div>
+          <div class="max-w-2xl">
+            <span class="font-label text-xs font-semibold text-primary uppercase tracking-widest mb-2 block">${r.category} &middot; ${r.date}</span>
+            <h3 class="font-body font-semibold text-3xl mb-4 group-hover:text-primary transition-colors">${r.title}</h3>
+            <p class="font-body text-xl text-on-surface-variant">${r.contribution}</p>
+            <span class="inline-flex items-center gap-1 mt-4 font-headline font-bold text-primary text-sm group-hover:gap-2 transition-all">
+              Explore Findings
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </span>
+          </div>
+        </div>
+      `;
+    }
+
+    // Small card (second report)
+    if (featured[1]) {
+      const r = featured[1];
+      html += `
+        <div class="lg:col-span-4 mt-0 lg:mt-24 group cursor-pointer">
+          <div class="aspect-square bg-surface-container-low rounded-xl overflow-hidden mb-6 flex items-center justify-center">
+            <div class="text-center p-8">
+              <span class="font-label text-xs font-semibold text-primary uppercase tracking-widest mb-4 block">${r.category}</span>
+              <span class="material-symbols-outlined text-primary/20 text-[64px]">description</span>
+            </div>
+          </div>
+          <div>
+            <span class="font-label text-xs font-semibold text-primary uppercase tracking-widest mb-2 block">${r.category} &middot; ${r.date}</span>
+            <h3 class="font-body font-semibold text-2xl mb-4 group-hover:text-primary transition-colors">${r.title}</h3>
+            <p class="font-body text-lg text-on-surface-variant italic">${r.contribution}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    grid.innerHTML = html;
+  };
+
+  // Render status badge from config
+  const renderStatusBadge = (config) => {
+    const statusText = document.getElementById('statusText');
+    if (statusText && config.profile?.status) {
+      statusText.textContent = config.profile.status;
     }
   };
 
-  // Load Summary markdown for home page
-  const loadSummary = async () => {
-    const summaryContent = document.getElementById('summaryContent');
-    if (!summaryContent) return;
-
-    try {
-      marked.setOptions({ breaks: true, gfm: true });
-      const response = await fetch('summary.md');
-      if (!response.ok) {
-        throw new Error(`Failed to load summary: ${response.status}`);
-      }
-      const markdown = await response.text();
-      const html = DOMPurify.sanitize(marked.parse(markdown));
-      summaryContent.innerHTML = html;
-    } catch (error) {
-      console.error('Error loading summary:', error);
-      summaryContent.innerHTML = '<p class="error-message">Failed to load summary.</p>';
+  // Render tagline from config
+  const renderTagline = (config) => {
+    const tagline = document.getElementById('heroTagline');
+    if (tagline && config.profile?.tagline) {
+      tagline.innerHTML = config.profile.tagline;
     }
   };
 
-  // Load CV markdown
-  const loadCV = async () => {
-    const cvContent = document.getElementById('cvContent');
-    if (!cvContent) return;
-
-    try {
-      marked.setOptions({ breaks: true, gfm: true });
-      const response = await fetch('data/cv.md');
-      if (!response.ok) {
-        throw new Error(`Failed to load CV: ${response.status}`);
-      }
-      const markdown = await response.text();
-      const html = DOMPurify.sanitize(marked.parse(markdown));
-      cvContent.innerHTML = html;
-    } catch (error) {
-      console.error('Error loading CV:', error);
-      cvContent.innerHTML = '<p class="error-message">Failed to load CV. Please check the file path.</p>';
-    }
-  };
-
-  // Tab Switching (for Resume/CV and Proof of Work)
-  const initTabs = () => {
-    // Handle Resume/CV tabs
-    const resumeTabButtons = document.querySelectorAll('.resume-tabs .tab-button');
-    resumeTabButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const targetTab = button.dataset.tab;
-
-        // Update button states within resume tabs
-        resumeTabButtons.forEach((btn) => btn.classList.remove('active'));
-        button.classList.add('active');
-
-        // Update content visibility for resume tabs
-        document.getElementById('pdf-tab').classList.toggle('active', targetTab === 'pdf');
-        document.getElementById('cv-tab').classList.toggle('active', targetTab === 'cv');
-      });
-    });
-
-    // Handle Proof of Work tabs
-    const powTabButtons = document.querySelectorAll('.pow-tabs .tab-button');
-    powTabButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const targetTab = button.dataset.tab;
-
-        // Update button states within pow tabs
-        powTabButtons.forEach((btn) => btn.classList.remove('active'));
-        button.classList.add('active');
-
-        // Update content visibility for pow tabs
-        document.getElementById('report-tab').classList.toggle('active', targetTab === 'report');
-        document.getElementById('history-tab').classList.toggle('active', targetTab === 'history');
-      });
-    });
-  };
-
-  // PDF Viewer for Resume using PDF.js
-  let currentPdf = null;
-  let currentPage = 1;
-  let totalPages = 0;
-
-  const renderPdfPage = async (pdf, pageNum, canvas, progressCallback) => {
-    const page = await pdf.getPage(pageNum);
-    const viewport = page.getViewport({ scale: 1.5 });
-
-    const context = canvas.getContext('2d');
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
-
-    const renderTask = page.render({
-      canvasContext: context,
-      viewport: viewport
-    });
-
-    // Show progress if callback provided
-    if (progressCallback) {
-      progressCallback(50); // Mid-render
-    }
-
-    await renderTask.promise;
-
-    if (progressCallback) {
-      progressCallback(100); // Complete
-    }
-  };
-
-  const showLoadingProgress = (container, progress) => {
-    let progressBar = container.querySelector('.pdf-progress-bar');
-    if (!progressBar) {
-      progressBar = document.createElement('div');
-      progressBar.className = 'pdf-progress-bar';
-      progressBar.innerHTML = '<div class="pdf-progress-fill"></div>';
-      container.appendChild(progressBar);
-    }
-    const fill = progressBar.querySelector('.pdf-progress-fill');
-    fill.style.width = `${progress}%`;
-
-    if (progress >= 100) {
-      setTimeout(() => {
-        if (progressBar.parentNode) {
-          progressBar.remove();
-        }
-      }, 300);
-    }
-  };
-
-  const initPDFViewer = async () => {
-    const pdfSelector = document.getElementById('pdf-selector');
-    const pdfViewer = document.getElementById('pdfViewer');
-    const pdfNav = document.getElementById('pdfNav');
-    const prevBtn = document.getElementById('prevPage');
-    const nextBtn = document.getElementById('nextPage');
-    const pageNumSpan = document.getElementById('pageNum');
-    const pageCountSpan = document.getElementById('pageCount');
-
-    if (!pdfSelector || !pdfViewer) return;
-
-    // Configure PDF.js worker
-    if (typeof pdfjsLib !== 'undefined') {
-      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-    }
-
-    // Load config and populate selector from portfolio-config.json
-    const config = await loadPortfolioConfig();
-    if (config && config.resumes) {
-      config.resumes.forEach((resume) => {
-        const option = document.createElement('option');
-        option.value = resume.file;
-        option.textContent = resume.title;
-        pdfSelector.appendChild(option);
-      });
-    } else {
-      // Fallback to hardcoded list if config fails
-      const pdfFiles = [
-        { file: 'data/resume/resume_eng.pdf', title: 'Resume (English)' },
-        { file: 'data/resume/resume_kor.pdf', title: '이력서 (한글)' }
-      ];
-      pdfFiles.forEach((resume) => {
-        const option = document.createElement('option');
-        option.value = resume.file;
-        option.textContent = resume.title;
-        pdfSelector.appendChild(option);
-      });
-    }
-
-    // Load and render PDF
-    const loadPdf = async (url) => {
-      try {
-        pdfViewer.innerHTML = '<p class="placeholder-text">Loading PDF...</p>';
-        pdfNav.style.display = 'none';
-
-        showLoadingProgress(pdfViewer, 0);
-
-        const loadingTask = pdfjsLib.getDocument(url);
-        loadingTask.onProgress = (progress) => {
-          const percent = (progress.loaded / progress.total) * 50; // 0-50% for loading
-          showLoadingProgress(pdfViewer, percent);
-        };
-
-        const pdf = await loadingTask.promise;
-        showLoadingProgress(pdfViewer, 50);
-
-        currentPdf = pdf;
-        totalPages = pdf.numPages;
-        currentPage = 1;
-
-        // Create canvas
-        const canvas = document.createElement('canvas');
-        pdfViewer.innerHTML = '';
-        pdfViewer.appendChild(canvas);
-
-        // Render first page with progress
-        await renderPdfPage(pdf, currentPage, canvas, (progress) => {
-          showLoadingProgress(pdfViewer, 50 + (progress / 2)); // 50-100% for rendering
-        });
-
-        // Update UI
-        pageNumSpan.textContent = currentPage;
-        pageCountSpan.textContent = totalPages;
-        pdfNav.style.display = 'flex';
-
-        updateNavButtons();
-      } catch (error) {
-        console.error('Error loading PDF:', error);
-        pdfViewer.innerHTML = '<p class="error-message">Failed to load PDF file.</p>';
-        pdfNav.style.display = 'none';
-      }
-    };
-
-    const updateNavButtons = () => {
-      prevBtn.disabled = currentPage <= 1;
-      nextBtn.disabled = currentPage >= totalPages;
-    };
-
-    const changePage = async (delta) => {
-      const newPage = currentPage + delta;
-      if (newPage < 1 || newPage > totalPages) return;
-
-      currentPage = newPage;
-      const canvas = pdfViewer.querySelector('canvas');
-      if (canvas && currentPdf) {
-        await renderPdfPage(currentPdf, currentPage, canvas);
-        pageNumSpan.textContent = currentPage;
-        updateNavButtons();
-      }
-    };
-
-    // Event listeners
-    pdfSelector.addEventListener('change', (event) => {
-      const selectedPDF = event.target.value;
-      if (!selectedPDF) {
-        pdfViewer.innerHTML = '<p class="placeholder-text">Select a PDF file to view</p>';
-        pdfNav.style.display = 'none';
-        return;
-      }
-      loadPdf(selectedPDF);
-    });
-
-    prevBtn.addEventListener('click', () => changePage(-1));
-    nextBtn.addEventListener('click', () => changePage(1));
-  };
-
-  // Report PDF Viewer for Proof of Work
-  const showContribution = (report) => {
-    const contributionInfo = document.getElementById('contributionInfo');
-    const contributionText = document.getElementById('contributionText');
-
-    if (!contributionInfo || !contributionText) return;
-
-    if (report && report.contribution) {
-      contributionText.textContent = report.contribution;
-      contributionInfo.style.display = 'block';
-    } else {
-      contributionInfo.style.display = 'none';
-    }
-  };
-
-  // Report PDF Viewer
-  let currentReportPdf = null;
-  let currentReportPage = 1;
-  let totalReportPages = 0;
-
-  const initReportViewer = async () => {
-    const reportSelector = document.getElementById('report-selector');
-    const reportViewer = document.getElementById('reportViewer');
-    const reportNav = document.getElementById('reportNav');
-    const prevBtn = document.getElementById('reportPrevPage');
-    const nextBtn = document.getElementById('reportNextPage');
-    const pageNumSpan = document.getElementById('reportPageNum');
-    const pageCountSpan = document.getElementById('reportPageCount');
-
-    if (!reportSelector || !reportViewer) return;
-
-    // Configure PDF.js worker
-    if (typeof pdfjsLib !== 'undefined') {
-      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-    }
-
-    // Load config and populate selector from portfolio-config.json
-    const config = portfolioConfig || await loadPortfolioConfig();
-    if (config && config.reports) {
-      // Sort by date descending (newest first)
-      const sortedReports = [...config.reports].sort((a, b) => {
-        return (b.date || '').localeCompare(a.date || '');
-      });
-
-      sortedReports.forEach((report) => {
-        const option = document.createElement('option');
-        option.value = `data/reports/${encodeURIComponent(report.filename)}`;
-        option.textContent = report.title;
-        option.dataset.reportData = JSON.stringify(report);
-        reportSelector.appendChild(option);
-      });
-    }
-
-    // Load and render report PDF
-    const loadReportPdf = async (url) => {
-      try {
-        reportViewer.innerHTML = '<p class="placeholder-text">Loading PDF...</p>';
-        reportNav.style.display = 'none';
-
-        showLoadingProgress(reportViewer, 0);
-
-        const loadingTask = pdfjsLib.getDocument(url);
-        loadingTask.onProgress = (progress) => {
-          const percent = (progress.loaded / progress.total) * 50;
-          showLoadingProgress(reportViewer, percent);
-        };
-
-        const pdf = await loadingTask.promise;
-        showLoadingProgress(reportViewer, 50);
-
-        currentReportPdf = pdf;
-        totalReportPages = pdf.numPages;
-        currentReportPage = 1;
-
-        // Create canvas
-        const canvas = document.createElement('canvas');
-        reportViewer.innerHTML = '';
-        reportViewer.appendChild(canvas);
-
-        // Render first page with progress
-        await renderPdfPage(pdf, currentReportPage, canvas, (progress) => {
-          showLoadingProgress(reportViewer, 50 + (progress / 2));
-        });
-
-        // Update UI
-        pageNumSpan.textContent = currentReportPage;
-        pageCountSpan.textContent = totalReportPages;
-        reportNav.style.display = 'flex';
-
-        updateReportNavButtons();
-      } catch (error) {
-        console.error('Error loading report PDF:', error);
-        reportViewer.innerHTML = '<p class="error-message">Failed to load PDF file.</p>';
-        reportNav.style.display = 'none';
-      }
-    };
-
-    const updateReportNavButtons = () => {
-      prevBtn.disabled = currentReportPage <= 1;
-      nextBtn.disabled = currentReportPage >= totalReportPages;
-    };
-
-    const changeReportPage = async (delta) => {
-      const newPage = currentReportPage + delta;
-      if (newPage < 1 || newPage > totalReportPages) return;
-
-      currentReportPage = newPage;
-      const canvas = reportViewer.querySelector('canvas');
-      if (canvas && currentReportPdf) {
-        await renderPdfPage(currentReportPdf, currentReportPage, canvas);
-        pageNumSpan.textContent = currentReportPage;
-        updateReportNavButtons();
-      }
-    };
-
-    // Handle selection
-    reportSelector.addEventListener('change', (event) => {
-      const selectedPDF = event.target.value;
-      const selectedOption = event.target.options[event.target.selectedIndex];
-      const reportData = selectedOption.dataset.reportData;
-
-      if (!selectedPDF) {
-        reportViewer.innerHTML = '<p class="placeholder-text">Select a PDF file to view</p>';
-        document.getElementById('contributionInfo').style.display = 'none';
-        reportNav.style.display = 'none';
-        return;
-      }
-
-      // Show contribution
-      if (reportData) {
-        const report = JSON.parse(reportData);
-        showContribution(report);
-      }
-
-      // Load PDF
-      loadReportPdf(selectedPDF);
-    });
-
-    prevBtn.addEventListener('click', () => changeReportPage(-1));
-    nextBtn.addEventListener('click', () => changeReportPage(1));
-  };
-
-  // Excel Viewer with sorting and filtering
-  let excelTableData = [];
-  let currentSortColumn = -1;
-  let currentSortDirection = 'asc';
-
-  const initExcelViewer = async () => {
-    const excelViewer = document.getElementById('excelViewer');
-    if (!excelViewer) return;
-
-    // Specify the Excel file to load automatically
-    const excelFilePath = 'data/proof-of-work.xlsx';
-
-    try {
-      excelViewer.innerHTML = '<p class="placeholder-text">Loading...</p>';
-
-      const response = await fetch(excelFilePath);
-      if (!response.ok) {
-        throw new Error(`Failed to load Excel file: ${response.status}`);
-      }
-
-      const arrayBuffer = await response.arrayBuffer();
-      const workbook = XLSX.read(arrayBuffer, { type: 'array' });
-
-      // Get first sheet
-      const firstSheetName = workbook.SheetNames[0];
-      const worksheet = workbook.Sheets[firstSheetName];
-
-      // Convert to JSON for data manipulation
-      const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-      excelTableData = jsonData;
-
-      // Render table
-      renderExcelTable(excelTableData);
-
-      // Add sorting functionality
-      initExcelSorting();
-
-      // Add search functionality
-      initExcelSearch();
-    } catch (error) {
-      console.error('Error loading Excel file:', error);
-      excelViewer.innerHTML = '<p class="placeholder-text">No Excel file available. Please add "proof-of-work.xlsx" to the data directory.</p>';
-    }
-  };
-
-  const renderExcelTable = (data) => {
-    const excelViewer = document.getElementById('excelViewer');
-    if (!data || data.length === 0) {
-      excelViewer.innerHTML = '<p class="placeholder-text">No data available</p>';
-      return;
-    }
-
-    let html = '<table id="excel-table"><thead><tr>';
-
-    // Headers
-    const headers = data[0];
-    headers.forEach((header, index) => {
-      const sortClass = currentSortColumn === index
-        ? currentSortDirection
-        : 'sortable';
-      html += `<th class="${sortClass}" data-column="${index}">${header || ''}</th>`;
-    });
-    html += '</tr></thead><tbody>';
-
-    // Data rows
-    for (let i = 1; i < data.length; i++) {
-      html += '<tr>';
-      const row = data[i];
-      headers.forEach((_, colIndex) => {
-        html += `<td>${row[colIndex] || ''}</td>`;
-      });
-      html += '</tr>';
-    }
-
-    html += '</tbody></table>';
-    excelViewer.innerHTML = html;
-  };
-
-  const initExcelSorting = () => {
-    const table = document.getElementById('excel-table');
-    if (!table) return;
-
-    const headers = table.querySelectorAll('th');
-    headers.forEach((header) => {
-      header.addEventListener('click', () => {
-        const column = parseInt(header.dataset.column);
-        sortExcelTable(column);
-      });
-    });
-  };
-
-  const sortExcelTable = (columnIndex) => {
-    if (excelTableData.length <= 1) return;
-
-    // Toggle sort direction
-    if (currentSortColumn === columnIndex) {
-      currentSortDirection = currentSortDirection === 'asc' ? 'desc' : 'asc';
-    } else {
-      currentSortColumn = columnIndex;
-      currentSortDirection = 'asc';
-    }
-
-    // Extract headers and data
-    const headers = excelTableData[0];
-    const dataRows = excelTableData.slice(1);
-
-    // Sort data
-    dataRows.sort((a, b) => {
-      const aVal = a[columnIndex] || '';
-      const bVal = b[columnIndex] || '';
-
-      // Try to parse as numbers
-      const aNum = parseFloat(aVal);
-      const bNum = parseFloat(bVal);
-
-      let comparison = 0;
-      if (!isNaN(aNum) && !isNaN(bNum)) {
-        comparison = aNum - bNum;
-      } else {
-        comparison = String(aVal).localeCompare(String(bVal));
-      }
-
-      return currentSortDirection === 'asc' ? comparison : -comparison;
-    });
-
-    // Reconstruct data with sorted rows
-    const sortedData = [headers, ...dataRows];
-    renderExcelTable(sortedData);
-
-    // Re-initialize sorting listeners
-    initExcelSorting();
-
-    // Re-apply search filter if active
-    const searchInput = document.getElementById('excelSearch');
-    if (searchInput && searchInput.value) {
-      filterExcelTable(searchInput.value);
-    }
-  };
-
-  const initExcelSearch = () => {
-    const searchInput = document.getElementById('excelSearch');
-    if (!searchInput) return;
-
-    searchInput.addEventListener('input', (e) => {
-      filterExcelTable(e.target.value);
-    });
-  };
-
-  const filterExcelTable = (searchTerm) => {
-    const table = document.getElementById('excel-table');
-    if (!table) return;
-
-    const tbody = table.querySelector('tbody');
-    const rows = tbody.querySelectorAll('tr');
-
-    const term = searchTerm.toLowerCase().trim();
-
-    rows.forEach((row) => {
-      if (!term) {
-        row.classList.remove('hidden');
-        return;
-      }
-
-      const text = row.textContent.toLowerCase();
-      if (text.includes(term)) {
-        row.classList.remove('hidden');
-      } else {
-        row.classList.add('hidden');
-      }
-    });
-  };
-
-  // Initialize everything
+  // Initialize
   const init = async () => {
     setYear();
-    loadProfilePhoto();
     initNavigation();
-    loadProfileIntro();
-    loadSummary();
-    loadCV();
-    initTabs();
-    await loadPortfolioConfig(); // Load config early
-    initPDFViewer();
-    initReportViewer();
-    initExcelViewer();
+
+    const config = await loadPortfolioConfig();
+    if (config) {
+      renderStatusBadge(config);
+      renderTagline(config);
+      renderFocusAreas(config);
+      renderCaseStudies(config);
+    }
   };
 
-  // Run on DOM ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
