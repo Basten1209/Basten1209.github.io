@@ -145,7 +145,7 @@
           });
           wrapper.querySelectorAll('li').forEach(el => {
             el.className = 'flex gap-2 items-start';
-            el.innerHTML = '<span class="text-primary font-bold mt-0.5">/</span><span>' + el.innerHTML + '</span>';
+            el.innerHTML = '<span class="text-primary font-bold mt-0.5">-</span><span>' + el.innerHTML + '</span>';
           });
           summaryEl.innerHTML = '';
           summaryEl.appendChild(wrapper);
@@ -221,6 +221,11 @@
     if (ctaEl) {
       ctaEl.textContent = featured.type === 'url' ? 'VISIT ARTICLE' : 'READ MONOGRAPH';
       ctaEl.addEventListener('click', () => handleReportClick(featured));
+    }
+
+    // Render featured PDF thumbnail
+    if (featured.type === 'pdf' && featured.filename) {
+      renderFeaturedPdfThumbnail(featured.filename);
     }
 
     // Render grid (all reports except featured)
@@ -412,25 +417,15 @@
     const cv = config.cv;
     if (!cv) return;
 
-    // Helper: 12-col grid section wrapper
+    // Helper: compact section wrapper (full-width title + underline)
     const cvSection = (title, contentHtml) => `
-      <section class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
-        <div class="md:col-span-4">
-          <h2 class="font-headline text-3xl font-extrabold tracking-tight text-on-surface uppercase border-b-2 border-primary w-fit pr-4 pb-2">${title}</h2>
-        </div>
-        <div class="md:col-span-8 space-y-12">
+      <section>
+        <h2 class="font-headline text-lg font-extrabold tracking-tight text-on-surface uppercase border-b border-on-surface pb-1 mb-5">${title}</h2>
+        <div class="space-y-5">
           ${contentHtml}
         </div>
       </section>
     `;
-
-    // Experience type → border color map
-    const typeBorderColor = {
-      Technical: 'border-primary',
-      Military: 'border-outline-variant/30',
-      Community: 'border-surface-container-highest',
-      Leadership: 'border-secondary-fixed',
-    };
 
     // --- Hero ---
     const hero = document.getElementById('cvHero');
@@ -441,17 +436,16 @@
 
       hero.innerHTML = `
         <div class="max-w-3xl">
-          <span class="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant mb-4 block">Curriculum Vitae</span>
-          <h1 class="font-headline text-6xl md:text-8xl font-extrabold tracking-tighter text-on-surface leading-none">
+          <h1 class="font-headline text-4xl md:text-5xl font-extrabold tracking-tighter text-on-surface leading-none">
             Seungjun <span class="text-primary italic font-body font-normal">Oh</span>
           </h1>
-          <p class="mt-8 font-body text-xl md:text-2xl text-on-surface-variant max-w-xl leading-relaxed">
+          <p class="mt-2 font-body text-sm text-on-surface-variant">
             ${cv.subtitle}
           </p>
         </div>
         <div class="flex-shrink-0 relative">
-          <button id="cvDownloadBtn" class="group flex items-center gap-3 bg-primary px-8 py-4 rounded-md text-on-primary font-headline font-bold transition-all hover:bg-primary-dim">
-            <span class="material-symbols-outlined">download</span>
+          <button id="cvDownloadBtn" class="group flex items-center gap-2 bg-primary px-6 py-3 rounded-md text-on-primary font-headline font-bold text-sm transition-all hover:bg-primary-dim">
+            <span class="material-symbols-outlined text-lg">download</span>
             DOWNLOAD PDF
           </button>
           <div id="cvDownloadDropdown" class="hidden absolute right-0 mt-2 bg-surface-container-lowest rounded-xl shadow-lg shadow-on-surface/4 py-2 min-w-[200px] z-10">
@@ -478,15 +472,15 @@
     if (eduEl && cv.education?.length) {
       const items = cv.education.map((edu) => {
         const name = edu.url
-          ? `<a href="${edu.url}" target="_blank" rel="noopener" class="hover:text-primary transition-colors">${edu.institution}</a>`
-          : edu.institution;
+          ? `<a href="${edu.url}" target="_blank" rel="noopener" class="text-primary underline underline-offset-2 hover:text-primary-dim transition-colors font-headline font-bold text-sm">${edu.institution}</a>`
+          : `<span class="font-headline font-bold text-sm text-on-surface">${edu.institution}</span>`;
         return `
-          <div class="group">
-            <div class="flex flex-col md:flex-row justify-between items-baseline mb-4">
-              <h3 class="font-body text-2xl font-semibold text-on-surface">${name}</h3>
-              <span class="font-label text-sm text-on-surface-variant bg-surface-container-high px-3 py-1 rounded-full">${edu.period}</span>
+          <div>
+            <div class="flex justify-between items-baseline">
+              ${name}
+              <span class="font-label text-sm text-on-surface-variant">${edu.period}</span>
             </div>
-            <p class="font-headline text-lg font-bold text-primary">${edu.degree}</p>
+            <p class="font-body text-sm font-semibold text-on-surface italic">${edu.degree}</p>
           </div>
         `;
       }).join('');
@@ -498,60 +492,49 @@
     if (researchEl && cv.research?.length) {
       const items = cv.research.map((r) => {
         const labName = r.url
-          ? `<a href="${r.url}" target="_blank" rel="noopener" class="hover:text-primary transition-colors">${r.lab}</a>`
+          ? `<a href="${r.url}" target="_blank" rel="noopener" class="text-primary underline underline-offset-2 hover:text-primary-dim transition-colors">${r.lab}</a>`
           : r.lab;
         return `
-          <div class="relative pl-8 bg-surface-container-low p-8 rounded-xl">
-            <div class="absolute left-4 top-10 w-2 h-2 rounded-full bg-primary"></div>
-            <div class="flex flex-col md:flex-row justify-between items-baseline mb-4">
-              <h3 class="font-body text-2xl font-semibold text-on-surface">${labName}</h3>
-              <span class="font-label text-sm text-on-surface-variant">${r.role}</span>
+          <div>
+            <div class="flex justify-between items-baseline">
+              <span class="font-headline font-bold text-sm">${labName} <span class="font-normal text-on-surface-variant">(Advisor: ${r.advisor})</span></span>
+              <span class="font-label text-sm text-on-surface-variant shrink-0 ml-4">${r.period}</span>
             </div>
-            <p class="font-label text-xs uppercase tracking-widest text-primary font-bold mb-2">Advisor: ${r.advisor}</p>
-            <p class="font-label text-sm text-on-surface-variant mb-4">${r.period}</p>
-            <div class="flex gap-4">
-              <span class="text-primary font-bold">/</span>
-              <span class="font-body text-lg text-on-surface-variant">${r.focus}</span>
-            </div>
+            <p class="font-body text-sm text-on-surface-variant">${r.role}</p>
+            <ul class="mt-1 ml-4 list-disc list-outside text-sm font-body text-on-surface-variant space-y-0.5">
+              <li>${r.focus}</li>
+            </ul>
           </div>
         `;
       }).join('');
-      researchEl.innerHTML = cvSection('Research', items);
+      researchEl.innerHTML = cvSection('Research Experience', items);
     }
 
     // --- Experience ---
     const expEl = document.getElementById('cvExperience');
     if (expEl && cv.experience?.length) {
       const items = cv.experience.map((exp) => {
-        const borderClass = typeBorderColor[exp.type] || 'border-primary';
         const orgName = exp.url
-          ? `<a href="${exp.url}" target="_blank" rel="noopener" class="hover:text-primary transition-colors">${exp.organization}</a>`
-          : exp.organization;
-        const teamLine = exp.team ? `<p class="font-body italic text-primary-dim mb-4">${exp.team}</p>` : '';
+          ? `<a href="${exp.url}" target="_blank" rel="noopener" class="text-primary underline underline-offset-2 hover:text-primary-dim transition-colors">${exp.organization}</a>`
+          : `<span>${exp.organization}</span>`;
         const highlights = (exp.highlights || []).map((h) =>
-          `<li class="flex gap-4"><span class="text-primary font-bold shrink-0">/</span><span>${h}</span></li>`
+          `<li>${h}</li>`
         ).join('');
 
         return `
-          <div class="group">
-            <div class="flex flex-col md:flex-row justify-between items-baseline mb-2">
-              <h3 class="font-body text-2xl font-semibold text-on-surface">${exp.role}</h3>
-              <span class="font-label text-sm text-on-surface-variant">${exp.period}</span>
+          <div>
+            <div class="flex justify-between items-baseline">
+              <span class="font-headline font-bold text-sm">${orgName}</span>
+              <span class="font-label text-sm text-on-surface-variant shrink-0 ml-4">${exp.period}</span>
             </div>
-            <p class="font-label text-sm text-on-surface-variant mb-1">${orgName}</p>
-            ${teamLine}
-            <div class="bg-surface-container-lowest p-8 rounded-lg border-l-4 ${borderClass} mt-4">
-              <div class="flex items-center gap-2 mb-4">
-                <span class="font-label text-xs font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant">${exp.type}</span>
-              </div>
-              <ul class="font-body text-lg text-on-surface-variant space-y-3 list-none">
-                ${highlights}
-              </ul>
-            </div>
+            <p class="font-body text-sm text-on-surface">${exp.role}</p>
+            <ul class="mt-1 ml-4 list-disc list-outside text-sm font-body text-on-surface-variant space-y-0.5">
+              ${highlights}
+            </ul>
           </div>
         `;
       }).join('');
-      expEl.innerHTML = cvSection('Experience', items);
+      expEl.innerHTML = cvSection('Work Experience', items);
     }
 
     // --- Expertise (Skills) ---
@@ -560,32 +543,19 @@
       const interests = (cv.skills.interests || []).join(', ');
       const technical = (cv.skills.technical || []).join(', ');
 
-      const bentoHtml = `
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="bg-surface-container-low p-8 rounded-xl flex flex-col justify-between h-48">
-            <span class="material-symbols-outlined text-primary text-3xl">interests</span>
-            <div>
-              <h4 class="font-headline font-bold text-on-surface">Research Interests</h4>
-              <p class="font-label text-xs text-on-surface-variant uppercase tracking-wider mt-1">${interests}</p>
-            </div>
+      const compactHtml = `
+        <div class="space-y-2">
+          <div class="flex gap-2">
+            <span class="font-headline font-bold text-sm text-on-surface shrink-0">Research Interests:</span>
+            <span class="font-body text-sm text-on-surface-variant">${interests}</span>
           </div>
-          <div class="bg-primary text-on-primary p-8 rounded-xl flex flex-col justify-between h-48">
-            <span class="material-symbols-outlined text-on-primary text-3xl" style="font-variation-settings: 'FILL' 1;">code</span>
-            <div>
-              <h4 class="font-headline font-bold">Technical Skills</h4>
-              <p class="font-label text-xs opacity-70 uppercase tracking-wider mt-1">${technical}</p>
-            </div>
-          </div>
-          <div class="bg-surface-container-highest p-8 rounded-xl flex flex-col justify-between h-48 sm:col-span-2">
-            <span class="material-symbols-outlined text-primary text-3xl">architecture</span>
-            <div>
-              <h4 class="font-headline font-bold text-on-surface text-xl">Interdisciplinary Focus</h4>
-              <p class="font-body text-on-surface-variant mt-2 max-w-lg">Bridging quantitative analysis, blockchain technology, and socio-technical systems to decode complex digital economies.</p>
-            </div>
+          <div class="flex gap-2">
+            <span class="font-headline font-bold text-sm text-on-surface shrink-0">Technical Skills:</span>
+            <span class="font-body text-sm text-on-surface-variant">${technical}</span>
           </div>
         </div>
       `;
-      expertiseEl.innerHTML = cvSection('Expertise', bentoHtml);
+      expertiseEl.innerHTML = cvSection('Expertise', compactHtml);
     }
 
     // --- Publication ---
@@ -593,16 +563,18 @@
     if (pubEl && cv.publication?.length) {
       const items = cv.publication.map((pub) => {
         const title = pub.url
-          ? `<a href="${pub.url}" target="_blank" rel="noopener" class="hover:text-primary transition-colors">${pub.title}</a>`
+          ? `<a href="${pub.url}" target="_blank" rel="noopener" class="text-primary underline underline-offset-2 hover:text-primary-dim transition-colors">${pub.title}</a>`
           : pub.title;
         return `
-          <div class="bg-surface-container-low p-8 rounded-xl">
-            <h3 class="font-body text-2xl font-semibold text-on-surface mb-2">${title}</h3>
-            <div class="flex flex-wrap gap-3 mb-4">
-              <span class="font-label text-xs font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant">${pub.role}</span>
-              <span class="font-label text-xs text-on-surface-variant">ISBN: ${pub.isbn}</span>
+          <div>
+            <div class="flex justify-between items-baseline">
+              <span class="font-headline font-bold text-sm uppercase">${title}</span>
+              <span class="font-label text-sm text-on-surface-variant shrink-0 ml-4">ISBN: ${pub.isbn}</span>
             </div>
-            <p class="font-body text-lg text-on-surface-variant">${pub.description}</p>
+            <p class="font-body text-sm text-on-surface">${pub.role}</p>
+            <ul class="mt-1 ml-4 list-disc list-outside text-sm font-body text-on-surface-variant space-y-0.5">
+              <li>${pub.description}</li>
+            </ul>
           </div>
         `;
       }).join('');
@@ -614,16 +586,16 @@
     if (projEl && cv.projects?.length) {
       const items = cv.projects.map((proj) => {
         const highlights = (proj.highlights || []).map((h) =>
-          `<li class="flex gap-4"><span class="text-primary font-bold shrink-0">/</span><span>${h}</span></li>`
+          `<li>${h}</li>`
         ).join('');
         return `
-          <div class="group">
-            <div class="flex flex-col md:flex-row justify-between items-baseline mb-2">
-              <h3 class="font-body text-2xl font-semibold text-on-surface">${proj.title}</h3>
-              <span class="font-label text-sm text-on-surface-variant bg-surface-container-high px-3 py-1 rounded-full">${proj.year}</span>
+          <div>
+            <div class="flex justify-between items-baseline">
+              <span class="font-headline font-bold text-sm">${proj.title}</span>
+              <span class="font-label text-sm text-on-surface-variant shrink-0 ml-4">${proj.year}</span>
             </div>
-            <p class="font-body text-lg text-on-surface-variant mb-4">${proj.description}</p>
-            <ul class="font-body text-on-surface-variant space-y-3 list-none">
+            <p class="font-body text-sm text-on-surface-variant">${proj.description}</p>
+            <ul class="mt-1 ml-4 list-disc list-outside text-sm font-body text-on-surface-variant space-y-0.5">
               ${highlights}
             </ul>
           </div>
@@ -636,13 +608,13 @@
     const eventsEl = document.getElementById('cvEvents');
     if (eventsEl && cv.events?.length) {
       const items = cv.events.map((evt) => `
-        <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-6 py-3">
-          <span class="font-label text-sm text-on-surface-variant shrink-0 w-12">${evt.year}</span>
-          <span class="font-label text-xs font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant shrink-0">${evt.role}</span>
-          <span class="font-body text-lg text-on-surface">${evt.title}</span>
+        <div class="flex items-baseline gap-4 py-0.5">
+          <span class="font-label text-sm text-on-surface-variant shrink-0 w-10">${evt.year}</span>
+          <span class="font-headline font-bold text-sm shrink-0">${evt.role}</span>
+          <span class="font-body text-sm text-on-surface-variant">${evt.title}</span>
         </div>
       `).join('');
-      eventsEl.innerHTML = cvSection('Events', `<div class="space-y-2">${items}</div>`);
+      eventsEl.innerHTML = cvSection('Events', `<div class="space-y-0.5">${items}</div>`);
     }
 
     // --- Awards ---
@@ -650,52 +622,145 @@
     if (awardsEl && cv.awards?.length) {
       const items = cv.awards.map((award) => {
         const valueBadge = award.value
-          ? `<span class="font-label text-xs font-bold text-primary ml-2">${award.value}</span>`
+          ? ` <span class="font-label text-xs font-bold text-primary">(${award.value})</span>`
           : '';
         return `
-          <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-6 py-3">
-            <span class="font-label text-sm text-on-surface-variant shrink-0 w-24">${award.date}</span>
+          <div class="flex items-baseline gap-4 py-0.5">
+            <span class="font-label text-sm text-on-surface-variant shrink-0 w-28">${award.date}</span>
             <div class="flex-1">
-              <span class="font-body text-lg text-on-surface font-semibold">${award.title}</span>${valueBadge}
-              <p class="font-label text-sm text-on-surface-variant">${award.issuer}</p>
+              <span class="font-headline font-bold text-sm">${award.title}</span>${valueBadge}
+              <span class="font-label text-sm text-on-surface-variant ml-2">${award.issuer}</span>
             </div>
           </div>
         `;
       }).join('');
-      awardsEl.innerHTML = cvSection('Awards', `<div class="space-y-2">${items}</div>`);
+      awardsEl.innerHTML = cvSection('Awards', `<div class="space-y-0.5">${items}</div>`);
+    }
+
+    // --- Summary ---
+    const summaryEl = document.getElementById('cvSummary');
+    if (summaryEl && config.profile?.tagline) {
+      const summaryHtml = `
+        <p class="font-body text-sm text-on-surface-variant leading-relaxed">${config.profile.tagline}</p>
+      `;
+      summaryEl.innerHTML = cvSection('Summary', summaryHtml);
+    }
+
+    // --- Extracurricular Experience ---
+    const extraEl = document.getElementById('cvExtracurricular');
+    if (extraEl && cv.extracurricular?.length) {
+      const items = cv.extracurricular.map((ext) => {
+        const orgName = ext.url
+          ? `<a href="${ext.url}" target="_blank" rel="noopener" class="text-primary underline underline-offset-2 hover:text-primary-dim transition-colors">${ext.organization}</a>`
+          : ext.organization;
+        const highlights = (ext.highlights || []).map((h) =>
+          `<li>${h}</li>`
+        ).join('');
+
+        return `
+          <div>
+            <div class="flex justify-between items-baseline">
+              <span class="font-headline font-bold text-sm">${orgName}</span>
+              <span class="font-label text-sm text-on-surface-variant shrink-0 ml-4">${ext.period}</span>
+            </div>
+            <p class="font-body text-sm text-on-surface">${ext.role}</p>
+            <ul class="mt-1 ml-4 list-disc list-outside text-sm font-body text-on-surface-variant space-y-0.5">
+              ${highlights}
+            </ul>
+          </div>
+        `;
+      }).join('');
+      extraEl.innerHTML = cvSection('Extracurricular Experience', items);
     }
 
     // --- Certificates ---
     const certEl = document.getElementById('cvCertificates');
     if (certEl && cv.certificates) {
       const categories = [
-        { key: 'finance', label: 'Finance', icon: 'account_balance' },
-        { key: 'cs', label: 'Computer Science', icon: 'terminal' },
-        { key: 'general', label: 'General', icon: 'workspace_premium' },
+        { key: 'finance', label: 'Finance' },
+        { key: 'cs', label: 'Computer Science' },
+        { key: 'general', label: 'General' },
       ];
       const cards = categories.map((cat) => {
         const certs = cv.certificates[cat.key];
         if (!certs?.length) return '';
         const list = certs.map((c) =>
-          `<div class="flex justify-between items-baseline py-2">
-            <span class="font-body text-on-surface">${c.name}</span>
+          `<div class="flex justify-between items-baseline py-0.5">
+            <span class="font-body text-sm text-on-surface">${c.name}</span>
             <span class="font-label text-xs text-on-surface-variant">${c.issuer}</span>
           </div>`
         ).join('');
         return `
-          <div class="bg-surface-container-low p-6 rounded-xl">
-            <div class="flex items-center gap-2 mb-4">
-              <span class="material-symbols-outlined text-primary text-xl">${cat.icon}</span>
-              <h4 class="font-headline font-bold text-on-surface">${cat.label}</h4>
-            </div>
-            <div class="divide-y divide-outline-variant/15">
-              ${list}
-            </div>
+          <div>
+            <h4 class="font-headline font-bold text-sm text-on-surface mb-1">${cat.label}</h4>
+            ${list}
           </div>
         `;
       }).join('');
-      certEl.innerHTML = cvSection('Certificates', `<div class="space-y-6">${cards}</div>`);
+      certEl.innerHTML = cvSection('Certifications', `<div class="space-y-4">${cards}</div>`);
     }
+  };
+
+  // Render Home Expertise section (from cv.skills)
+  const renderHomeExpertise = (config) => {
+    const container = document.getElementById('homeExpertise');
+    if (!container || !config.cv?.skills) return;
+
+    const interests = (config.cv.skills.interests || []).join(', ');
+    const technical = (config.cv.skills.technical || []).join(', ');
+
+    container.innerHTML = `
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="bg-surface-container-low p-8 rounded-xl flex flex-col justify-between h-48">
+          <span class="material-symbols-outlined text-primary text-3xl">interests</span>
+          <div>
+            <h4 class="font-headline font-bold text-on-surface">Research Interests</h4>
+            <p class="font-label text-xs text-on-surface-variant uppercase tracking-wider mt-1">${interests}</p>
+          </div>
+        </div>
+        <div class="bg-primary text-on-primary p-8 rounded-xl flex flex-col justify-between h-48">
+          <span class="material-symbols-outlined text-on-primary text-3xl" style="font-variation-settings: 'FILL' 1;">code</span>
+          <div>
+            <h4 class="font-headline font-bold">Technical Skills</h4>
+            <p class="font-label text-xs opacity-70 uppercase tracking-wider mt-1">${technical}</p>
+          </div>
+        </div>
+      </div>
+    `;
+  };
+
+  // Render Featured Publication PDF thumbnail
+  const renderFeaturedPdfThumbnail = (filename) => {
+    const canvas = document.getElementById('featuredPdfCanvas');
+    const placeholder = document.getElementById('featuredPlaceholder');
+    if (!canvas || typeof pdfjsLib === 'undefined') return;
+
+    const pdfPath = `data/reports/${filename}`;
+    pdfjsLib.getDocument(pdfPath).promise.then((pdf) => {
+      pdf.getPage(1).then((page) => {
+        const container = canvas.parentElement;
+        const containerWidth = container.clientWidth;
+        const containerHeight = container.clientHeight;
+
+        const unscaledViewport = page.getViewport({ scale: 1 });
+        const scale = Math.max(
+          containerWidth / unscaledViewport.width,
+          containerHeight / unscaledViewport.height
+        );
+        const viewport = page.getViewport({ scale });
+
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        const context = canvas.getContext('2d');
+
+        page.render({ canvasContext: context, viewport }).promise.then(() => {
+          canvas.classList.remove('hidden');
+          if (placeholder) placeholder.classList.add('hidden');
+        });
+      });
+    }).catch((err) => {
+      console.warn('Featured PDF thumbnail failed:', err);
+    });
   };
 
   // Badge color map for organizations
@@ -958,6 +1023,7 @@
       renderStatusBadge(config);
       renderTagline(config);
       renderFocusAreas(config);
+      renderHomeExpertise(config);
       renderAboutAndSummary();
       renderArticles(config);
       initArticleFilters(config);

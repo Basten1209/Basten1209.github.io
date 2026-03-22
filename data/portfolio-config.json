@@ -5,7 +5,7 @@
     "email": "seungjunoh@postech.ac.kr",
     "emailAlt": "seungjun@postech-dao.xyz",
     "image": "assets/images/profile.jpg",
-    "tagline": "Investigating the convergence of <strong>Crypto Markets</strong>, <strong>Technical Writing</strong>, and <strong>Socio-Technical Systems</strong> to decode complex digital economies.",
+    "tagline": "Highly motivated student with a strong background in the <strong>cryptocurrency industry</strong>. I have acquired expertise in various domains (<strong>crypto-blockchain</strong>, <strong>financial engineering</strong>), complemented by practical working experience.",
     "status": "Available for Technical Research",
     "focusAreas": [
       {
@@ -192,10 +192,10 @@
     "subtitle": "Web3 Researcher & Technical Writer bridging the gap between Crypto Markets and Socio-Technical Systems.",
     "education": [
       {
-        "period": "2021 - Present",
+        "period": "2021.02 - (Expected) 2028.02",
         "institution": "Pohang University of Science and Technology (POSTECH)",
         "url": "https://www.postech.ac.kr/",
-        "degree": "B.S. in Industrial Management Engineering"
+        "degree": "B.S. in Industrial & Management Engineering (Full Scholar)"
       }
     ],
     "skills": {
@@ -204,100 +204,103 @@
     },
     "experience": [
       {
-        "period": "2025.12 -",
-        "role": "Technical Writer (Intern)",
+        "period": "2026.02 - Present",
+        "role": "Tech BD Intern - Freelancer",
         "team": "TechBD team",
         "organization": "B-Harvest",
         "url": "https://bharvest.io",
         "type": "Technical",
         "highlights": [
-          "Joined 8 weeks internship program",
-          "Studied blockchain core technology / had an internal seminar about Tempo blockchain"
+          "Developed educational contents about Blockchain Core for company's rebranding - HR strategy"
         ]
       },
       {
-        "period": "2025.12 -",
+        "period": "2025.12 - 2026.02",
+        "role": "Tech BD Intern",
+        "team": "TechBD team",
+        "organization": "B-Harvest",
+        "url": "https://bharvest.io",
+        "type": "Technical",
+        "highlights": [
+          "Studying blockchain core technology - had an internal seminar about Tempo blockchain",
+          "Participated in company rebranding like Tech Blog - HR Strategy reference research"
+        ]
+      },
+      {
+        "period": "2025.12 - Present",
         "role": "Based Advocate (Ambassador)",
         "organization": "Base Korea (Daehanbase)",
         "url": "https://x.com/daehan_base",
         "type": "Community",
         "highlights": [
-          "Part-time work",
-          "Support Base Korea's Offline Meetup",
-          "Wrote Articles about Base Builders in South Korea / Building tips on Base Chain"
+          "Supported the execution of several Base Korea's offline meetups",
+          "Wrote Articles about Base Builders in South Korea - Building tips on Base Chain"
         ]
       },
       {
-        "period": "2025.07 -",
-        "role": "Consultant",
-        "organization": "WorldQuant Brain",
-        "url": "https://platform.worldquantbrain.com/",
+        "period": "2025.06 - Present",
+        "role": "Consultant - Freelancer",
+        "organization": "WorldQuant",
+        "url": "https://www.worldquant.com/",
         "type": "Technical",
         "highlights": [
-          "Freelance work",
-          "Contracted as Freelance Consultant after 2025 IQC award (currently inactive)"
+          "Contracted as a Consultant after being awarded 3rd place in the 2025 IQC (Korea Final), currently inactive"
         ]
       },
       {
-        "period": "2025.02 - Present",
-        "role": "Organizer (Head) / Genesis Member",
-        "organization": "PDAO",
-        "url": "https://dao.postech.ac.kr",
-        "type": "Leadership",
-        "highlights": [
-          "Representative as PDAO",
-          "Managing overall tasks & Decision making for sustainable open crypto community",
-          "Joined PDAO Launch Project (2022.06 - 2022.12), Dev-Near Team Coordinator and Strategy team",
-          "PDAO chain initial governance committee"
-        ]
-      },
-      {
-        "period": "2024.01 - 2024.12",
+        "period": "2023.03 - 2024.12",
         "role": "System Developer",
-        "team": "Logistic-Training System Development team",
-        "organization": "R.O.K.A.F. HQ",
+        "team": "HQ - Logistic Command",
+        "organization": "R.O.K.A.F. (Military Service)",
         "type": "Military",
         "highlights": [
-          "Database Operation & Management in Logistic systems for Air Force departments",
-          "Appointed as squad leader (2024.08 - 2024.12)"
+          "Participated in the Database Operation & Management of Logistic systems for departments of the Air Force",
+          "Served as a squad leader (Aug 2024 - Dec 2024)"
         ]
       },
       {
-        "period": "2023.05 - 2023.12",
-        "role": "Fusion System Developer",
-        "team": "Fusion System Office",
-        "organization": "R.O.K.A.F. Logistic Command",
-        "type": "Military",
-        "highlights": [
-          "Completed 'AI-SW training for military personnel' - Outstanding student in advanced course",
-          "Reviewed new AI-related systems",
-          "Analyzed aircraft sensor data"
-        ]
-      },
-      {
-        "period": "2022.09 - 2023.03",
-        "role": "Researcher (Intern)",
-        "team": "Economy Institute / Research Center",
-        "organization": "Bithumb Korea",
+        "period": "2022.09 - 2023.02",
+        "role": "Research Intern",
+        "team": "Research Center, Bithumb Economy Research Institute",
+        "organization": "Bithumb",
         "url": "https://www.bithumbcorp.com",
         "type": "Technical",
         "highlights": [
-          "Participated in 'Crypto Insights' macro/cryptocurrency report series (8 reports)",
-          "Published 'CRYPTO NOTES' blockchain research report series (2 reports)",
-          "Participated in offline seminar - 'Crypto Insight meetup'",
-          "Produced daily industry reports for financial authorities (FIU)",
-          "Filming assistance for official YouTube contents"
+          "Participated in the macro-cryptocurrency report 'Crypto Insights' series (8 reports)",
+          "Published blockchain research report 'CRYPTO NOTES' series (2 reports)",
+          "Presented a session at the offline seminar, 'Crypto Insight meetup' (Topic: 2023 ETH Upgrade)",
+          "Assisted with the filming of the company's official YouTube content 'Bitconomy report' and 'Crypto talk'"
+        ]
+      }
+    ],
+    "extracurricular": [
+      {
+        "period": "2025.01 - Present",
+        "role": "Organizer (Head)",
+        "organization": "PDAO (POSTECH DAO)",
+        "url": "https://dao.postech.ac.kr",
+        "highlights": [
+          "Managed overall tasks and led decision-making for building the open community"
+        ]
+      },
+      {
+        "period": "2022.02 - Present",
+        "role": "Genesis Member",
+        "organization": "PDAO (POSTECH DAO)",
+        "url": "https://dao.postech.ac.kr",
+        "highlights": [
+          "Joined the PDAO Launch Project and assisted with general operations"
         ]
       }
     ],
     "research": [
       {
-        "period": "2025.06 - Present",
+        "period": "2025.06 - 2025.12",
         "role": "Undergraduate Researcher",
         "lab": "POSTECH FBDA Lab",
         "url": "https://sites.google.com/view/minseokshin",
-        "advisor": "Prof. Minseok Shin",
-        "focus": "High-Dimensional Statistics & High-Frequency Finance"
+        "advisor": "Prof. Min-Seok Shin",
+        "focus": "Studying Financial Data Analysis in High-Dimensional statistics and High-Frequency conditions"
       },
       {
         "period": "2022.06 - 2022.08",
@@ -305,7 +308,7 @@
         "lab": "POSTECH DPNM Lab",
         "url": "https://dpnm.postech.ac.kr",
         "advisor": "Prof. James Won-ki Hong",
-        "focus": "Blockchain & Cryptocurrency"
+        "focus": "Studied the basics and fundamentals of Cryptocurrency and Blockchain Technology"
       }
     ],
     "publication": [
@@ -348,7 +351,7 @@
     ],
     "awards": [
       { "date": "2025.12", "title": "Overseas Assignment Scholar for Nobel Week 2025", "value": "2.5 million won", "issuer": "POSTECH" },
-      { "date": "2025.07", "title": "Monad Blitz Seoul 4th Prize", "issuer": "Monad Foundation / B-Harvest / Chainlink" },
+      { "date": "2025.07", "title": "Monad Blitz Seoul 4th Prize", "issuer": "Monad Foundation - B-Harvest - Chainlink" },
       { "date": "2025.07", "title": "2025 IQC Korea 3rd", "issuer": "WorldQuant" },
       { "date": "2022.05", "title": "POSTECH Metaverse Contest Encourage Award", "issuer": "POSTECH" },
       { "date": "2021.03 - 2022.12", "title": "Local Talent Scholarship (Full Scholarship)", "issuer": "KOSAF" }
