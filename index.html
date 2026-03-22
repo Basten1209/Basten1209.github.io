@@ -272,36 +272,47 @@
       </div>
     </div>
 
-    <!-- ==================== EXPERIENCE SECTION (Placeholder) ==================== -->
+    <!-- ==================== EXPERIENCE SECTION ==================== -->
     <section id="experience" class="section">
       <div class="max-w-7xl mx-auto px-8 py-24">
-        <span class="font-label text-sm uppercase tracking-[0.2em] text-on-surface-variant mb-4 block">The Editorial Archive</span>
-        <h2 class="font-headline font-extrabold text-5xl lg:text-6xl mb-8">
-          Experience <span class="text-primary italic font-body font-normal">History</span>
-        </h2>
-        <p class="font-body text-xl text-on-surface-variant max-w-2xl">
-          Professional experience, research history, and contributions will be displayed here with filtering and sorting.
-        </p>
-        <div class="mt-16 p-12 bg-surface-container-low rounded-xl text-center">
-          <span class="material-symbols-outlined text-on-surface-variant/30 text-[80px] mb-4">construction</span>
-          <p class="font-headline font-bold text-on-surface-variant">Coming Soon</p>
-        </div>
+        <!-- Editorial Header -->
+        <header class="mb-20 space-y-4">
+          <div class="flex items-center gap-4 text-on-surface-variant font-label text-sm uppercase tracking-[0.2em]">
+            <span class="w-12 h-[1px] bg-outline-variant"></span>
+            <span>The Editorial Archive</span>
+          </div>
+          <h2 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface leading-none">
+            Experience <span class="italic font-body font-light text-primary">History</span>
+          </h2>
+          <p class="max-w-2xl text-xl text-on-surface-variant font-body italic leading-relaxed pt-4">
+            A structured documentation of professional milestones, technical research, and institutional contributions across military, tech, and community sectors.
+          </p>
+        </header>
+
+        <!-- Table Container (populated by JS) -->
+        <div id="experienceTableContainer"></div>
+
+        <!-- Summary + Evolution (populated by JS) -->
+        <div id="experienceInsights"></div>
       </div>
     </section>
 
-    <!-- ==================== CV SECTION (Placeholder) ==================== -->
+    <!-- ==================== CV SECTION ==================== -->
     <section id="cv" class="section">
-      <div class="max-w-7xl mx-auto px-8 py-24">
-        <span class="font-label text-sm uppercase tracking-[0.2em] text-on-surface-variant mb-4 block">Curriculum Vitae</span>
-        <h2 class="font-headline font-extrabold text-5xl lg:text-6xl mb-8">
-          Seungjun <span class="text-primary italic font-body font-normal">Oh</span>
-        </h2>
-        <p class="font-body text-xl text-on-surface-variant max-w-2xl">
-          Structured CV with education, research, experience, and expertise sections.
-        </p>
-        <div class="mt-16 p-12 bg-surface-container-low rounded-xl text-center">
-          <span class="material-symbols-outlined text-on-surface-variant/30 text-[80px] mb-4">construction</span>
-          <p class="font-headline font-bold text-on-surface-variant">Coming Soon</p>
+      <div class="max-w-6xl mx-auto px-6 md:px-12 py-24">
+        <!-- Hero (JS renders) -->
+        <div id="cvHero" class="mb-24 flex flex-col md:flex-row justify-between items-end gap-8"></div>
+        <!-- CV Sections (JS renders) -->
+        <div class="space-y-24">
+          <div id="cvEducation"></div>
+          <div id="cvResearch"></div>
+          <div id="cvExperience"></div>
+          <div id="cvExpertise"></div>
+          <div id="cvPublication"></div>
+          <div id="cvProjects"></div>
+          <div id="cvEvents"></div>
+          <div id="cvAwards"></div>
+          <div id="cvCertificates"></div>
         </div>
       </div>
     </section>

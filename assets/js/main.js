@@ -412,6 +412,548 @@
     }
   };
 
+  // ==================== CV SECTION ====================
+
+  const renderCV = (config) => {
+    const cv = config.cv;
+    if (!cv) return;
+
+    // Helper: 12-col grid section wrapper
+    const cvSection = (title, contentHtml) => `
+      <section class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
+        <div class="md:col-span-4">
+          <h2 class="font-headline text-3xl font-extrabold tracking-tight text-on-surface uppercase border-b-2 border-primary w-fit pr-4 pb-2">${title}</h2>
+        </div>
+        <div class="md:col-span-8 space-y-12">
+          ${contentHtml}
+        </div>
+      </section>
+    `;
+
+    // Experience type → border color map
+    const typeBorderColor = {
+      Technical: 'border-primary',
+      Military: 'border-outline-variant/30',
+      Community: 'border-surface-container-highest',
+      Leadership: 'border-secondary-fixed',
+    };
+
+    // --- Hero ---
+    const hero = document.getElementById('cvHero');
+    if (hero) {
+      const resumeOptions = (config.resumes || []).map((r) =>
+        `<a href="${r.file}" download class="block px-6 py-3 font-label text-sm text-on-surface hover:bg-surface-container-low transition-colors">${r.title}</a>`
+      ).join('');
+
+      hero.innerHTML = `
+        <div class="max-w-3xl">
+          <span class="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant mb-4 block">Curriculum Vitae</span>
+          <h1 class="font-headline text-6xl md:text-8xl font-extrabold tracking-tighter text-on-surface leading-none">
+            Seungjun <span class="text-primary italic font-body font-normal">Oh</span>
+          </h1>
+          <p class="mt-8 font-body text-xl md:text-2xl text-on-surface-variant max-w-xl leading-relaxed">
+            ${cv.subtitle}
+          </p>
+        </div>
+        <div class="flex-shrink-0 relative">
+          <button id="cvDownloadBtn" class="group flex items-center gap-3 bg-primary px-8 py-4 rounded-md text-on-primary font-headline font-bold transition-all hover:bg-primary-dim">
+            <span class="material-symbols-outlined">download</span>
+            DOWNLOAD PDF
+          </button>
+          <div id="cvDownloadDropdown" class="hidden absolute right-0 mt-2 bg-surface-container-lowest rounded-xl shadow-lg shadow-on-surface/4 py-2 min-w-[200px] z-10">
+            ${resumeOptions}
+          </div>
+        </div>
+      `;
+
+      const btn = document.getElementById('cvDownloadBtn');
+      const dropdown = document.getElementById('cvDownloadDropdown');
+      btn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown?.classList.toggle('hidden');
+      });
+      document.addEventListener('click', (e) => {
+        if (dropdown && btn && !btn.contains(e.target) && !dropdown.contains(e.target)) {
+          dropdown.classList.add('hidden');
+        }
+      });
+    }
+
+    // --- Education ---
+    const eduEl = document.getElementById('cvEducation');
+    if (eduEl && cv.education?.length) {
+      const items = cv.education.map((edu) => {
+        const name = edu.url
+          ? `<a href="${edu.url}" target="_blank" rel="noopener" class="hover:text-primary transition-colors">${edu.institution}</a>`
+          : edu.institution;
+        return `
+          <div class="group">
+            <div class="flex flex-col md:flex-row justify-between items-baseline mb-4">
+              <h3 class="font-body text-2xl font-semibold text-on-surface">${name}</h3>
+              <span class="font-label text-sm text-on-surface-variant bg-surface-container-high px-3 py-1 rounded-full">${edu.period}</span>
+            </div>
+            <p class="font-headline text-lg font-bold text-primary">${edu.degree}</p>
+          </div>
+        `;
+      }).join('');
+      eduEl.innerHTML = cvSection('Education', items);
+    }
+
+    // --- Research ---
+    const researchEl = document.getElementById('cvResearch');
+    if (researchEl && cv.research?.length) {
+      const items = cv.research.map((r) => {
+        const labName = r.url
+          ? `<a href="${r.url}" target="_blank" rel="noopener" class="hover:text-primary transition-colors">${r.lab}</a>`
+          : r.lab;
+        return `
+          <div class="relative pl-8 bg-surface-container-low p-8 rounded-xl">
+            <div class="absolute left-4 top-10 w-2 h-2 rounded-full bg-primary"></div>
+            <div class="flex flex-col md:flex-row justify-between items-baseline mb-4">
+              <h3 class="font-body text-2xl font-semibold text-on-surface">${labName}</h3>
+              <span class="font-label text-sm text-on-surface-variant">${r.role}</span>
+            </div>
+            <p class="font-label text-xs uppercase tracking-widest text-primary font-bold mb-2">Advisor: ${r.advisor}</p>
+            <p class="font-label text-sm text-on-surface-variant mb-4">${r.period}</p>
+            <div class="flex gap-4">
+              <span class="text-primary font-bold">/</span>
+              <span class="font-body text-lg text-on-surface-variant">${r.focus}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+      researchEl.innerHTML = cvSection('Research', items);
+    }
+
+    // --- Experience ---
+    const expEl = document.getElementById('cvExperience');
+    if (expEl && cv.experience?.length) {
+      const items = cv.experience.map((exp) => {
+        const borderClass = typeBorderColor[exp.type] || 'border-primary';
+        const orgName = exp.url
+          ? `<a href="${exp.url}" target="_blank" rel="noopener" class="hover:text-primary transition-colors">${exp.organization}</a>`
+          : exp.organization;
+        const teamLine = exp.team ? `<p class="font-body italic text-primary-dim mb-4">${exp.team}</p>` : '';
+        const highlights = (exp.highlights || []).map((h) =>
+          `<li class="flex gap-4"><span class="text-primary font-bold shrink-0">/</span><span>${h}</span></li>`
+        ).join('');
+
+        return `
+          <div class="group">
+            <div class="flex flex-col md:flex-row justify-between items-baseline mb-2">
+              <h3 class="font-body text-2xl font-semibold text-on-surface">${exp.role}</h3>
+              <span class="font-label text-sm text-on-surface-variant">${exp.period}</span>
+            </div>
+            <p class="font-label text-sm text-on-surface-variant mb-1">${orgName}</p>
+            ${teamLine}
+            <div class="bg-surface-container-lowest p-8 rounded-lg border-l-4 ${borderClass} mt-4">
+              <div class="flex items-center gap-2 mb-4">
+                <span class="font-label text-xs font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant">${exp.type}</span>
+              </div>
+              <ul class="font-body text-lg text-on-surface-variant space-y-3 list-none">
+                ${highlights}
+              </ul>
+            </div>
+          </div>
+        `;
+      }).join('');
+      expEl.innerHTML = cvSection('Experience', items);
+    }
+
+    // --- Expertise (Skills) ---
+    const expertiseEl = document.getElementById('cvExpertise');
+    if (expertiseEl && cv.skills) {
+      const interests = (cv.skills.interests || []).join(', ');
+      const technical = (cv.skills.technical || []).join(', ');
+
+      const bentoHtml = `
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-surface-container-low p-8 rounded-xl flex flex-col justify-between h-48">
+            <span class="material-symbols-outlined text-primary text-3xl">interests</span>
+            <div>
+              <h4 class="font-headline font-bold text-on-surface">Research Interests</h4>
+              <p class="font-label text-xs text-on-surface-variant uppercase tracking-wider mt-1">${interests}</p>
+            </div>
+          </div>
+          <div class="bg-primary text-on-primary p-8 rounded-xl flex flex-col justify-between h-48">
+            <span class="material-symbols-outlined text-on-primary text-3xl" style="font-variation-settings: 'FILL' 1;">code</span>
+            <div>
+              <h4 class="font-headline font-bold">Technical Skills</h4>
+              <p class="font-label text-xs opacity-70 uppercase tracking-wider mt-1">${technical}</p>
+            </div>
+          </div>
+          <div class="bg-surface-container-highest p-8 rounded-xl flex flex-col justify-between h-48 sm:col-span-2">
+            <span class="material-symbols-outlined text-primary text-3xl">architecture</span>
+            <div>
+              <h4 class="font-headline font-bold text-on-surface text-xl">Interdisciplinary Focus</h4>
+              <p class="font-body text-on-surface-variant mt-2 max-w-lg">Bridging quantitative analysis, blockchain technology, and socio-technical systems to decode complex digital economies.</p>
+            </div>
+          </div>
+        </div>
+      `;
+      expertiseEl.innerHTML = cvSection('Expertise', bentoHtml);
+    }
+
+    // --- Publication ---
+    const pubEl = document.getElementById('cvPublication');
+    if (pubEl && cv.publication?.length) {
+      const items = cv.publication.map((pub) => {
+        const title = pub.url
+          ? `<a href="${pub.url}" target="_blank" rel="noopener" class="hover:text-primary transition-colors">${pub.title}</a>`
+          : pub.title;
+        return `
+          <div class="bg-surface-container-low p-8 rounded-xl">
+            <h3 class="font-body text-2xl font-semibold text-on-surface mb-2">${title}</h3>
+            <div class="flex flex-wrap gap-3 mb-4">
+              <span class="font-label text-xs font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant">${pub.role}</span>
+              <span class="font-label text-xs text-on-surface-variant">ISBN: ${pub.isbn}</span>
+            </div>
+            <p class="font-body text-lg text-on-surface-variant">${pub.description}</p>
+          </div>
+        `;
+      }).join('');
+      pubEl.innerHTML = cvSection('Publication', items);
+    }
+
+    // --- Projects ---
+    const projEl = document.getElementById('cvProjects');
+    if (projEl && cv.projects?.length) {
+      const items = cv.projects.map((proj) => {
+        const highlights = (proj.highlights || []).map((h) =>
+          `<li class="flex gap-4"><span class="text-primary font-bold shrink-0">/</span><span>${h}</span></li>`
+        ).join('');
+        return `
+          <div class="group">
+            <div class="flex flex-col md:flex-row justify-between items-baseline mb-2">
+              <h3 class="font-body text-2xl font-semibold text-on-surface">${proj.title}</h3>
+              <span class="font-label text-sm text-on-surface-variant bg-surface-container-high px-3 py-1 rounded-full">${proj.year}</span>
+            </div>
+            <p class="font-body text-lg text-on-surface-variant mb-4">${proj.description}</p>
+            <ul class="font-body text-on-surface-variant space-y-3 list-none">
+              ${highlights}
+            </ul>
+          </div>
+        `;
+      }).join('');
+      projEl.innerHTML = cvSection('Projects', items);
+    }
+
+    // --- Events ---
+    const eventsEl = document.getElementById('cvEvents');
+    if (eventsEl && cv.events?.length) {
+      const items = cv.events.map((evt) => `
+        <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-6 py-3">
+          <span class="font-label text-sm text-on-surface-variant shrink-0 w-12">${evt.year}</span>
+          <span class="font-label text-xs font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant shrink-0">${evt.role}</span>
+          <span class="font-body text-lg text-on-surface">${evt.title}</span>
+        </div>
+      `).join('');
+      eventsEl.innerHTML = cvSection('Events', `<div class="space-y-2">${items}</div>`);
+    }
+
+    // --- Awards ---
+    const awardsEl = document.getElementById('cvAwards');
+    if (awardsEl && cv.awards?.length) {
+      const items = cv.awards.map((award) => {
+        const valueBadge = award.value
+          ? `<span class="font-label text-xs font-bold text-primary ml-2">${award.value}</span>`
+          : '';
+        return `
+          <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-6 py-3">
+            <span class="font-label text-sm text-on-surface-variant shrink-0 w-24">${award.date}</span>
+            <div class="flex-1">
+              <span class="font-body text-lg text-on-surface font-semibold">${award.title}</span>${valueBadge}
+              <p class="font-label text-sm text-on-surface-variant">${award.issuer}</p>
+            </div>
+          </div>
+        `;
+      }).join('');
+      awardsEl.innerHTML = cvSection('Awards', `<div class="space-y-2">${items}</div>`);
+    }
+
+    // --- Certificates ---
+    const certEl = document.getElementById('cvCertificates');
+    if (certEl && cv.certificates) {
+      const categories = [
+        { key: 'finance', label: 'Finance', icon: 'account_balance' },
+        { key: 'cs', label: 'Computer Science', icon: 'terminal' },
+        { key: 'general', label: 'General', icon: 'workspace_premium' },
+      ];
+      const cards = categories.map((cat) => {
+        const certs = cv.certificates[cat.key];
+        if (!certs?.length) return '';
+        const list = certs.map((c) =>
+          `<div class="flex justify-between items-baseline py-2">
+            <span class="font-body text-on-surface">${c.name}</span>
+            <span class="font-label text-xs text-on-surface-variant">${c.issuer}</span>
+          </div>`
+        ).join('');
+        return `
+          <div class="bg-surface-container-low p-6 rounded-xl">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="material-symbols-outlined text-primary text-xl">${cat.icon}</span>
+              <h4 class="font-headline font-bold text-on-surface">${cat.label}</h4>
+            </div>
+            <div class="divide-y divide-outline-variant/15">
+              ${list}
+            </div>
+          </div>
+        `;
+      }).join('');
+      certEl.innerHTML = cvSection('Certificates', `<div class="space-y-6">${cards}</div>`);
+    }
+  };
+
+  // Badge color map for organizations
+  const orgBadgeClasses = {
+    POSTECH: 'bg-primary-container text-on-primary-container',
+    ROKAF: 'bg-secondary-container text-on-secondary-container',
+    PDAO: 'bg-secondary-fixed text-on-secondary-fixed',
+    Bithumb: 'bg-tertiary-container text-on-tertiary-container',
+    Certification: 'bg-surface-container-highest text-on-surface-variant',
+    NinjaLabsKR: 'bg-primary-fixed text-on-primary-fixed',
+    SuperteamKR: 'bg-tertiary-fixed text-on-tertiary-fixed',
+    Crypto: 'bg-primary-fixed-dim text-on-primary-fixed',
+  };
+  const defaultBadgeClass = 'bg-surface-container-high text-on-surface-variant';
+
+  // Load proof-of-work.xlsx
+  let proofOfWorkBook = null;
+  const loadProofOfWork = async () => {
+    if (typeof XLSX === 'undefined') {
+      console.error('XLSX library not loaded');
+      return [];
+    }
+    try {
+      const response = await fetch('data/proof-of-work.xlsx');
+      if (!response.ok) throw new Error(`Failed to load xlsx: ${response.status}`);
+      const arrayBuffer = await response.arrayBuffer();
+      proofOfWorkBook = XLSX.read(arrayBuffer, { type: 'array' });
+      const sheet = proofOfWorkBook.Sheets[proofOfWorkBook.SheetNames[0]];
+      const raw = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+      // Skip header row, map to structured objects
+      return raw.slice(1)
+        .filter((row) => row[0] || row[3]) // must have start date or contents
+        .map((row) => {
+          const tagsRaw = String(row[2] || '').trim();
+          const tags = tagsRaw.split('\n').map((t) => t.trim()).filter(Boolean);
+          return {
+            start: String(row[0] || '').replace(/\.$/, ''),
+            end: row[1] ? String(row[1]).replace(/\.$/, '') : '',
+            tags,
+            primaryOrg: tags[0] || 'Other',
+            contents: String(row[3] || ''),
+            importance: row[4] === 'O',
+            crypto: row[5] === 'O',
+          };
+        })
+        .sort((a, b) => b.start.localeCompare(a.start)); // newest first
+    } catch (error) {
+      console.error('Error loading proof-of-work.xlsx:', error);
+      return [];
+    }
+  };
+
+  // Format period string
+  const formatPeriod = (start, end) => {
+    if (!start) return '';
+    if (!end) return `${start} —`;
+    if (start === end) return start;
+    return `${start} — ${end}`;
+  };
+
+  // Render Experience Section
+  const renderExperience = (config, entries) => {
+    const tableContainer = document.getElementById('experienceTableContainer');
+    const insightsContainer = document.getElementById('experienceInsights');
+    if (!tableContainer || !entries?.length) return;
+
+    // Derive filter categories from primary orgs
+    const orgCounts = {};
+    entries.forEach((e) => { orgCounts[e.primaryOrg] = (orgCounts[e.primaryOrg] || 0) + 1; });
+    const sortedOrgs = Object.entries(orgCounts).sort((a, b) => b[1] - a[1]).map(([org]) => org);
+    const categories = ['All', ...sortedOrgs];
+
+    // Build filter buttons
+    const filterButtons = categories.map((cat) => {
+      const isAll = cat === 'All';
+      const count = isAll ? entries.length : (orgCounts[cat] || 0);
+      const activeClass = isAll
+        ? 'bg-primary text-on-primary'
+        : 'bg-surface-container-lowest text-on-surface-variant border border-outline-variant/20 hover:border-primary/50';
+      const label = isAll ? 'All Archive' : cat;
+      return `<button class="exp-filter-btn px-3 py-1 text-xs font-label rounded-md transition-colors ${activeClass}" data-filter="${cat}">${label} <span class="opacity-60">(${count})</span></button>`;
+    }).join('');
+
+    // Build table rows
+    const tableRows = entries.map((entry) => {
+      const badgeClass = orgBadgeClasses[entry.primaryOrg] || defaultBadgeClass;
+      const secondaryTags = entry.tags.slice(1);
+      const secondaryChips = secondaryTags.map((tag) =>
+        `<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label text-[9px] tracking-wider">${tag}</span>`
+      ).join('');
+      const flags = [];
+      if (entry.importance) flags.push('<span class="material-symbols-outlined text-primary text-sm" title="Key milestone">star</span>');
+      if (entry.crypto) flags.push('<span class="material-symbols-outlined text-tertiary text-sm" title="Crypto-related">currency_bitcoin</span>');
+
+      return `
+        <tr class="hover:bg-surface-bright transition-colors group" data-org="${entry.primaryOrg}">
+          <td class="px-6 py-5 font-label text-sm font-semibold text-primary whitespace-nowrap align-top">${formatPeriod(entry.start, entry.end)}</td>
+          <td class="px-6 py-5 font-body text-base leading-relaxed align-top">${entry.contents}</td>
+          <td class="px-6 py-5 align-top">
+            <span class="px-2 py-1 rounded ${badgeClass} font-label text-[10px] uppercase font-bold tracking-wider">${entry.primaryOrg}</span>
+            ${secondaryChips ? `<div class="flex flex-wrap gap-1 mt-1.5">${secondaryChips}</div>` : ''}
+          </td>
+          <td class="px-6 py-5 align-top">
+            <div class="flex items-center gap-1">${flags.join('') || '<span class="text-on-surface-variant/30">—</span>'}</div>
+          </td>
+        </tr>`;
+    }).join('');
+
+    // Export CSV handler id
+    const exportId = 'expExportCsv';
+
+    tableContainer.innerHTML = `
+      <div class="bg-surface-container-low rounded-xl overflow-hidden">
+        <!-- Filter Bar -->
+        <div class="px-8 py-6 border-b border-outline-variant/10 bg-surface-container-high/30 flex flex-wrap justify-between items-center gap-4">
+          <div class="flex items-center gap-6 flex-wrap">
+            <span class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Filter by Organization:</span>
+            <div class="flex gap-2 flex-wrap">${filterButtons}</div>
+          </div>
+          <div class="flex items-center gap-2 font-label text-xs text-on-surface-variant italic">
+            <span class="material-symbols-outlined text-sm">info</span>
+            Data source: proof-of-work.xlsx
+          </div>
+        </div>
+        <!-- Table -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead class="bg-surface-container-high/50">
+              <tr>
+                <th class="px-6 py-5 font-headline font-bold text-xs uppercase tracking-widest text-on-surface-variant border-b border-outline-variant/20 w-36">
+                  <div class="flex items-center gap-2">Period <span class="material-symbols-outlined text-xs">unfold_more</span></div>
+                </th>
+                <th class="px-6 py-5 font-headline font-bold text-xs uppercase tracking-widest text-on-surface-variant border-b border-outline-variant/20">Activity</th>
+                <th class="px-6 py-5 font-headline font-bold text-xs uppercase tracking-widest text-on-surface-variant border-b border-outline-variant/20 w-44">
+                  <div class="flex items-center gap-2">Organization <span class="material-symbols-outlined text-xs">filter_list</span></div>
+                </th>
+                <th class="px-6 py-5 font-headline font-bold text-xs uppercase tracking-widest text-on-surface-variant border-b border-outline-variant/20 w-20">Flags</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-outline-variant/10">${tableRows}</tbody>
+          </table>
+        </div>
+        <!-- Table Footer -->
+        <div class="px-8 py-4 bg-surface-container-high/20 border-t border-outline-variant/10 flex justify-between items-center">
+          <p class="exp-entry-count font-label text-[10px] text-on-surface-variant uppercase tracking-widest">Showing ${entries.length} of ${entries.length} entries</p>
+          <div class="flex gap-4">
+            <button id="${exportId}" class="text-xs font-headline font-bold text-primary hover:underline underline-offset-4">Export CSV</button>
+          </div>
+        </div>
+      </div>`;
+
+    // CSV export
+    const exportBtn = document.getElementById(exportId);
+    if (exportBtn && proofOfWorkBook) {
+      exportBtn.addEventListener('click', () => {
+        const sheet = proofOfWorkBook.Sheets[proofOfWorkBook.SheetNames[0]];
+        const csv = XLSX.utils.sheet_to_csv(sheet);
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'proof-of-work.csv';
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+    }
+
+    // Insights section
+    if (!insightsContainer) return;
+
+    const uniqueOrgs = new Set(entries.map((e) => e.primaryOrg)).size;
+    const importantCount = entries.filter((e) => e.importance).length;
+    const cryptoCount = entries.filter((e) => e.crypto).length;
+    const years = entries.map((e) => e.start.slice(0, 4)).filter(Boolean);
+    const yearSpan = years.length ? `${Math.min(...years.map(Number))}–${Math.max(...years.map(Number))}` : '';
+
+    insightsContainer.innerHTML = `
+      <section class="mt-24 grid md:grid-cols-3 gap-12">
+        <div class="md:col-span-1 border-l-2 border-primary pl-8 space-y-4">
+          <h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter">Evolution of Focus</h3>
+          <p class="font-body text-on-surface-variant italic leading-relaxed">
+            From POSTECH academics and early crypto research (2021) through ROKAF military service (2023–2024) to Web3 community building at PDAO, SuperteamKR, and technical writing — a trajectory toward systemic complexity and interdisciplinary contribution across ${yearSpan}.
+          </p>
+        </div>
+        <div class="md:col-span-2 bg-surface-container-low p-10 rounded-xl relative overflow-hidden">
+          <div class="relative z-10 space-y-6">
+            <h4 class="font-headline font-bold text-2xl">Summary of Contributions</h4>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-8">
+              <div>
+                <span class="block text-3xl font-headline font-extrabold text-primary">${String(entries.length).padStart(2, '0')}</span>
+                <span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Total Activities</span>
+              </div>
+              <div>
+                <span class="block text-3xl font-headline font-extrabold text-primary">${String(importantCount).padStart(2, '0')}</span>
+                <span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Key Milestones</span>
+              </div>
+              <div>
+                <span class="block text-3xl font-headline font-extrabold text-primary">${String(cryptoCount).padStart(2, '0')}</span>
+                <span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Crypto Related</span>
+              </div>
+              <div>
+                <span class="block text-3xl font-headline font-extrabold text-primary">${String(uniqueOrgs).padStart(2, '0')}</span>
+                <span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Organizations</span>
+              </div>
+            </div>
+          </div>
+          <div class="absolute -right-10 -bottom-10 opacity-5 pointer-events-none">
+            <span class="material-symbols-outlined text-[200px]">architecture</span>
+          </div>
+        </div>
+      </section>`;
+  };
+
+  // Experience Filter Logic
+  const initExperienceFilters = () => {
+    const container = document.getElementById('experienceTableContainer');
+    if (!container) return;
+
+    const buttons = container.querySelectorAll('.exp-filter-btn');
+    const rows = container.querySelectorAll('tbody tr[data-org]');
+    const countEl = container.querySelector('.exp-entry-count');
+    const totalCount = rows.length;
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+
+        // Update button styles
+        buttons.forEach((b) => {
+          b.classList.remove('bg-primary', 'text-on-primary');
+          b.classList.add('bg-surface-container-lowest', 'text-on-surface-variant', 'border', 'border-outline-variant/20');
+        });
+        btn.classList.remove('bg-surface-container-lowest', 'text-on-surface-variant', 'border', 'border-outline-variant/20');
+        btn.classList.add('bg-primary', 'text-on-primary');
+
+        // Filter rows
+        let visibleCount = 0;
+        rows.forEach((row) => {
+          const show = filter === 'All' || row.dataset.org === filter;
+          row.style.display = show ? '' : 'none';
+          if (show) visibleCount++;
+        });
+
+        // Update count
+        if (countEl) {
+          countEl.textContent = `Showing ${visibleCount} of ${totalCount} entries`;
+        }
+      });
+    });
+  };
+
   // Initialize
   const init = async () => {
     setYear();
@@ -425,6 +967,10 @@
       renderCaseStudies(config);
       renderArticles(config);
       initArticleFilters(config);
+      const xlsxEntries = await loadProofOfWork();
+      renderExperience(config, xlsxEntries);
+      initExperienceFilters();
+      renderCV(config);
     }
     initPdfModal();
   };
