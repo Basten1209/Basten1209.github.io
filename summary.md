@@ -1,19 +1,19 @@
 # Summary
 
 Work Experience
- - [2025 - ] DevRel Supporters(Part-time Work), Base Korea
- - [2025 - ] Organizer (Head), PDAO
- - [2025 - ] Consultant (Freelance), WorldQuant Brain
+ - [2026 - ] Tech BD Intern - Freelancer, B-Harvest
+ - [2025 - ] Based Advocate, Base Korea
+ - [2025 - ] Consultant - Freelancer, WorldQuant
  - [2023-2024] System Developer (Military Service), ROKAF
- - [2022-2023] Researcher (Intern), Bithumb
+ - [2022-2023] Research Intern, Bithumb
 
 Study
  - [2025 - ] Undergraduate Researcher, POSTECH FBDA Lab
  - [2022] Undergraduate Researcher, POSTECH DPNM Lab
- - [2021 - ] BS Program in Industrial Management & Engineering, POSTECH
+ - [2021 - ] BS Program in Industrial & Management Engineering, POSTECH
 
 Publication
- - [2023] “디지털자산 시대가 온다” (공저)
+ - [2023] "디지털자산 시대가 온다" (공저)
 
 Award
  - [2025] 4th prize in Monad Blitz Seoul, Monad & B-Harvest & Chainlink
