@@ -10,18 +10,18 @@
     "focusAreas": [
       {
         "icon": "token",
-        "title": "Crypto Markets",
-        "description": "Analyzing liquidity dynamics and incentive structures in decentralized protocols."
+        "title": "Crypto Ecosystem",
+        "description": "Published crypto market reports as a Bithumb research intern and built Web3 communities through leading PDAO."
       },
       {
-        "icon": "hub",
-        "title": "Socio-Technical Systems",
-        "description": "Mapping the intersection of governance, human behavior, and algorithmic rules."
+        "icon": "link",
+        "title": "Blockchain Technology",
+        "description": "Researched ZKP, Solana, and Ethereum core technologies, and creating blockchain education content at B-Harvest."
       },
       {
-        "icon": "description",
-        "title": "Technical Writing",
-        "description": "Drafting protocol specifications and comprehensive research documentation."
+        "icon": "account_balance",
+        "title": "Financial Engineering",
+        "description": "Analyzing high-frequency financial data at POSTECH FBDA Lab and developed quant alpha strategies at WorldQuant IQC."
       }
     ],
     "social": {

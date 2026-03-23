@@ -111,43 +111,62 @@
 
   <!-- Navigation Bar (Glassmorphism) -->
   <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md tonal-layering-via-bg-shift shadow-sm">
-    <div class="flex justify-between items-center max-w-7xl mx-auto px-8 py-4">
-      <span class="text-xl font-extrabold text-on-surface uppercase tracking-widest font-headline">Research Portfolio</span>
-      <div class="flex items-center gap-10 font-headline font-bold tracking-tight text-on-surface">
+    <div class="flex justify-between items-center max-w-7xl mx-auto px-4 md:px-8 py-3 md:py-4">
+      <span class="text-lg md:text-xl font-extrabold text-on-surface uppercase tracking-widest font-headline">Research Portfolio</span>
+      <div class="hidden md:flex items-center gap-10 font-headline font-bold tracking-tight text-on-surface">
         <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="home" href="#home">Home</a>
         <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="articles" href="#articles">Articles</a>
         <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="experience" href="#experience">Experience</a>
         <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="cv" href="#cv">CV</a>
       </div>
-      <a href="mailto:seungjunoh@postech.ac.kr" class="bg-primary text-on-primary px-6 py-2.5 rounded-md font-headline font-bold tracking-tight hover:bg-primary-dim transition-all">
+      <a href="mailto:seungjunoh@postech.ac.kr" class="hidden md:inline-block bg-primary text-on-primary px-6 py-2.5 rounded-md font-headline font-bold tracking-tight hover:bg-primary-dim transition-all">
         Contact Me
       </a>
+      <button id="mobileMenuBtn" class="md:hidden p-2 text-on-surface" aria-label="Open menu">
+        <span class="material-symbols-outlined text-2xl">menu</span>
+      </button>
     </div>
   </nav>
 
-  <main class="pt-32">
+  <!-- Mobile Menu Overlay -->
+  <div id="mobileMenu" class="fixed inset-0 z-40 hidden">
+    <div class="absolute inset-0 bg-on-surface/40 backdrop-blur-sm" id="mobileMenuBackdrop"></div>
+    <div class="relative z-10 bg-surface-container-lowest pt-20 pb-8 px-6 shadow-lg">
+      <nav class="flex flex-col gap-6 font-headline font-bold text-lg text-on-surface">
+        <a class="mobile-nav__link py-2" data-section="home" href="#home">Home</a>
+        <a class="mobile-nav__link py-2" data-section="articles" href="#articles">Articles</a>
+        <a class="mobile-nav__link py-2" data-section="experience" href="#experience">Experience</a>
+        <a class="mobile-nav__link py-2" data-section="cv" href="#cv">CV</a>
+      </nav>
+      <a href="mailto:seungjunoh@postech.ac.kr" class="mt-8 block text-center bg-primary text-on-primary px-6 py-3 rounded-md font-headline font-bold">
+        Contact Me
+      </a>
+    </div>
+  </div>
+
+  <main class="pt-20 md:pt-32">
 
     <!-- ==================== HOME SECTION ==================== -->
     <section id="home" class="section section--active">
 
       <!-- Hero -->
-      <div class="max-w-7xl mx-auto px-8 mb-24 lg:mb-32">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+      <div class="max-w-7xl mx-auto px-6 md:px-8 mb-16 md:mb-24 lg:mb-32">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-20 items-center">
           <!-- Text Column -->
           <div class="lg:col-span-7">
             <div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-low rounded-[2rem] mb-8" id="statusBadge">
               <span class="w-2 h-2 rounded-[2rem] bg-primary"></span>
               <span class="text-xs font-label font-medium uppercase tracking-widest text-on-surface-variant" id="statusText">Available for Technical Research</span>
             </div>
-            <h1 class="font-headline font-extrabold text-6xl lg:text-8xl text-on-surface leading-[1.05] tracking-tighter mb-8">
+            <h1 class="font-headline font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-8xl text-on-surface leading-[1.05] tracking-tighter mb-8">
               Seungjun <br>
               <span class="text-primary italic font-body font-normal">Oh</span>
             </h1>
-            <p class="font-body text-2xl text-on-surface-variant leading-relaxed max-w-2xl mb-12" id="heroTagline">
+            <p class="font-body text-xl md:text-2xl text-on-surface-variant leading-relaxed max-w-2xl mb-12" id="heroTagline">
               Investigating the convergence of <span class="text-on-surface font-semibold">Crypto Markets</span>, <span class="text-on-surface font-semibold">Technical Writing</span>, and <span class="text-on-surface font-semibold">Socio-Technical Systems</span> to decode complex digital economies.
             </p>
-            <div class="flex flex-wrap gap-6 items-center">
-              <a class="bg-primary text-on-primary px-8 py-4 rounded-md font-headline font-bold text-lg hover:bg-primary-dim transition-colors shadow-lg shadow-primary/10" href="#articles" data-section="articles">
+            <div class="flex flex-wrap gap-4 md:gap-6 items-center">
+              <a class="bg-primary text-on-primary px-6 py-3 md:px-8 md:py-4 rounded-md font-headline font-bold text-base md:text-lg hover:bg-primary-dim transition-colors shadow-lg shadow-primary/10" href="#articles" data-section="articles">
                 View My Research
               </a>
               <a class="font-headline font-bold text-lg text-primary flex items-center gap-2 group" href="data/resume/resume_eng.pdf" download>
@@ -157,7 +176,7 @@
             </div>
           </div>
           <!-- Visual Column -->
-          <div class="lg:col-span-5 relative">
+          <div class="lg:col-span-5 relative overflow-hidden">
             <div class="aspect-[4/5] bg-surface-container-low rounded-xl overflow-hidden relative" id="heroVisual">
               <img src="assets/images/profile.jpg" alt="Seungjun Oh" class="w-full h-full object-cover">
               <div class="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent"></div>
@@ -170,15 +189,15 @@
       </div>
 
       <!-- Focus Areas -->
-      <div class="max-w-7xl mx-auto px-8 py-20 bg-surface-container-low rounded-3xl mb-24 lg:mb-32" id="focusAreasContainer">
+      <div class="max-w-7xl mx-auto px-6 md:px-8 py-12 md:py-20 bg-surface-container-low rounded-3xl mb-16 md:mb-24 lg:mb-32" id="focusAreasContainer">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="focusAreasGrid">
           <!-- Populated by JS from portfolio-config.json -->
         </div>
       </div>
 
       <!-- About Me & Career Summary -->
-      <div class="max-w-7xl mx-auto px-8 pb-24 lg:pb-32">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div class="max-w-7xl mx-auto px-6 md:px-8 pb-16 md:pb-24 lg:pb-32">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
           <!-- About Me -->
           <div class="lg:col-span-7">
             <div class="flex items-center gap-4 text-on-surface-variant font-label text-sm uppercase tracking-[0.2em] mb-6">
@@ -191,8 +210,8 @@
           </div>
           <!-- Career Summary -->
           <div class="lg:col-span-5">
-            <div class="bg-surface-container-low p-10 rounded-xl">
-              <h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-8">Career Summary</h3>
+            <div class="bg-surface-container-low p-6 md:p-10 rounded-xl">
+              <h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-6 md:mb-8">Career Summary</h3>
               <div id="summaryContent" class="font-body text-on-surface-variant leading-relaxed space-y-6">
                 <!-- Populated by JS from summary.md -->
               </div>
@@ -202,7 +221,7 @@
       </div>
 
       <!-- Expertise -->
-      <div class="max-w-7xl mx-auto px-8 pb-24 lg:pb-32">
+      <div class="max-w-7xl mx-auto px-6 md:px-8 pb-16 md:pb-24 lg:pb-32">
         <div class="flex items-center gap-4 text-on-surface-variant font-label text-sm uppercase tracking-[0.2em] mb-8">
           <span class="w-12 h-[1px] bg-outline-variant"></span>
           <span>Expertise</span>
@@ -216,11 +235,11 @@
     <section id="articles" class="section">
 
       <!-- Hero: Featured Publication -->
-      <div class="max-w-7xl mx-auto px-8 pt-8 pb-24 lg:pb-32">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+      <div class="max-w-7xl mx-auto px-6 md:px-8 pt-8 pb-16 md:pb-24 lg:pb-32">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-end">
           <div class="lg:col-span-7">
             <span class="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant mb-6 block">Featured Publication</span>
-            <h1 id="featuredArticleTitle" class="font-headline font-extrabold text-5xl md:text-7xl lg:text-8xl text-on-surface leading-[1.1] tracking-tight mb-8"></h1>
+            <h1 id="featuredArticleTitle" class="font-headline font-extrabold text-3xl sm:text-5xl md:text-7xl lg:text-8xl text-on-surface leading-[1.1] tracking-tight mb-8"></h1>
             <p id="featuredArticleDesc" class="font-body text-xl md:text-2xl text-on-surface-variant leading-relaxed max-w-2xl italic mb-10"></p>
             <button id="featuredArticleCta" class="bg-primary text-on-primary px-8 py-3 rounded-md font-headline font-bold text-sm tracking-wide hover:bg-primary-dim transition-all">
               READ MONOGRAPH
@@ -241,8 +260,8 @@
       </div>
 
       <!-- Filter / Archive Navigation -->
-      <div class="max-w-7xl mx-auto px-8">
-        <div class="flex flex-wrap gap-8 mb-16 items-baseline border-b border-outline-variant/15 pb-6">
+      <div class="max-w-7xl mx-auto px-6 md:px-8">
+        <div class="flex flex-wrap gap-4 md:gap-8 mb-10 md:mb-16 items-baseline border-b border-outline-variant/15 pb-6">
           <h2 class="font-headline font-extrabold text-2xl uppercase tracking-tighter">Archive</h2>
           <nav id="articleFilters" class="flex gap-6 font-label text-sm font-semibold text-on-surface-variant">
             <!-- Populated by JS -->
@@ -251,8 +270,8 @@
       </div>
 
       <!-- Bento Archive Grid -->
-      <div class="max-w-7xl mx-auto px-8 pb-24 lg:pb-32">
-        <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-12 gap-10">
+      <div class="max-w-7xl mx-auto px-6 md:px-8 pb-16 md:pb-24 lg:pb-32">
+        <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10">
           <!-- Populated by JS -->
         </div>
       </div>
@@ -288,14 +307,14 @@
 
     <!-- ==================== EXPERIENCE SECTION ==================== -->
     <section id="experience" class="section">
-      <div class="max-w-7xl mx-auto px-8 py-24">
+      <div class="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-24">
         <!-- Editorial Header -->
-        <header class="mb-20 space-y-4">
+        <header class="mb-12 md:mb-20 space-y-3 md:space-y-4">
           <div class="flex items-center gap-4 text-on-surface-variant font-label text-sm uppercase tracking-[0.2em]">
             <span class="w-12 h-[1px] bg-outline-variant"></span>
             <span>The Editorial Archive</span>
           </div>
-          <h2 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface leading-none">
+          <h2 class="text-3xl sm:text-5xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface leading-none">
             Experience <span class="italic font-body font-light text-primary">History</span>
           </h2>
           <p class="max-w-2xl text-xl text-on-surface-variant font-body italic leading-relaxed pt-4">
@@ -336,13 +355,13 @@
   </main>
 
   <!-- Footer -->
-  <footer class="w-full py-16 px-8 mt-24 bg-surface-container-low">
-    <div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-8">
-      <div class="text-left">
+  <footer class="w-full py-10 md:py-16 px-6 md:px-8 mt-16 md:mt-24 bg-surface-container-low">
+    <div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-6 md:gap-8">
+      <div class="text-center md:text-left">
         <span class="font-headline font-semibold text-on-surface block mb-2">Seungjun Oh | Research Portfolio</span>
-        <p class="font-body italic text-lg text-on-surface-variant">&copy; <span id="currentYear"></span> Seungjun Oh. All rights reserved.</p>
+        <p class="font-body italic text-base md:text-lg text-on-surface-variant">&copy; <span id="currentYear"></span> Seungjun Oh. All rights reserved.</p>
       </div>
-      <div class="flex gap-8 font-body italic text-lg" id="footerLinks">
+      <div class="flex flex-wrap justify-center gap-4 md:gap-8 font-body italic text-base md:text-lg" id="footerLinks">
         <a class="text-on-surface-variant hover:text-primary transition-all hover:-translate-y-1" href="mailto:seungjunoh@postech.ac.kr">Email</a>
         <a class="text-on-surface-variant hover:text-primary transition-all hover:-translate-y-1" href="https://www.linkedin.com/in/basten1209/" target="_blank" rel="noopener">LinkedIn</a>
         <a class="text-on-surface-variant hover:text-primary transition-all hover:-translate-y-1" href="https://medium.com/@seungjun-oh" target="_blank" rel="noopener">Medium</a>

@@ -2,6 +2,7 @@
   // State
   const sections = () => Array.from(document.querySelectorAll('.section'));
   const navLinks = () => Array.from(document.querySelectorAll('.nav__link'));
+  const mobileNavLinks = () => Array.from(document.querySelectorAll('.mobile-nav__link'));
   const currentYearEl = document.getElementById('currentYear');
 
   let portfolioConfig = null;
@@ -36,6 +37,13 @@
         link.removeAttribute('aria-current');
       }
     });
+
+    // Update mobile nav links
+    mobileNavLinks().forEach((link) => {
+      const isActive = link.dataset.section === targetSection.id;
+      link.classList.toggle('text-primary', isActive);
+      link.classList.toggle('text-on-surface', !isActive);
+    });
   };
 
   const initNavigation = () => {
@@ -60,6 +68,33 @@
         if (!targetId) return;
         history.replaceState(null, '', `#${targetId}`);
         setActiveSection(targetId);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    // Mobile menu
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
+
+    const closeMobileMenu = () => {
+      if (mobileMenu) mobileMenu.classList.add('hidden');
+    };
+
+    mobileMenuBtn?.addEventListener('click', () => {
+      mobileMenu?.classList.toggle('hidden');
+    });
+
+    mobileMenuBackdrop?.addEventListener('click', closeMobileMenu);
+
+    mobileNavLinks().forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const targetId = link.dataset.section;
+        if (!targetId) return;
+        history.replaceState(null, '', `#${targetId}`);
+        setActiveSection(targetId);
+        closeMobileMenu();
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     });
@@ -94,7 +129,7 @@
     if (!grid || !config.profile?.focusAreas) return;
 
     grid.innerHTML = config.profile.focusAreas.map((area) => `
-      <div class="p-8 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow">
+      <div class="p-6 md:p-8 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow">
         <span class="material-symbols-outlined text-primary text-4xl mb-4">${area.icon}</span>
         <h3 class="font-headline font-bold text-xl mb-3">${area.title}</h3>
         <p class="font-body text-lg text-on-surface-variant italic">${area.description}</p>
@@ -167,14 +202,14 @@
   // Render article card HTML
   const renderArticleCard = (report, isLarge) => {
     const colSpan = isLarge ? 'md:col-span-8' : 'md:col-span-4';
-    const titleSize = isLarge ? 'text-4xl' : 'text-2xl';
+    const titleSize = isLarge ? 'text-2xl md:text-4xl' : 'text-xl md:text-2xl';
     const descClass = isLarge ? 'font-body text-lg text-on-surface-variant mb-8 leading-relaxed line-clamp-3' : 'font-body text-on-surface-variant line-clamp-2';
     const categoryColor = report.category === 'PDAO' ? 'text-primary' : report.category === 'Bithumb' ? 'text-secondary' : 'text-tertiary';
 
     if (isLarge) {
       return `
         <article class="${colSpan} group cursor-pointer" data-report-id="${report.id}" data-report-type="${report.type || 'pdf'}">
-          <div class="bg-surface-container-low p-10 rounded-lg transition-all hover:bg-surface-container-highest">
+          <div class="bg-surface-container-low p-6 md:p-10 rounded-lg transition-all hover:bg-surface-container-highest">
             <div class="flex justify-between items-start mb-12">
               <span class="px-3 py-1 bg-primary-container text-on-primary-container text-[10px] font-bold uppercase tracking-widest rounded-[2rem]">${report.category}</span>
               <span class="font-label text-xs text-on-surface-variant">${report.date} &middot; ${report.contribution}</span>
@@ -343,7 +378,8 @@
     if (!canvas) return;
 
     pdfDoc.getPage(pageNum).then((page) => {
-      const viewport = page.getViewport({ scale: 1.5 });
+      const pdfScale = window.innerWidth < 768 ? 1.0 : 1.5;
+      const viewport = page.getViewport({ scale: pdfScale });
       const context = canvas.getContext('2d');
       canvas.height = viewport.height;
       canvas.width = viewport.width;
@@ -476,7 +512,7 @@
           : `<span class="font-headline font-bold text-sm text-on-surface">${edu.institution}</span>`;
         return `
           <div>
-            <div class="flex justify-between items-baseline">
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 sm:gap-0">
               ${name}
               <span class="font-label text-sm text-on-surface-variant">${edu.period}</span>
             </div>
@@ -496,9 +532,9 @@
           : r.lab;
         return `
           <div>
-            <div class="flex justify-between items-baseline">
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 sm:gap-0">
               <span class="font-headline font-bold text-sm">${labName} <span class="font-normal text-on-surface-variant">(Advisor: ${r.advisor})</span></span>
-              <span class="font-label text-sm text-on-surface-variant shrink-0 ml-4">${r.period}</span>
+              <span class="font-label text-sm text-on-surface-variant sm:shrink-0 sm:ml-4">${r.period}</span>
             </div>
             <p class="font-body text-sm text-on-surface-variant">${r.role}</p>
             <ul class="mt-1 ml-4 list-disc list-outside text-sm font-body text-on-surface-variant space-y-0.5">
@@ -523,9 +559,9 @@
 
         return `
           <div>
-            <div class="flex justify-between items-baseline">
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 sm:gap-0">
               <span class="font-headline font-bold text-sm">${orgName}</span>
-              <span class="font-label text-sm text-on-surface-variant shrink-0 ml-4">${exp.period}</span>
+              <span class="font-label text-sm text-on-surface-variant sm:shrink-0 sm:ml-4">${exp.period}</span>
             </div>
             <p class="font-body text-sm text-on-surface">${exp.role}</p>
             <ul class="mt-1 ml-4 list-disc list-outside text-sm font-body text-on-surface-variant space-y-0.5">
@@ -567,9 +603,9 @@
           : pub.title;
         return `
           <div>
-            <div class="flex justify-between items-baseline">
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 sm:gap-0">
               <span class="font-headline font-bold text-sm uppercase">${title}</span>
-              <span class="font-label text-sm text-on-surface-variant shrink-0 ml-4">ISBN: ${pub.isbn}</span>
+              <span class="font-label text-sm text-on-surface-variant sm:shrink-0 sm:ml-4">ISBN: ${pub.isbn}</span>
             </div>
             <p class="font-body text-sm text-on-surface">${pub.role}</p>
             <ul class="mt-1 ml-4 list-disc list-outside text-sm font-body text-on-surface-variant space-y-0.5">
@@ -590,9 +626,9 @@
         ).join('');
         return `
           <div>
-            <div class="flex justify-between items-baseline">
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 sm:gap-0">
               <span class="font-headline font-bold text-sm">${proj.title}</span>
-              <span class="font-label text-sm text-on-surface-variant shrink-0 ml-4">${proj.year}</span>
+              <span class="font-label text-sm text-on-surface-variant sm:shrink-0 sm:ml-4">${proj.year}</span>
             </div>
             <p class="font-body text-sm text-on-surface-variant">${proj.description}</p>
             <ul class="mt-1 ml-4 list-disc list-outside text-sm font-body text-on-surface-variant space-y-0.5">
@@ -608,7 +644,7 @@
     const eventsEl = document.getElementById('cvEvents');
     if (eventsEl && cv.events?.length) {
       const items = cv.events.map((evt) => `
-        <div class="flex items-baseline gap-4 py-0.5">
+        <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 py-1 sm:py-0.5">
           <span class="font-label text-sm text-on-surface-variant shrink-0 w-10">${evt.year}</span>
           <span class="font-headline font-bold text-sm shrink-0">${evt.role}</span>
           <span class="font-body text-sm text-on-surface-variant">${evt.title}</span>
@@ -659,9 +695,9 @@
 
         return `
           <div>
-            <div class="flex justify-between items-baseline">
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 sm:gap-0">
               <span class="font-headline font-bold text-sm">${orgName}</span>
-              <span class="font-label text-sm text-on-surface-variant shrink-0 ml-4">${ext.period}</span>
+              <span class="font-label text-sm text-on-surface-variant sm:shrink-0 sm:ml-4">${ext.period}</span>
             </div>
             <p class="font-body text-sm text-on-surface">${ext.role}</p>
             <ul class="mt-1 ml-4 list-disc list-outside text-sm font-body text-on-surface-variant space-y-0.5">
@@ -711,14 +747,14 @@
 
     container.innerHTML = `
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="bg-surface-container-low p-8 rounded-xl flex flex-col justify-between h-48">
+        <div class="bg-surface-container-low p-6 md:p-8 rounded-xl flex flex-col justify-between h-40 md:h-48">
           <span class="material-symbols-outlined text-primary text-3xl">interests</span>
           <div>
             <h4 class="font-headline font-bold text-on-surface">Research Interests</h4>
             <p class="font-label text-xs text-on-surface-variant uppercase tracking-wider mt-1">${interests}</p>
           </div>
         </div>
-        <div class="bg-primary text-on-primary p-8 rounded-xl flex flex-col justify-between h-48">
+        <div class="bg-primary text-on-primary p-6 md:p-8 rounded-xl flex flex-col justify-between h-40 md:h-48">
           <span class="material-symbols-outlined text-on-primary text-3xl" style="font-variation-settings: 'FILL' 1;">code</span>
           <div>
             <h4 class="font-headline font-bold">Technical Skills</h4>
@@ -873,21 +909,40 @@
     // Export CSV handler id
     const exportId = 'expExportCsv';
 
+    // Build mobile cards
+    const mobileCards = entries.map((entry) => {
+      const badgeClass = orgBadgeClasses[entry.primaryOrg] || defaultBadgeClass;
+      const flags = [];
+      if (entry.importance) flags.push('<span class="material-symbols-outlined text-primary text-sm">star</span>');
+      if (entry.crypto) flags.push('<span class="material-symbols-outlined text-tertiary text-sm">currency_bitcoin</span>');
+      return `
+        <div class="bg-surface-container-lowest p-4 rounded-xl mb-3 mobile-exp-card" data-org="${entry.primaryOrg}">
+          <div class="flex items-center justify-between mb-2">
+            <span class="px-2 py-0.5 rounded ${badgeClass} font-label text-[10px] uppercase font-bold tracking-wider">${entry.primaryOrg}</span>
+            <span class="font-label text-xs text-primary font-semibold">${formatPeriod(entry.start, entry.end)}</span>
+          </div>
+          <p class="font-body text-sm leading-relaxed text-on-surface">${entry.contents}</p>
+          ${flags.length ? `<div class="flex gap-1 mt-2">${flags.join('')}</div>` : ''}
+        </div>`;
+    }).join('');
+
     tableContainer.innerHTML = `
       <div class="bg-surface-container-low rounded-xl overflow-hidden">
         <!-- Filter Bar -->
-        <div class="px-8 py-6 border-b border-outline-variant/10 bg-surface-container-high/30 flex flex-wrap justify-between items-center gap-4">
-          <div class="flex items-center gap-6 flex-wrap">
+        <div class="px-4 md:px-8 py-4 md:py-6 border-b border-outline-variant/10 bg-surface-container-high/30 flex flex-wrap justify-between items-center gap-4">
+          <div class="flex items-center gap-4 md:gap-6 flex-wrap">
             <span class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Filter by Organization:</span>
             <div class="flex gap-2 flex-wrap">${filterButtons}</div>
           </div>
-          <div class="flex items-center gap-2 font-label text-xs text-on-surface-variant italic">
+          <div class="hidden md:flex items-center gap-2 font-label text-xs text-on-surface-variant italic">
             <span class="material-symbols-outlined text-sm">info</span>
             Data source: proof-of-work.xlsx
           </div>
         </div>
-        <!-- Table -->
-        <div class="overflow-x-auto">
+        <!-- Mobile Cards -->
+        <div class="md:hidden px-4 py-4">${mobileCards}</div>
+        <!-- Desktop Table -->
+        <div class="hidden md:block overflow-x-auto">
           <table class="w-full text-left border-collapse">
             <thead class="bg-surface-container-high/50">
               <tr>
@@ -905,7 +960,7 @@
           </table>
         </div>
         <!-- Table Footer -->
-        <div class="px-8 py-4 bg-surface-container-high/20 border-t border-outline-variant/10 flex justify-between items-center">
+        <div class="px-4 md:px-8 py-3 md:py-4 bg-surface-container-high/20 border-t border-outline-variant/10 flex justify-between items-center">
           <p class="exp-entry-count font-label text-[10px] text-on-surface-variant uppercase tracking-widest">Showing ${entries.length} of ${entries.length} entries</p>
           <div class="flex gap-4">
             <button id="${exportId}" class="text-xs font-headline font-bold text-primary hover:underline underline-offset-4">Export CSV</button>
@@ -939,31 +994,31 @@
     const yearSpan = years.length ? `${Math.min(...years.map(Number))}–${Math.max(...years.map(Number))}` : '';
 
     insightsContainer.innerHTML = `
-      <section class="mt-24 grid md:grid-cols-3 gap-12">
-        <div class="md:col-span-1 border-l-2 border-primary pl-8 space-y-4">
+      <section class="mt-16 md:mt-24 grid md:grid-cols-3 gap-8 md:gap-12">
+        <div class="md:col-span-1 border-l-2 border-primary pl-6 md:pl-8 space-y-4">
           <h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter">Evolution of Focus</h3>
           <p class="font-body text-on-surface-variant italic leading-relaxed">
             From POSTECH academics and early crypto research (2021) through ROKAF military service (2023–2024) to Web3 community building at PDAO, SuperteamKR, and technical writing — a trajectory toward systemic complexity and interdisciplinary contribution across ${yearSpan}.
           </p>
         </div>
-        <div class="md:col-span-2 bg-surface-container-low p-10 rounded-xl relative overflow-hidden">
+        <div class="md:col-span-2 bg-surface-container-low p-6 md:p-10 rounded-xl relative overflow-hidden">
           <div class="relative z-10 space-y-6">
-            <h4 class="font-headline font-bold text-2xl">Summary of Contributions</h4>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-8">
+            <h4 class="font-headline font-bold text-xl md:text-2xl">Summary of Contributions</h4>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-8">
               <div>
-                <span class="block text-3xl font-headline font-extrabold text-primary">${String(entries.length).padStart(2, '0')}</span>
+                <span class="block text-2xl md:text-3xl font-headline font-extrabold text-primary">${String(entries.length).padStart(2, '0')}</span>
                 <span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Total Activities</span>
               </div>
               <div>
-                <span class="block text-3xl font-headline font-extrabold text-primary">${String(importantCount).padStart(2, '0')}</span>
+                <span class="block text-2xl md:text-3xl font-headline font-extrabold text-primary">${String(importantCount).padStart(2, '0')}</span>
                 <span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Key Milestones</span>
               </div>
               <div>
-                <span class="block text-3xl font-headline font-extrabold text-primary">${String(cryptoCount).padStart(2, '0')}</span>
+                <span class="block text-2xl md:text-3xl font-headline font-extrabold text-primary">${String(cryptoCount).padStart(2, '0')}</span>
                 <span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Crypto Related</span>
               </div>
               <div>
-                <span class="block text-3xl font-headline font-extrabold text-primary">${String(uniqueOrgs).padStart(2, '0')}</span>
+                <span class="block text-2xl md:text-3xl font-headline font-extrabold text-primary">${String(uniqueOrgs).padStart(2, '0')}</span>
                 <span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Organizations</span>
               </div>
             </div>
@@ -982,6 +1037,7 @@
 
     const buttons = container.querySelectorAll('.exp-filter-btn');
     const rows = container.querySelectorAll('tbody tr[data-org]');
+    const mobileCards = container.querySelectorAll('.mobile-exp-card[data-org]');
     const countEl = container.querySelector('.exp-entry-count');
     const totalCount = rows.length;
 
@@ -997,12 +1053,18 @@
         btn.classList.remove('bg-surface-container-lowest', 'text-on-surface-variant', 'border', 'border-outline-variant/20');
         btn.classList.add('bg-primary', 'text-on-primary');
 
-        // Filter rows
+        // Filter desktop rows
         let visibleCount = 0;
         rows.forEach((row) => {
           const show = filter === 'All' || row.dataset.org === filter;
           row.style.display = show ? '' : 'none';
           if (show) visibleCount++;
+        });
+
+        // Filter mobile cards
+        mobileCards.forEach((card) => {
+          const show = filter === 'All' || card.dataset.org === filter;
+          card.style.display = show ? '' : 'none';
         });
 
         // Update count
