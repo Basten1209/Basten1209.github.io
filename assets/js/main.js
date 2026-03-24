@@ -898,9 +898,13 @@
     entries.forEach((e) => { orgCounts[e.primaryOrg] = (orgCounts[e.primaryOrg] || 0) + 1; });
     const sortedOrgs = Object.entries(orgCounts).sort((a, b) => b[1] - a[1]).map(([org]) => org);
 
+    // Count important entries
+    const importanceCount = entries.filter((e) => e.importance).length;
+
     // Build category filter buttons
     const catButtons = [
       `<button class="exp-cat-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-primary text-on-primary" data-filter="All">전체 보기 <span class="opacity-60">(${entries.length})</span></button>`,
+      `<button class="exp-cat-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high" data-filter="Importance">⭐ Key Milestones <span class="opacity-60">(${importanceCount})</span></button>`,
       ...activeCategories.map((cat) =>
         `<button class="exp-cat-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high" data-filter="${cat}">${cat} <span class="opacity-60">(${catCounts[cat]})</span></button>`
       ),
@@ -948,7 +952,7 @@
         ).join('');
 
         return `
-          <div class="timeline-entry relative flex gap-4 md:gap-6 pb-8 group" data-org="${entry.primaryOrg}" data-categories="${entry.categories.join(',')}">
+          <div class="timeline-entry relative flex gap-4 md:gap-6 pb-8 group" data-org="${entry.primaryOrg}" data-categories="${entry.categories.join(',')}" data-importance="${entry.importance ? '1' : '0'}">
             <!-- Node -->
             <div class="absolute -left-[25px] md:-left-[33px] ${nodeTop} ${nodeClass} flex-shrink-0 transition-transform group-hover:scale-110"></div>
             <!-- Content -->
@@ -1090,7 +1094,11 @@
       timelineEntries.forEach((entry) => {
         const entryCats = entry.dataset.categories.split(',');
         const entryOrg = entry.dataset.org;
-        const matchCat = activeCat === 'All' || entryCats.includes(activeCat);
+        const matchCat = activeCat === 'All'
+          ? true
+          : activeCat === 'Importance'
+            ? entry.dataset.importance === '1'
+            : entryCats.includes(activeCat);
         const matchOrg = activeOrg === 'All' || entryOrg === activeOrg;
         const show = matchCat && matchOrg;
         entry.style.display = show ? '' : 'none';
