@@ -7,6 +7,7 @@
     "image": "assets/images/profile.jpg",
     "tagline": "Highly motivated student with a strong background in the <strong>cryptocurrency industry</strong>. I have acquired expertise in various domains (<strong>crypto-blockchain</strong>, <strong>financial engineering</strong>), complemented by practical working experience.",
     "status": "Available for Technical Research",
+    "heroIdentity": "Data-Driven Crypto Researcher & Builder",
     "focusAreas": [
       {
         "icon": "token",
@@ -93,7 +94,7 @@
       "description": "이더리움의 기술적 발전과 생태계 확장에 대한 심층 분석 리포트.",
       "contribution": "주 저자",
       "date": "2023-04",
-      "category": "Personal",
+      "category": "Bithumb",
       "type": "pdf"
     },
     {
@@ -103,7 +104,7 @@
       "description": "크립토 시장의 거시적 흐름과 다가올 대규모 변화에 대한 전망 리포트.",
       "contribution": "주 저자",
       "date": "2023-02",
-      "category": "Personal",
+      "category": "Bithumb",
       "type": "pdf"
     },
     {

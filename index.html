@@ -9,8 +9,8 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Pretendard Font -->
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
   <!-- Tailwind Config (Design Tokens from reference) -->
@@ -23,59 +23,59 @@
             "secondary-fixed": "#cbe7f5",
             "on-tertiary-container": "#4a4e69",
             "outline-variant": "#abb3b7",
-            "surface-bright": "#f8f9fa",
+            "surface-bright": "#FAFAFA",
             "secondary-dim": "#3d5762",
             "surface-variant": "#dbe4e7",
             "surface-container-lowest": "#ffffff",
-            "primary-container": "#d1e4ff",
+            "primary-container": "#FFE0E5",
             "inverse-on-surface": "#9b9d9e",
-            "background": "#f8f9fa",
-            "on-primary": "#f5f7ff",
+            "background": "#FAFAFA",
+            "on-primary": "#fff5f6",
             "tertiary-fixed": "#dbdefe",
             "error-dim": "#4e0309",
             "surface-container-high": "#e3e9ec",
-            "on-primary-fixed": "#2d4158",
+            "on-primary-fixed": "#6B0F22",
             "tertiary-fixed-dim": "#ccd0ef",
-            "on-primary-fixed-variant": "#4a5d75",
-            "primary": "#4c6078",
-            "surface-tint": "#4c6078",
+            "on-primary-fixed-variant": "#8B1029",
+            "primary": "#A31432",
+            "surface-tint": "#A31432",
             "surface-container": "#eaeff1",
-            "inverse-primary": "#cadefb",
+            "inverse-primary": "#FFB3BE",
             "secondary-container": "#cbe7f5",
-            "on-surface": "#2b3437",
+            "on-surface": "#2D3748",
             "on-secondary-fixed-variant": "#455f6b",
-            "on-background": "#2b3437",
+            "on-background": "#2D3748",
             "surface-container-highest": "#dbe4e7",
             "on-tertiary": "#faf8ff",
-            "on-primary-container": "#40536b",
+            "on-primary-container": "#6B0F22",
             "on-secondary-container": "#3c5561",
             "on-secondary": "#f2faff",
             "on-secondary-fixed": "#29434e",
-            "primary-fixed": "#d1e4ff",
+            "primary-fixed": "#FFE0E5",
             "tertiary": "#595d78",
             "error-container": "#fe8983",
             "surface-container-low": "#f1f4f6",
-            "primary-dim": "#41546c",
+            "primary-dim": "#8B1029",
             "surface-dim": "#d1dce0",
             "on-tertiary-fixed": "#383c55",
             "on-tertiary-fixed-variant": "#545873",
             "tertiary-dim": "#4d526c",
             "secondary": "#49636f",
-            "primary-fixed-dim": "#c2d6f3",
+            "primary-fixed-dim": "#F5C6CE",
             "outline": "#737c7f",
             "on-surface-variant": "#586064",
             "error": "#9f403d",
             "inverse-surface": "#0c0f10",
             "on-error": "#fff7f6",
             "tertiary-container": "#dbdefe",
-            "surface": "#f8f9fa",
+            "surface": "#FAFAFA",
             "secondary-fixed-dim": "#bdd9e6",
             "on-error-container": "#752121"
           },
           fontFamily: {
-            "headline": ["Manrope", "sans-serif"],
-            "body": ["Newsreader", "serif"],
-            "label": ["Inter", "sans-serif"]
+            "headline": ["Pretendard Variable", "Pretendard", "sans-serif"],
+            "body": ["Pretendard Variable", "Pretendard", "sans-serif"],
+            "label": ["Pretendard Variable", "Pretendard", "sans-serif"]
           },
           borderRadius: {
             "DEFAULT": "0.125rem",
@@ -144,13 +144,13 @@
     </div>
   </div>
 
-  <main class="pt-20 md:pt-32">
+  <main class="pt-24 md:pt-36">
 
     <!-- ==================== HOME SECTION ==================== -->
     <section id="home" class="section section--active">
 
       <!-- Hero -->
-      <div class="max-w-7xl mx-auto px-6 md:px-8 mb-16 md:mb-24 lg:mb-32">
+      <div class="max-w-7xl mx-auto px-6 md:px-8 mb-20 md:mb-32 lg:mb-40">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-20 items-center">
           <!-- Text Column -->
           <div class="lg:col-span-7">
@@ -158,9 +158,10 @@
               <span class="w-2 h-2 rounded-[2rem] bg-primary"></span>
               <span class="text-xs font-label font-medium uppercase tracking-widest text-on-surface-variant" id="statusText">Available for Technical Research</span>
             </div>
+            <p class="font-label text-sm uppercase tracking-[0.15em] text-primary font-semibold mb-4" id="heroIdentity">Data-Driven Crypto Researcher & Builder</p>
             <h1 class="font-headline font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-8xl text-on-surface leading-[1.05] tracking-tighter mb-8">
               Seungjun <br>
-              <span class="text-primary italic font-body font-normal">Oh</span>
+              <span class="text-primary italic font-headline font-light">Oh</span>
             </h1>
             <p class="font-body text-xl md:text-2xl text-on-surface-variant leading-relaxed max-w-2xl mb-12" id="heroTagline">
               Investigating the convergence of <span class="text-on-surface font-semibold">Crypto Markets</span>, <span class="text-on-surface font-semibold">Technical Writing</span>, and <span class="text-on-surface font-semibold">Socio-Technical Systems</span> to decode complex digital economies.
@@ -189,14 +190,14 @@
       </div>
 
       <!-- Focus Areas -->
-      <div class="max-w-7xl mx-auto px-6 md:px-8 py-12 md:py-20 bg-surface-container-low rounded-3xl mb-16 md:mb-24 lg:mb-32" id="focusAreasContainer">
+      <div class="max-w-7xl mx-auto px-6 md:px-8 py-12 md:py-20 bg-surface-container-low rounded-3xl mb-20 md:mb-32 lg:mb-40" id="focusAreasContainer">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="focusAreasGrid">
           <!-- Populated by JS from portfolio-config.json -->
         </div>
       </div>
 
       <!-- About Me & Career Summary -->
-      <div class="max-w-7xl mx-auto px-6 md:px-8 pb-16 md:pb-24 lg:pb-32">
+      <div class="max-w-7xl mx-auto px-6 md:px-8 pb-20 md:pb-32 lg:pb-40">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
           <!-- About Me -->
           <div class="lg:col-span-7">
@@ -221,7 +222,7 @@
       </div>
 
       <!-- Expertise -->
-      <div class="max-w-7xl mx-auto px-6 md:px-8 pb-16 md:pb-24 lg:pb-32">
+      <div class="max-w-7xl mx-auto px-6 md:px-8 pb-20 md:pb-32 lg:pb-40">
         <div class="flex items-center gap-4 text-on-surface-variant font-label text-sm uppercase tracking-[0.2em] mb-8">
           <span class="w-12 h-[1px] bg-outline-variant"></span>
           <span>Expertise</span>
@@ -235,7 +236,7 @@
     <section id="articles" class="section">
 
       <!-- Hero: Featured Publication -->
-      <div class="max-w-7xl mx-auto px-6 md:px-8 pt-8 pb-16 md:pb-24 lg:pb-32">
+      <div class="max-w-7xl mx-auto px-6 md:px-8 pt-8 pb-20 md:pb-32 lg:pb-40">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-end">
           <div class="lg:col-span-7">
             <span class="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant mb-6 block">Featured Publication</span>
@@ -270,7 +271,7 @@
       </div>
 
       <!-- Bento Archive Grid -->
-      <div class="max-w-7xl mx-auto px-6 md:px-8 pb-16 md:pb-24 lg:pb-32">
+      <div class="max-w-7xl mx-auto px-6 md:px-8 pb-20 md:pb-32 lg:pb-40">
         <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10">
           <!-- Populated by JS -->
         </div>
@@ -315,7 +316,7 @@
             <span>The Editorial Archive</span>
           </div>
           <h2 class="text-3xl sm:text-5xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface leading-none">
-            Experience <span class="italic font-body font-light text-primary">History</span>
+            Experience <span class="italic font-headline font-light text-primary">History</span>
           </h2>
           <p class="max-w-2xl text-xl text-on-surface-variant font-body italic leading-relaxed pt-4">
             A structured documentation of professional milestones, technical research, and institutional contributions across military, tech, and community sectors.
