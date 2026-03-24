@@ -445,6 +445,10 @@
     if (tagline && config.profile?.tagline) {
       tagline.innerHTML = config.profile.tagline;
     }
+    const heroIdentity = document.getElementById('heroIdentity');
+    if (heroIdentity && config.profile?.heroIdentity) {
+      heroIdentity.textContent = config.profile.heroIdentity;
+    }
   };
 
   // ==================== CV SECTION ====================
@@ -799,9 +803,9 @@
     });
   };
 
-  // Badge color map for organizations
+  // Badge color map for organizations (pill style)
   const orgBadgeClasses = {
-    POSTECH: 'bg-primary-container text-on-primary-container',
+    POSTECH: 'bg-primary/10 text-primary',
     ROKAF: 'bg-secondary-container text-on-secondary-container',
     PDAO: 'bg-secondary-fixed text-on-secondary-fixed',
     Bithumb: 'bg-tertiary-container text-on-tertiary-container',
@@ -858,114 +862,149 @@
     return `${start} — ${end}`;
   };
 
-  // Render Experience Section
+  // Derive categories for an experience entry
+  const deriveCategories = (entry) => {
+    const cats = [];
+    if (entry.crypto) cats.push('Crypto');
+    if (entry.tags.some((t) => ['Bithumb', 'WorldQuant'].includes(t)) ||
+        /finance|quant|alpha|금융/i.test(entry.contents)) cats.push('Finance');
+    if (/수상|award|prize|scholar|장학/i.test(entry.contents)) cats.push('Awards');
+    if (entry.tags.some((t) => ['PDAO', 'SuperteamKR', 'NinjaLabsKR', 'Base Korea'].includes(t))) cats.push('Community');
+    if (entry.tags.includes('POSTECH') || /연구|research|lab/i.test(entry.contents)) cats.push('Research');
+    if (entry.tags.includes('ROKAF')) cats.push('Military');
+    if (cats.length === 0) cats.push('Other');
+    return cats;
+  };
+
+  // Render Experience Section as Timeline
   const renderExperience = (config, entries) => {
     const tableContainer = document.getElementById('experienceTableContainer');
     const insightsContainer = document.getElementById('experienceInsights');
     if (!tableContainer || !entries?.length) return;
 
-    // Derive filter categories from primary orgs
+    // Add derived categories to each entry
+    entries.forEach((e) => { e.categories = deriveCategories(e); });
+
+    // Derive category filter counts
+    const catCounts = {};
+    entries.forEach((e) => {
+      e.categories.forEach((c) => { catCounts[c] = (catCounts[c] || 0) + 1; });
+    });
+    const categoryOrder = ['Crypto', 'Finance', 'Awards', 'Community', 'Research', 'Military', 'Other'];
+    const activeCategories = categoryOrder.filter((c) => catCounts[c]);
+
+    // Derive org filter counts
     const orgCounts = {};
     entries.forEach((e) => { orgCounts[e.primaryOrg] = (orgCounts[e.primaryOrg] || 0) + 1; });
     const sortedOrgs = Object.entries(orgCounts).sort((a, b) => b[1] - a[1]).map(([org]) => org);
-    const categories = ['All', ...sortedOrgs];
 
-    // Build filter buttons
-    const filterButtons = categories.map((cat) => {
-      const isAll = cat === 'All';
-      const count = isAll ? entries.length : (orgCounts[cat] || 0);
-      const activeClass = isAll
-        ? 'bg-primary text-on-primary'
-        : 'bg-surface-container-lowest text-on-surface-variant border border-outline-variant/20 hover:border-primary/50';
-      const label = isAll ? 'All Archive' : cat;
-      return `<button class="exp-filter-btn px-3 py-1 text-xs font-label rounded-md transition-colors ${activeClass}" data-filter="${cat}">${label} <span class="opacity-60">(${count})</span></button>`;
-    }).join('');
+    // Build category filter buttons
+    const catButtons = [
+      `<button class="exp-cat-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-primary text-on-primary" data-filter="All">전체 보기 <span class="opacity-60">(${entries.length})</span></button>`,
+      ...activeCategories.map((cat) =>
+        `<button class="exp-cat-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high" data-filter="${cat}">${cat} <span class="opacity-60">(${catCounts[cat]})</span></button>`
+      ),
+    ].join('');
 
-    // Build table rows
-    const tableRows = entries.map((entry) => {
-      const badgeClass = orgBadgeClasses[entry.primaryOrg] || defaultBadgeClass;
-      const secondaryTags = entry.tags.slice(1);
-      const secondaryChips = secondaryTags.map((tag) =>
-        `<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label text-[9px] tracking-wider">${tag}</span>`
-      ).join('');
-      const flags = [];
-      if (entry.importance) flags.push('<span class="material-symbols-outlined text-primary text-sm" title="Key milestone">star</span>');
-      if (entry.crypto) flags.push('<span class="material-symbols-outlined text-tertiary text-sm" title="Crypto-related">currency_bitcoin</span>');
+    // Build org filter buttons
+    const orgButtons = [
+      `<button class="exp-org-btn px-3 py-1.5 text-[11px] font-label font-medium rounded-full transition-colors bg-primary text-on-primary" data-filter="All">All Orgs</button>`,
+      ...sortedOrgs.map((org) =>
+        `<button class="exp-org-btn px-3 py-1.5 text-[11px] font-label font-medium rounded-full transition-colors bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high" data-filter="${org}">${org} <span class="opacity-50">(${orgCounts[org]})</span></button>`
+      ),
+    ].join('');
+
+    // Group entries by start year
+    const yearGroups = {};
+    entries.forEach((e) => {
+      const year = e.start.slice(0, 4) || 'Unknown';
+      if (!yearGroups[year]) yearGroups[year] = [];
+      yearGroups[year].push(e);
+    });
+    const sortedYears = Object.keys(yearGroups).sort((a, b) => b.localeCompare(a));
+
+    // Build timeline
+    const timelineHTML = sortedYears.map((year) => {
+      const yearEntries = yearGroups[year];
+      const entriesHTML = yearEntries.map((entry) => {
+        const badgeClass = orgBadgeClasses[entry.primaryOrg] || defaultBadgeClass;
+        const secondaryTags = entry.tags.slice(1);
+
+        // Node size based on importance
+        const nodeClass = entry.importance
+          ? 'w-5 h-5 rounded-full bg-primary border-4 border-background shadow-md shadow-primary/20'
+          : 'w-3 h-3 rounded-full border-2 border-on-surface-variant/40 bg-surface';
+        const nodeTop = entry.importance ? 'top-1' : 'top-2';
+
+        // Flags
+        const flags = [];
+        if (entry.importance) flags.push('<span class="material-symbols-outlined text-primary text-sm" title="Key milestone">star</span>');
+        if (entry.crypto) flags.push('<span class="material-symbols-outlined text-tertiary text-sm" title="Crypto-related">currency_bitcoin</span>');
+
+        // Tags as pill badges
+        const primaryBadge = `<span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-label font-semibold">${entry.primaryOrg}</span>`;
+        const secondaryBadges = secondaryTags.map((tag) =>
+          `<span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label text-[10px] tracking-wide">${tag}</span>`
+        ).join('');
+
+        return `
+          <div class="timeline-entry relative flex gap-4 md:gap-6 pb-8 group" data-org="${entry.primaryOrg}" data-categories="${entry.categories.join(',')}">
+            <!-- Node -->
+            <div class="absolute -left-[25px] md:-left-[33px] ${nodeTop} ${nodeClass} flex-shrink-0 transition-transform group-hover:scale-110"></div>
+            <!-- Content -->
+            <div class="flex-1 min-w-0">
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <p class="font-headline ${entry.importance ? 'font-bold' : 'font-normal'} text-base text-on-surface leading-snug">${entry.contents}</p>
+                <div class="flex items-center gap-1 flex-shrink-0">${flags.join('')}</div>
+              </div>
+              <span class="inline-block font-label text-xs text-on-surface-variant/70 font-medium mb-3">${formatPeriod(entry.start, entry.end)}</span>
+              <div class="flex flex-wrap gap-1.5">
+                ${primaryBadge}
+                ${secondaryBadges}
+              </div>
+            </div>
+          </div>`;
+      }).join('');
 
       return `
-        <tr class="hover:bg-surface-bright transition-colors group" data-org="${entry.primaryOrg}">
-          <td class="px-6 py-5 font-label text-sm font-semibold text-primary whitespace-nowrap align-top">${formatPeriod(entry.start, entry.end)}</td>
-          <td class="px-6 py-5 font-body text-base leading-relaxed align-top">${entry.contents}</td>
-          <td class="px-6 py-5 align-top">
-            <span class="px-2 py-1 rounded ${badgeClass} font-label text-[10px] uppercase font-bold tracking-wider">${entry.primaryOrg}</span>
-            ${secondaryChips ? `<div class="flex flex-wrap gap-1 mt-1.5">${secondaryChips}</div>` : ''}
-          </td>
-          <td class="px-6 py-5 align-top">
-            <div class="flex items-center gap-1">${flags.join('') || '<span class="text-on-surface-variant/30">—</span>'}</div>
-          </td>
-        </tr>`;
+        <div class="timeline-year-group" data-year="${year}">
+          <!-- Year Header -->
+          <div class="flex items-center gap-4 mb-8 mt-4">
+            <span class="text-2xl md:text-3xl font-headline font-extrabold text-on-surface tracking-tight">${year}</span>
+            <div class="flex-1 h-px bg-outline-variant/20"></div>
+          </div>
+          <!-- Timeline Entries -->
+          <div class="relative pl-6 md:pl-8 ml-3 md:ml-4 space-y-2">
+            ${entriesHTML}
+          </div>
+        </div>`;
     }).join('');
 
     // Export CSV handler id
     const exportId = 'expExportCsv';
 
-    // Build mobile cards
-    const mobileCards = entries.map((entry) => {
-      const badgeClass = orgBadgeClasses[entry.primaryOrg] || defaultBadgeClass;
-      const flags = [];
-      if (entry.importance) flags.push('<span class="material-symbols-outlined text-primary text-sm">star</span>');
-      if (entry.crypto) flags.push('<span class="material-symbols-outlined text-tertiary text-sm">currency_bitcoin</span>');
-      return `
-        <div class="bg-surface-container-lowest p-4 rounded-xl mb-3 mobile-exp-card" data-org="${entry.primaryOrg}">
-          <div class="flex items-center justify-between mb-2">
-            <span class="px-2 py-0.5 rounded ${badgeClass} font-label text-[10px] uppercase font-bold tracking-wider">${entry.primaryOrg}</span>
-            <span class="font-label text-xs text-primary font-semibold">${formatPeriod(entry.start, entry.end)}</span>
-          </div>
-          <p class="font-body text-sm leading-relaxed text-on-surface">${entry.contents}</p>
-          ${flags.length ? `<div class="flex gap-1 mt-2">${flags.join('')}</div>` : ''}
-        </div>`;
-    }).join('');
-
     tableContainer.innerHTML = `
-      <div class="bg-surface-container-low rounded-xl overflow-hidden">
-        <!-- Filter Bar -->
-        <div class="px-4 md:px-8 py-4 md:py-6 border-b border-outline-variant/10 bg-surface-container-high/30 flex flex-wrap justify-between items-center gap-4">
-          <div class="flex items-center gap-4 md:gap-6 flex-wrap">
-            <span class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Filter by Organization:</span>
-            <div class="flex gap-2 flex-wrap">${filterButtons}</div>
-          </div>
-          <div class="hidden md:flex items-center gap-2 font-label text-xs text-on-surface-variant italic">
-            <span class="material-symbols-outlined text-sm">info</span>
-            Data source: proof-of-work.xlsx
-          </div>
+      <!-- Filter Bar: Categories -->
+      <div class="mb-6 space-y-4">
+        <div class="flex flex-wrap items-center gap-3">
+          <span class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant mr-1">Category:</span>
+          ${catButtons}
         </div>
-        <!-- Mobile Cards -->
-        <div class="md:hidden px-4 py-4">${mobileCards}</div>
-        <!-- Desktop Table -->
-        <div class="hidden md:block overflow-x-auto">
-          <table class="w-full text-left border-collapse">
-            <thead class="bg-surface-container-high/50">
-              <tr>
-                <th class="px-6 py-5 font-headline font-bold text-xs uppercase tracking-widest text-on-surface-variant border-b border-outline-variant/20 w-36">
-                  <div class="flex items-center gap-2">Period <span class="material-symbols-outlined text-xs">unfold_more</span></div>
-                </th>
-                <th class="px-6 py-5 font-headline font-bold text-xs uppercase tracking-widest text-on-surface-variant border-b border-outline-variant/20">Activity</th>
-                <th class="px-6 py-5 font-headline font-bold text-xs uppercase tracking-widest text-on-surface-variant border-b border-outline-variant/20 w-44">
-                  <div class="flex items-center gap-2">Organization <span class="material-symbols-outlined text-xs">filter_list</span></div>
-                </th>
-                <th class="px-6 py-5 font-headline font-bold text-xs uppercase tracking-widest text-on-surface-variant border-b border-outline-variant/20 w-20">Flags</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-outline-variant/10">${tableRows}</tbody>
-          </table>
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="font-label text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mr-1">Organization:</span>
+          ${orgButtons}
         </div>
-        <!-- Table Footer -->
-        <div class="px-4 md:px-8 py-3 md:py-4 bg-surface-container-high/20 border-t border-outline-variant/10 flex justify-between items-center">
-          <p class="exp-entry-count font-label text-[10px] text-on-surface-variant uppercase tracking-widest">Showing ${entries.length} of ${entries.length} entries</p>
-          <div class="flex gap-4">
-            <button id="${exportId}" class="text-xs font-headline font-bold text-primary hover:underline underline-offset-4">Export CSV</button>
-          </div>
-        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="timeline-container">
+        ${timelineHTML}
+      </div>
+
+      <!-- Footer -->
+      <div class="mt-8 flex justify-between items-center">
+        <p class="exp-entry-count font-label text-[10px] text-on-surface-variant uppercase tracking-widest">Showing ${entries.length} of ${entries.length} entries</p>
+        <button id="${exportId}" class="text-xs font-headline font-bold text-primary hover:underline underline-offset-4">Export CSV</button>
       </div>`;
 
     // CSV export
@@ -1030,53 +1069,81 @@
       </section>`;
   };
 
-  // Experience Filter Logic
+  // Experience Filter Logic (Timeline version with category + org filters)
   const initExperienceFilters = () => {
     const container = document.getElementById('experienceTableContainer');
     if (!container) return;
 
-    const buttons = container.querySelectorAll('.exp-filter-btn');
-    const rows = container.querySelectorAll('tbody tr[data-org]');
-    const mobileCards = container.querySelectorAll('.mobile-exp-card[data-org]');
+    const catButtons = container.querySelectorAll('.exp-cat-btn');
+    const orgButtons = container.querySelectorAll('.exp-org-btn');
+    const timelineEntries = container.querySelectorAll('.timeline-entry');
+    const yearGroups = container.querySelectorAll('.timeline-year-group');
     const countEl = container.querySelector('.exp-entry-count');
-    const totalCount = rows.length;
+    const totalCount = timelineEntries.length;
 
-    buttons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const filter = btn.dataset.filter;
+    let activeCat = 'All';
+    let activeOrg = 'All';
 
-        // Update button styles
-        buttons.forEach((b) => {
-          b.classList.remove('bg-primary', 'text-on-primary');
-          b.classList.add('bg-surface-container-lowest', 'text-on-surface-variant', 'border', 'border-outline-variant/20');
-        });
-        btn.classList.remove('bg-surface-container-lowest', 'text-on-surface-variant', 'border', 'border-outline-variant/20');
-        btn.classList.add('bg-primary', 'text-on-primary');
+    const applyFilters = () => {
+      let visibleCount = 0;
 
-        // Filter desktop rows
-        let visibleCount = 0;
-        rows.forEach((row) => {
-          const show = filter === 'All' || row.dataset.org === filter;
-          row.style.display = show ? '' : 'none';
-          if (show) visibleCount++;
-        });
+      timelineEntries.forEach((entry) => {
+        const entryCats = entry.dataset.categories.split(',');
+        const entryOrg = entry.dataset.org;
+        const matchCat = activeCat === 'All' || entryCats.includes(activeCat);
+        const matchOrg = activeOrg === 'All' || entryOrg === activeOrg;
+        const show = matchCat && matchOrg;
+        entry.style.display = show ? '' : 'none';
+        if (show) visibleCount++;
+      });
 
-        // Filter mobile cards
-        mobileCards.forEach((card) => {
-          const show = filter === 'All' || card.dataset.org === filter;
-          card.style.display = show ? '' : 'none';
-        });
+      // Hide year groups with no visible entries
+      yearGroups.forEach((group) => {
+        const visibleEntries = group.querySelectorAll('.timeline-entry:not([style*="display: none"])');
+        group.style.display = visibleEntries.length > 0 ? '' : 'none';
+      });
 
-        // Update count
-        if (countEl) {
-          countEl.textContent = `Showing ${visibleCount} of ${totalCount} entries`;
+      if (countEl) {
+        countEl.textContent = `Showing ${visibleCount} of ${totalCount} entries`;
+      }
+    };
+
+    const updateButtonStyles = (buttons, activeValue) => {
+      buttons.forEach((btn) => {
+        if (btn.dataset.filter === activeValue) {
+          btn.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+          btn.classList.add('bg-primary', 'text-on-primary');
+        } else {
+          btn.classList.remove('bg-primary', 'text-on-primary');
+          btn.classList.add('bg-surface-container-low', 'text-on-surface-variant');
         }
+      });
+    };
+
+    catButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activeCat = btn.dataset.filter;
+        updateButtonStyles(catButtons, activeCat);
+        applyFilters();
+      });
+    });
+
+    orgButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activeOrg = btn.dataset.filter;
+        updateButtonStyles(orgButtons, activeOrg);
+        applyFilters();
       });
     });
   };
 
   // Initialize
   const init = async () => {
+    // Set PDF.js worker source
+    if (typeof pdfjsLib !== 'undefined' && !pdfjsLib.GlobalWorkerOptions.workerSrc) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+
     setYear();
     initNavigation();
 
