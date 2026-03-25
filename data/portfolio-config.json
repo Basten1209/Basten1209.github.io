@@ -48,12 +48,62 @@
   ],
   "reports": [
     {
+      "id": "medium-crypto-blockchain-summary",
+      "title": "Super Simple Summary about Crypto-Blockchain",
+      "description": "블록체인 기초 및 크립토 생태계 입문 가이드.",
+      "contribution": "주 저자",
+      "date": "2025-10",
+      "category": "PDAO",
+      "type": "url",
+      "url": "https://medium.com/postech-dao/super-simple-summary-about-crypto-blockchain-2d2088f1be15"
+    },
+    {
+      "id": "medium-basic-hotstuff",
+      "title": "Basic HotStuff 에 대한 이해",
+      "description": "HotStuff 합의 알고리즘과 pBFT로부터의 발전 과정 분석.",
+      "contribution": "주 저자",
+      "date": "2025-10",
+      "category": "PDAO",
+      "type": "url",
+      "url": "https://medium.com/postech-dao/basic-hotstuff-%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4-d0d4a9fd9691"
+    },
+    {
+      "id": "medium-solana-bic",
+      "title": "솔라나는 왜 BIC를 후원했을까?",
+      "description": "솔라나의 BIC 후원과 Web3 게임 생태계 전략 분석.",
+      "contribution": "주 저자",
+      "date": "2025-08",
+      "category": "PDAO",
+      "type": "url",
+      "url": "https://medium.com/postech-dao/%EC%86%94%EB%9D%BC%EB%82%98%EB%8A%94-%EC%99%9C-bic%EB%A5%BC-%ED%9B%84%EC%9B%90%ED%96%88%EC%9D%84%EA%B9%8C-0c90d1b3c4b4"
+    },
+    {
+      "id": "medium-solayer-infinisvm",
+      "title": "Solayer's InfiniSVM — 하드웨어 가속기반 SVM 구조",
+      "description": "Solayer Project 소개 - $200 Bounty by Superteam Earn.",
+      "contribution": "주 저자",
+      "date": "2025-05",
+      "category": "PDAO",
+      "type": "url",
+      "url": "https://seungjun-oh.medium.com/solayers-infinisvm-%ED%95%98%EB%93%9C%EC%9B%A8%EC%96%B4-%EA%B0%80%EC%86%8D%EA%B8%B0%EB%B0%98-svm-%EA%B5%AC%EC%A1%B0-8565f823e444"
+    },
+    {
+      "id": "medium-bitcoin-mining",
+      "title": "비트코인 채굴기업 산업 분석",
+      "description": "비트코인 채굴기업의 BM과 확장전략, 주요 채굴기업의 소개.",
+      "contribution": "주 저자",
+      "date": "2025-03",
+      "category": "PDAO",
+      "type": "url",
+      "url": "https://seungjun-oh.medium.com/%EB%B9%84%ED%8A%B8%EC%BD%94%EC%9D%B8-%EC%B1%84%EA%B5%B4%EA%B8%B0%EC%97%85-%EC%82%B0%EC%97%85-%EB%B6%84%EC%84%9D-45e8d7e7b701"
+    },
+    {
       "id": "pdao-zkp-sp1",
       "filename": "[PDAO] From ZKP to SP1 Hypercube (KOR).pdf",
       "title": "[PDAO] From ZKP to SP1 Hypercube (KOR)",
       "description": "ZKP(영지식 증명)의 기초부터 Succinct의 SP1 Hypercube까지, Realtime Proving 실현 과정을 분석한 기술 리포트.",
       "contribution": "주 저자",
-      "date": "2024-12",
+      "date": "2025-11",
       "category": "PDAO",
       "type": "pdf"
     },
@@ -63,7 +113,7 @@
       "title": "[PDAO] KRWstablecoin (KOR)",
       "description": "한국 원화 기반 스테이블코인의 설계, 규제 환경, 그리고 시장 가능성에 대한 종합 분석.",
       "contribution": "리포트 코디네이팅, 일부 범위 리포트 작성/교열 및 편집",
-      "date": "2024-09",
+      "date": "2025-11",
       "category": "PDAO",
       "type": "pdf"
     },
@@ -73,7 +123,7 @@
       "title": "[PDAO] ZK in SOL (ENG)",
       "description": "Examining Zero-Knowledge proof implementations on the Solana blockchain ecosystem.",
       "contribution": "리포트 코디네이팅, 전 범위 리포트 교열 및 편집",
-      "date": "2024-06",
+      "date": "2025-06",
       "category": "PDAO",
       "type": "pdf"
     },
@@ -83,7 +133,7 @@
       "title": "[PDAO] ZK in SOL (KOR)",
       "description": "솔라나 블록체인 생태계에서의 영지식 증명 구현에 대한 분석.",
       "contribution": "리포트 코디네이팅, 전 범위 리포트 교열 및 편집",
-      "date": "2024-06",
+      "date": "2025-06",
       "category": "PDAO",
       "type": "pdf"
     },
