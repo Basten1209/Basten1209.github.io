@@ -48,6 +48,16 @@
   ],
   "reports": [
     {
+      "id": "postech-crypto-price-patterns",
+      "filename": "Heterogenous price patterns of cryptocurrency between exchanges.pdf",
+      "title": "Heterogenous Price Patterns of Cryptocurrency Between Exchanges",
+      "description": "실현변동성에 기반한 거래소간 / 대륙 기축화폐 간 가상자산 가격 변동 패턴 분석.",
+      "contribution": "데이터 수집 및 전처리",
+      "date": "2025-12",
+      "category": "POSTECH",
+      "type": "pdf"
+    },
+    {
       "id": "postech-lift-framework",
       "title": "LIFT - A Unified Framework for High-Dimensional Covariance Estimation",
       "description": "계층적 클러스터링 기반 고차원 금융데이터 분석 프레임워크 연구.",
