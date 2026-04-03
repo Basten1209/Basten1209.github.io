@@ -129,10 +129,9 @@
     if (!grid || !config.profile?.focusAreas) return;
 
     grid.innerHTML = config.profile.focusAreas.map((area) => `
-      <div class="p-6 md:p-8 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow">
-        <span class="material-symbols-outlined text-primary text-4xl mb-4">${area.icon}</span>
-        <h3 class="font-headline font-bold text-xl mb-3">${area.title}</h3>
-        <p class="font-body text-lg text-on-surface-variant italic">${area.description}</p>
+      <div class="p-6 md:p-8 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center gap-3">
+        <span class="material-symbols-outlined text-primary text-4xl">${area.icon}</span>
+        <h3 class="font-headline font-bold text-lg">${area.title}</h3>
       </div>
     `).join('');
   };
@@ -245,26 +244,8 @@
     const sorted = getSortedReports(config);
     if (sorted.length === 0) return;
 
-    // Featured article (latest)
-    const featured = sorted[0];
-    const titleEl = document.getElementById('featuredArticleTitle');
-    const descEl = document.getElementById('featuredArticleDesc');
-    const ctaEl = document.getElementById('featuredArticleCta');
-
-    if (titleEl) titleEl.textContent = featured.title;
-    if (descEl) descEl.textContent = featured.description || '';
-    if (ctaEl) {
-      ctaEl.textContent = featured.type === 'url' ? 'VISIT ARTICLE' : 'READ MONOGRAPH';
-      ctaEl.addEventListener('click', () => handleReportClick(featured));
-    }
-
-    // Render featured PDF thumbnail
-    if (featured.type === 'pdf' && featured.filename) {
-      renderFeaturedPdfThumbnail(featured.filename);
-    }
-
-    // Render grid (all reports except featured)
-    renderArticlesGrid(sorted.slice(1));
+    // Render grid (all reports)
+    renderArticlesGrid(sorted);
   };
 
   // Render articles grid with given reports
@@ -307,16 +288,29 @@
     }
   };
 
-  // Initialize article filter tabs
+  // Initialize article filter tabs and search
   const initArticleFilters = (config) => {
     const filtersNav = document.getElementById('articleFilters');
+    const searchInput = document.getElementById('articleSearchInput');
     if (!filtersNav || !config.reports) return;
 
     const sorted = getSortedReports(config);
     const categories = ['All', ...new Set(config.reports.map((r) => r.category))];
     let activeCategory = 'All';
+    let searchQuery = '';
 
-    const renderFilters = () => {
+    const applyFilters = () => {
+      let filtered = activeCategory === 'All'
+        ? sorted
+        : sorted.filter((r) => r.category === activeCategory);
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        filtered = filtered.filter((r) => r.title.toLowerCase().includes(q));
+      }
+      renderArticlesGrid(filtered);
+    };
+
+    const renderFilterButtons = () => {
       filtersNav.innerHTML = categories.map((cat) => `
         <button class="article-filter-tab pb-6 -mb-6 transition-colors ${
           cat === activeCategory
@@ -328,16 +322,20 @@
       filtersNav.querySelectorAll('.article-filter-tab').forEach((btn) => {
         btn.addEventListener('click', () => {
           activeCategory = btn.dataset.category;
-          renderFilters();
-          const filtered = activeCategory === 'All'
-            ? sorted.slice(1)
-            : sorted.filter((r) => r.category === activeCategory);
-          renderArticlesGrid(filtered);
+          renderFilterButtons();
+          applyFilters();
         });
       });
     };
 
-    renderFilters();
+    renderFilterButtons();
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim();
+        applyFilters();
+      });
+    }
   };
 
   // PDF Modal
@@ -479,9 +477,7 @@
           <h1 class="font-headline text-4xl md:text-5xl font-extrabold tracking-tighter text-on-surface leading-none">
             Seungjun <span class="text-primary italic font-body font-normal">Oh</span>
           </h1>
-          <p class="mt-2 font-body text-sm text-on-surface-variant">
-            ${cv.subtitle}
-          </p>
+          ${cv.subtitle ? `<p class="mt-2 font-body text-sm text-on-surface-variant">${cv.subtitle}</p>` : ''}
         </div>
         <div class="flex-shrink-0 relative">
           <button id="cvDownloadBtn" class="group flex items-center gap-2 bg-primary px-6 py-3 rounded-md text-on-primary font-headline font-bold text-sm transition-all hover:bg-primary-dim">
@@ -813,6 +809,9 @@
     NinjaLabsKR: 'bg-primary-fixed text-on-primary-fixed',
     SuperteamKR: 'bg-tertiary-fixed text-on-tertiary-fixed',
     Crypto: 'bg-primary-fixed-dim text-on-primary-fixed',
+    'B-Harvest': 'bg-tertiary-fixed-dim text-on-tertiary-fixed',
+    'Base Chain': 'bg-secondary-fixed-dim text-on-secondary-fixed',
+    'BNB Chain': 'bg-primary-container text-on-primary-container',
   };
   const defaultBadgeClass = 'bg-surface-container-high text-on-surface-variant';
 
@@ -869,6 +868,7 @@
     if (entry.tags.some((t) => ['Bithumb', 'WorldQuant'].includes(t)) ||
         /finance|quant|alpha|금융/i.test(entry.contents)) cats.push('Finance');
     if (/수상|award|prize|scholar|장학/i.test(entry.contents)) cats.push('Awards');
+    if (entry.tags.some((t) => ['Certification'].includes(t)) || /취득|certif/i.test(entry.contents)) cats.push('Certification');
     if (entry.tags.some((t) => ['PDAO', 'SuperteamKR', 'NinjaLabsKR', 'Base Korea'].includes(t))) cats.push('Community');
     if (entry.tags.includes('POSTECH') || /연구|research|lab/i.test(entry.contents)) cats.push('Research');
     if (entry.tags.includes('ROKAF')) cats.push('Military');
@@ -890,31 +890,17 @@
     entries.forEach((e) => {
       e.categories.forEach((c) => { catCounts[c] = (catCounts[c] || 0) + 1; });
     });
-    const categoryOrder = ['Crypto', 'Finance', 'Awards', 'Community', 'Research', 'Military', 'Other'];
-    const activeCategories = categoryOrder.filter((c) => catCounts[c]);
-
-    // Derive org filter counts
-    const orgCounts = {};
-    entries.forEach((e) => { orgCounts[e.primaryOrg] = (orgCounts[e.primaryOrg] || 0) + 1; });
-    const sortedOrgs = Object.entries(orgCounts).sort((a, b) => b[1] - a[1]).map(([org]) => org);
 
     // Count important entries
     const importanceCount = entries.filter((e) => e.importance).length;
 
-    // Build category filter buttons
-    const catButtons = [
-      `<button class="exp-cat-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-primary text-on-primary" data-filter="All">전체 보기 <span class="opacity-60">(${entries.length})</span></button>`,
-      `<button class="exp-cat-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high" data-filter="Importance">⭐ Key Milestones <span class="opacity-60">(${importanceCount})</span></button>`,
-      ...activeCategories.map((cat) =>
-        `<button class="exp-cat-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high" data-filter="${cat}">${cat} <span class="opacity-60">(${catCounts[cat]})</span></button>`
-      ),
-    ].join('');
-
-    // Build org filter buttons
-    const orgButtons = [
-      `<button class="exp-org-btn px-3 py-1.5 text-[11px] font-label font-medium rounded-full transition-colors bg-primary text-on-primary" data-filter="All">All Orgs</button>`,
-      ...sortedOrgs.map((org) =>
-        `<button class="exp-org-btn px-3 py-1.5 text-[11px] font-label font-medium rounded-full transition-colors bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high" data-filter="${org}">${org} <span class="opacity-50">(${orgCounts[org]})</span></button>`
+    // Fixed keyword filter buttons: Key Milestones, Crypto, Finance, Awards, Certification
+    const keywordOrder = ['Crypto', 'Finance', 'Awards', 'Certification'];
+    const keywordButtons = [
+      `<button class="exp-kw-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-primary text-on-primary" data-filter="All">전체 보기 <span class="opacity-60">(${entries.length})</span></button>`,
+      `<button class="exp-kw-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high" data-filter="Importance">⭐ Key Milestones <span class="opacity-60">(${importanceCount})</span></button>`,
+      ...keywordOrder.filter((k) => catCounts[k]).map((kw) =>
+        `<button class="exp-kw-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high" data-filter="${kw}">${kw} <span class="opacity-60">(${catCounts[kw]})</span></button>`
       ),
     ].join('');
 
@@ -951,8 +937,9 @@
           `<span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label text-[10px] tracking-wide">${tag}</span>`
         ).join('');
 
+        const searchText = [entry.contents, ...entry.tags, formatPeriod(entry.start, entry.end)].join(' ').toLowerCase();
         return `
-          <div class="timeline-entry relative flex gap-4 md:gap-6 pb-8 group" data-org="${entry.primaryOrg}" data-categories="${entry.categories.join(',')}" data-importance="${entry.importance ? '1' : '0'}">
+          <div class="timeline-entry relative flex gap-4 md:gap-6 pb-8 group" data-org="${entry.primaryOrg}" data-categories="${entry.categories.join(',')}" data-importance="${entry.importance ? '1' : '0'}" data-search="${searchText.replace(/"/g, '&quot;')}">
             <!-- Node -->
             <div class="absolute -left-[25px] md:-left-[33px] ${nodeTop} ${nodeClass} flex-shrink-0 transition-transform group-hover:scale-110"></div>
             <!-- Content -->
@@ -988,15 +975,15 @@
     const exportId = 'expExportCsv';
 
     tableContainer.innerHTML = `
-      <!-- Filter Bar: Categories -->
+      <!-- Filter Bar: Keywords + Search -->
       <div class="mb-6 space-y-4">
         <div class="flex flex-wrap items-center gap-3">
-          <span class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant mr-1">Category:</span>
-          ${catButtons}
+          <span class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant mr-1">Keyword:</span>
+          ${keywordButtons}
         </div>
-        <div class="flex flex-wrap items-center gap-2">
-          <span class="font-label text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mr-1">Organization:</span>
-          ${orgButtons}
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/50 text-xl">search</span>
+          <input id="expSearchInput" type="text" placeholder="Search experiences..." class="w-full pl-12 pr-4 py-3 bg-surface-container-low rounded-lg font-body text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all">
         </div>
       </div>
 
@@ -1073,34 +1060,33 @@
       </section>`;
   };
 
-  // Experience Filter Logic (Timeline version with category + org filters)
+  // Experience Filter Logic (Timeline version with keyword filters + search)
   const initExperienceFilters = () => {
     const container = document.getElementById('experienceTableContainer');
     if (!container) return;
 
-    const catButtons = container.querySelectorAll('.exp-cat-btn');
-    const orgButtons = container.querySelectorAll('.exp-org-btn');
+    const kwButtons = container.querySelectorAll('.exp-kw-btn');
+    const searchInput = container.querySelector('#expSearchInput');
     const timelineEntries = container.querySelectorAll('.timeline-entry');
     const yearGroups = container.querySelectorAll('.timeline-year-group');
     const countEl = container.querySelector('.exp-entry-count');
     const totalCount = timelineEntries.length;
 
-    let activeCat = 'All';
-    let activeOrg = 'All';
+    let activeKw = 'All';
+    let searchQuery = '';
 
     const applyFilters = () => {
       let visibleCount = 0;
 
       timelineEntries.forEach((entry) => {
         const entryCats = entry.dataset.categories.split(',');
-        const entryOrg = entry.dataset.org;
-        const matchCat = activeCat === 'All'
+        const matchKw = activeKw === 'All'
           ? true
-          : activeCat === 'Importance'
+          : activeKw === 'Importance'
             ? entry.dataset.importance === '1'
-            : entryCats.includes(activeCat);
-        const matchOrg = activeOrg === 'All' || entryOrg === activeOrg;
-        const show = matchCat && matchOrg;
+            : entryCats.includes(activeKw);
+        const matchSearch = !searchQuery || entry.dataset.search.includes(searchQuery);
+        const show = matchKw && matchSearch;
         entry.style.display = show ? '' : 'none';
         if (show) visibleCount++;
       });
@@ -1128,21 +1114,20 @@
       });
     };
 
-    catButtons.forEach((btn) => {
+    kwButtons.forEach((btn) => {
       btn.addEventListener('click', () => {
-        activeCat = btn.dataset.filter;
-        updateButtonStyles(catButtons, activeCat);
+        activeKw = btn.dataset.filter;
+        updateButtonStyles(kwButtons, activeKw);
         applyFilters();
       });
     });
 
-    orgButtons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        activeOrg = btn.dataset.filter;
-        updateButtonStyles(orgButtons, activeOrg);
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim().toLowerCase();
         applyFilters();
       });
-    });
+    }
   };
 
   // Initialize
@@ -1157,10 +1142,8 @@
 
     const config = await loadPortfolioConfig();
     if (config) {
-      renderStatusBadge(config);
       renderTagline(config);
       renderFocusAreas(config);
-      renderHomeExpertise(config);
       renderAboutAndSummary();
       renderArticles(config);
       initArticleFilters(config);

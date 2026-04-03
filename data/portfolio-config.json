@@ -260,7 +260,7 @@
   ],
   "cv": {
     "lastUpdated": "2026.01.22",
-    "subtitle": "Web3 Researcher & Technical Writer bridging the gap between Crypto Markets and Socio-Technical Systems.",
+    "subtitle": "",
     "education": [
       {
         "period": "2021.02 - (Expected) 2028.02",
@@ -414,6 +414,8 @@
       }
     ],
     "events": [
+      { "year": "2026", "role": "Panel Speaker", "title": "DE-FERENCE 2026" },
+      { "year": "2026", "role": "Panel Speaker", "title": "BNB Martian Night: Learn & Network" },
       { "year": "2025", "role": "Panel Speaker", "title": "AI+Blockchain Autumn Camp - Korean Offline Workshop" },
       { "year": "2025", "role": "Host", "title": "Blockchains for TradFi: 전통금융과 블록체인의 만남" },
       { "year": "2025", "role": "Host & Speaker", "title": "PDAO in Seoul!" },

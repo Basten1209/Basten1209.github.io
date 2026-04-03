@@ -112,7 +112,7 @@
   <!-- Navigation Bar (Glassmorphism) -->
   <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md tonal-layering-via-bg-shift shadow-sm">
     <div class="flex justify-between items-center max-w-7xl mx-auto px-4 md:px-8 py-3 md:py-4">
-      <span class="text-lg md:text-xl font-extrabold text-on-surface uppercase tracking-widest font-headline">Research Portfolio</span>
+      <span class="text-lg md:text-xl font-extrabold text-on-surface uppercase tracking-widest font-headline">Seungjun Oh</span>
       <div class="hidden md:flex items-center gap-10 font-headline font-bold tracking-tight text-on-surface">
         <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="home" href="#home">Home</a>
         <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="articles" href="#articles">Articles</a>
@@ -154,17 +154,13 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-20 items-center">
           <!-- Text Column -->
           <div class="lg:col-span-7">
-            <div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-low rounded-[2rem] mb-8" id="statusBadge">
-              <span class="w-2 h-2 rounded-[2rem] bg-primary"></span>
-              <span class="text-xs font-label font-medium uppercase tracking-widest text-on-surface-variant" id="statusText">Available for Technical Research</span>
-            </div>
-            <p class="font-label text-sm uppercase tracking-[0.15em] text-primary font-semibold mb-4" id="heroIdentity">Data-Driven Crypto Researcher & Builder</p>
+            <p class="font-label text-sm uppercase tracking-[0.15em] text-primary font-semibold mb-4" id="heroIdentity">Data-Driven Crypto Researcher &amp; Builder</p>
             <h1 class="font-headline font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-8xl text-on-surface leading-[1.05] tracking-tighter mb-8">
               Seungjun <br>
               <span class="text-primary italic font-headline font-light">Oh</span>
             </h1>
             <p class="font-body text-xl md:text-2xl text-on-surface-variant leading-relaxed max-w-2xl mb-12" id="heroTagline">
-              Investigating the convergence of <span class="text-on-surface font-semibold">Crypto Markets</span>, <span class="text-on-surface font-semibold">Technical Writing</span>, and <span class="text-on-surface font-semibold">Socio-Technical Systems</span> to decode complex digital economies.
+              Highly motivated student with a strong background in the <strong>cryptocurrency industry</strong>. I have acquired expertise in various domains (<strong>crypto-blockchain</strong>, <strong>financial engineering</strong>), complemented by practical working experience.
             </p>
             <div class="flex flex-wrap gap-4 md:gap-6 items-center">
               <a class="bg-primary text-on-primary px-6 py-3 md:px-8 md:py-4 rounded-md font-headline font-bold text-base md:text-lg hover:bg-primary-dim transition-colors shadow-lg shadow-primary/10" href="#articles" data-section="articles">
@@ -189,8 +185,12 @@
         </div>
       </div>
 
-      <!-- Focus Areas -->
+      <!-- Interest -->
       <div class="max-w-7xl mx-auto px-6 md:px-8 py-12 md:py-20 bg-surface-container-low rounded-3xl mb-20 md:mb-32 lg:mb-40" id="focusAreasContainer">
+        <div class="flex items-center gap-4 text-on-surface-variant font-label text-sm uppercase tracking-[0.2em] mb-8">
+          <span class="w-12 h-[1px] bg-outline-variant"></span>
+          <span>Interest</span>
+        </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="focusAreasGrid">
           <!-- Populated by JS from portfolio-config.json -->
         </div>
@@ -221,52 +221,24 @@
         </div>
       </div>
 
-      <!-- Expertise -->
-      <div class="max-w-7xl mx-auto px-6 md:px-8 pb-20 md:pb-32 lg:pb-40">
-        <div class="flex items-center gap-4 text-on-surface-variant font-label text-sm uppercase tracking-[0.2em] mb-8">
-          <span class="w-12 h-[1px] bg-outline-variant"></span>
-          <span>Expertise</span>
-        </div>
-        <div id="homeExpertise"></div>
-      </div>
 
     </section>
 
     <!-- ==================== ARTICLES SECTION ==================== -->
     <section id="articles" class="section">
 
-      <!-- Hero: Featured Publication -->
-      <div class="max-w-7xl mx-auto px-6 md:px-8 pt-8 pb-20 md:pb-32 lg:pb-40">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-end">
-          <div class="lg:col-span-7">
-            <span class="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant mb-6 block">Featured Publication</span>
-            <h1 id="featuredArticleTitle" class="font-headline font-extrabold text-3xl sm:text-5xl md:text-7xl lg:text-8xl text-on-surface leading-[1.1] tracking-tight mb-8"></h1>
-            <p id="featuredArticleDesc" class="font-body text-xl md:text-2xl text-on-surface-variant leading-relaxed max-w-2xl italic mb-10"></p>
-            <button id="featuredArticleCta" class="bg-primary text-on-primary px-8 py-3 rounded-md font-headline font-bold text-sm tracking-wide hover:bg-primary-dim transition-all">
-              READ MONOGRAPH
-            </button>
-          </div>
-          <div class="lg:col-span-5">
-            <div class="relative group">
-              <div class="absolute -inset-4 bg-surface-container-low rounded-xl -z-10 transition-all group-hover:bg-surface-container-high"></div>
-              <div id="featuredVisual" class="aspect-[4/5] bg-gradient-to-br from-surface-container-low via-primary-container/20 to-secondary-container/30 rounded-xl overflow-hidden flex items-center justify-center">
-                <canvas id="featuredPdfCanvas" class="w-full h-full object-contain hidden"></canvas>
-                <div id="featuredPlaceholder" class="text-center">
-                  <span class="material-symbols-outlined text-primary/20 text-[120px]">auto_stories</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Filter / Archive Navigation -->
-      <div class="max-w-7xl mx-auto px-6 md:px-8">
-        <div class="flex flex-wrap gap-4 md:gap-8 mb-10 md:mb-16 items-baseline border-b border-outline-variant/15 pb-6">
+      <div class="max-w-7xl mx-auto px-6 md:px-8 pt-8">
+        <div class="flex flex-wrap gap-4 md:gap-8 mb-6 items-baseline border-b border-outline-variant/15 pb-6">
           <h2 class="font-headline font-extrabold text-2xl uppercase tracking-tighter">Archive</h2>
           <nav id="articleFilters" class="flex gap-6 font-label text-sm font-semibold text-on-surface-variant">
             <!-- Populated by JS -->
           </nav>
+        </div>
+        <!-- Search Box -->
+        <div class="relative mb-10 md:mb-16">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/50 text-xl">search</span>
+          <input id="articleSearchInput" type="text" placeholder="Search by title..." class="w-full pl-12 pr-4 py-3 bg-surface-container-low rounded-lg font-body text-base text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all">
         </div>
       </div>
 
