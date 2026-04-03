@@ -14,5 +14,7 @@
   },
   "author": "Seungjun Oh",
   "license": "MIT",
-  "devDependencies": {}
+  "devDependencies": {
+    "xlsx": "^0.18.5"
+  }
 }

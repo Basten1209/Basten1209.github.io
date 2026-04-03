@@ -1,0 +1,79 @@
+{
+  "generated": "2026-04-03T12:20:48.408Z",
+  "reports": [
+    {
+      "filename": "CRYPTO NOTES 1호.pdf",
+      "path": "data/reports/CRYPTO NOTES 1호.pdf"
+    },
+    {
+      "filename": "CRYPTO NOTES 2호.pdf",
+      "path": "data/reports/CRYPTO NOTES 2호.pdf"
+    },
+    {
+      "filename": "Crypto Insights 10호.pdf",
+      "path": "data/reports/Crypto Insights 10호.pdf"
+    },
+    {
+      "filename": "Crypto Insights 11호.pdf",
+      "path": "data/reports/Crypto Insights 11호.pdf"
+    },
+    {
+      "filename": "Crypto Insights 12호.pdf",
+      "path": "data/reports/Crypto Insights 12호.pdf"
+    },
+    {
+      "filename": "Crypto Insights 13호.pdf",
+      "path": "data/reports/Crypto Insights 13호.pdf"
+    },
+    {
+      "filename": "Crypto Insights 14호.pdf",
+      "path": "data/reports/Crypto Insights 14호.pdf"
+    },
+    {
+      "filename": "Crypto Insights 7호.pdf",
+      "path": "data/reports/Crypto Insights 7호.pdf"
+    },
+    {
+      "filename": "Crypto Insights 8호.pdf",
+      "path": "data/reports/Crypto Insights 8호.pdf"
+    },
+    {
+      "filename": "Crypto Insights 9호.pdf",
+      "path": "data/reports/Crypto Insights 9호.pdf"
+    },
+    {
+      "filename": "Heterogenous price patterns of cryptocurrency between exchanges.pdf",
+      "path": "data/reports/Heterogenous price patterns of cryptocurrency between exchanges.pdf"
+    },
+    {
+      "filename": "[PDAO] From ZKP to SP1 Hypercube (KOR).pdf",
+      "path": "data/reports/[PDAO] From ZKP to SP1 Hypercube (KOR).pdf"
+    },
+    {
+      "filename": "[PDAO] KRWstablecoin (KOR).pdf",
+      "path": "data/reports/[PDAO] KRWstablecoin (KOR).pdf"
+    },
+    {
+      "filename": "[PDAO] ZK in SOL (ENG).pdf",
+      "path": "data/reports/[PDAO] ZK in SOL (ENG).pdf"
+    },
+    {
+      "filename": "[PDAO] ZK in SOL (KOR).pdf",
+      "path": "data/reports/[PDAO] ZK in SOL (KOR).pdf"
+    }
+  ],
+  "resumes": [
+    {
+      "filename": "resume_eng.pdf",
+      "path": "data/resume/resume_eng.pdf"
+    },
+    {
+      "filename": "resume_kor.pdf",
+      "path": "data/resume/resume_kor.pdf"
+    }
+  ],
+  "stats": {
+    "totalReports": 15,
+    "totalResumes": 2
+  }
+}

@@ -80,12 +80,9 @@ jobs:
 
           required_files=(
             "data/portfolio-config.json"
-            "data/cv.md"
             "data/profile-intro.md"
-            "data/projects.json"
             "index.html"
             "assets/js/main.js"
-            "assets/css/style.css"
           )
 
           missing_files=()

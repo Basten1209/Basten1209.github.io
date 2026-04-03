@@ -31,7 +31,6 @@ Basten1209.github.io/
 │       └── profile.jpg     # 프로필 사진
 ├── data/
 │   ├── portfolio-config.json    # 통합 설정 파일 ⭐
-│   ├── cv.md                    # CV (Markdown)
 │   ├── profile-intro.md         # 프로필 소개
 │   ├── summary.md               # 요약 섹션
 │   ├── proof-of-work.xlsx       # 히스토리 테이블
@@ -57,8 +56,7 @@ Basten1209.github.io/
 
 ### 2. **Resume/CV** - 이력서
 - PDF 이력서 (한글/영문)
-- Markdown CV
-- 페이지 네비게이션
+- 구조화된 CV 데이터 (JSON 기반)
 
 ### 3. **Proof of Work** - 성과물
 - 14개+ 리서치 리포트
@@ -89,14 +87,6 @@ npm run serve
 자세한 업데이트 방법은 [CONTENT_UPDATE_GUIDE.md](CONTENT_UPDATE_GUIDE.md)를 참조하세요.
 
 #### 빠른 예제
-
-**CV 업데이트**:
-```bash
-# data/cv.md 파일 수정
-git add data/cv.md
-git commit -m "docs: update CV"
-git push origin main
-```
 
 **새 리포트 추가**:
 ```bash

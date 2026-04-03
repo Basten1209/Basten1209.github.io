@@ -124,10 +124,6 @@ PDF 없이 외부 URL로 연결할 수 있습니다:
 - `cv.awards[]` - 수상 및 장학금
 - `cv.certificates` - 자격증 (finance, cs, general)
 
-### 방법 B: 마크다운 (레거시)
-
-`data/cv.md` 파일을 직접 수정. CV 섹션에서 마크다운 렌더링으로 표시됩니다.
-
 ---
 
 ## 5. 이력서 PDF 추가
