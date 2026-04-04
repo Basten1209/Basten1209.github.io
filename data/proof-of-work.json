@@ -185,16 +185,6 @@
     "start": "2022.12",
     "end": "2022.12",
     "tags": [
-      "Bithumb"
-    ],
-    "contents": "Published \"CRYPTO NOTES : The Big Wave is Coming - 전통 금융기관, 크립토 시장 진출 시작되다\" Report ",
-    "importance": true,
-    "crypto": true
-  },
-  {
-    "start": "2022.12",
-    "end": "2022.12",
-    "tags": [
       "PDAO"
     ],
     "contents": "Join PDAO as Genesis Member",
@@ -208,17 +198,6 @@
       "Bithumb"
     ],
     "contents": "Took a Youtube Video about \"2023 Crypto Market Prediction\"",
-    "importance": true,
-    "crypto": true
-  },
-  {
-    "start": "2023.01",
-    "end": "2023.01",
-    "tags": [
-      "Bithumb",
-      "Ethereum"
-    ],
-    "contents": "Published \"CRYPTO NOTES : Unstoppable Ethereum - 2023 업그레이드 정리\" Report ",
     "importance": true,
     "crypto": true
   },
@@ -248,7 +227,6 @@
     "start": "2023.02",
     "end": "2023.09",
     "tags": [
-      "Crypto",
       "Bitcoin"
     ],
     "contents": "Co-Authered a book \"디지털자산 시대가 온다\"",
@@ -429,7 +407,7 @@
       "SuperteamKR"
     ],
     "contents": "Led on \"Dive-in Crypto-Blockchain! (in Pohang)\" Offline Event Project",
-    "importance": true,
+    "importance": false,
     "crypto": true
   },
   {
@@ -439,7 +417,7 @@
       "PDAO"
     ],
     "contents": "Coordinated 2025-1 PDAO Study Session",
-    "importance": true,
+    "importance": false,
     "crypto": true
   },
   {
@@ -450,7 +428,7 @@
       "Solana"
     ],
     "contents": "Member of Superteam",
-    "importance": true,
+    "importance": false,
     "crypto": true
   },
   {
@@ -494,21 +472,9 @@
     "end": "",
     "tags": [
       "POSTECH",
-      "FBDA Lab"
+      "FBDA Lab", "Finance"
     ],
     "contents": "Undergraduate Researcher in FBDA Lab(Financial Big Data Analysis Lab)",
-    "importance": true,
-    "crypto": true
-  },
-  {
-    "start": "2025.07",
-    "end": "2025.07",
-    "tags": [
-      "PDAO",
-      "SuperteamKR",
-      "Solana"
-    ],
-    "contents": "Published \"zk technology in SOL Ecosystem\" Report as research project in PDAO",
     "importance": true,
     "crypto": true
   },
@@ -620,7 +586,7 @@
       "NinjaLabsKR"
     ],
     "contents": "Led on \"Blockchains for TradFi:전통금융과 블록체인의 만남\" Offline Event",
-    "importance": true,
+    "importance": false,
     "crypto": true
   },
   {
@@ -641,7 +607,7 @@
       "PDAO",
       "Monad"
     ],
-    "contents": "6th prize in 'Monad Blitz Seoul 3rd'",
+    "contents": "Joined in 'Monad Blitz Seoul 3rd'",
     "importance": false,
     "crypto": true
   },
@@ -682,8 +648,7 @@
     "start": "2025.12",
     "end": "",
     "tags": [
-      "Base Chain",
-      "Crypto"
+      "Base"
     ],
     "contents": "Based Advocate (Ambassador) in Base Korea",
     "importance": true,
@@ -694,7 +659,6 @@
     "end": "2026.01",
     "tags": [
       "PDAO",
-      "Crypto",
       "BNB Chain"
     ],
     "contents": "Panel Speaker in \"BNB Martian Night: Learn & Network\"",
