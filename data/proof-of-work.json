@@ -3,7 +3,8 @@
     "start": "2021.02",
     "end": "2021.02",
     "tags": [
-      "POSTECH"
+      "POSTECH",
+      "Engineering"
     ],
     "contents": "joined POSTECH BS Program",
     "importance": true,
@@ -65,7 +66,8 @@
     "start": "2022.01",
     "end": "2022.01",
     "tags": [
-      "POSTECH"
+      "POSTECH",
+      "Engineering"
     ],
     "contents": "Won a Special Prize in 'Tech-Review Techathon'",
     "importance": false,
@@ -95,7 +97,8 @@
     "start": "2022.02",
     "end": "",
     "tags": [
-      "PDAO"
+      "PDAO",
+      "Blockchain"
     ],
     "contents": "Join PDAO as Genesis member",
     "importance": true,
@@ -125,7 +128,8 @@
     "start": "2022.04",
     "end": "2022.11",
     "tags": [
-      "POSTECH"
+      "POSTECH",
+      "Blockchain"
     ],
     "contents": "Finalist in Promising Student Startup 300 (U300) in Growth Track - \"NFT Hub\" Project",
     "importance": true,
@@ -135,7 +139,8 @@
     "start": "2022.04",
     "end": "2022.11",
     "tags": [
-      "POSTECH"
+      "POSTECH",
+      "Blockchain"
     ],
     "contents": "Joined in '2022 Pohang-si Innopolis Campus Program' - \"NFT Hub\" Project",
     "importance": false,
@@ -146,7 +151,9 @@
     "end": "2022.09",
     "tags": [
       "POSTECH",
-      "DPNM Lab"
+      "DPNM Lab",
+      "Blockchain",
+      "Engineering"
     ],
     "contents": "Undergraduate Researcher in DPNM Lab(Distributed Processing & Network Management Lab)",
     "importance": true,
@@ -157,7 +164,8 @@
     "end": "2022.12",
     "tags": [
       "PDAO",
-      "NEAR Protocol"
+      "NEAR Protocol",
+      "Blockchain"
     ],
     "contents": "Joined PDAO Launch Project, Worked genereal tasks in dev-NEAR team & Strategy team",
     "importance": false,
@@ -167,7 +175,8 @@
     "start": "2022.09",
     "end": "2023.03",
     "tags": [
-      "Bithumb"
+      "Bithumb",
+      "Blockchain"
     ],
     "contents": "Research Intern in Research Center, Bithumb Economic Research Institute",
     "importance": true,
@@ -177,7 +186,8 @@
     "start": "2022.11",
     "end": "2022.11",
     "tags": [
-      "POSTECH"
+      "POSTECH",
+      "Blockchain"
     ],
     "contents": "Joined Poster Exhibition in 2022 Industrial-Academic Cooperation EXPO - \"NFT Hub\" Project",
     "importance": false,
@@ -198,7 +208,8 @@
     "end": "2023.02",
     "tags": [
       "Bithumb",
-      "Ethereum"
+      "Ethereum",
+      "Blockchain"
     ],
     "contents": "Offline Session about \"2023 Etherum Upgrade\" in \"Crypto Insight Meetup\"",
     "importance": false,
@@ -209,7 +220,8 @@
     "end": "2023.02",
     "tags": [
       "Bithumb",
-      "Ethereum"
+      "Ethereum",
+      "Blockchain"
     ],
     "contents": "Took a Youtube Video about \"2023 Ethereum Upgrade\"",
     "importance": false,
@@ -219,7 +231,9 @@
     "start": "2023.02",
     "end": "2023.09",
     "tags": [
-      "Bitcoin"
+      "Bitcoin",
+      "Blockchain",
+      "Finance"
     ],
     "contents": "Co-Authered a book \"디지털자산 시대가 온다\"",
     "importance": true,
@@ -239,7 +253,8 @@
     "start": "2023.05",
     "end": "2023.12",
     "tags": [
-      "ROKAF"
+      "ROKAF",
+      "Engineering"
     ],
     "contents": "Worked as a Fusion System Developer in Fusion System Office, Logistic Command I&C Dept.",
     "importance": false,
@@ -249,7 +264,8 @@
     "start": "2023.10",
     "end": "2023.12",
     "tags": [
-      "ROKAF"
+      "ROKAF",
+      "Engineering"
     ],
     "contents": "Completed in 'AI-SW training for military personnel' (AI course) as Outstanding Student ",
     "importance": false,
@@ -259,7 +275,8 @@
     "start": "2023.12",
     "end": "",
     "tags": [
-      "Certification"
+      "Certification",
+      "Engineering"
     ],
     "contents": "SQLD (SQL 개발자) 취득",
     "importance": false,
@@ -269,7 +286,8 @@
     "start": "2024.01",
     "end": "2024.12",
     "tags": [
-      "ROKAF"
+      "ROKAF",
+      "Engineering"
     ],
     "contents": "Worked as a System Developer in Logistic-Training System Development team, ROKAF Intelligent Information System Management Group",
     "importance": false,
@@ -342,7 +360,8 @@
     "start": "2024.09",
     "end": "",
     "tags": [
-      "Certification"
+      "Certification",
+      "Engineering"
     ],
     "contents": "정보처리산업기사 취득",
     "importance": false,
@@ -352,7 +371,8 @@
     "start": "2024.09",
     "end": "",
     "tags": [
-      "Certification"
+      "Certification",
+      "Engineering"
     ],
     "contents": "ADsP (데이터분석 준전문가) 취득",
     "importance": false,
@@ -373,7 +393,8 @@
     "start": "2025.01",
     "end": "",
     "tags": [
-      "PDAO"
+      "PDAO",
+      "Blockchain"
     ],
     "contents": "Organizing (Head of) PDAO",
     "importance": true,
@@ -406,7 +427,8 @@
     "start": "2025.03",
     "end": "2025.06",
     "tags": [
-      "PDAO"
+      "PDAO",
+      "Blockchain"
     ],
     "contents": "Coordinated 2025-1 PDAO Study Session",
     "importance": false,
@@ -441,7 +463,8 @@
     "tags": [
       "PDAO",
       "SuperteamKR",
-      "Solana"
+      "Solana",
+      "Blockchain"
     ],
     "contents": "Won a Earn project - Write content for a deep dive on Solayer InfiniSVM",
     "importance": false,
@@ -464,7 +487,9 @@
     "end": "",
     "tags": [
       "POSTECH",
-      "FBDA Lab", "Finance"
+      "FBDA Lab",
+      "Finance",
+      "Engineering"
     ],
     "contents": "Undergraduate Researcher in FBDA Lab(Financial Big Data Analysis Lab)",
     "importance": true,
@@ -475,7 +500,9 @@
     "end": "2025.07",
     "tags": [
       "PDAO",
-      "Monad"
+      "Monad",
+      "Blockchain",
+      "Engineering"
     ],
     "contents": "4th prize in 'Monad Blitz Seoul'",
     "importance": true,
@@ -486,7 +513,8 @@
     "end": "",
     "tags": [
       "POSTECH",
-      "CCBR"
+      "CCBR",
+      "Blockchain"
     ],
     "contents": "Join CCBR as a Member",
     "importance": false,
@@ -529,7 +557,9 @@
     "end": "2025.09",
     "tags": [
       "PDAO",
-      "Sui"
+      "Sui",
+      "Blockchain",
+      "Engineering"
     ],
     "contents": "Joined in Sui-mming Hackerthon",
     "importance": false,
@@ -597,7 +627,9 @@
     "end": "2025.11",
     "tags": [
       "PDAO",
-      "Monad"
+      "Monad",
+      "Blockchain",
+      "Engineering"
     ],
     "contents": "Joined in 'Monad Blitz Seoul 3rd'",
     "importance": false,
@@ -607,7 +639,8 @@
     "start": "2025.12",
     "end": "2026.02",
     "tags": [
-      "B-Harvest"
+      "B-Harvest",
+      "Blockchain"
     ],
     "contents": "Tech BD (Technical Writer) Intern in B-Harvest",
     "importance": true,
@@ -617,7 +650,8 @@
     "start": "2026.02",
     "end": "",
     "tags": [
-      "B-Harvest"
+      "B-Harvest",
+      "Blockchain"
     ],
     "contents": "Tech BD (Freelancer) in B-Harvest",
     "importance": false,
