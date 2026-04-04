@@ -66,7 +66,7 @@
       "POSTECH"
     ],
     "contents": "Won a Special Prize in 'Tech-Review Techathon'",
-    "importance": true,
+    "importance": false,
     "crypto": false
   },
   {
@@ -95,7 +95,7 @@
     "tags": [
       "PDAO"
     ],
-    "contents": "Join PDAO as member",
+    "contents": "Join PDAO as Genesis member",
     "importance": true,
     "crypto": true
   },
@@ -106,7 +106,7 @@
       "POSTECH"
     ],
     "contents": "Joined POSTECH APGC-Lab CDPlayer (Customer Discovery Player) Program",
-    "importance": true,
+    "importance": false,
     "crypto": false
   },
   {
@@ -158,7 +158,7 @@
       "NEAR Protocol"
     ],
     "contents": "Joined PDAO Launch Project, Worked genereal tasks in dev-NEAR team & Strategy team",
-    "importance": true,
+    "importance": false,
     "crypto": true
   },
   {
@@ -182,23 +182,13 @@
     "crypto": true
   },
   {
-    "start": "2022.12",
-    "end": "2022.12",
-    "tags": [
-      "PDAO"
-    ],
-    "contents": "Join PDAO as Genesis Member",
-    "importance": true,
-    "crypto": true
-  },
-  {
     "start": "2023.01",
     "end": "2023.01",
     "tags": [
       "Bithumb"
     ],
     "contents": "Took a Youtube Video about \"2023 Crypto Market Prediction\"",
-    "importance": true,
+    "importance": false,
     "crypto": true
   },
   {
@@ -209,7 +199,7 @@
       "Ethereum"
     ],
     "contents": "Offline Session about \"2023 Etherum Upgrade\" in \"Crypto Insight Meetup\"",
-    "importance": true,
+    "importance": false,
     "crypto": true
   },
   {
@@ -220,7 +210,7 @@
       "Ethereum"
     ],
     "contents": "Took a Youtube Video about \"2023 Ethereum Upgrade\"",
-    "importance": true,
+    "importance": false,
     "crypto": true
   },
   {
@@ -395,7 +385,7 @@
       "SuperteamKR"
     ],
     "contents": "Worked about 'SuperteamKR Guild Lead Program' as representative of PDAO",
-    "importance": true,
+    "importance": false,
     "crypto": true
   },
   {
@@ -497,7 +487,7 @@
       "CCBR"
     ],
     "contents": "Join CCBR as a Member",
-    "importance": true,
+    "importance": false,
     "crypto": true
   },
   {
@@ -529,7 +519,7 @@
       "NinjaLabsKR"
     ],
     "contents": "Join NinjaLabsKR 1st Cohort Member",
-    "importance": true,
+    "importance": false,
     "crypto": true
   },
   {
@@ -615,8 +605,7 @@
     "start": "2025.12",
     "end": "2026.02",
     "tags": [
-      "B-Harvest",
-      "Crypto"
+      "B-Harvest"
     ],
     "contents": "Tech BD (Technical Writer) Intern in B-Harvest",
     "importance": true,
@@ -626,8 +615,7 @@
     "start": "2026.02",
     "end": "",
     "tags": [
-      "B-Harvest",
-      "Crypto"
+      "B-Harvest"
     ],
     "contents": "Tech BD (Freelancer) in B-Harvest",
     "importance": false,
@@ -637,8 +625,7 @@
     "start": "2026.02",
     "end": "2026.02",
     "tags": [
-      "PDAO",
-      "Crypto"
+      "PDAO"
     ],
     "contents": "Panel Speaker in \"DE-FERENCE 2026\"",
     "importance": false,

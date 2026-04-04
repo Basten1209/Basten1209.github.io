@@ -895,41 +895,34 @@
     const timelineHTML = sortedYears.map((year) => {
       const yearEntries = yearGroups[year];
       const entriesHTML = yearEntries.map((entry) => {
-        const badgeClass = orgBadgeClasses[entry.primaryOrg] || defaultBadgeClass;
-        const secondaryTags = entry.tags.slice(1);
-
         // Node size based on importance
         const nodeClass = entry.importance
-          ? 'w-5 h-5 rounded-full bg-primary border-4 border-background shadow-md shadow-primary/20'
-          : 'w-3 h-3 rounded-full border-2 border-on-surface-variant/40 bg-surface';
-        const nodeTop = entry.importance ? 'top-1' : 'top-2';
+          ? 'w-4 h-4 rounded-full bg-primary ring-2 ring-primary/10 shadow-sm shadow-primary/30'
+          : 'w-2.5 h-2.5 rounded-full bg-on-surface-variant/30';
 
-        // Flags
-        const flags = [];
-        if (entry.importance) flags.push('<span class="material-symbols-outlined text-primary text-sm" title="Key milestone">star</span>');
-        if (entry.crypto) flags.push('<span class="material-symbols-outlined text-tertiary text-sm" title="Crypto-related">currency_bitcoin</span>');
+        const titleSize = entry.importance ? 'text-base font-bold' : 'text-sm font-normal';
 
-        // Tags as pill badges
-        const primaryBadge = `<span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-label font-semibold">${entry.primaryOrg}</span>`;
-        const secondaryBadges = secondaryTags.map((tag) =>
-          `<span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label text-[10px] tracking-wide">${tag}</span>`
-        ).join('');
+        // All tags inline (unified style)
+        const tagStyle = 'px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label text-[10px] tracking-wide';
+        const allTags = [
+          ...entry.tags.map((tag) => `<span class="${tagStyle}">${tag}</span>`),
+          ...(entry.crypto ? [`<span class="${tagStyle}">Crypto</span>`] : []),
+        ].join('');
 
         const searchText = [entry.contents, ...entry.tags, formatPeriod(entry.start, entry.end)].join(' ').toLowerCase();
         return `
-          <div class="timeline-entry relative flex gap-4 md:gap-6 pb-8 group" data-org="${entry.primaryOrg}" data-categories="${entry.categories.join(',')}" data-importance="${entry.importance ? '1' : '0'}" data-search="${searchText.replace(/"/g, '&quot;')}">
-            <!-- Node -->
-            <div class="absolute -left-[25px] md:-left-[33px] ${nodeTop} ${nodeClass} flex-shrink-0 transition-transform group-hover:scale-110"></div>
+          <div class="timeline-entry flex gap-4 group" data-org="${entry.primaryOrg}" data-categories="${entry.categories.join(',')}" data-importance="${entry.importance ? '1' : '0'}" data-search="${searchText.replace(/"/g, '&quot;')}">
+            <!-- Dot + Line column (fixed width for consistent alignment) -->
+            <div class="flex flex-col items-center shrink-0 w-4">
+              <div class="mt-[6px] ${nodeClass} shrink-0 transition-transform group-hover:scale-125"></div>
+              <div class="w-0.5 flex-1 bg-outline-variant/20 rounded-full"></div>
+            </div>
             <!-- Content -->
-            <div class="flex-1 min-w-0">
-              <div class="flex items-start justify-between gap-3 mb-2">
-                <p class="font-headline ${entry.importance ? 'font-bold' : 'font-normal'} text-base text-on-surface leading-snug">${entry.contents}</p>
-                <div class="flex items-center gap-1 flex-shrink-0">${flags.join('')}</div>
-              </div>
-              <span class="inline-block font-label text-xs text-on-surface-variant/70 font-medium mb-3">${formatPeriod(entry.start, entry.end)}</span>
-              <div class="flex flex-wrap gap-1.5">
-                ${primaryBadge}
-                ${secondaryBadges}
+            <div class="flex-1 min-w-0 pb-3">
+              <p class="font-headline ${titleSize} text-on-surface leading-snug mb-1">${entry.contents}</p>
+              <div class="flex flex-wrap items-center gap-1">
+                <span class="font-label text-[10px] text-on-surface-variant/70 font-medium mr-1">${formatPeriod(entry.start, entry.end)}</span>
+                ${allTags}
               </div>
             </div>
           </div>`;
@@ -938,12 +931,12 @@
       return `
         <div class="timeline-year-group" data-year="${year}">
           <!-- Year Header -->
-          <div class="flex items-center gap-4 mb-8 mt-4">
+          <div class="flex items-center gap-4 mb-5 mt-3">
             <span class="text-2xl md:text-3xl font-headline font-extrabold text-on-surface tracking-tight">${year}</span>
             <div class="flex-1 h-px bg-outline-variant/20"></div>
           </div>
           <!-- Timeline Entries -->
-          <div class="relative pl-6 md:pl-8 ml-3 md:ml-4 space-y-2">
+          <div class="ml-2 md:ml-4">
             ${entriesHTML}
           </div>
         </div>`;
