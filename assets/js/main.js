@@ -815,40 +815,19 @@
   };
   const defaultBadgeClass = 'bg-surface-container-high text-on-surface-variant';
 
-  // Load proof-of-work.xlsx
-  let proofOfWorkBook = null;
+  // Proof-of-work entries (loaded from JSON)
+  let proofOfWorkEntries = null;
   const loadProofOfWork = async () => {
-    if (typeof XLSX === 'undefined') {
-      console.error('XLSX library not loaded');
-      return [];
-    }
     try {
-      const response = await fetch('data/proof-of-work.xlsx');
-      if (!response.ok) throw new Error(`Failed to load xlsx: ${response.status}`);
-      const arrayBuffer = await response.arrayBuffer();
-      proofOfWorkBook = XLSX.read(arrayBuffer, { type: 'array' });
-      const sheet = proofOfWorkBook.Sheets[proofOfWorkBook.SheetNames[0]];
-      const raw = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-
-      // Skip header row, map to structured objects
-      return raw.slice(1)
-        .filter((row) => row[0] || row[3]) // must have start date or contents
-        .map((row) => {
-          const tagsRaw = String(row[2] || '').trim();
-          const tags = tagsRaw.split('\n').map((t) => t.trim()).filter(Boolean);
-          return {
-            start: String(row[0] || '').replace(/\.$/, ''),
-            end: row[1] ? String(row[1]).replace(/\.$/, '') : '',
-            tags,
-            primaryOrg: tags[0] || 'Other',
-            contents: String(row[3] || ''),
-            importance: row[4] === 'O',
-            crypto: row[5] === 'O',
-          };
-        })
-        .sort((a, b) => b.start.localeCompare(a.start)); // newest first
+      const response = await fetch('data/proof-of-work.json');
+      if (!response.ok) throw new Error(`Failed to load proof-of-work.json: ${response.status}`);
+      const entries = await response.json();
+      return entries.map((e) => ({
+        ...e,
+        primaryOrg: e.tags[0] || 'Other',
+      })).sort((a, b) => b.start.localeCompare(a.start));
     } catch (error) {
-      console.error('Error loading proof-of-work.xlsx:', error);
+      console.error('Error loading proof-of-work.json:', error);
       return [];
     }
   };
@@ -865,12 +844,11 @@
   const deriveCategories = (entry) => {
     const cats = [];
     if (entry.crypto) cats.push('Crypto');
-    if (entry.tags.some((t) => ['Bithumb', 'WorldQuant'].includes(t)) ||
-        /finance|quant|alpha|금융/i.test(entry.contents)) cats.push('Finance');
-    if (/수상|award|prize|scholar|장학/i.test(entry.contents)) cats.push('Awards');
-    if (entry.tags.some((t) => ['Certification'].includes(t)) || /취득|certif/i.test(entry.contents)) cats.push('Certification');
+    if (entry.tags.includes('Finance')) cats.push('Finance');
+    if (entry.tags.includes('Awards')) cats.push('Awards');
+    if (entry.tags.includes('Certification')) cats.push('Certification');
     if (entry.tags.some((t) => ['PDAO', 'SuperteamKR', 'NinjaLabsKR', 'Base Korea'].includes(t))) cats.push('Community');
-    if (entry.tags.includes('POSTECH') || /연구|research|lab/i.test(entry.contents)) cats.push('Research');
+    if (entry.tags.includes('POSTECH') || entry.tags.some((t) => t.includes('Lab'))) cats.push('Research');
     if (entry.tags.includes('ROKAF')) cats.push('Military');
     if (cats.length === 0) cats.push('Other');
     return cats;
@@ -1000,10 +978,14 @@
 
     // CSV export
     const exportBtn = document.getElementById(exportId);
-    if (exportBtn && proofOfWorkBook) {
+    if (exportBtn && proofOfWorkEntries) {
       exportBtn.addEventListener('click', () => {
-        const sheet = proofOfWorkBook.Sheets[proofOfWorkBook.SheetNames[0]];
-        const csv = XLSX.utils.sheet_to_csv(sheet);
+        const header = 'Start,End,Tags,Contents,Importance,Crypto';
+        const rows = proofOfWorkEntries.map((e) => {
+          const escape = (v) => `"${String(v).replace(/"/g, '""')}"`;
+          return [escape(e.start), escape(e.end), escape(e.tags.join('; ')), escape(e.contents), e.importance ? 'O' : '', e.crypto ? 'O' : ''].join(',');
+        });
+        const csv = [header, ...rows].join('\n');
         const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -1147,8 +1129,8 @@
       renderAboutAndSummary();
       renderArticles(config);
       initArticleFilters(config);
-      const xlsxEntries = await loadProofOfWork();
-      renderExperience(config, xlsxEntries);
+      proofOfWorkEntries = await loadProofOfWork();
+      renderExperience(config, proofOfWorkEntries);
       initExperienceFilters();
       renderCV(config);
     }
