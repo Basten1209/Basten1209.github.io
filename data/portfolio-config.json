@@ -120,7 +120,7 @@
     {
       "id": "pdao-zkp-sp1",
       "filename": "[PDAO] From ZKP to SP1 Hypercube (KOR).pdf",
-      "title": "[PDAO] From ZKP to SP1 Hypercube (KOR)",
+      "title": "From ZKP to SP1 Hypercube (KOR)",
       "description": "ZKP(영지식 증명)의 기초부터 Succinct의 SP1 Hypercube까지, Realtime Proving 실현 과정을 분석한 기술 리포트.",
       "contribution": "주 저자",
       "date": "2025-11",
@@ -130,7 +130,7 @@
     {
       "id": "pdao-krw-stablecoin",
       "filename": "[PDAO] KRWstablecoin (KOR).pdf",
-      "title": "[PDAO] KRWstablecoin (KOR)",
+      "title": "KRWstablecoin (KOR)",
       "description": "한국 원화 기반 스테이블코인의 설계, 규제 환경, 그리고 시장 가능성에 대한 종합 분석.",
       "contribution": "리포트 코디네이팅, 일부 범위 리포트 작성/교열 및 편집",
       "date": "2025-11",
@@ -140,7 +140,7 @@
     {
       "id": "pdao-zk-sol-eng",
       "filename": "[PDAO] ZK in SOL (ENG).pdf",
-      "title": "[PDAO] ZK in SOL (ENG)",
+      "title": "ZK in SOL (ENG)",
       "description": "Examining Zero-Knowledge proof implementations on the Solana blockchain ecosystem.",
       "contribution": "리포트 코디네이팅, 전 범위 리포트 교열 및 편집",
       "date": "2025-06",
@@ -150,7 +150,7 @@
     {
       "id": "pdao-zk-sol-kor",
       "filename": "[PDAO] ZK in SOL (KOR).pdf",
-      "title": "[PDAO] ZK in SOL (KOR)",
+      "title": "ZK in SOL (KOR)",
       "description": "솔라나 블록체인 생태계에서의 영지식 증명 구현에 대한 분석.",
       "contribution": "리포트 코디네이팅, 전 범위 리포트 교열 및 편집",
       "date": "2025-06",
