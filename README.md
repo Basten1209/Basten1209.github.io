@@ -186,7 +186,7 @@ MIT License - 자유롭게 사용, 수정, 배포 가능
 
 - 🌐 Website: [basten1209.github.io](https://basten1209.github.io)
 - 📧 Email: seungjunoh@postech.ac.kr
-- 💼 LinkedIn: [basten1209](https://www.linkedin.com/in/basten1209/)
+- 💼 LinkedIn: [seungjun5](https://www.linkedin.com/in/seungjun5/)
 - 🐦 Twitter: [@seungjun_x](https://x.com/seungjun_x)
 - 📝 Medium: [@seungjun-oh](https://medium.com/@seungjun-oh)
 - 💻 GitHub: [@Basten1209](https://github.com/Basten1209)
