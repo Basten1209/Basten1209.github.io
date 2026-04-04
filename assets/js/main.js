@@ -843,13 +843,10 @@
   // Derive categories for an experience entry
   const deriveCategories = (entry) => {
     const cats = [];
-    if (entry.crypto) cats.push('Crypto');
+    if (entry.crypto) cats.push('Cryptocurrency');
+    if (entry.tags.includes('Blockchain')) cats.push('Blockchain');
     if (entry.tags.includes('Finance')) cats.push('Finance');
-    if (entry.tags.includes('Awards')) cats.push('Awards');
-    if (entry.tags.includes('Certification')) cats.push('Certification');
-    if (entry.tags.some((t) => ['PDAO', 'SuperteamKR', 'NinjaLabsKR', 'Base Korea'].includes(t))) cats.push('Community');
-    if (entry.tags.includes('POSTECH') || entry.tags.some((t) => t.includes('Lab'))) cats.push('Research');
-    if (entry.tags.includes('ROKAF')) cats.push('Military');
+    if (entry.tags.includes('Engineering')) cats.push('Engineering');
     if (cats.length === 0) cats.push('Other');
     return cats;
   };
@@ -872,8 +869,8 @@
     // Count important entries
     const importanceCount = entries.filter((e) => e.importance).length;
 
-    // Fixed keyword filter buttons: Key Milestones, Crypto, Finance, Awards, Certification
-    const keywordOrder = ['Crypto', 'Finance', 'Awards', 'Certification'];
+    // Fixed keyword filter buttons: Key Milestones, Cryptocurrency, Blockchain, Finance, Engineering
+    const keywordOrder = ['Cryptocurrency', 'Blockchain', 'Finance', 'Engineering'];
     const keywordButtons = [
       `<button class="exp-kw-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-primary text-on-primary" data-filter="All">전체 보기 <span class="opacity-60">(${entries.length})</span></button>`,
       `<button class="exp-kw-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high" data-filter="Importance">⭐ Key Milestones <span class="opacity-60">(${importanceCount})</span></button>`,
@@ -906,7 +903,7 @@
         const tagStyle = 'px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label text-[10px] tracking-wide';
         const allTags = [
           ...entry.tags.map((tag) => `<span class="${tagStyle}">${tag}</span>`),
-          ...(entry.crypto ? [`<span class="${tagStyle}">Crypto</span>`] : []),
+          ...(entry.crypto ? [`<span class="${tagStyle}">Cryptocurrency</span>`] : []),
         ].join('');
 
         const searchText = [entry.contents, ...entry.tags, formatPeriod(entry.start, entry.end)].join(' ').toLowerCase();
