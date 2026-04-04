@@ -1,5 +1,5 @@
 {
-  "generated": "2026-04-04T09:14:26.306Z",
+  "generated": "2026-04-04T10:43:47.168Z",
   "reports": [
     {
       "filename": "CRYPTO NOTES 1호.pdf",
@@ -46,6 +46,10 @@
       "path": "data/reports/Heterogenous price patterns of cryptocurrency between exchanges.pdf"
     },
     {
+      "filename": "Term project_Coinone_pair_analysis-v1.pdf",
+      "path": "data/reports/Term project_Coinone_pair_analysis-v1.pdf"
+    },
+    {
       "filename": "[PDAO] From ZKP to SP1 Hypercube (KOR).pdf",
       "path": "data/reports/[PDAO] From ZKP to SP1 Hypercube (KOR).pdf"
     },
@@ -73,7 +77,7 @@
     }
   ],
   "stats": {
-    "totalReports": 15,
+    "totalReports": 16,
     "totalResumes": 2
   }
 }

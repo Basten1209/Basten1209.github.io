@@ -58,6 +58,16 @@
       "type": "pdf"
     },
     {
+      "id": "postech-coinone-pair-analysis",
+      "filename": "Term project_Coinone_pair_analysis-v1.pdf",
+      "title": "Integrated Case Study about Korea Cryptocurrency Exchange (CEX) : Coinone (with Quality Engineering Method)",
+      "description": "코인원 플랫폼에 대한 House of Quality 분석 및, Upbit와의 BTC/KRW 페어 갭 분석에 관한 품질공학 관점의 통계 분석",
+      "contribution": "프로젝트 리더",
+      "date": "2025-12",
+      "category": "POSTECH",
+      "type": "pdf"
+    },
+    {
       "id": "postech-lift-framework",
       "title": "LIFT - A Unified Framework for High-Dimensional Covariance Estimation",
       "description": "계층적 클러스터링 기반 고차원 금융데이터 분석 프레임워크 연구.",
