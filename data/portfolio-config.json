@@ -424,20 +424,21 @@
       }
     ],
     "events": [
-      { "year": "2026", "role": "Panel Speaker", "title": "DE-FERENCE 2026" },
-      { "year": "2026", "role": "Panel Speaker", "title": "BNB Martian Night: Learn & Network" },
-      { "year": "2025", "role": "Panel Speaker", "title": "AI+Blockchain Autumn Camp - Korean Offline Workshop" },
-      { "year": "2025", "role": "Host", "title": "Blockchains for TradFi: 전통금융과 블록체인의 만남" },
-      { "year": "2025", "role": "Host & Speaker", "title": "PDAO in Seoul!" },
-      { "year": "2025", "role": "Host", "title": "Dive in Crypto-Blockchain! (in Pohang)" },
-      { "year": "2023", "role": "Session Speaker", "title": "Crypto Insight Meetup (Off-line)" }
+      { "year": "2026", "role": "Panel Speaker", "title": "DE-FERENCE 2026", "link": "https://deference.co.kr/ko" },
+      { "year": "2026", "role": "Panel Speaker", "title": "BNB Martian Night: Learn & Network", "link": "https://luma.com/tcxy45tl" },
+      { "year": "2025", "role": "Panel Speaker", "title": "AI+Blockchain Autumn Camp - Korean Offline Workshop", "link": "https://luma.com/4wzmaumh" },
+      { "year": "2025", "role": "Host", "title": "Blockchains for TradFi: 전통금융과 블록체인의 만남", "link": "https://www.linkedin.com/posts/pdao_%EC%A7%80%EB%82%9C-10%EC%9B%94-31%EC%9D%BC%EA%B8%88-pdao%EC%97%90%EC%84%9C-%EC%A3%BC%EC%B5%9C%ED%95%9C-blockchains-for-activity-7390426035869323264-FnP9" },
+      { "year": "2025", "role": "Host & Speaker", "title": "PDAO in Seoul!", "link": "https://luma.com/2yot059s" },
+      { "year": "2025", "role": "Host", "title": "Dive in Crypto-Blockchain! (in Pohang)", "link": "https://luma.com/memo9l05" },
+      { "year": "2023", "role": "Session Speaker", "title": "Crypto Insight Meetup (Off-line)", "link": "https://youtu.be/u_HYu8At6aI?si=HLDMhtpJVX9S_Xa9&t=41" }
     ],
     "awards": [
+      { "date": "2026.05", "title": "2026 AI·Blockchain Business Model Competition: Excellence Award", "value": "Bae, Kim & Lee LLC Prize", "issuer": "Korea University College of Informatics · Council of AI·SW-Centered Universities", "link": "https://biz.heraldcorp.com/article/10736228" },
       { "date": "2025.12", "title": "Overseas Assignment Scholar for Nobel Week 2025", "value": "2.5 million won", "issuer": "POSTECH" },
       { "date": "2025.07", "title": "Monad Blitz Seoul 4th Prize", "issuer": "Monad Foundation - B-Harvest - Chainlink" },
       { "date": "2025.07", "title": "2025 IQC Korea 3rd", "issuer": "WorldQuant" },
       { "date": "2022.05", "title": "POSTECH Metaverse Contest Encourage Award", "issuer": "POSTECH" },
-      { "date": "2021.03 - 2022.12", "title": "Local Talent Scholarship (Full Scholarship)", "issuer": "KOSAF" }
+      { "date": "2021.03 - 2022.12", "title": "Local Talent Scholarship", "value": "Full Scholarship", "issuer": "KOSAF" }
     ],
     "certificates": {
       "finance": [

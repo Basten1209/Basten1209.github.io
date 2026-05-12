@@ -643,13 +643,18 @@
     // --- Events ---
     const eventsEl = document.getElementById('cvEvents');
     if (eventsEl && cv.events?.length) {
-      const items = cv.events.map((evt) => `
-        <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 py-1 sm:py-0.5">
-          <span class="font-label text-sm text-on-surface-variant shrink-0 w-10">${evt.year}</span>
-          <span class="font-headline font-bold text-sm shrink-0">${evt.role}</span>
-          <span class="font-body text-sm text-on-surface-variant">${evt.title}</span>
-        </div>
-      `).join('');
+      const items = cv.events.map((evt) => {
+        const linkBadge = evt.link
+          ? ` <a href="${evt.link}" target="_blank" rel="noopener noreferrer" class="font-label text-xs text-primary hover:underline inline-flex items-center gap-0.5 align-middle" aria-label="Event link"><span class="material-symbols-outlined" style="font-size:14px;line-height:1;">link</span></a>`
+          : '';
+        return `
+          <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 py-1 sm:py-0.5">
+            <span class="font-label text-sm text-on-surface-variant shrink-0 w-10">${evt.year}</span>
+            <span class="font-headline font-bold text-sm shrink-0">${evt.role}</span>
+            <span class="font-body text-sm text-on-surface-variant">${evt.title}${linkBadge}</span>
+          </div>
+        `;
+      }).join('');
       eventsEl.innerHTML = cvSection('Events', `<div class="space-y-0.5">${items}</div>`);
     }
 
@@ -660,17 +665,20 @@
         const valueBadge = award.value
           ? ` <span class="font-label text-xs font-bold text-primary">(${award.value})</span>`
           : '';
+        const linkBadge = award.link
+          ? ` <a href="${award.link}" target="_blank" rel="noopener noreferrer" class="font-label text-xs text-primary hover:underline inline-flex items-center gap-0.5" aria-label="Related article"><span class="material-symbols-outlined" style="font-size:14px;line-height:1;">link</span></a>`
+          : '';
         return `
           <div class="flex items-baseline gap-4 py-0.5">
             <span class="font-label text-sm text-on-surface-variant shrink-0 w-28">${award.date}</span>
             <div class="flex-1">
-              <span class="font-headline font-bold text-sm">${award.title}</span>${valueBadge}
+              <span class="font-headline font-bold text-sm">${award.title}</span>${valueBadge}${linkBadge}
               <span class="font-label text-sm text-on-surface-variant ml-2">${award.issuer}</span>
             </div>
           </div>
         `;
       }).join('');
-      awardsEl.innerHTML = cvSection('Awards', `<div class="space-y-0.5">${items}</div>`);
+      awardsEl.innerHTML = cvSection('Awards & Scholarships', `<div class="space-y-0.5">${items}</div>`);
     }
 
     // --- Summary ---
