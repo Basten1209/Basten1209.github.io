@@ -433,12 +433,12 @@
       { "year": "2023", "role": "Session Speaker", "title": "Crypto Insight Meetup (Off-line)", "link": "https://youtu.be/u_HYu8At6aI?si=HLDMhtpJVX9S_Xa9&t=41" }
     ],
     "awards": [
-      { "date": "2026.05", "title": "2026 AI·Blockchain Business Model Competition: Excellence Award", "value": "Bae, Kim & Lee LLC Prize", "issuer": "Korea University College of Informatics · Council of AI·SW-Centered Universities", "link": "https://biz.heraldcorp.com/article/10736228" },
+      { "date": "2026.05", "title": "2026 AI·Blockchain Business Model Competition: Excellence Award", "issuer": "Korea University College of Informatics · Council of AI·SW-Centered Universities", "link": "https://biz.heraldcorp.com/article/10736228" },
       { "date": "2025.12", "title": "Overseas Assignment Scholar for Nobel Week 2025", "value": "2.5 million won", "issuer": "POSTECH" },
       { "date": "2025.07", "title": "Monad Blitz Seoul 4th Prize", "issuer": "Monad Foundation - B-Harvest - Chainlink" },
       { "date": "2025.07", "title": "2025 IQC Korea 3rd", "issuer": "WorldQuant" },
       { "date": "2022.05", "title": "POSTECH Metaverse Contest Encourage Award", "issuer": "POSTECH" },
-      { "date": "2021.03 - 2022.12", "title": "Local Talent Scholarship", "value": "Full Scholarship", "issuer": "KOSAF" }
+      { "date": "2021.03 - Present", "title": "Local Talent Scholarship", "value": "Full Scholarship", "issuer": "KOSAF" }
     ],
     "certificates": {
       "finance": [
