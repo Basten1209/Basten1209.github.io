@@ -280,26 +280,28 @@
       }
     ],
     "skills": {
-      "interests": ["Blockchain & Cryptocurrency", "Macro Economics", "Investment Theory", "Data Analysis", "Econometrics", "High-Frequency Trading"],
+      "interests": ["Financial Engineering", "Blockchain & Cryptocurrency", "Data Analysis", "High-Frequency Finance", "AI Application (AI with Blockchain / Finance)"],
       "technical": ["R", "Python", "C/C++", "SQL", "Git", "MS Office"]
     },
     "experience": [
       {
         "period": "2026.02 - Present",
-        "role": "Tech BD Intern - Freelancer",
+        "role": "Campus Ambassador - Part-time (20 hrs/week)",
         "team": "TechBD team",
-        "organization": "B-Harvest",
+        "organization": "Altus (formerly B-Harvest)",
         "url": "https://bharvest.io",
         "type": "Technical",
         "highlights": [
-          "Developed educational contents about Blockchain Core for company's rebranding - HR strategy"
+          "Developed PoC about Blockchain Learning Platform",
+          "Developed educational contents about blockchain core",
+          "Supported Altus' internship program recruiting"
         ]
       },
       {
         "period": "2025.12 - 2026.02",
-        "role": "Tech BD Intern",
+        "role": "Tech BD (Technical Writer) Intern",
         "team": "TechBD team",
-        "organization": "B-Harvest",
+        "organization": "Altus (formerly B-Harvest)",
         "url": "https://bharvest.io",
         "type": "Technical",
         "highlights": [
@@ -320,7 +322,7 @@
       },
       {
         "period": "2025.06 - Present",
-        "role": "Consultant - Freelancer",
+        "role": "Brain Platform Consultant (Freelancer)",
         "organization": "WorldQuant",
         "url": "https://www.worldquant.com/",
         "type": "Technical",
@@ -330,7 +332,7 @@
       },
       {
         "period": "2023.03 - 2024.12",
-        "role": "System Developer",
+        "role": "Sergeant / System Development Specialist",
         "team": "HQ - Logistic Command",
         "organization": "R.O.K.A.F. (Military Service)",
         "type": "Military",
@@ -376,7 +378,7 @@
     ],
     "research": [
       {
-        "period": "2025.06 - 2025.12",
+        "period": "2025.06 - 2025.12, 2026.06 - Present",
         "role": "Undergraduate Researcher",
         "lab": "POSTECH FBDA Lab",
         "url": "https://sites.google.com/view/minseokshin",
