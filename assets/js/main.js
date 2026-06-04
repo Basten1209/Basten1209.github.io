@@ -241,11 +241,12 @@
   };
   const roleColorClass = (c) => {
     const t = roleTier(c);
-    return t === 'Lead Author' ? 'text-primary' : t === 'Coordinator' ? 'text-on-surface' : 'text-on-surface-variant';
+    // Blue is reserved for actions/links; seniority is signalled by ink weight, not hue.
+    return t === 'Lead Author' ? 'text-on-surface' : t === 'Coordinator' ? 'text-on-surface' : 'text-on-surface-variant';
   };
-  // Category -> 3px spine accent color (the only per-category color; honors No-Line)
+  // Category -> 3px spine accent. Quiet slate/indigo/ink tints only — blue is never a category color.
   const spineColorClass = (cat) =>
-    cat === 'PDAO' ? 'bg-primary' : cat === 'Bithumb' ? 'bg-secondary' : cat === 'POSTECH' ? 'bg-tertiary' : 'bg-on-surface-variant/40';
+    cat === 'PDAO' ? 'bg-tertiary' : cat === 'Bithumb' ? 'bg-secondary' : cat === 'POSTECH' ? 'bg-on-surface-variant' : 'bg-on-surface-variant/40';
   const fmtDate = (d) => (d ? d.replace('-', '.') : '');
   const reportHref = (report) =>
     report.type === 'url' ? (report.url || '#') : (report.filename ? 'data/reports/' + encodeURIComponent(report.filename) : '#');
@@ -414,14 +415,14 @@
          data-category="${report.category}" data-type="${isUrl ? 'External' : 'PDF'}" data-role="${roleTier(report.contribution)}"
          data-search="${searchStr}">
         <span class="self-stretch w-[3px] rounded-full ${spineColorClass(report.category)}"></span>
-        <span class="hidden md:block font-label text-xs text-on-surface-variant tabular-nums whitespace-nowrap">${fmtDate(report.date)}</span>
+        <span class="hidden md:block font-mono text-xs text-on-surface-variant tabular-nums whitespace-nowrap">${fmtDate(report.date)}</span>
         <div class="min-w-0">
           <h4 class="font-headline font-semibold text-base md:text-lg text-on-surface leading-snug group-hover:text-primary transition-colors">${report.title}</h4>
           <p class="font-body text-sm text-on-surface-variant line-clamp-1 mt-0.5">
-            <span class="font-semibold ${roleColorClass(report.contribution)}">${role}</span><span class="text-on-surface-variant/40"> · </span>${report.category}<span class="text-on-surface-variant/40"> · </span>${report.description || ''}
+            <span class="font-semibold ${roleColorClass(report.contribution)}">${role}</span><span class="text-on-surface-variant/60"> · </span>${report.category}<span class="text-on-surface-variant/60"> · </span>${report.description || ''}
           </p>
         </div>
-        <span class="shrink-0 inline-flex items-center gap-1 font-label text-[10px] uppercase tracking-widest text-on-surface-variant/70 group-hover:text-primary transition-colors">
+        <span class="shrink-0 inline-flex items-center gap-1 font-label text-[10px] uppercase tracking-widest text-on-surface-variant group-hover:text-primary transition-colors">
           <span class="material-symbols-outlined text-base">${isUrl ? 'arrow_outward' : 'picture_as_pdf'}</span><span class="hidden sm:inline">${isUrl ? 'External' : 'PDF'}</span>
         </span>
       </a>`;
@@ -445,8 +446,8 @@
       return `
         <div class="ledger-year-group" data-year="${y}">
           <div class="flex items-baseline gap-4 mb-4 mt-12 first:mt-0">
-            <span class="font-headline font-extrabold text-3xl md:text-4xl text-on-surface tracking-tight tabular-nums">${y}</span>
-            <span class="font-label text-on-surface-variant text-sm" data-year-count>${items.length} ${items.length === 1 ? 'work' : 'works'}</span>
+            <span class="font-mono font-bold text-3xl md:text-4xl text-on-surface tracking-tight tabular-nums">${y}</span>
+            <span class="font-mono text-on-surface-variant text-sm tabular-nums" data-year-count>${items.length} ${items.length === 1 ? 'work' : 'works'}</span>
             <div class="flex-1 h-px bg-outline-variant/20"></div>
           </div>
           <div>${items.map(renderLedgerRow).join('')}</div>
@@ -536,12 +537,12 @@
       const dot = withDot ? `<span class="inline-block w-1.5 h-1.5 rounded-full ${spineColorClass(value)} mr-1.5 align-middle"></span>` : '';
       const cls = active ? 'bg-primary text-on-primary' : 'bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high';
       const deadCls = dead ? ' opacity-40 pointer-events-none' : '';
-      return `<button type="button" class="ledger-filter px-3.5 py-2 text-xs font-label font-semibold rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${cls}${deadCls}" data-axis="${axis}" data-value="${value}" aria-pressed="${active}"${dead ? ' aria-disabled="true" tabindex="-1"' : ''}>${dot}${value} <span class="opacity-60 tabular-nums">(${count})</span></button>`;
+      return `<button type="button" class="ledger-filter px-3.5 py-2 text-xs font-label font-semibold rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${cls}${deadCls}" data-axis="${axis}" data-value="${value}" aria-pressed="${active}"${dead ? ' aria-disabled="true" tabindex="-1"' : ''}>${dot}${value} <span class="opacity-60 tabular-nums font-mono">(${count})</span></button>`;
     };
 
     const group = (labelText, axis, values, dotForNonAll) =>
       `<div class="flex flex-wrap items-center gap-1.5 md:gap-2">
-         <span class="font-label text-[10px] font-bold uppercase tracking-[0.15em] text-on-surface-variant/70 mr-0.5">${labelText}</span>
+         <span class="font-label text-[10px] font-bold uppercase tracking-[0.15em] text-on-surface-variant mr-0.5">${labelText}</span>
          ${values.map((v) => pillHtml(axis, v, dotForNonAll && v !== 'All')).join('')}
        </div>`;
 
@@ -628,12 +629,12 @@
       <a class="learning-row group grid grid-cols-[3px_2rem_1fr_auto] md:grid-cols-[3px_2.5rem_1fr_auto] gap-x-3 md:gap-x-5 items-center py-5 rounded-lg px-3 -mx-3 hover:bg-surface-container-low transition-colors cursor-pointer"
          href="${href}"${isUrl ? ' target="_blank" rel="noopener noreferrer"' : ''}>
         <span class="self-stretch w-[3px] rounded-full bg-primary/40"></span>
-        <span class="flex justify-center text-on-surface-variant/60 group-hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">${levelGlyph(item.level)}</span></span>
+        <span class="flex justify-center text-on-surface-variant group-hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">${levelGlyph(item.level)}</span></span>
         <div class="min-w-0">
           <h4 class="font-headline font-semibold text-base md:text-lg text-on-surface leading-snug group-hover:text-primary transition-colors">${item.title}</h4>
           ${meta ? `<p class="font-body text-sm text-on-surface-variant line-clamp-1 mt-0.5">${meta}</p>` : ''}
         </div>
-        <span class="shrink-0 inline-flex items-center gap-1 font-label text-[10px] uppercase tracking-widest text-on-surface-variant/70 group-hover:text-primary transition-colors">
+        <span class="shrink-0 inline-flex items-center gap-1 font-label text-[10px] uppercase tracking-widest text-on-surface-variant group-hover:text-primary transition-colors">
           <span class="material-symbols-outlined text-base">${isUrl ? 'arrow_outward' : 'picture_as_pdf'}</span><span class="hidden sm:inline">${levelTag(item)}</span>
         </span>
       </a>`;
@@ -804,7 +805,7 @@
           ${cv.subtitle ? `<p class="mt-2 font-body text-sm text-on-surface-variant">${cv.subtitle}</p>` : ''}
         </div>
         <div class="flex-shrink-0 relative">
-          <button id="cvDownloadBtn" class="group flex items-center gap-2 bg-primary px-6 py-3 rounded-md text-on-primary font-headline font-bold text-sm transition-all hover:bg-primary-dim">
+          <button id="cvDownloadBtn" class="group flex items-center gap-2 bg-primary px-6 py-3 rounded-full text-on-primary font-headline font-bold text-sm transition-all hover:bg-primary-dim">
             <span class="material-symbols-outlined text-lg">download</span>
             DOWNLOAD PDF
           </button>
@@ -838,7 +839,7 @@
           <div>
             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 sm:gap-0">
               ${name}
-              <span class="font-label text-sm text-on-surface-variant">${edu.period}</span>
+              <span class="font-mono text-sm text-on-surface-variant tabular-nums">${edu.period}</span>
             </div>
             <p class="font-body text-sm font-semibold text-on-surface">${edu.degree}</p>
           </div>
@@ -858,7 +859,7 @@
           <div>
             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 sm:gap-0">
               <span class="font-headline font-bold text-sm">${labName} <span class="font-normal text-on-surface-variant">(Advisor: ${r.advisor})</span></span>
-              <span class="font-label text-sm text-on-surface-variant sm:shrink-0 sm:ml-4">${r.period}</span>
+              <span class="font-mono text-sm text-on-surface-variant tabular-nums sm:shrink-0 sm:ml-4">${r.period}</span>
             </div>
             <p class="font-body text-sm text-on-surface-variant">${r.role}</p>
             <ul class="mt-1 ml-4 list-disc list-outside text-sm font-body text-on-surface-variant space-y-0.5">
@@ -885,7 +886,7 @@
           <div>
             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 sm:gap-0">
               <span class="font-headline font-bold text-sm">${orgName}</span>
-              <span class="font-label text-sm text-on-surface-variant sm:shrink-0 sm:ml-4">${exp.period}</span>
+              <span class="font-mono text-sm text-on-surface-variant tabular-nums sm:shrink-0 sm:ml-4">${exp.period}</span>
             </div>
             <p class="font-body text-sm text-on-surface">${exp.role}</p>
             <ul class="mt-1 ml-4 list-disc list-outside text-sm font-body text-on-surface-variant space-y-0.5">
@@ -929,7 +930,7 @@
           <div>
             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 sm:gap-0">
               <span class="font-headline font-bold text-sm uppercase">${title}</span>
-              <span class="font-label text-sm text-on-surface-variant sm:shrink-0 sm:ml-4">ISBN: ${pub.isbn}</span>
+              <span class="font-mono text-sm text-on-surface-variant tabular-nums sm:shrink-0 sm:ml-4">ISBN: ${pub.isbn}</span>
             </div>
             <p class="font-body text-sm text-on-surface">${pub.role}</p>
             <ul class="mt-1 ml-4 list-disc list-outside text-sm font-body text-on-surface-variant space-y-0.5">
@@ -952,7 +953,7 @@
           <div>
             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 sm:gap-0">
               <span class="font-headline font-bold text-sm">${proj.title}</span>
-              <span class="font-label text-sm text-on-surface-variant sm:shrink-0 sm:ml-4">${proj.year}</span>
+              <span class="font-mono text-sm text-on-surface-variant tabular-nums sm:shrink-0 sm:ml-4">${proj.year}</span>
             </div>
             <p class="font-body text-sm text-on-surface-variant">${proj.description}</p>
             <ul class="mt-1 ml-4 list-disc list-outside text-sm font-body text-on-surface-variant space-y-0.5">
@@ -973,7 +974,7 @@
           : '';
         return `
           <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 py-1 sm:py-0.5">
-            <span class="font-label text-sm text-on-surface-variant shrink-0 w-10">${evt.year}</span>
+            <span class="font-mono text-sm text-on-surface-variant tabular-nums shrink-0 w-10">${evt.year}</span>
             <span class="font-headline font-bold text-sm shrink-0">${evt.role}</span>
             <span class="font-body text-sm text-on-surface-variant">${evt.title}${linkBadge}</span>
           </div>
@@ -987,14 +988,14 @@
     if (awardsEl && cv.awards?.length) {
       const items = cv.awards.map((award) => {
         const valueBadge = award.value
-          ? ` <span class="font-label text-xs font-bold text-primary">(${award.value})</span>`
+          ? ` <span class="font-mono text-xs font-bold text-on-surface-variant tabular-nums">(${award.value})</span>`
           : '';
         const linkBadge = award.link
           ? ` <a href="${award.link}" target="_blank" rel="noopener noreferrer" class="font-label text-xs text-primary hover:underline inline-flex items-center gap-0.5" aria-label="Related article"><span class="material-symbols-outlined" style="font-size:14px;line-height:1;">link</span></a>`
           : '';
         return `
           <div class="flex items-baseline gap-4 py-0.5">
-            <span class="font-label text-sm text-on-surface-variant shrink-0 w-28">${award.date}</span>
+            <span class="font-mono text-sm text-on-surface-variant tabular-nums shrink-0 w-28">${award.date}</span>
             <div class="flex-1">
               <span class="font-headline font-bold text-sm">${award.title}</span>${valueBadge}${linkBadge}
               <span class="font-label text-sm text-on-surface-variant ml-2">${award.issuer}</span>
@@ -1029,7 +1030,7 @@
           <div>
             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 sm:gap-0">
               <span class="font-headline font-bold text-sm">${orgName}</span>
-              <span class="font-label text-sm text-on-surface-variant sm:shrink-0 sm:ml-4">${ext.period}</span>
+              <span class="font-mono text-sm text-on-surface-variant tabular-nums sm:shrink-0 sm:ml-4">${ext.period}</span>
             </div>
             <p class="font-body text-sm text-on-surface">${ext.role}</p>
             <ul class="mt-1 ml-4 list-disc list-outside text-sm font-body text-on-surface-variant space-y-0.5">
@@ -1068,50 +1069,6 @@
       certEl.innerHTML = cvSection('Certifications', `<div class="space-y-4">${cards}</div>`);
     }
   };
-
-  // Render Home Expertise section (from cv.skills)
-  const renderHomeExpertise = (config) => {
-    const container = document.getElementById('homeExpertise');
-    if (!container || !config.cv?.skills) return;
-
-    const interests = (config.cv.skills.interests || []).join(', ');
-    const technical = (config.cv.skills.technical || []).join(', ');
-
-    container.innerHTML = `
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="bg-surface-container-low p-6 md:p-8 rounded-xl flex flex-col justify-between h-40 md:h-48">
-          <span class="material-symbols-outlined text-primary text-3xl">interests</span>
-          <div>
-            <h4 class="font-headline font-bold text-on-surface">Research Interests</h4>
-            <p class="font-label text-xs text-on-surface-variant uppercase tracking-wider mt-1">${interests}</p>
-          </div>
-        </div>
-        <div class="bg-primary text-on-primary p-6 md:p-8 rounded-xl flex flex-col justify-between h-40 md:h-48">
-          <span class="material-symbols-outlined text-on-primary text-3xl" style="font-variation-settings: 'FILL' 1;">code</span>
-          <div>
-            <h4 class="font-headline font-bold">Technical Skills</h4>
-            <p class="font-label text-xs opacity-70 uppercase tracking-wider mt-1">${technical}</p>
-          </div>
-        </div>
-      </div>
-    `;
-  };
-
-  // Badge color map for organizations (pill style)
-  const orgBadgeClasses = {
-    POSTECH: 'bg-primary/10 text-primary',
-    ROKAF: 'bg-secondary-container text-on-secondary-container',
-    PDAO: 'bg-secondary-fixed text-on-secondary-fixed',
-    Bithumb: 'bg-tertiary-container text-on-tertiary-container',
-    Certification: 'bg-surface-container-highest text-on-surface-variant',
-    NinjaLabsKR: 'bg-primary-fixed text-on-primary-fixed',
-    SuperteamKR: 'bg-tertiary-fixed text-on-tertiary-fixed',
-    Crypto: 'bg-primary-fixed-dim text-on-primary-fixed',
-    'B-Harvest': 'bg-tertiary-fixed-dim text-on-tertiary-fixed',
-    'Base Chain': 'bg-secondary-fixed-dim text-on-secondary-fixed',
-    'BNB Chain': 'bg-primary-container text-on-primary-container',
-  };
-  const defaultBadgeClass = 'bg-surface-container-high text-on-surface-variant';
 
   // Proof-of-work entries (loaded from JSON)
   let proofOfWorkEntries = null;
@@ -1170,10 +1127,10 @@
     // Fixed keyword filter buttons: Key Milestones, Cryptocurrency, Blockchain, Finance, Engineering
     const keywordOrder = ['Cryptocurrency', 'Blockchain', 'Finance', 'Engineering'];
     const keywordButtons = [
-      `<button class="exp-kw-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-primary text-on-primary" data-filter="All">전체 보기 <span class="opacity-60">(${entries.length})</span></button>`,
-      `<button class="exp-kw-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high" data-filter="Importance">⭐ Key Milestones <span class="opacity-60">(${importanceCount})</span></button>`,
+      `<button class="exp-kw-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-primary text-on-primary" data-filter="All">전체 보기 <span class="opacity-60 font-mono tabular-nums">(${entries.length})</span></button>`,
+      `<button class="exp-kw-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high" data-filter="Importance">⭐ Key Milestones <span class="opacity-60 font-mono tabular-nums">(${importanceCount})</span></button>`,
       ...keywordOrder.filter((k) => catCounts[k]).map((kw) =>
-        `<button class="exp-kw-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high" data-filter="${kw}">${kw} <span class="opacity-60">(${catCounts[kw]})</span></button>`
+        `<button class="exp-kw-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high" data-filter="${kw}">${kw} <span class="opacity-60 font-mono tabular-nums">(${catCounts[kw]})</span></button>`
       ),
     ].join('');
 
@@ -1216,7 +1173,7 @@
             <div class="flex-1 min-w-0 pb-3">
               <p class="font-headline ${titleSize} text-on-surface leading-snug mb-1">${entry.contents}</p>
               <div class="flex flex-wrap items-center gap-1">
-                <span class="font-label text-[10px] text-on-surface-variant/70 font-medium mr-1">${formatPeriod(entry.start, entry.end)}</span>
+                <span class="font-mono text-[10px] text-on-surface-variant font-medium tabular-nums mr-1">${formatPeriod(entry.start, entry.end)}</span>
                 ${allTags}
               </div>
             </div>
@@ -1227,7 +1184,7 @@
         <div class="timeline-year-group" data-year="${year}">
           <!-- Year Header -->
           <div class="flex items-center gap-4 mb-5 mt-3">
-            <span class="text-2xl md:text-3xl font-headline font-extrabold text-on-surface tracking-tight">${year}</span>
+            <span class="text-2xl md:text-3xl font-mono font-bold text-on-surface tracking-tight tabular-nums">${year}</span>
             <div class="flex-1 h-px bg-outline-variant/20"></div>
           </div>
           <!-- Timeline Entries -->
@@ -1248,8 +1205,8 @@
           ${keywordButtons}
         </div>
         <div class="relative">
-          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/50 text-xl">search</span>
-          <input id="expSearchInput" type="text" placeholder="Search experiences..." class="w-full pl-12 pr-4 py-3 bg-surface-container-low rounded-lg font-body text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">search</span>
+          <input id="expSearchInput" type="text" placeholder="Search experiences..." class="w-full pl-12 pr-4 py-3 bg-surface-container-low rounded-lg font-body text-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all">
         </div>
       </div>
 
@@ -1260,7 +1217,7 @@
 
       <!-- Footer -->
       <div class="mt-8 flex justify-between items-center">
-        <p class="exp-entry-count font-label text-[10px] text-on-surface-variant uppercase tracking-widest">Showing ${entries.length} of ${entries.length} entries</p>
+        <p class="exp-entry-count font-mono text-[10px] text-on-surface-variant uppercase tracking-wider tabular-nums">Showing ${entries.length} of ${entries.length} entries</p>
         <button id="${exportId}" class="text-xs font-headline font-bold text-primary hover:underline underline-offset-4">Export CSV</button>
       </div>`;
 
@@ -1306,19 +1263,19 @@
             <h4 class="font-headline font-bold text-xl md:text-2xl">Summary of Contributions</h4>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-8">
               <div>
-                <span class="block text-2xl md:text-3xl font-headline font-extrabold text-primary">${String(entries.length).padStart(2, '0')}</span>
+                <span class="block text-2xl md:text-3xl font-mono font-bold text-on-surface tabular-nums">${String(entries.length).padStart(2, '0')}</span>
                 <span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Total Activities</span>
               </div>
               <div>
-                <span class="block text-2xl md:text-3xl font-headline font-extrabold text-primary">${String(importantCount).padStart(2, '0')}</span>
+                <span class="block text-2xl md:text-3xl font-mono font-bold text-on-surface tabular-nums">${String(importantCount).padStart(2, '0')}</span>
                 <span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Key Milestones</span>
               </div>
               <div>
-                <span class="block text-2xl md:text-3xl font-headline font-extrabold text-primary">${String(cryptoCount).padStart(2, '0')}</span>
+                <span class="block text-2xl md:text-3xl font-mono font-bold text-on-surface tabular-nums">${String(cryptoCount).padStart(2, '0')}</span>
                 <span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Crypto Related</span>
               </div>
               <div>
-                <span class="block text-2xl md:text-3xl font-headline font-extrabold text-primary">${String(uniqueOrgs).padStart(2, '0')}</span>
+                <span class="block text-2xl md:text-3xl font-mono font-bold text-on-surface tabular-nums">${String(uniqueOrgs).padStart(2, '0')}</span>
                 <span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Organizations</span>
               </div>
             </div>

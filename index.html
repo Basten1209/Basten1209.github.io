@@ -14,10 +14,12 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-  <!-- Pretendard Font (workhorse, KR+EN) -->
+  <!-- Pretendard Font (workhorse, KR+EN — Latin glyphs are Inter-based) -->
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- JetBrains Mono — tabular numerals (dates, years, stats), the institutional-finance signature -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
   <!-- Tailwind Config (Design Tokens from reference) -->
@@ -27,69 +29,76 @@
       theme: {
         extend: {
           colors: {
-            "secondary-fixed": "#cbe7f5",
-            "on-tertiary-container": "#4a4e69",
-            "outline-variant": "#abb3b7",
-            "surface-bright": "#FAFAFA",
-            "secondary-dim": "#3d5762",
-            "surface-variant": "#dbe4e7",
+            // ── Brand: a single voltage — Coinbase Blue. Used scarcely (CTAs, links, active state, accents).
+            "primary": "#0052ff",
+            "primary-dim": "#003ecc",
+            "surface-tint": "#0052ff",
+            "on-primary": "#ffffff",
+            "inverse-primary": "#b3c7ff",
+            "primary-container": "#dbe4ff",
+            "on-primary-container": "#002a8c",
+            "primary-fixed": "#dbe4ff",
+            "primary-fixed-dim": "#b3c7ff",
+            "on-primary-fixed": "#001a66",
+            "on-primary-fixed-variant": "#00257a",
+            // ── Neutral surfaces: white canvas + cool soft-gray elevation bands.
+            "background": "#f7f8fa",
+            "surface": "#f7f8fa",
+            "surface-bright": "#ffffff",
             "surface-container-lowest": "#ffffff",
-            "primary-container": "#FFE0E5",
-            "inverse-on-surface": "#9b9d9e",
-            "background": "#FAFAFA",
-            "on-primary": "#fff5f6",
-            "tertiary-fixed": "#dbdefe",
-            "error-dim": "#4e0309",
-            "surface-container-high": "#e3e9ec",
-            "on-primary-fixed": "#6B0F22",
-            "tertiary-fixed-dim": "#ccd0ef",
-            "on-primary-fixed-variant": "#8B1029",
-            "primary": "#A31432",
-            "surface-tint": "#A31432",
-            "surface-container": "#eaeff1",
-            "inverse-primary": "#FFB3BE",
-            "secondary-container": "#cbe7f5",
-            "on-surface": "#2D3748",
-            "on-secondary-fixed-variant": "#455f6b",
-            "on-background": "#2D3748",
-            "surface-container-highest": "#dbe4e7",
-            "on-tertiary": "#faf8ff",
-            "on-primary-container": "#6B0F22",
-            "on-secondary-container": "#3c5561",
-            "on-secondary": "#f2faff",
-            "on-secondary-fixed": "#29434e",
-            "primary-fixed": "#FFE0E5",
-            "tertiary": "#595d78",
-            "error-container": "#fe8983",
-            "surface-container-low": "#f1f4f6",
-            "primary-dim": "#8B1029",
-            "surface-dim": "#d1dce0",
-            "on-tertiary-fixed": "#383c55",
-            "on-tertiary-fixed-variant": "#545873",
-            "tertiary-dim": "#4d526c",
-            "secondary": "#49636f",
-            "primary-fixed-dim": "#F5C6CE",
-            "outline": "#737c7f",
-            "on-surface-variant": "#586064",
-            "error": "#9f403d",
-            "inverse-surface": "#0c0f10",
-            "on-error": "#fff7f6",
-            "tertiary-container": "#dbdefe",
-            "surface": "#FAFAFA",
-            "secondary-fixed-dim": "#bdd9e6",
-            "on-error-container": "#752121"
+            "surface-container-low": "#eef1f5",
+            "surface-container": "#e8ecf1",
+            "surface-container-high": "#e2e7ed",
+            "surface-container-highest": "#dbe1e8",
+            "surface-dim": "#d6dce3",
+            "surface-variant": "#dde3ea",
+            "inverse-on-surface": "#eef1f5",
+            "inverse-surface": "#1a1d23",
+            // ── Text: cool ink + body gray + muted (no pure black).
+            "on-surface": "#0b0d12",
+            "on-background": "#0b0d12",
+            "on-surface-variant": "#5b616e",
+            "outline": "#7c828a",
+            "outline-variant": "#c9cdd4",
+            // ── Secondary (quiet slate) — categorical tints only, never an action color.
+            "secondary": "#475569",
+            "secondary-dim": "#334155",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#e2e8f0",
+            "on-secondary-container": "#334155",
+            "secondary-fixed": "#e2e8f0",
+            "secondary-fixed-dim": "#cbd5e1",
+            "on-secondary-fixed": "#334155",
+            "on-secondary-fixed-variant": "#475569",
+            // ── Tertiary (quiet indigo) — categorical tints only.
+            "tertiary": "#5b5f7d",
+            "tertiary-dim": "#474a63",
+            "on-tertiary": "#ffffff",
+            "tertiary-container": "#e4e5f2",
+            "on-tertiary-container": "#3f4266",
+            "tertiary-fixed": "#e4e5f2",
+            "tertiary-fixed-dim": "#cdcfe6",
+            "on-tertiary-fixed": "#3f4266",
+            "on-tertiary-fixed-variant": "#545876",
+            // ── Error (semantic red).
+            "error": "#cf202f",
+            "error-dim": "#8a1620",
+            "on-error": "#ffffff",
+            "error-container": "#fde2e4",
+            "on-error-container": "#8a1620"
           },
           fontFamily: {
             "headline": ["Pretendard Variable", "Pretendard", "sans-serif"],
             "body": ["Pretendard Variable", "Pretendard", "sans-serif"],
-            "label": ["Pretendard Variable", "Pretendard", "sans-serif"]
+            "label": ["Pretendard Variable", "Pretendard", "sans-serif"],
+            "mono": ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"]
           },
           borderRadius: {
-            "DEFAULT": "0.125rem",
-            "lg": "0.25rem",
-            "xl": "0.5rem",
-            "2xl": "0.75rem",
-            "3xl": "1.5rem"
+            "DEFAULT": "0.5rem",
+            "lg": "0.75rem",
+            "xl": "1.25rem",
+            "2xl": "1.5rem",
+            "3xl": "1.75rem"
           }
         }
       }
@@ -124,7 +133,7 @@
         <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="experience" href="#experience">Experience</a>
         <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="cv" href="#cv">CV</a>
       </div>
-      <a href="mailto:seungjunoh@postech.ac.kr" class="hidden md:inline-block bg-primary text-on-primary px-6 py-2.5 rounded-md font-headline font-bold tracking-tight hover:bg-primary-dim transition-all">
+      <a href="mailto:seungjunoh@postech.ac.kr" class="hidden md:inline-block bg-primary text-on-primary px-6 py-2.5 rounded-full font-headline font-bold tracking-tight hover:bg-primary-dim transition-all">
         Contact Me
       </a>
       <button id="mobileMenuBtn" class="md:hidden p-2 text-on-surface" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -144,7 +153,7 @@
         <a class="mobile-nav__link py-2" data-section="experience" href="#experience">Experience</a>
         <a class="mobile-nav__link py-2" data-section="cv" href="#cv">CV</a>
       </nav>
-      <a href="mailto:seungjunoh@postech.ac.kr" class="mt-8 block text-center bg-primary text-on-primary px-6 py-3 rounded-md font-headline font-bold">
+      <a href="mailto:seungjunoh@postech.ac.kr" class="mt-8 block text-center bg-primary text-on-primary px-6 py-3 rounded-full font-headline font-bold">
         Contact Me
       </a>
     </div>
@@ -169,7 +178,7 @@
               Highly motivated student with a strong background in the <strong>cryptocurrency industry</strong>. I have acquired expertise in various domains (<strong>crypto-blockchain</strong>, <strong>financial engineering</strong>), complemented by practical working experience.
             </p>
             <div class="flex flex-wrap gap-4 md:gap-6 items-center">
-              <a id="heroResearchCta" class="bg-primary text-on-primary px-6 py-3 md:px-8 md:py-4 rounded-md font-headline font-bold text-base md:text-lg hover:bg-primary-dim transition-colors shadow-[0_8px_24px_-4px_rgba(163,20,50,0.18)]" href="#articles" data-section="articles">
+              <a id="heroResearchCta" class="bg-primary text-on-primary px-6 py-3 md:px-8 md:py-4 rounded-full font-headline font-bold text-base md:text-lg hover:bg-primary-dim transition-colors shadow-[0_10px_28px_-6px_rgba(0,82,255,0.35)]" href="#articles" data-section="articles">
                 Explore My Research
               </a>
               <a class="font-headline font-bold text-lg text-primary flex items-center gap-2 group" href="data/resume/resume_eng.pdf" download>
@@ -182,11 +191,11 @@
           <div class="lg:col-span-5 relative overflow-hidden">
             <div class="aspect-[4/5] bg-surface-container-low rounded-xl overflow-hidden relative" id="heroVisual">
               <img src="assets/images/profile.jpg" alt="Seungjun Oh" class="w-full h-full object-cover">
-              <div class="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-on-surface/15 to-transparent"></div>
             </div>
-            <!-- Decorative Blurs -->
-            <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-secondary-container/50 blur-3xl -z-10 rounded-[2rem]"></div>
-            <div class="absolute -top-6 -right-6 w-48 h-48 bg-primary-container/30 blur-3xl -z-10 rounded-[2rem]"></div>
+            <!-- Decorative Blurs (soft ambient depth on the cool canvas) -->
+            <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-secondary-container/70 blur-3xl -z-10 rounded-[2rem]"></div>
+            <div class="absolute -top-6 -right-6 w-48 h-48 bg-primary/15 blur-3xl -z-10 rounded-[2rem]"></div>
           </div>
         </div>
       </div>
@@ -269,7 +278,7 @@
               <span class="w-10 h-px bg-on-surface-variant/40"></span>
               <span class="font-headline font-bold text-on-surface text-xl">The Ledger</span>
             </div>
-            <span id="ledgerCount" role="status" aria-live="polite" class="shrink-0 font-label text-[11px] md:text-xs uppercase tracking-[0.15em] text-on-surface-variant tabular-nums">&nbsp;</span>
+            <span id="ledgerCount" role="status" aria-live="polite" class="shrink-0 font-mono text-[11px] md:text-xs uppercase tracking-[0.1em] text-on-surface-variant tabular-nums">&nbsp;</span>
           </div>
 
           <!-- Facet filters -->
@@ -279,8 +288,8 @@
 
           <!-- Search -->
           <div class="relative mb-8 md:mb-10">
-            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/50 text-xl">search</span>
-            <input id="ledgerSearch" type="text" placeholder="Search works..." class="w-full pl-12 pr-4 py-3 bg-surface-container-low rounded-lg font-body text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all">
+            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">search</span>
+            <input id="ledgerSearch" type="text" placeholder="Search works..." class="w-full pl-12 pr-4 py-3 bg-surface-container-low rounded-lg font-body text-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all">
           </div>
 
           <!-- Ledger body -->
@@ -370,7 +379,7 @@
     <section id="cv" class="section">
       <div class="max-w-6xl mx-auto px-6 md:px-12 py-24">
         <!-- Hero (JS renders) -->
-        <div id="cvHero" class="mb-10 flex flex-col md:flex-row justify-between items-end gap-6"></div>
+        <div id="cvHero" class="mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6"></div>
         <!-- CV Sections (JS renders) -->
         <div class="space-y-10">
           <div id="cvSummary"></div>
@@ -395,7 +404,7 @@
     <div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-6 md:gap-8">
       <div class="text-center md:text-left">
         <span class="font-headline font-semibold text-on-surface block mb-2">Seungjun Oh</span>
-        <p class="font-body text-base md:text-lg text-on-surface-variant">&copy; <span id="currentYear"></span> Seungjun Oh. All rights reserved.</p>
+        <p class="font-body text-base md:text-lg text-on-surface-variant">&copy; <span id="currentYear" class="font-mono tabular-nums"></span> Seungjun Oh. All rights reserved.</p>
       </div>
       <div class="flex flex-wrap justify-center gap-4 md:gap-8 font-body text-base md:text-lg" id="footerLinks">
         <a class="text-on-surface-variant hover:text-primary transition-all hover:-translate-y-1" href="mailto:seungjunoh@postech.ac.kr">Email</a>
