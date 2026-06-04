@@ -3,14 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Seungjun Oh - Web3 Researcher & Technical Writer Portfolio">
-  <title>Seungjun Oh | Research & Technical Writing</title>
+  <meta name="description" content="Seungjun Oh — Aspiring Quantitative Researcher with a cryptocurrency domain focus.">
+  <title>Seungjun Oh</title>
+
+  <!-- Favicon (profile picture) -->
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/images/favicon.png">
+  <link rel="icon" type="image/jpeg" href="assets/images/profile.jpg">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-  <!-- Pretendard Font -->
+  <!-- Pretendard Font (workhorse, KR+EN) -->
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
   <!-- Tailwind Config (Design Tokens from reference) -->
@@ -93,9 +100,6 @@
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
-    .tonal-layering-via-bg-shift {
-      box-shadow: inset 0 -1px 0 0 rgba(171, 179, 183, 0.1);
-    }
     .section { display: none; }
     .section--active { display: block; }
   </style>
@@ -110,19 +114,20 @@
 <body class="bg-background text-on-surface font-label selection:bg-primary-container selection:text-on-primary-container">
 
   <!-- Navigation Bar (Glassmorphism) -->
-  <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md tonal-layering-via-bg-shift shadow-sm">
+  <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-[0_4px_24px_rgba(45,55,72,0.04)]">
     <div class="flex justify-between items-center max-w-7xl mx-auto px-4 md:px-8 py-3 md:py-4">
       <span class="text-lg md:text-xl font-extrabold text-on-surface uppercase tracking-widest font-headline">Seungjun Oh</span>
-      <div class="hidden md:flex items-center gap-10 font-headline font-bold tracking-tight text-on-surface">
+      <div class="hidden md:flex items-center gap-6 lg:gap-10 font-headline font-bold tracking-tight text-on-surface">
         <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="home" href="#home">Home</a>
         <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="articles" href="#articles">Articles</a>
+        <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="learning" href="#learning">Learning</a>
         <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="experience" href="#experience">Experience</a>
         <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="cv" href="#cv">CV</a>
       </div>
       <a href="mailto:seungjunoh@postech.ac.kr" class="hidden md:inline-block bg-primary text-on-primary px-6 py-2.5 rounded-md font-headline font-bold tracking-tight hover:bg-primary-dim transition-all">
         Contact Me
       </a>
-      <button id="mobileMenuBtn" class="md:hidden p-2 text-on-surface" aria-label="Open menu">
+      <button id="mobileMenuBtn" class="md:hidden p-2 text-on-surface" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
         <span class="material-symbols-outlined text-2xl">menu</span>
       </button>
     </div>
@@ -131,10 +136,11 @@
   <!-- Mobile Menu Overlay -->
   <div id="mobileMenu" class="fixed inset-0 z-40 hidden">
     <div class="absolute inset-0 bg-on-surface/40 backdrop-blur-sm" id="mobileMenuBackdrop"></div>
-    <div class="relative z-10 bg-surface-container-lowest pt-20 pb-8 px-6 shadow-lg">
+    <div class="relative z-10 bg-surface-container-lowest pt-20 pb-8 px-6 shadow-[0_8px_32px_rgba(45,55,72,0.08)]">
       <nav class="flex flex-col gap-6 font-headline font-bold text-lg text-on-surface">
         <a class="mobile-nav__link py-2" data-section="home" href="#home">Home</a>
         <a class="mobile-nav__link py-2" data-section="articles" href="#articles">Articles</a>
+        <a class="mobile-nav__link py-2" data-section="learning" href="#learning">Learning</a>
         <a class="mobile-nav__link py-2" data-section="experience" href="#experience">Experience</a>
         <a class="mobile-nav__link py-2" data-section="cv" href="#cv">CV</a>
       </nav>
@@ -157,14 +163,14 @@
             <p class="font-label text-sm uppercase tracking-[0.15em] text-primary font-semibold mb-4" id="heroIdentity">Cryptocurrency, Blockchain, Finance, Engineering</p>
             <h1 class="font-headline font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-8xl text-on-surface leading-[1.05] tracking-tighter mb-8">
               Seungjun <br>
-              <span class="text-primary italic font-headline font-light">Oh</span>
+              <span class="text-primary">Oh</span>
             </h1>
             <p class="font-body text-xl md:text-2xl text-on-surface-variant leading-relaxed max-w-2xl mb-12" id="heroTagline">
               Highly motivated student with a strong background in the <strong>cryptocurrency industry</strong>. I have acquired expertise in various domains (<strong>crypto-blockchain</strong>, <strong>financial engineering</strong>), complemented by practical working experience.
             </p>
             <div class="flex flex-wrap gap-4 md:gap-6 items-center">
-              <a class="bg-primary text-on-primary px-6 py-3 md:px-8 md:py-4 rounded-md font-headline font-bold text-base md:text-lg hover:bg-primary-dim transition-colors shadow-lg shadow-primary/10" href="#articles" data-section="articles">
-                View My Research
+              <a id="heroResearchCta" class="bg-primary text-on-primary px-6 py-3 md:px-8 md:py-4 rounded-md font-headline font-bold text-base md:text-lg hover:bg-primary-dim transition-colors shadow-[0_8px_24px_-4px_rgba(163,20,50,0.18)]" href="#articles" data-section="articles">
+                Explore My Research
               </a>
               <a class="font-headline font-bold text-lg text-primary flex items-center gap-2 group" href="data/resume/resume_eng.pdf" download>
                 Download CV
@@ -226,29 +232,62 @@
 
     <!-- ==================== ARTICLES SECTION ==================== -->
     <section id="articles" class="section">
+      <div class="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-24">
 
-      <!-- Filter / Archive Navigation -->
-      <div class="max-w-7xl mx-auto px-6 md:px-8 pt-8">
-        <div class="flex flex-wrap gap-4 md:gap-8 mb-6 items-baseline border-b border-outline-variant/15 pb-6">
-          <h2 class="font-headline font-extrabold text-2xl uppercase tracking-tighter">Archive</h2>
-          <nav id="articleFilters" class="flex gap-6 font-label text-sm font-semibold text-on-surface-variant">
+        <!-- Zone 0: Editorial Masthead -->
+        <header class="mb-12 md:mb-16 space-y-3 md:space-y-4">
+          <div class="flex items-center gap-4 text-on-surface-variant font-label text-sm uppercase tracking-[0.2em]">
+            <span class="w-12 h-px bg-outline-variant"></span>
+            <span>The Editorial Archive</span>
+          </div>
+          <h2 class="text-3xl sm:text-5xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface leading-none">
+            Research <span class="text-primary">Archive</span>
+          </h2>
+          <p id="archiveSubtitle" class="max-w-2xl text-xl text-on-surface-variant font-body leading-relaxed pt-4">
+            <!-- built live from data -->
+          </p>
+        </header>
+
+        <!-- Zone 1: Selected Works -->
+        <div id="archiveSelectedWrap">
+          <div class="flex items-center gap-4 mb-3">
+            <span class="w-10 h-px bg-primary"></span>
+            <span class="font-headline font-bold text-primary text-xl">Selected Works</span>
+          </div>
+          <p class="font-body text-on-surface-variant text-sm max-w-xl mb-8">
+            Three pieces that best represent my range &mdash; protocol cryptography, quantitative method, and market research.
+          </p>
+          <div id="articlesSelected" class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             <!-- Populated by JS -->
-          </nav>
+          </div>
         </div>
-        <!-- Search Box -->
-        <div class="relative mb-10 md:mb-16">
-          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/50 text-xl">search</span>
-          <input id="articleSearchInput" type="text" placeholder="Search by title..." class="w-full pl-12 pr-4 py-3 bg-surface-container-low rounded-lg font-body text-base text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all">
-        </div>
-      </div>
 
-      <!-- Bento Archive Grid -->
-      <div class="max-w-7xl mx-auto px-6 md:px-8 pb-20 md:pb-32 lg:pb-40">
-        <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10">
-          <!-- Populated by JS -->
-        </div>
-      </div>
+        <!-- Zone 2: The Ledger -->
+        <div class="mt-20 md:mt-28">
+          <div class="flex items-baseline justify-between mb-6 gap-4">
+            <div class="flex items-center gap-4">
+              <span class="w-10 h-px bg-on-surface-variant/40"></span>
+              <span class="font-headline font-bold text-on-surface text-xl">The Ledger</span>
+            </div>
+            <span id="ledgerCount" role="status" aria-live="polite" class="shrink-0 font-label text-[11px] md:text-xs uppercase tracking-[0.15em] text-on-surface-variant tabular-nums">&nbsp;</span>
+          </div>
 
+          <!-- Facet filters -->
+          <div id="articleFacets" class="flex flex-wrap items-center gap-2 md:gap-3 mb-4" aria-label="Filter the archive">
+            <!-- Populated by JS -->
+          </div>
+
+          <!-- Search -->
+          <div class="relative mb-8 md:mb-10">
+            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/50 text-xl">search</span>
+            <input id="ledgerSearch" type="text" placeholder="Search works..." class="w-full pl-12 pr-4 py-3 bg-surface-container-low rounded-lg font-body text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all">
+          </div>
+
+          <!-- Ledger body -->
+          <div id="articlesLedger"></div>
+        </div>
+
+      </div>
     </section>
 
     <!-- PDF Viewer Modal -->
@@ -256,7 +295,7 @@
       <div class="absolute inset-0 bg-on-surface/60 backdrop-blur-sm" id="pdfModalBackdrop"></div>
       <div class="relative z-10 flex flex-col h-full max-w-5xl mx-auto p-4 md:p-8">
         <!-- Toolbar -->
-        <div class="flex items-center justify-between bg-surface-container-lowest rounded-xl px-6 py-3 mb-4 shadow-lg">
+        <div class="flex items-center justify-between bg-surface-container-lowest rounded-xl px-6 py-3 mb-4 shadow-[0_4px_24px_rgba(45,55,72,0.10)]">
           <span id="pdfModalTitle" class="font-headline font-bold text-sm text-on-surface truncate mr-4"></span>
           <div class="flex items-center gap-4">
             <button id="pdfPrevPage" class="p-1 hover:bg-surface-container-low rounded-md transition-colors">
@@ -278,6 +317,30 @@
       </div>
     </div>
 
+    <!-- ==================== LEARNING SECTION ==================== -->
+    <section id="learning" class="section">
+      <div class="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-24">
+
+        <!-- Masthead -->
+        <header class="mb-10 md:mb-14 space-y-3 md:space-y-4">
+          <div class="flex items-center gap-4 text-on-surface-variant font-label text-sm uppercase tracking-[0.2em]">
+            <span class="w-12 h-px bg-outline-variant"></span>
+            <span>Study Notes</span>
+          </div>
+          <h2 class="text-3xl sm:text-5xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface leading-none">
+            Learning <span class="text-primary">Notes</span>
+          </h2>
+          <p class="max-w-2xl text-xl text-on-surface-variant font-body leading-relaxed pt-4">
+            제가 직접 정리한 학습 노트와 가이드를 모아 둘 공간입니다.
+          </p>
+        </header>
+
+        <!-- Notes list (populated by JS; shows a TBD state until materials are added) -->
+        <div id="learningList"></div>
+
+      </div>
+    </section>
+
     <!-- ==================== EXPERIENCE SECTION ==================== -->
     <section id="experience" class="section">
       <div class="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-24">
@@ -288,9 +351,9 @@
             <span>The Editorial Archive</span>
           </div>
           <h2 class="text-3xl sm:text-5xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface leading-none">
-            Experience <span class="italic font-headline font-light text-primary">History</span>
+            Experience <span class="text-primary">History</span>
           </h2>
-          <p class="max-w-2xl text-xl text-on-surface-variant font-body italic leading-relaxed pt-4">
+          <p class="max-w-2xl text-xl text-on-surface-variant font-body leading-relaxed pt-4">
             A structured documentation of professional milestones, technical research, and institutional contributions across military, tech, and community sectors.
           </p>
         </header>
@@ -331,15 +394,15 @@
   <footer class="w-full py-10 md:py-16 px-6 md:px-8 mt-16 md:mt-24 bg-surface-container-low">
     <div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-6 md:gap-8">
       <div class="text-center md:text-left">
-        <span class="font-headline font-semibold text-on-surface block mb-2">Seungjun Oh | Research Portfolio</span>
-        <p class="font-body italic text-base md:text-lg text-on-surface-variant">&copy; <span id="currentYear"></span> Seungjun Oh. All rights reserved.</p>
+        <span class="font-headline font-semibold text-on-surface block mb-2">Seungjun Oh</span>
+        <p class="font-body text-base md:text-lg text-on-surface-variant">&copy; <span id="currentYear"></span> Seungjun Oh. All rights reserved.</p>
       </div>
-      <div class="flex flex-wrap justify-center gap-4 md:gap-8 font-body italic text-base md:text-lg" id="footerLinks">
+      <div class="flex flex-wrap justify-center gap-4 md:gap-8 font-body text-base md:text-lg" id="footerLinks">
         <a class="text-on-surface-variant hover:text-primary transition-all hover:-translate-y-1" href="mailto:seungjunoh@postech.ac.kr">Email</a>
-        <a class="text-on-surface-variant hover:text-primary transition-all hover:-translate-y-1" href="https://www.linkedin.com/in/seungjun5/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="text-on-surface-variant hover:text-primary transition-all hover:-translate-y-1" href="https://medium.com/@seungjun-oh" target="_blank" rel="noopener">Medium</a>
-        <a class="text-on-surface-variant hover:text-primary transition-all hover:-translate-y-1" href="https://x.com/seungjun_x" target="_blank" rel="noopener">Twitter</a>
-        <a class="text-on-surface-variant hover:text-primary transition-all hover:-translate-y-1" href="https://github.com/Basten1209" target="_blank" rel="noopener">GitHub</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all hover:-translate-y-1" href="https://www.linkedin.com/in/seungjun5/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all hover:-translate-y-1" href="https://medium.com/@seungjun-oh" target="_blank" rel="noopener noreferrer">Medium</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all hover:-translate-y-1" href="https://x.com/seungjun_x" target="_blank" rel="noopener noreferrer">Twitter</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all hover:-translate-y-1" href="https://github.com/Basten1209" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     </div>
   </footer>

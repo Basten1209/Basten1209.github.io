@@ -5,24 +5,24 @@
     "email": "seungjunoh@postech.ac.kr",
     "emailAlt": "seungjun@postech-dao.xyz",
     "image": "assets/images/profile.jpg",
-    "tagline": "Highly motivated student with a strong background in the <strong>cryptocurrency industry</strong>. I have acquired expertise in various domains (<strong>crypto-blockchain</strong>, <strong>financial engineering</strong>), complemented by practical working experience.",
-    "status": "Available for Technical Research",
-    "heroIdentity": "Cryptocurrency, Blockchain, Finance, Engineering",
+    "tagline": "An aspiring <strong>quantitative researcher</strong> specializing in the <strong>cryptocurrency</strong> domain. I translate the market structure and data of crypto into quantitative models and trading strategies, grounded in <strong>financial engineering</strong> and high-frequency data analysis.",
+    "status": "Aspiring Quantitative Researcher",
+    "heroIdentity": "Quantitative Research · Cryptocurrency · Financial Engineering",
     "focusAreas": [
       {
+        "icon": "query_stats",
+        "title": "Quantitative Research",
+        "description": "Analyzing high-frequency financial data at POSTECH FBDA Lab and building quant alpha strategies at WorldQuant IQC."
+      },
+      {
         "icon": "token",
-        "title": "Crypto Ecosystem",
-        "description": "Published crypto market reports as a Bithumb research intern and built Web3 communities through leading PDAO."
+        "title": "Cryptocurrency Markets",
+        "description": "Published crypto market reports as a Bithumb research intern and led Web3 community research through PDAO."
       },
       {
         "icon": "link",
         "title": "Blockchain Technology",
-        "description": "Researched ZKP, Solana, and Ethereum core technologies, and creating blockchain education content at B-Harvest."
-      },
-      {
-        "icon": "account_balance",
-        "title": "Financial Engineering",
-        "description": "Analyzing high-frequency financial data at POSTECH FBDA Lab and developed quant alpha strategies at WorldQuant IQC."
+        "description": "Researching ZKP, Solana, and Ethereum core technologies, and creating blockchain education content at B-Harvest."
       }
     ],
     "social": {
@@ -59,6 +59,7 @@
     },
     {
       "id": "postech-coinone-pair-analysis",
+      "selected": true,
       "filename": "Term project_Coinone_pair_analysis-v1.pdf",
       "title": "Integrated Case Study about Korea Cryptocurrency Exchange (CEX) : Coinone (with Quality Engineering Method)",
       "description": "코인원 플랫폼에 대한 House of Quality 분석 및, Upbit와의 BTC/KRW 페어 갭 분석에 관한 품질공학 관점의 통계 분석",
@@ -129,6 +130,7 @@
     },
     {
       "id": "pdao-zkp-sp1",
+      "selected": true,
       "filename": "[PDAO] From ZKP to SP1 Hypercube (KOR).pdf",
       "title": "From ZKP to SP1 Hypercube (KOR)",
       "description": "ZKP(영지식 증명)의 기초부터 Succinct의 SP1 Hypercube까지, Realtime Proving 실현 과정을 분석한 기술 리포트.",
@@ -179,6 +181,7 @@
     },
     {
       "id": "crypto-notes-1",
+      "selected": true,
       "filename": "CRYPTO NOTES 1호.pdf",
       "title": "CRYPTO NOTES 1호 - The Big Wave is Coming",
       "description": "크립토 시장의 거시적 흐름과 다가올 대규모 변화에 대한 전망 리포트.",
@@ -268,6 +271,7 @@
       "type": "pdf"
     }
   ],
+  "learning": [],
   "cv": {
     "lastUpdated": "2026.01.22",
     "subtitle": "",
@@ -280,7 +284,7 @@
       }
     ],
     "skills": {
-      "interests": ["Financial Engineering", "Blockchain & Cryptocurrency", "Data Analysis", "High-Frequency Finance", "AI Application (AI with Blockchain / Finance)"],
+      "interests": ["Quantitative Finance", "Financial Engineering", "High-Frequency Finance", "Blockchain & Cryptocurrency", "Data Analysis", "AI Application (AI with Blockchain / Finance)"],
       "technical": ["R", "Python", "C/C++", "SQL", "Git", "MS Office"]
     },
     "experience": [

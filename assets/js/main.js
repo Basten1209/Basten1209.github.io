@@ -44,6 +44,12 @@
       link.classList.toggle('text-primary', isActive);
       link.classList.toggle('text-on-surface', !isActive);
     });
+
+    // Once Articles becomes visible, make sure Selected covers render even if
+    // the IntersectionObserver was set up while the section was display:none.
+    if (targetSection.id === 'articles') {
+      requestAnimationFrame(() => renderPendingCovers());
+    }
   };
 
   const initNavigation = () => {
@@ -77,12 +83,18 @@
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
 
-    const closeMobileMenu = () => {
-      if (mobileMenu) mobileMenu.classList.add('hidden');
+    const setMobileMenuState = (open) => {
+      if (mobileMenu) mobileMenu.classList.toggle('hidden', !open);
+      if (mobileMenuBtn) {
+        mobileMenuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        mobileMenuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      }
     };
+    const closeMobileMenu = () => setMobileMenuState(false);
 
     mobileMenuBtn?.addEventListener('click', () => {
-      mobileMenu?.classList.toggle('hidden');
+      const isOpen = !!mobileMenu && !mobileMenu.classList.contains('hidden');
+      setMobileMenuState(!isOpen);
     });
 
     mobileMenuBackdrop?.addEventListener('click', closeMobileMenu);
@@ -129,7 +141,7 @@
     if (!grid || !config.profile?.focusAreas) return;
 
     grid.innerHTML = config.profile.focusAreas.map((area) => `
-      <div class="p-6 md:p-8 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center gap-3">
+      <div class="p-6 md:p-8 bg-surface-container-lowest rounded-xl shadow-[0_4px_24px_rgba(45,55,72,0.04)] hover:shadow-[0_8px_32px_rgba(45,55,72,0.08)] transition-shadow flex flex-col items-center text-center gap-3">
         <span class="material-symbols-outlined text-primary text-4xl">${area.icon}</span>
         <h3 class="font-headline font-bold text-lg">${area.title}</h3>
       </div>
@@ -198,83 +210,257 @@
     return [...config.reports].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
   };
 
-  // Render article card HTML
-  const renderArticleCard = (report, isLarge) => {
-    const colSpan = isLarge ? 'md:col-span-8' : 'md:col-span-4';
-    const titleSize = isLarge ? 'text-2xl md:text-4xl' : 'text-xl md:text-2xl';
-    const descClass = isLarge ? 'font-body text-lg text-on-surface-variant mb-8 leading-relaxed line-clamp-3' : 'font-body text-on-surface-variant line-clamp-2';
-    const categoryColor = report.category === 'PDAO' ? 'text-primary' : report.category === 'Bithumb' ? 'text-secondary' : 'text-tertiary';
+  // --- Article display helpers ---------------------------------------------
 
-    if (isLarge) {
-      return `
-        <article class="${colSpan} group cursor-pointer" data-report-id="${report.id}" data-report-type="${report.type || 'pdf'}">
-          <div class="bg-surface-container-low p-6 md:p-10 rounded-lg transition-all hover:bg-surface-container-highest">
-            <div class="flex justify-between items-start mb-12">
-              <span class="px-3 py-1 bg-primary-container text-on-primary-container text-[10px] font-bold uppercase tracking-widest rounded-[2rem]">${report.category}</span>
-              <span class="font-label text-xs text-on-surface-variant">${report.date} &middot; ${report.contribution}</span>
-            </div>
-            <h3 class="font-body ${titleSize} mb-6 group-hover:text-primary transition-colors leading-tight">${report.title}</h3>
-            <p class="${descClass}">${report.description || ''}</p>
-            <div class="flex items-center gap-2 text-primary font-headline font-bold text-sm group-hover:gap-4 transition-all">
-              ${report.type === 'url' ? 'VISIT ARTICLE' : 'EXPLORE FINDINGS'}
-              <span class="material-symbols-outlined text-sm">${report.type === 'url' ? 'open_in_new' : 'arrow_forward'}</span>
-            </div>
-          </div>
-        </article>
-      `;
-    }
+  // Normalize the (mostly Korean) contribution string to a clean English label
+  const ROLE_MAP = {
+    '주 저자': 'Lead Author',
+    '프로젝트 리더': 'Project Lead',
+    'Research Assistant로 참여': 'Research Assistant',
+    '데이터 수집 및 전처리': 'Data & Preprocessing',
+    '데이터 처리 및 모델 구현, 일부 문서 작성': 'Data & Implementation',
+    '리포트 코디네이팅, 일부 범위 리포트 작성/교열 및 편집': 'Coordinator',
+    '리포트 코디네이팅, 전 범위 리포트 교열 및 편집': 'Coordinator',
+  };
+  const normalizeRole = (c) => {
+    if (!c) return '';
+    if (ROLE_MAP[c]) return ROLE_MAP[c];
+    if (c.includes('주 저자')) return 'Lead Author';
+    if (c.includes('코디네이팅')) return 'Coordinator';
+    if (c.includes('리더')) return 'Project Lead';
+    if (c.includes('Research Assistant')) return 'Research Assistant';
+    if (c.includes('데이터')) return 'Contributor';
+    return c;
+  };
+  // Collapse to three seniority tiers (for the role filter facet)
+  const roleTier = (c) => {
+    if (!c) return 'Contributor';
+    if (c.includes('주 저자')) return 'Lead Author';
+    if (c.includes('코디네이팅')) return 'Coordinator';
+    return 'Contributor';
+  };
+  const roleColorClass = (c) => {
+    const t = roleTier(c);
+    return t === 'Lead Author' ? 'text-primary' : t === 'Coordinator' ? 'text-on-surface' : 'text-on-surface-variant';
+  };
+  // Category -> 3px spine accent color (the only per-category color; honors No-Line)
+  const spineColorClass = (cat) =>
+    cat === 'PDAO' ? 'bg-primary' : cat === 'Bithumb' ? 'bg-secondary' : cat === 'POSTECH' ? 'bg-tertiary' : 'bg-on-surface-variant/40';
+  const fmtDate = (d) => (d ? d.replace('-', '.') : '');
+  const reportHref = (report) =>
+    report.type === 'url' ? (report.url || '#') : (report.filename ? 'data/reports/' + encodeURIComponent(report.filename) : '#');
 
-    return `
-      <article class="${colSpan} group cursor-pointer" data-report-id="${report.id}" data-report-type="${report.type || 'pdf'}">
-        <div class="h-full flex flex-col pb-8">
-          <span class="font-label text-[10px] font-bold uppercase tracking-widest ${categoryColor} mb-3">${report.category}</span>
-          <h3 class="font-body ${titleSize} mb-4 leading-snug group-hover:text-primary transition-colors">${report.title}</h3>
-          <p class="${descClass}">${report.description || ''}</p>
-          <div class="mt-auto pt-4 flex items-center gap-4">
-            <span class="material-symbols-outlined text-on-surface-variant text-lg">${report.type === 'url' ? 'link' : 'description'}</span>
-            <span class="font-label text-xs text-on-surface-variant">${report.date} &middot; ${report.contribution}</span>
-          </div>
-        </div>
-      </article>
-    `;
+  // --- Cover thumbnails (Selected cards only; lazy + cached) ----------------
+
+  const coverCache = new Map(); // report.id -> dataURL
+
+  const showTypographicCover = (report) => {
+    const fb = document.querySelector(`[data-fallback-id="${report.id}"]`);
+    if (!fb) return;
+    const glyph = report.category === 'POSTECH' ? 'school' : report.category === 'Bithumb' ? 'monitoring' : 'hub';
+    fb.classList.remove('animate-pulse');
+    fb.innerHTML = `
+      <div class="absolute inset-0 bg-surface-container-low overflow-hidden flex items-end p-5">
+        <span class="material-symbols-outlined absolute -right-6 -bottom-8 text-[160px] text-on-surface-variant/[0.06] select-none">${glyph}</span>
+        <h4 class="relative font-headline font-extrabold text-xl text-on-surface leading-tight line-clamp-4">${report.title}</h4>
+      </div>`;
   };
 
-  // Render Articles section
-  const renderArticles = (config) => {
-    const sorted = getSortedReports(config);
-    if (sorted.length === 0) return;
-
-    // Render grid (all reports)
-    renderArticlesGrid(sorted);
+  const paintCover = (canvasEl, report, dataUrl) => {
+    const img = new Image();
+    img.onload = () => {
+      canvasEl.width = img.width;
+      canvasEl.height = img.height;
+      canvasEl.getContext('2d').drawImage(img, 0, 0);
+      canvasEl.classList.remove('opacity-0');
+      const fb = document.querySelector(`[data-fallback-id="${report.id}"]`);
+      if (fb) fb.style.display = 'none';
+    };
+    img.src = dataUrl;
   };
 
-  // Render articles grid with given reports
-  const renderArticlesGrid = (reports) => {
-    const grid = document.getElementById('articlesGrid');
-    if (!grid) return;
-
-    if (reports.length === 0) {
-      grid.innerHTML = `
-        <div class="md:col-span-12 py-16 text-center">
-          <span class="material-symbols-outlined text-on-surface-variant/30 text-[64px] mb-4">search_off</span>
-          <p class="font-headline font-bold text-on-surface-variant">No articles found</p>
-        </div>
-      `;
+  const renderCoverThumbnail = (canvasEl, report) => {
+    if (!canvasEl) return;
+    if (report.type === 'url' || !report.filename || typeof pdfjsLib === 'undefined') {
+      showTypographicCover(report);
       return;
     }
+    if (coverCache.has(report.id)) {
+      paintCover(canvasEl, report, coverCache.get(report.id));
+      return;
+    }
+    pdfjsLib.getDocument('data/reports/' + report.filename).promise
+      .then((pdf) => pdf.getPage(1).then((page) => {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const base = page.getViewport({ scale: 1 });
+        const scale = (480 * dpr) / base.width;
+        const viewport = page.getViewport({ scale });
+        const off = document.createElement('canvas');
+        off.width = viewport.width;
+        off.height = viewport.height;
+        return page.render({ canvasContext: off.getContext('2d'), viewport }).promise.then(() => {
+          const dataUrl = off.toDataURL('image/jpeg', 0.85);
+          coverCache.set(report.id, dataUrl);
+          paintCover(canvasEl, report, dataUrl);
+          pdf.destroy();
+        });
+      }))
+      .catch((err) => {
+        console.warn('Cover render failed for', report.id, err);
+        showTypographicCover(report);
+      });
+  };
 
-    let html = '';
-    reports.forEach((report, i) => {
-      html += renderArticleCard(report, i === 0);
+  // Holds the rendered Selected grid so we can force-render covers on demand
+  let pendingCovers = null; // { grid, selected }
+
+  const startCover = (c, selected) => {
+    if (c.dataset.coverStarted) return; // render each canvas at most once
+    c.dataset.coverStarted = '1';
+    const r = selected.find((x) => x.id === c.dataset.coverId);
+    if (r) renderCoverThumbnail(c, r);
+  };
+
+  const observeSelectedCovers = (grid, selected) => {
+    pendingCovers = { grid, selected };
+    const canvases = grid.querySelectorAll('canvas[data-cover-id]');
+    if (!('IntersectionObserver' in window)) {
+      canvases.forEach((c) => startCover(c, selected));
+      return;
+    }
+    const obs = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          startCover(entry.target, selected);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '300px' });
+    canvases.forEach((c) => obs.observe(c));
+  };
+
+  // Fallback: if the IntersectionObserver did not fire (e.g. section was
+  // display:none when observed), force any not-yet-started covers to render.
+  const renderPendingCovers = () => {
+    if (!pendingCovers) return;
+    pendingCovers.grid.querySelectorAll('canvas[data-cover-id]').forEach((c) => {
+      startCover(c, pendingCovers.selected);
     });
-    grid.innerHTML = html;
+  };
 
-    // Attach click handlers
+  // --- Selected Works (zone 1) ---------------------------------------------
+
+  const renderSelectedCard = (report) => {
+    const role = normalizeRole(report.contribution);
+    const isUrl = report.type === 'url';
+    return `
+      <article class="group cursor-pointer bg-surface-container-lowest rounded-2xl overflow-hidden shadow-[0_4px_24px_rgba(45,55,72,0.04)] hover:shadow-[0_8px_32px_rgba(45,55,72,0.08)] transition-shadow duration-300" data-report-id="${report.id}" data-report-type="${report.type || 'pdf'}">
+        <div class="relative aspect-[3/4] bg-surface-container-low overflow-hidden">
+          <canvas data-cover-id="${report.id}" class="w-full h-full object-cover object-top opacity-0 transition-all duration-500 group-hover:scale-[1.03]" aria-hidden="true"></canvas>
+          <div class="cover-fallback absolute inset-0 flex items-center justify-center animate-pulse" data-fallback-id="${report.id}">
+            <span class="material-symbols-outlined text-on-surface-variant/30 text-4xl">description</span>
+          </div>
+          <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-label font-bold uppercase tracking-widest bg-white/70 backdrop-blur-md text-primary">${report.category}</span>
+          <span class="absolute bottom-3 right-3 inline-flex items-center gap-1 px-2 py-1 rounded-full bg-white/70 backdrop-blur-md text-on-surface-variant text-[10px] font-label uppercase tracking-widest">
+            <span class="material-symbols-outlined text-sm">${isUrl ? 'arrow_outward' : 'picture_as_pdf'}</span>${isUrl ? 'External' : 'PDF'}
+          </span>
+        </div>
+        <div class="p-5">
+          <p class="font-label text-xs text-on-surface-variant mb-2">${role}${report.date ? ' · ' + fmtDate(report.date) : ''}</p>
+          <h3 class="font-headline font-bold text-lg text-on-surface leading-snug tracking-tight line-clamp-2 group-hover:text-primary transition-colors">${report.title}</h3>
+          <p class="font-body text-sm text-on-surface-variant leading-relaxed line-clamp-2 mt-2">${report.description || ''}</p>
+        </div>
+      </article>`;
+  };
+
+  const renderSelected = (config) => {
+    const wrap = document.getElementById('archiveSelectedWrap');
+    const grid = document.getElementById('articlesSelected');
+    if (!grid) return;
+    const order = ['pdao-zkp-sp1', 'postech-coinone-pair-analysis', 'crypto-notes-1'];
+    const selected = (config.reports || []).filter((r) => r.selected)
+      .sort((a, b) => {
+        const ia = order.indexOf(a.id); const ib = order.indexOf(b.id);
+        return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+      });
+    if (!selected.length) { if (wrap) wrap.style.display = 'none'; return; }
+    grid.innerHTML = selected.map(renderSelectedCard).join('');
     grid.querySelectorAll('[data-report-id]').forEach((el) => {
       el.addEventListener('click', () => {
-        const id = el.dataset.reportId;
-        const report = reports.find((r) => r.id === id);
-        if (report) handleReportClick(report);
+        const r = selected.find((x) => x.id === el.dataset.reportId);
+        if (r) handleReportClick(r);
+      });
+    });
+    observeSelectedCovers(grid, selected);
+  };
+
+  // --- The Ledger (zone 2) -------------------------------------------------
+
+  const ledgerEmptyState = `
+    <div class="py-16 text-center">
+      <span class="material-symbols-outlined text-on-surface-variant/30 text-[64px] mb-4">search_off</span>
+      <p class="font-headline font-bold text-on-surface-variant">No works match this filter.</p>
+    </div>`;
+
+  const renderLedgerRow = (report) => {
+    const role = normalizeRole(report.contribution);
+    const isUrl = report.type === 'url';
+    const searchStr = [report.title, report.description, role, report.category]
+      .filter(Boolean).join(' ').toLowerCase().replace(/"/g, '&quot;');
+    return `
+      <a class="ledger-row group grid grid-cols-[3px_1fr_auto] md:grid-cols-[3px_64px_1fr_auto] gap-x-3 md:gap-x-5 items-center py-5 rounded-lg px-3 -mx-3 hover:bg-surface-container-low transition-colors cursor-pointer"
+         href="${reportHref(report)}"${isUrl ? ' target="_blank" rel="noopener noreferrer"' : ''}
+         data-report-id="${report.id}" data-report-type="${report.type || 'pdf'}"
+         data-category="${report.category}" data-type="${isUrl ? 'External' : 'PDF'}" data-role="${roleTier(report.contribution)}"
+         data-search="${searchStr}">
+        <span class="self-stretch w-[3px] rounded-full ${spineColorClass(report.category)}"></span>
+        <span class="hidden md:block font-label text-xs text-on-surface-variant tabular-nums whitespace-nowrap">${fmtDate(report.date)}</span>
+        <div class="min-w-0">
+          <h4 class="font-headline font-semibold text-base md:text-lg text-on-surface leading-snug group-hover:text-primary transition-colors">${report.title}</h4>
+          <p class="font-body text-sm text-on-surface-variant line-clamp-1 mt-0.5">
+            <span class="font-semibold ${roleColorClass(report.contribution)}">${role}</span><span class="text-on-surface-variant/40"> · </span>${report.category}<span class="text-on-surface-variant/40"> · </span>${report.description || ''}
+          </p>
+        </div>
+        <span class="shrink-0 inline-flex items-center gap-1 font-label text-[10px] uppercase tracking-widest text-on-surface-variant/70 group-hover:text-primary transition-colors">
+          <span class="material-symbols-outlined text-base">${isUrl ? 'arrow_outward' : 'picture_as_pdf'}</span><span class="hidden sm:inline">${isUrl ? 'External' : 'PDF'}</span>
+        </span>
+      </a>`;
+  };
+
+  // Render ALL reports once, grouped by year (filtering toggles visibility later)
+  const renderLedger = (reports) => {
+    const container = document.getElementById('articlesLedger');
+    if (!container) return;
+    if (!reports.length) { container.innerHTML = ledgerEmptyState; return; }
+
+    const yearGroups = {};
+    reports.forEach((r) => {
+      const y = (r.date || '').slice(0, 4) || 'Undated';
+      (yearGroups[y] = yearGroups[y] || []).push(r);
+    });
+    const years = Object.keys(yearGroups).sort((a, b) => b.localeCompare(a));
+
+    container.innerHTML = years.map((y) => {
+      const items = yearGroups[y];
+      return `
+        <div class="ledger-year-group" data-year="${y}">
+          <div class="flex items-baseline gap-4 mb-4 mt-12 first:mt-0">
+            <span class="font-headline font-extrabold text-3xl md:text-4xl text-on-surface tracking-tight tabular-nums">${y}</span>
+            <span class="font-label text-on-surface-variant text-sm" data-year-count>${items.length} ${items.length === 1 ? 'work' : 'works'}</span>
+            <div class="flex-1 h-px bg-outline-variant/20"></div>
+          </div>
+          <div>${items.map(renderLedgerRow).join('')}</div>
+        </div>`;
+    }).join('');
+
+    // Click handling: PDFs open in the in-site modal; external links navigate.
+    container.querySelectorAll('.ledger-row').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        const report = reports.find((r) => r.id === el.dataset.reportId);
+        if (!report) return;
+        if (report.type === 'url') return; // let the anchor open the external link
+        e.preventDefault();
+        handleReportClick(report);
       });
     });
   };
@@ -288,54 +474,186 @@
     }
   };
 
-  // Initialize article filter tabs and search
-  const initArticleFilters = (config) => {
-    const filtersNav = document.getElementById('articleFilters');
-    const searchInput = document.getElementById('articleSearchInput');
-    if (!filtersNav || !config.reports) return;
+  // Initialize the Ledger faceted filters + search (cross-facet live counts)
+  const initLedgerFacets = (config) => {
+    const facetsEl = document.getElementById('articleFacets');
+    const searchEl = document.getElementById('ledgerSearch');
+    const countEl = document.getElementById('ledgerCount');
+    const ledgerEl = document.getElementById('articlesLedger');
+    const subtitleEl = document.getElementById('archiveSubtitle');
+    if (!facetsEl || !ledgerEl || !config.reports) return;
 
-    const sorted = getSortedReports(config);
-    const categories = ['All', ...new Set(config.reports.map((r) => r.category))];
-    let activeCategory = 'All';
-    let searchQuery = '';
+    const reports = config.reports;
+    const total = reports.length;
+    const byId = new Map(reports.map((r) => [r.id, r]));
+    const typeOf = (r) => (r.type === 'url' ? 'External' : 'PDF');
 
-    const applyFilters = () => {
-      let filtered = activeCategory === 'All'
-        ? sorted
-        : sorted.filter((r) => r.category === activeCategory);
-      if (searchQuery) {
-        const q = searchQuery.toLowerCase();
-        filtered = filtered.filter((r) => r.title.toLowerCase().includes(q));
-      }
-      renderArticlesGrid(filtered);
+    // Precompute lowercase search haystack (title + desc + role + category)
+    reports.forEach((r) => {
+      r._search = [r.title, r.description, normalizeRole(r.contribution), r.category]
+        .filter(Boolean).join(' ').toLowerCase();
+    });
+
+    // Live masthead subtitle
+    if (subtitleEl) {
+      const venues = new Set(reports.map((r) => r.category)).size;
+      const years = reports.map((r) => (r.date || '').slice(0, 4)).filter(Boolean).sort();
+      const span = years.length ? `${years[0]}–${years[years.length - 1]}` : '';
+      subtitleEl.textContent = `${total} works across ${venues} venues${span ? ', ' + span : ''}.`;
+    }
+
+    const catValues = ['All', ...new Set(reports.map((r) => r.category))];
+    const typeValues = ['PDF', 'External'];
+    const roleValues = ['Lead Author', 'Coordinator', 'Contributor'];
+    const stateF = { category: 'All', type: null, role: null, q: '' };
+
+    // Does a report pass every active axis EXCEPT `except` (null = all axes)?
+    const passes = (r, except) => {
+      if (except !== 'category' && stateF.category !== 'All' && r.category !== stateF.category) return false;
+      if (except !== 'type' && stateF.type && typeOf(r) !== stateF.type) return false;
+      if (except !== 'role' && stateF.role && roleTier(r.contribution) !== stateF.role) return false;
+      if (stateF.q && !(r._search || '').includes(stateF.q)) return false;
+      return true;
     };
 
-    const renderFilterButtons = () => {
-      filtersNav.innerHTML = categories.map((cat) => `
-        <button class="article-filter-tab pb-6 -mb-6 transition-colors ${
-          cat === activeCategory
-            ? 'text-primary border-b-2 border-primary'
-            : 'hover:text-primary'
-        }" data-category="${cat}">${cat === 'All' ? 'All Items' : cat}</button>
-      `).join('');
+    const countFor = (axis, value) => reports.filter((r) => {
+      if (!passes(r, axis)) return false;
+      if (axis === 'category') return value === 'All' ? true : r.category === value;
+      if (axis === 'type') return typeOf(r) === value;
+      if (axis === 'role') return roleTier(r.contribution) === value;
+      return true;
+    }).length;
 
-      filtersNav.querySelectorAll('.article-filter-tab').forEach((btn) => {
+    const isActive = (axis, value) =>
+      axis === 'category' ? stateF.category === value
+        : axis === 'type' ? stateF.type === value
+          : stateF.role === value;
+
+    const pillHtml = (axis, value, withDot) => {
+      const count = countFor(axis, value);
+      const active = isActive(axis, value);
+      const dead = count === 0 && !active;
+      const dot = withDot ? `<span class="inline-block w-1.5 h-1.5 rounded-full ${spineColorClass(value)} mr-1.5 align-middle"></span>` : '';
+      const cls = active ? 'bg-primary text-on-primary' : 'bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high';
+      const deadCls = dead ? ' opacity-40 pointer-events-none' : '';
+      return `<button type="button" class="ledger-filter px-3.5 py-2 text-xs font-label font-semibold rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${cls}${deadCls}" data-axis="${axis}" data-value="${value}" aria-pressed="${active}"${dead ? ' aria-disabled="true" tabindex="-1"' : ''}>${dot}${value} <span class="opacity-60 tabular-nums">(${count})</span></button>`;
+    };
+
+    const group = (labelText, axis, values, dotForNonAll) =>
+      `<div class="flex flex-wrap items-center gap-1.5 md:gap-2">
+         <span class="font-label text-[10px] font-bold uppercase tracking-[0.15em] text-on-surface-variant/70 mr-0.5">${labelText}</span>
+         ${values.map((v) => pillHtml(axis, v, dotForNonAll && v !== 'All')).join('')}
+       </div>`;
+
+    const renderFacets = () => {
+      facetsEl.innerHTML = [
+        group('Venue', 'category', catValues, true),
+        group('Type', 'type', typeValues, false),
+        group('Role', 'role', roleValues, false),
+      ].join('');
+      facetsEl.querySelectorAll('.ledger-filter').forEach((btn) => {
         btn.addEventListener('click', () => {
-          activeCategory = btn.dataset.category;
-          renderFilterButtons();
+          const axis = btn.dataset.axis;
+          const value = btn.dataset.value;
+          if (axis === 'category') stateF.category = value;
+          else if (axis === 'type') stateF.type = stateF.type === value ? null : value;
+          else if (axis === 'role') stateF.role = stateF.role === value ? null : value;
+          renderFacets();
           applyFilters();
         });
       });
     };
 
-    renderFilterButtons();
+    const applyFilters = () => {
+      let visible = 0;
+      ledgerEl.querySelectorAll('.ledger-row').forEach((row) => {
+        const r = byId.get(row.dataset.reportId);
+        const show = r ? passes(r, null) : false;
+        row.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      ledgerEl.querySelectorAll('.ledger-year-group').forEach((g) => {
+        const vis = g.querySelectorAll('.ledger-row:not([style*="display: none"])').length;
+        g.style.display = vis ? '' : 'none';
+        const sub = g.querySelector('[data-year-count]');
+        if (sub) sub.textContent = `${vis} ${vis === 1 ? 'work' : 'works'}`;
+      });
+      if (countEl) countEl.textContent = `Showing ${visible} of ${total}`;
 
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        searchQuery = e.target.value.trim();
-        applyFilters();
+      let empty = ledgerEl.querySelector('[data-ledger-empty]');
+      if (visible === 0) {
+        if (!empty) {
+          empty = document.createElement('div');
+          empty.setAttribute('data-ledger-empty', '');
+          empty.innerHTML = ledgerEmptyState;
+          ledgerEl.appendChild(empty);
+        }
+        empty.style.display = '';
+      } else if (empty) {
+        empty.style.display = 'none';
+      }
+    };
+
+    renderFacets();
+    if (countEl) countEl.textContent = `Showing ${total} of ${total}`;
+
+    if (searchEl) {
+      let t = null;
+      searchEl.placeholder = `Search ${total} works…`;
+      searchEl.addEventListener('input', (e) => {
+        clearTimeout(t);
+        const v = e.target.value.trim().toLowerCase();
+        t = setTimeout(() => { stateF.q = v; renderFacets(); applyFilters(); }, 150);
       });
     }
+  };
+
+  // --- Learning / Study Notes (simple link collection of my own materials) -
+
+  const levelGlyph = (level) =>
+    level === 'foundational' ? 'school'
+      : level === 'repo' ? 'code'
+        : level === 'course' ? 'cast_for_education'
+          : level === 'book' ? 'menu_book'
+            : level === 'note' ? 'edit_note'
+              : 'article';
+  const levelTag = (item) =>
+    item.level === 'repo' ? 'Repo' : (item.type === 'url' ? 'Link' : 'PDF');
+
+  const renderLearningRow = (item) => {
+    const isUrl = item.type === 'url';
+    const href = isUrl ? (item.url || '#') : (item.filename ? 'data/reports/' + encodeURIComponent(item.filename) : '#');
+    const meta = [item.source, item.note].filter(Boolean).join(' · ');
+    return `
+      <a class="learning-row group grid grid-cols-[3px_2rem_1fr_auto] md:grid-cols-[3px_2.5rem_1fr_auto] gap-x-3 md:gap-x-5 items-center py-5 rounded-lg px-3 -mx-3 hover:bg-surface-container-low transition-colors cursor-pointer"
+         href="${href}"${isUrl ? ' target="_blank" rel="noopener noreferrer"' : ''}>
+        <span class="self-stretch w-[3px] rounded-full bg-primary/40"></span>
+        <span class="flex justify-center text-on-surface-variant/60 group-hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">${levelGlyph(item.level)}</span></span>
+        <div class="min-w-0">
+          <h4 class="font-headline font-semibold text-base md:text-lg text-on-surface leading-snug group-hover:text-primary transition-colors">${item.title}</h4>
+          ${meta ? `<p class="font-body text-sm text-on-surface-variant line-clamp-1 mt-0.5">${meta}</p>` : ''}
+        </div>
+        <span class="shrink-0 inline-flex items-center gap-1 font-label text-[10px] uppercase tracking-widest text-on-surface-variant/70 group-hover:text-primary transition-colors">
+          <span class="material-symbols-outlined text-base">${isUrl ? 'arrow_outward' : 'picture_as_pdf'}</span><span class="hidden sm:inline">${levelTag(item)}</span>
+        </span>
+      </a>`;
+  };
+
+  // Simple flat list; shows a TBD state until materials are added.
+  const renderLearning = (config) => {
+    const list = document.getElementById('learningList');
+    if (!list) return;
+    const items = config.learning || [];
+    if (!items.length) {
+      list.innerHTML = `
+        <div class="py-20 md:py-28 text-center bg-surface-container-low rounded-2xl">
+          <span class="material-symbols-outlined text-on-surface-variant/30 text-[56px] mb-4">edit_note</span>
+          <p class="font-headline font-bold text-on-surface text-lg mb-1">준비 중입니다 (TBD)</p>
+          <p class="font-body text-sm text-on-surface-variant max-w-md mx-auto">제가 직접 작성한 학습 노트와 가이드를 이곳에 차근차근 채워 나갈 예정입니다.</p>
+        </div>`;
+      return;
+    }
+    list.innerHTML = `<div class="-my-1">${items.map(renderLearningRow).join('')}</div>`;
   };
 
   // PDF Modal
@@ -447,6 +765,12 @@
     if (heroIdentity && config.profile?.heroIdentity) {
       heroIdentity.textContent = config.profile.heroIdentity;
     }
+    // Hero CTA: surface the volume of work (live count)
+    const researchCta = document.getElementById('heroResearchCta');
+    const reportCount = (config.reports || []).length;
+    if (researchCta && reportCount) {
+      researchCta.textContent = `Explore ${reportCount} Works`;
+    }
   };
 
   // ==================== CV SECTION ====================
@@ -475,7 +799,7 @@
       hero.innerHTML = `
         <div class="max-w-3xl">
           <h1 class="font-headline text-4xl md:text-5xl font-extrabold tracking-tighter text-on-surface leading-none">
-            Seungjun <span class="text-primary italic font-body font-normal">Oh</span>
+            Seungjun <span class="text-primary">Oh</span>
           </h1>
           ${cv.subtitle ? `<p class="mt-2 font-body text-sm text-on-surface-variant">${cv.subtitle}</p>` : ''}
         </div>
@@ -484,7 +808,7 @@
             <span class="material-symbols-outlined text-lg">download</span>
             DOWNLOAD PDF
           </button>
-          <div id="cvDownloadDropdown" class="hidden absolute right-0 mt-2 bg-surface-container-lowest rounded-xl shadow-lg shadow-on-surface/4 py-2 min-w-[200px] z-10">
+          <div id="cvDownloadDropdown" class="hidden absolute right-0 mt-2 bg-surface-container-lowest rounded-xl shadow-[0_8px_32px_rgba(45,55,72,0.08)] py-2 min-w-[200px] z-10">
             ${resumeOptions}
           </div>
         </div>
@@ -508,7 +832,7 @@
     if (eduEl && cv.education?.length) {
       const items = cv.education.map((edu) => {
         const name = edu.url
-          ? `<a href="${edu.url}" target="_blank" rel="noopener" class="text-primary underline underline-offset-2 hover:text-primary-dim transition-colors font-headline font-bold text-sm">${edu.institution}</a>`
+          ? `<a href="${edu.url}" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary-dim transition-colors font-headline font-bold text-sm">${edu.institution}</a>`
           : `<span class="font-headline font-bold text-sm text-on-surface">${edu.institution}</span>`;
         return `
           <div>
@@ -516,7 +840,7 @@
               ${name}
               <span class="font-label text-sm text-on-surface-variant">${edu.period}</span>
             </div>
-            <p class="font-body text-sm font-semibold text-on-surface italic">${edu.degree}</p>
+            <p class="font-body text-sm font-semibold text-on-surface">${edu.degree}</p>
           </div>
         `;
       }).join('');
@@ -528,7 +852,7 @@
     if (researchEl && cv.research?.length) {
       const items = cv.research.map((r) => {
         const labName = r.url
-          ? `<a href="${r.url}" target="_blank" rel="noopener" class="text-primary underline underline-offset-2 hover:text-primary-dim transition-colors">${r.lab}</a>`
+          ? `<a href="${r.url}" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary-dim transition-colors">${r.lab}</a>`
           : r.lab;
         return `
           <div>
@@ -551,7 +875,7 @@
     if (expEl && cv.experience?.length) {
       const items = cv.experience.map((exp) => {
         const orgName = exp.url
-          ? `<a href="${exp.url}" target="_blank" rel="noopener" class="text-primary underline underline-offset-2 hover:text-primary-dim transition-colors">${exp.organization}</a>`
+          ? `<a href="${exp.url}" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary-dim transition-colors">${exp.organization}</a>`
           : `<span>${exp.organization}</span>`;
         const highlights = (exp.highlights || []).map((h) =>
           `<li>${h}</li>`
@@ -599,7 +923,7 @@
     if (pubEl && cv.publication?.length) {
       const items = cv.publication.map((pub) => {
         const title = pub.url
-          ? `<a href="${pub.url}" target="_blank" rel="noopener" class="text-primary underline underline-offset-2 hover:text-primary-dim transition-colors">${pub.title}</a>`
+          ? `<a href="${pub.url}" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary-dim transition-colors">${pub.title}</a>`
           : pub.title;
         return `
           <div>
@@ -695,7 +1019,7 @@
     if (extraEl && cv.extracurricular?.length) {
       const items = cv.extracurricular.map((ext) => {
         const orgName = ext.url
-          ? `<a href="${ext.url}" target="_blank" rel="noopener" class="text-primary underline underline-offset-2 hover:text-primary-dim transition-colors">${ext.organization}</a>`
+          ? `<a href="${ext.url}" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary-dim transition-colors">${ext.organization}</a>`
           : ext.organization;
         const highlights = (ext.highlights || []).map((h) =>
           `<li>${h}</li>`
@@ -771,40 +1095,6 @@
         </div>
       </div>
     `;
-  };
-
-  // Render Featured Publication PDF thumbnail
-  const renderFeaturedPdfThumbnail = (filename) => {
-    const canvas = document.getElementById('featuredPdfCanvas');
-    const placeholder = document.getElementById('featuredPlaceholder');
-    if (!canvas || typeof pdfjsLib === 'undefined') return;
-
-    const pdfPath = `data/reports/${filename}`;
-    pdfjsLib.getDocument(pdfPath).promise.then((pdf) => {
-      pdf.getPage(1).then((page) => {
-        const container = canvas.parentElement;
-        const containerWidth = container.clientWidth;
-        const containerHeight = container.clientHeight;
-
-        const unscaledViewport = page.getViewport({ scale: 1 });
-        const scale = Math.max(
-          containerWidth / unscaledViewport.width,
-          containerHeight / unscaledViewport.height
-        );
-        const viewport = page.getViewport({ scale });
-
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
-        const context = canvas.getContext('2d');
-
-        page.render({ canvasContext: context, viewport }).promise.then(() => {
-          canvas.classList.remove('hidden');
-          if (placeholder) placeholder.classList.add('hidden');
-        });
-      });
-    }).catch((err) => {
-      console.warn('Featured PDF thumbnail failed:', err);
-    });
   };
 
   // Badge color map for organizations (pill style)
@@ -1007,7 +1297,7 @@
       <section class="mt-16 md:mt-24 grid md:grid-cols-3 gap-8 md:gap-12">
         <div class="md:col-span-1 border-l-2 border-primary pl-6 md:pl-8 space-y-4">
           <h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter">Evolution of Focus</h3>
-          <p class="font-body text-on-surface-variant italic leading-relaxed">
+          <p class="font-body text-on-surface-variant leading-relaxed">
             From POSTECH academics and early crypto research (2021) through ROKAF military service (2023–2024) to Web3 community building at PDAO, SuperteamKR, and technical writing — a trajectory toward systemic complexity and interdisciplinary contribution across ${yearSpan}.
           </p>
         </div>
@@ -1125,8 +1415,10 @@
       renderTagline(config);
       renderFocusAreas(config);
       renderAboutAndSummary();
-      renderArticles(config);
-      initArticleFilters(config);
+      renderSelected(config);
+      renderLedger(getSortedReports(config));
+      initLedgerFacets(config);
+      renderLearning(config);
       proofOfWorkEntries = await loadProofOfWork();
       renderExperience(config, proofOfWorkEntries);
       initExperienceFilters();
