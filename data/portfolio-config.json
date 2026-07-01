@@ -25,6 +25,12 @@
         "description": "Researching ZKP, Solana, and Ethereum core technologies, and creating blockchain education content at B-Harvest."
       }
     ],
+    "now": [
+      { "role": "Undergraduate Researcher", "org": "POSTECH FBDA Lab", "note": "Quant · HF Finance · DeFi" },
+      { "role": "Undergraduate Researcher", "org": "POSTECH CCBR", "note": "Blockchain" },
+      { "role": "Organizer", "org": "PDAO (POSTECH DAO)", "note": "Web3" },
+      { "role": "Brain Consultant", "org": "WorldQuant", "note": "Alpha Research" }
+    ],
     "social": {
       "linkedin": "https://www.linkedin.com/in/seungjun5/",
       "twitter": "https://x.com/seungjun_x",
@@ -59,7 +65,6 @@
     },
     {
       "id": "postech-coinone-pair-analysis",
-      "selected": true,
       "filename": "Term project_Coinone_pair_analysis-v1.pdf",
       "title": "Integrated Case Study about Korea Cryptocurrency Exchange (CEX) : Coinone (with Quality Engineering Method)",
       "description": "코인원 플랫폼에 대한 House of Quality 분석 및, Upbit와의 BTC/KRW 페어 갭 분석에 관한 품질공학 관점의 통계 분석",
@@ -70,6 +75,7 @@
     },
     {
       "id": "postech-lift-framework",
+      "selected": true,
       "title": "LIFT - A Unified Framework for High-Dimensional Covariance Estimation",
       "description": "계층적 클러스터링 기반 고차원 금융데이터 분석 프레임워크 연구.",
       "contribution": "데이터 처리 및 모델 구현, 일부 문서 작성",
@@ -289,8 +295,8 @@
     },
     "experience": [
       {
-        "period": "2026.02 - Present",
-        "role": "Campus Ambassador - Part-time (20 hrs/week)",
+        "period": "2026.02 - 2026.06",
+        "role": "Freelancer (Research)",
         "team": "TechBD team",
         "organization": "Altus (formerly B-Harvest)",
         "url": "https://bharvest.io",
@@ -430,6 +436,7 @@
       }
     ],
     "events": [
+      { "year": "2026", "role": "Host", "title": "Web3 Career Meetup: Crypto Career Mentoring", "link": "https://luma.com/e08xe5lo" },
       { "year": "2026", "role": "Panel Speaker", "title": "DE-FERENCE 2026", "link": "https://deference.co.kr/ko" },
       { "year": "2026", "role": "Panel Speaker", "title": "BNB Martian Night: Learn & Network", "link": "https://luma.com/tcxy45tl" },
       { "year": "2025", "role": "Panel Speaker", "title": "AI+Blockchain Autumn Camp - Korean Offline Workshop", "link": "https://luma.com/4wzmaumh" },

@@ -648,7 +648,7 @@
   },
   {
     "start": "2026.02",
-    "end": "",
+    "end": "2026.06",
     "tags": [
       "B-Harvest",
       "Blockchain"
@@ -685,6 +685,16 @@
       "BNB Chain"
     ],
     "contents": "Panel Speaker in \"BNB Martian Night: Learn & Network\"",
+    "importance": false,
+    "crypto": true
+  },
+  {
+    "start": "2026.06",
+    "end": "2026.06",
+    "tags": [
+      "PDAO"
+    ],
+    "contents": "Hosted \"Web3 Career Meetup: Crypto Career Mentoring\"",
     "importance": false,
     "crypto": true
   }

@@ -135,71 +135,53 @@
     }
   };
 
-  // Render Focus Areas
+  // Render Focus Areas — editorial columns (mono index + title + evidence-backed
+  // description). No centered icon-cards; the description carries the substance.
   const renderFocusAreas = (config) => {
     const grid = document.getElementById('focusAreasGrid');
     if (!grid || !config.profile?.focusAreas) return;
 
-    grid.innerHTML = config.profile.focusAreas.map((area) => `
-      <div class="p-6 md:p-8 bg-surface-container-lowest rounded-xl shadow-[0_4px_24px_rgba(45,55,72,0.04)] hover:shadow-[0_8px_32px_rgba(45,55,72,0.08)] transition-shadow flex flex-col items-center text-center gap-3">
-        <span class="material-symbols-outlined text-primary text-4xl">${area.icon}</span>
-        <h3 class="font-headline font-bold text-lg">${area.title}</h3>
+    grid.innerHTML = config.profile.focusAreas.map((area, i) => `
+      <div class="pt-6 border-t border-hairline">
+        <span class="font-mono text-sm font-medium text-on-surface-variant tabular-nums">${String(i + 1).padStart(2, '0')}</span>
+        <h3 class="font-headline font-bold text-xl text-on-surface tracking-tight mt-3 mb-2.5">${area.title}</h3>
+        <p class="font-body text-base text-on-surface-variant leading-relaxed">${area.description || ''}</p>
       </div>
     `).join('');
   };
 
-  // Render Case Studies (latest 2 reports)
-  const renderAboutAndSummary = async () => {
+  // Render the About prose (data/profile-intro.md)
+  const renderAbout = async () => {
     const aboutEl = document.getElementById('aboutContent');
-    const summaryEl = document.getElementById('summaryContent');
-
-    // Load and render profile-intro.md
-    if (aboutEl) {
-      try {
-        const res = await fetch('data/profile-intro.md');
-        if (res.ok) {
-          const md = await res.text();
-          const html = typeof marked !== 'undefined' ? marked.parse(md) : md.replace(/\n\n/g, '</p><p>').replace(/^/, '<p>').replace(/$/, '</p>');
-          aboutEl.innerHTML = typeof DOMPurify !== 'undefined' ? DOMPurify.sanitize(html) : html;
-        }
-      } catch (e) {
-        console.warn('Failed to load profile-intro.md', e);
+    if (!aboutEl) return;
+    try {
+      const res = await fetch('data/profile-intro.md');
+      if (res.ok) {
+        const md = await res.text();
+        const html = typeof marked !== 'undefined' ? marked.parse(md) : md.replace(/\n\n/g, '</p><p>').replace(/^/, '<p>').replace(/$/, '</p>');
+        aboutEl.innerHTML = typeof DOMPurify !== 'undefined' ? DOMPurify.sanitize(html) : html;
       }
+    } catch (e) {
+      console.warn('Failed to load profile-intro.md', e);
     }
+  };
 
-    // Load and render summary.md
-    if (summaryEl) {
-      try {
-        const res = await fetch('summary.md');
-        if (res.ok) {
-          const md = await res.text();
-          const html = typeof marked !== 'undefined' ? marked.parse(md) : md;
-          const sanitized = typeof DOMPurify !== 'undefined' ? DOMPurify.sanitize(html) : html;
-          // Style the rendered markdown
-          const wrapper = document.createElement('div');
-          wrapper.innerHTML = sanitized;
-          // Style headings
-          wrapper.querySelectorAll('h1').forEach(el => {
-            el.className = 'font-headline font-extrabold text-lg text-on-surface mb-4 hidden';
-          });
-          wrapper.querySelectorAll('h2, h3').forEach(el => {
-            el.className = 'font-headline font-bold text-sm uppercase tracking-widest text-primary mb-3 mt-6 first:mt-0';
-          });
-          // Style lists
-          wrapper.querySelectorAll('ul').forEach(el => {
-            el.className = 'space-y-2 font-label text-sm text-on-surface-variant';
-          });
-          wrapper.querySelectorAll('li').forEach(el => {
-            el.className = 'flex gap-2 items-start';
-            el.innerHTML = '<span class="text-primary font-bold mt-0.5">-</span><span>' + el.innerHTML + '</span>';
-          });
-          summaryEl.innerHTML = '';
-          summaryEl.appendChild(wrapper);
-        }
-      } catch (e) {
-        console.warn('Failed to load summary.md', e);
-      }
-    }
+  // Render "Now" — a compact snapshot of current roles (config.profile.now).
+  // Replaces the old, drift-prone Career Summary (summary.md).
+  const renderNow = (config) => {
+    const el = document.getElementById('nowContent');
+    if (!el) return;
+    const items = config.profile?.now || [];
+    if (!items.length) { el.innerHTML = ''; return; }
+    el.innerHTML = items.map((it) => `
+      <div class="py-4 border-t border-hairline first:border-t-0 first:pt-0">
+        <div class="flex items-baseline justify-between gap-3">
+          <span class="font-headline font-bold text-base text-on-surface leading-snug">${it.role}</span>
+          ${it.note ? `<span class="shrink-0 font-label text-[10px] uppercase tracking-[0.15em] text-on-surface-variant">${it.note}</span>` : ''}
+        </div>
+        ${it.org ? `<span class="font-body text-sm text-on-surface-variant">${it.org}</span>` : ''}
+      </div>
+    `).join('');
   };
 
   // ==================== ARTICLES SECTION ====================
@@ -378,7 +360,7 @@
     const wrap = document.getElementById('archiveSelectedWrap');
     const grid = document.getElementById('articlesSelected');
     if (!grid) return;
-    const order = ['pdao-zkp-sp1', 'postech-coinone-pair-analysis', 'crypto-notes-1'];
+    const order = ['pdao-zkp-sp1', 'postech-lift-framework', 'crypto-notes-1'];
     const selected = (config.reports || []).filter((r) => r.selected)
       .sort((a, b) => {
         const ia = order.indexOf(a.id); const ib = order.indexOf(b.id);
@@ -783,7 +765,7 @@
     // Helper: compact section wrapper (full-width title + underline)
     const cvSection = (title, contentHtml) => `
       <section>
-        <h2 class="font-headline text-lg font-extrabold tracking-tight text-on-surface uppercase border-b border-on-surface pb-1 mb-5">${title}</h2>
+        <h2 class="font-headline text-lg font-extrabold tracking-tight text-on-surface uppercase border-b border-hairline pb-2 mb-5">${title}</h2>
         <div class="space-y-5">
           ${contentHtml}
         </div>
@@ -1371,7 +1353,8 @@
     if (config) {
       renderTagline(config);
       renderFocusAreas(config);
-      renderAboutAndSummary();
+      renderAbout();
+      renderNow(config);
       renderSelected(config);
       renderLedger(getSortedReports(config));
       initLedgerFacets(config);

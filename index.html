@@ -60,6 +60,9 @@
             "on-surface-variant": "#5b616e",
             "outline": "#7c828a",
             "outline-variant": "#c9cdd4",
+            // ── Hairline dividers (institutional soft rules — never near-black).
+            "hairline": "#dee1e6",
+            "hairline-soft": "#eef0f3",
             // ── Secondary (quiet slate) — categorical tints only, never an action color.
             "secondary": "#475569",
             "secondary-dim": "#334155",
@@ -188,14 +191,10 @@
             </div>
           </div>
           <!-- Visual Column -->
-          <div class="lg:col-span-5 relative overflow-hidden">
-            <div class="aspect-[4/5] bg-surface-container-low rounded-xl overflow-hidden relative" id="heroVisual">
+          <div class="lg:col-span-5">
+            <div class="aspect-[4/5] bg-surface-container-low rounded-2xl overflow-hidden ring-1 ring-hairline shadow-[0_20px_40px_-24px_rgba(11,13,18,0.18)]" id="heroVisual">
               <img src="assets/images/profile.jpg" alt="Seungjun Oh" class="w-full h-full object-cover">
-              <div class="absolute inset-0 bg-gradient-to-t from-on-surface/15 to-transparent"></div>
             </div>
-            <!-- Decorative Blurs (soft ambient depth on the cool canvas) -->
-            <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-secondary-container/70 blur-3xl -z-10 rounded-[2rem]"></div>
-            <div class="absolute -top-6 -right-6 w-48 h-48 bg-primary/15 blur-3xl -z-10 rounded-[2rem]"></div>
           </div>
         </div>
       </div>
@@ -224,14 +223,17 @@
               <!-- Populated by JS from data/profile-intro.md -->
             </div>
           </div>
-          <!-- Career Summary -->
+          <!-- Now — 간결한 현재 약력 (config.profile.now) -->
           <div class="lg:col-span-5">
-            <div class="bg-surface-container-low p-6 md:p-10 rounded-xl">
-              <h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter mb-6 md:mb-8">Career Summary</h3>
-              <div id="summaryContent" class="font-body text-on-surface-variant leading-relaxed space-y-6">
-                <!-- Populated by JS from summary.md -->
-              </div>
+            <div class="flex items-center gap-4 text-on-surface-variant font-label text-sm uppercase tracking-[0.2em] mb-6">
+              <span class="w-12 h-px bg-hairline"></span>
+              <span>Now</span>
             </div>
+            <div id="nowContent"></div>
+            <a href="#experience" data-section="experience" class="mt-8 inline-flex items-center gap-1.5 font-headline font-bold text-sm text-primary group">
+              Full experience history
+              <span class="material-symbols-outlined text-base group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+            </a>
           </div>
         </div>
       </div>
