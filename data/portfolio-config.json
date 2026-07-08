@@ -54,6 +54,16 @@
   ],
   "reports": [
     {
+      "id": "postech-uniswap-v3-lp-risk-return",
+      "title": "[Paper Review] Risks and Returns of Uniswap V3 Liquidity Providers",
+      "description": "Uniswap V3에서의 liquidity provision risk-return 구조를 paper study 형식으로 정리한 아티클.",
+      "contribution": "주 저자",
+      "date": "2026-07",
+      "category": "POSTECH",
+      "type": "url",
+      "url": "https://seungjunoh.notion.site/Risks-and-Returns-of-Uniswap-V3-Liquidity-Providers-AFT-22-38e92b914dfc80d4b84cc42b7f58da7a"
+    },
+    {
       "id": "postech-crypto-price-patterns",
       "filename": "Heterogenous price patterns of cryptocurrency between exchanges.pdf",
       "title": "Heterogenous Price Patterns of Cryptocurrency Between Exchanges",
