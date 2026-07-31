@@ -22,7 +22,7 @@
       {
         "icon": "link",
         "title": "Blockchain Technology",
-        "description": "Researching ZKP, Solana, and Ethereum core technologies, and creating blockchain education content at B-Harvest."
+        "description": "Produced and coordinated technical research on ZKP and Solana through PDAO, while developing blockchain core education content at B-Harvest."
       }
     ],
     "now": [
@@ -53,6 +53,16 @@
     }
   ],
   "reports": [
+    {
+      "id": "postech-predictable-losses-liquidity-provision",
+      "title": "[Paper Review] Predictable Losses of Liquidity Provision in Constant Function Markets and Concentrated Liquidity Markets",
+      "description": "DEX LP의 Risk 측정법인 Predictable Loss에 관한 설명을 다룬 paper study 아티클.",
+      "contribution": "Author",
+      "date": "2026-07",
+      "category": "POSTECH",
+      "type": "url",
+      "url": "https://seungjunoh.notion.site/Predictable-Losses-of-Liquidity-Provision-in-Constant-Function-Markets-and-Concentrated-Liquidity-Ma-39792b914dfc8089b520e709c5dd6ae3?source=copy_link"
+    },
     {
       "id": "postech-uniswap-v3-lp-risk-return",
       "title": "[Paper Review] Risks and Returns of Uniswap V3 Liquidity Providers",

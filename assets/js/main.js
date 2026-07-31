@@ -196,7 +196,7 @@
 
   // Normalize the (mostly Korean) contribution string to a clean English label
   const ROLE_MAP = {
-    '주 저자': 'Lead Author',
+    '주 저자': 'Author',
     '프로젝트 리더': 'Project Lead',
     'Research Assistant로 참여': 'Research Assistant',
     '데이터 수집 및 전처리': 'Data & Preprocessing',
@@ -207,24 +207,24 @@
   const normalizeRole = (c) => {
     if (!c) return '';
     if (ROLE_MAP[c]) return ROLE_MAP[c];
-    if (c.includes('주 저자')) return 'Lead Author';
+    if (c.includes('주 저자')) return 'Author';
     if (c.includes('코디네이팅')) return 'Coordinator';
     if (c.includes('리더')) return 'Project Lead';
     if (c.includes('Research Assistant')) return 'Research Assistant';
     if (c.includes('데이터')) return 'Contributor';
     return c;
   };
-  // Collapse to three seniority tiers (for the role filter facet)
+  // Collapse to three contribution tiers (for the role filter facet)
   const roleTier = (c) => {
     if (!c) return 'Contributor';
-    if (c.includes('주 저자')) return 'Lead Author';
+    if (c === 'Author' || c.includes('주 저자')) return 'Author';
     if (c.includes('코디네이팅')) return 'Coordinator';
     return 'Contributor';
   };
   const roleColorClass = (c) => {
     const t = roleTier(c);
     // Blue is reserved for actions/links; seniority is signalled by ink weight, not hue.
-    return t === 'Lead Author' ? 'text-on-surface' : t === 'Coordinator' ? 'text-on-surface' : 'text-on-surface-variant';
+    return t === 'Author' ? 'text-on-surface' : t === 'Coordinator' ? 'text-on-surface' : 'text-on-surface-variant';
   };
   // Category -> 3px spine accent. Quiet slate/indigo/ink tints only — blue is never a category color.
   const spineColorClass = (cat) =>
@@ -487,7 +487,7 @@
 
     const catValues = ['All', ...new Set(reports.map((r) => r.category))];
     const typeValues = ['PDF', 'External'];
-    const roleValues = ['Lead Author', 'Coordinator', 'Contributor'];
+    const roleValues = ['Author', 'Coordinator', 'Contributor'];
     const stateF = { category: 'All', type: null, role: null, q: '' };
 
     // Does a report pass every active axis EXCEPT `except` (null = all axes)?
