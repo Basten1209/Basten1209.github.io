@@ -333,7 +333,7 @@
         "url": "https://www.worldquant.com/",
         "type": "Technical",
         "highlights": [
-          "Contracted as a Consultant after being awarded 3rd place in the 2025 IQC (Korea Final), currently inactive"
+          "Contracted as a Consultant after being awarded 3rd place in the 2025 IQC (Korea Final)"
         ]
       },
       {
@@ -363,6 +363,15 @@
       }
     ],
     "extracurricular": [
+      {
+        "period": "2026.06 - Present",
+        "role": "3rd Cohort Member",
+        "organization": "Undergrad AI Study",
+        "url": "https://sites.google.com/view/sangwoomo/join-us",
+        "highlights": [
+          "Studying deep learning theory and presenting on generative AI models."
+        ]
+      },
       {
         "period": "2025.01 - Present",
         "role": "Organizer (Head)",
