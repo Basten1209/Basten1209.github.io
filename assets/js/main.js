@@ -18,15 +18,22 @@
   const setActiveSection = (sectionId) => {
     const allSections = sections();
     const allNavLinks = navLinks();
-    const targetSection = allSections.find((s) => s.id === sectionId) || allSections[0];
+    const requestedSection = allSections.find((s) => s.id === sectionId);
+    const targetSection = requestedSection || allSections.find((s) => s.id === 'home') || allSections[0];
     if (!targetSection) return;
+
+    if (!requestedSection && window.location.hash !== `#${targetSection.id}`) {
+      history.replaceState(null, '', `#${targetSection.id}`);
+    }
+
+    const activeNavSectionId = targetSection.id === 'experience' ? 'cv' : targetSection.id;
 
     allSections.forEach((section) => {
       section.classList.toggle('section--active', section === targetSection);
     });
 
     allNavLinks.forEach((link) => {
-      const isActive = link.dataset.section === targetSection.id;
+      const isActive = link.dataset.section === activeNavSectionId;
       link.classList.toggle('text-primary', isActive);
       link.classList.toggle('border-b-2', isActive);
       link.classList.toggle('border-primary', isActive);
@@ -40,7 +47,7 @@
 
     // Update mobile nav links
     mobileNavLinks().forEach((link) => {
-      const isActive = link.dataset.section === targetSection.id;
+      const isActive = link.dataset.section === activeNavSectionId;
       link.classList.toggle('text-primary', isActive);
       link.classList.toggle('text-on-surface', !isActive);
     });
@@ -135,21 +142,6 @@
     }
   };
 
-  // Render Focus Areas — editorial columns (mono index + title + evidence-backed
-  // description). No centered icon-cards; the description carries the substance.
-  const renderFocusAreas = (config) => {
-    const grid = document.getElementById('focusAreasGrid');
-    if (!grid || !config.profile?.focusAreas) return;
-
-    grid.innerHTML = config.profile.focusAreas.map((area, i) => `
-      <div class="pt-6 border-t border-hairline">
-        <span class="font-mono text-sm font-medium text-on-surface-variant tabular-nums">${String(i + 1).padStart(2, '0')}</span>
-        <h3 class="font-headline font-bold text-xl text-on-surface tracking-tight mt-3 mb-2.5">${area.title}</h3>
-        <p class="font-body text-base text-on-surface-variant leading-relaxed">${area.description || ''}</p>
-      </div>
-    `).join('');
-  };
-
   // Render the About prose (data/profile-intro.md)
   const renderAbout = async () => {
     const aboutEl = document.getElementById('aboutContent');
@@ -164,24 +156,6 @@
     } catch (e) {
       console.warn('Failed to load profile-intro.md', e);
     }
-  };
-
-  // Render "Now" — a compact snapshot of current roles (config.profile.now).
-  // Replaces the old, drift-prone Career Summary (summary.md).
-  const renderNow = (config) => {
-    const el = document.getElementById('nowContent');
-    if (!el) return;
-    const items = config.profile?.now || [];
-    if (!items.length) { el.innerHTML = ''; return; }
-    el.innerHTML = items.map((it) => `
-      <div class="py-4 border-t border-hairline first:border-t-0 first:pt-0">
-        <div class="flex items-baseline justify-between gap-3">
-          <span class="font-headline font-bold text-base text-on-surface leading-snug">${it.role}</span>
-          ${it.note ? `<span class="shrink-0 font-label text-[10px] uppercase tracking-[0.15em] text-on-surface-variant">${it.note}</span>` : ''}
-        </div>
-        ${it.org ? `<span class="font-body text-sm text-on-surface-variant">${it.org}</span>` : ''}
-      </div>
-    `).join('');
   };
 
   // ==================== ARTICLES SECTION ====================
@@ -591,54 +565,6 @@
     }
   };
 
-  // --- Learning / Study Notes (simple link collection of my own materials) -
-
-  const levelGlyph = (level) =>
-    level === 'foundational' ? 'school'
-      : level === 'repo' ? 'code'
-        : level === 'course' ? 'cast_for_education'
-          : level === 'book' ? 'menu_book'
-            : level === 'note' ? 'edit_note'
-              : 'article';
-  const levelTag = (item) =>
-    item.level === 'repo' ? 'Repo' : (item.type === 'url' ? 'Link' : 'PDF');
-
-  const renderLearningRow = (item) => {
-    const isUrl = item.type === 'url';
-    const href = isUrl ? (item.url || '#') : (item.filename ? 'data/reports/' + encodeURIComponent(item.filename) : '#');
-    const meta = [item.source, item.note].filter(Boolean).join(' · ');
-    return `
-      <a class="learning-row group grid grid-cols-[3px_2rem_1fr_auto] md:grid-cols-[3px_2.5rem_1fr_auto] gap-x-3 md:gap-x-5 items-center py-5 rounded-lg px-3 -mx-3 hover:bg-surface-container-low transition-colors cursor-pointer"
-         href="${href}"${isUrl ? ' target="_blank" rel="noopener noreferrer"' : ''}>
-        <span class="self-stretch w-[3px] rounded-full bg-primary/40"></span>
-        <span class="flex justify-center text-on-surface-variant group-hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">${levelGlyph(item.level)}</span></span>
-        <div class="min-w-0">
-          <h4 class="font-headline font-semibold text-base md:text-lg text-on-surface leading-snug group-hover:text-primary transition-colors">${item.title}</h4>
-          ${meta ? `<p class="font-body text-sm text-on-surface-variant line-clamp-1 mt-0.5">${meta}</p>` : ''}
-        </div>
-        <span class="shrink-0 inline-flex items-center gap-1 font-label text-[10px] uppercase tracking-widest text-on-surface-variant group-hover:text-primary transition-colors">
-          <span class="material-symbols-outlined text-base">${isUrl ? 'arrow_outward' : 'picture_as_pdf'}</span><span class="hidden sm:inline">${levelTag(item)}</span>
-        </span>
-      </a>`;
-  };
-
-  // Simple flat list; shows a TBD state until materials are added.
-  const renderLearning = (config) => {
-    const list = document.getElementById('learningList');
-    if (!list) return;
-    const items = config.learning || [];
-    if (!items.length) {
-      list.innerHTML = `
-        <div class="py-20 md:py-28 text-center bg-surface-container-low rounded-2xl">
-          <span class="material-symbols-outlined text-on-surface-variant/30 text-[56px] mb-4">edit_note</span>
-          <p class="font-headline font-bold text-on-surface text-lg mb-1">준비 중입니다 (TBD)</p>
-          <p class="font-body text-sm text-on-surface-variant max-w-md mx-auto">제가 직접 작성한 학습 노트와 가이드를 이곳에 차근차근 채워 나갈 예정입니다.</p>
-        </div>`;
-      return;
-    }
-    list.innerHTML = `<div class="-my-1">${items.map(renderLearningRow).join('')}</div>`;
-  };
-
   // PDF Modal
   let pdfDoc = null;
   let pdfCurrentPage = 1;
@@ -747,12 +673,6 @@
     const heroIdentity = document.getElementById('heroIdentity');
     if (heroIdentity && config.profile?.heroIdentity) {
       heroIdentity.textContent = config.profile.heroIdentity;
-    }
-    // Hero CTA: surface the volume of work (live count)
-    const researchCta = document.getElementById('heroResearchCta');
-    const reportCount = (config.reports || []).length;
-    if (researchCta && reportCount) {
-      researchCta.textContent = `Explore ${reportCount} Works`;
     }
   };
 
@@ -1053,16 +973,12 @@
   };
 
   // Proof-of-work entries (loaded from JSON)
-  let proofOfWorkEntries = null;
   const loadProofOfWork = async () => {
     try {
       const response = await fetch('data/proof-of-work.json');
       if (!response.ok) throw new Error(`Failed to load proof-of-work.json: ${response.status}`);
       const entries = await response.json();
-      return entries.map((e) => ({
-        ...e,
-        primaryOrg: e.tags[0] || 'Other',
-      })).sort((a, b) => b.start.localeCompare(a.start));
+      return entries.sort((a, b) => b.start.localeCompare(a.start));
     } catch (error) {
       console.error('Error loading proof-of-work.json:', error);
       return [];
@@ -1077,44 +993,10 @@
     return `${start} — ${end}`;
   };
 
-  // Derive categories for an experience entry
-  const deriveCategories = (entry) => {
-    const cats = [];
-    if (entry.crypto) cats.push('Cryptocurrency');
-    if (entry.tags.includes('Blockchain')) cats.push('Blockchain');
-    if (entry.tags.includes('Finance')) cats.push('Finance');
-    if (entry.tags.includes('Engineering')) cats.push('Engineering');
-    if (cats.length === 0) cats.push('Other');
-    return cats;
-  };
-
   // Render Experience Section as Timeline
-  const renderExperience = (config, entries) => {
+  const renderExperience = (entries) => {
     const tableContainer = document.getElementById('experienceTableContainer');
-    const insightsContainer = document.getElementById('experienceInsights');
     if (!tableContainer || !entries?.length) return;
-
-    // Add derived categories to each entry
-    entries.forEach((e) => { e.categories = deriveCategories(e); });
-
-    // Derive category filter counts
-    const catCounts = {};
-    entries.forEach((e) => {
-      e.categories.forEach((c) => { catCounts[c] = (catCounts[c] || 0) + 1; });
-    });
-
-    // Count important entries
-    const importanceCount = entries.filter((e) => e.importance).length;
-
-    // Fixed keyword filter buttons: Key Milestones, Cryptocurrency, Blockchain, Finance, Engineering
-    const keywordOrder = ['Cryptocurrency', 'Blockchain', 'Finance', 'Engineering'];
-    const keywordButtons = [
-      `<button class="exp-kw-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-primary text-on-primary" data-filter="All">전체 보기 <span class="opacity-60 font-mono tabular-nums">(${entries.length})</span></button>`,
-      `<button class="exp-kw-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high" data-filter="Importance">⭐ Key Milestones <span class="opacity-60 font-mono tabular-nums">(${importanceCount})</span></button>`,
-      ...keywordOrder.filter((k) => catCounts[k]).map((kw) =>
-        `<button class="exp-kw-btn px-4 py-2 text-xs font-label font-semibold rounded-full transition-colors bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high" data-filter="${kw}">${kw} <span class="opacity-60 font-mono tabular-nums">(${catCounts[kw]})</span></button>`
-      ),
-    ].join('');
 
     // Group entries by start year
     const yearGroups = {};
@@ -1143,9 +1025,8 @@
           ...(entry.crypto ? [`<span class="${tagStyle}">Cryptocurrency</span>`] : []),
         ].join('');
 
-        const searchText = [entry.contents, ...entry.tags, formatPeriod(entry.start, entry.end)].join(' ').toLowerCase();
         return `
-          <div class="timeline-entry flex gap-4 group" data-org="${entry.primaryOrg}" data-categories="${entry.categories.join(',')}" data-importance="${entry.importance ? '1' : '0'}" data-search="${searchText.replace(/"/g, '&quot;')}">
+          <div class="timeline-entry flex gap-4 group">
             <!-- Dot + Line column (fixed width for consistent alignment) -->
             <div class="flex flex-col items-center shrink-0 w-4">
               <div class="mt-[6px] ${nodeClass} shrink-0 transition-transform group-hover:scale-125"></div>
@@ -1176,167 +1057,10 @@
         </div>`;
     }).join('');
 
-    // Export CSV handler id
-    const exportId = 'expExportCsv';
-
     tableContainer.innerHTML = `
-      <!-- Filter Bar: Keywords + Search -->
-      <div class="mb-6 space-y-4">
-        <div class="flex flex-wrap items-center gap-3">
-          <span class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant mr-1">Keyword:</span>
-          ${keywordButtons}
-        </div>
-        <div class="relative">
-          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">search</span>
-          <input id="expSearchInput" type="text" placeholder="Search experiences..." class="w-full pl-12 pr-4 py-3 bg-surface-container-low rounded-lg font-body text-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all">
-        </div>
-      </div>
-
-      <!-- Timeline -->
       <div class="timeline-container">
         ${timelineHTML}
-      </div>
-
-      <!-- Footer -->
-      <div class="mt-8 flex justify-between items-center">
-        <p class="exp-entry-count font-mono text-[10px] text-on-surface-variant uppercase tracking-wider tabular-nums">Showing ${entries.length} of ${entries.length} entries</p>
-        <button id="${exportId}" class="text-xs font-headline font-bold text-primary hover:underline underline-offset-4">Export CSV</button>
       </div>`;
-
-    // CSV export
-    const exportBtn = document.getElementById(exportId);
-    if (exportBtn && proofOfWorkEntries) {
-      exportBtn.addEventListener('click', () => {
-        const header = 'Start,End,Tags,Contents,Importance,Crypto';
-        const rows = proofOfWorkEntries.map((e) => {
-          const escape = (v) => `"${String(v).replace(/"/g, '""')}"`;
-          return [escape(e.start), escape(e.end), escape(e.tags.join('; ')), escape(e.contents), e.importance ? 'O' : '', e.crypto ? 'O' : ''].join(',');
-        });
-        const csv = [header, ...rows].join('\n');
-        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'proof-of-work.csv';
-        a.click();
-        URL.revokeObjectURL(url);
-      });
-    }
-
-    // Insights section
-    if (!insightsContainer) return;
-
-    const uniqueOrgs = new Set(entries.map((e) => e.primaryOrg)).size;
-    const importantCount = entries.filter((e) => e.importance).length;
-    const cryptoCount = entries.filter((e) => e.crypto).length;
-    const years = entries.map((e) => e.start.slice(0, 4)).filter(Boolean);
-    const yearSpan = years.length ? `${Math.min(...years.map(Number))}–${Math.max(...years.map(Number))}` : '';
-
-    insightsContainer.innerHTML = `
-      <section class="mt-16 md:mt-24 grid md:grid-cols-3 gap-8 md:gap-12">
-        <div class="md:col-span-1 border-l-2 border-primary pl-6 md:pl-8 space-y-4">
-          <h3 class="font-headline font-extrabold text-xl uppercase tracking-tighter">Evolution of Focus</h3>
-          <p class="font-body text-on-surface-variant leading-relaxed">
-            From POSTECH academics and early crypto research (2021) through ROKAF military service (2023–2024) to Web3 community building at PDAO, SuperteamKR, and technical writing — a trajectory toward systemic complexity and interdisciplinary contribution across ${yearSpan}.
-          </p>
-        </div>
-        <div class="md:col-span-2 bg-surface-container-low p-6 md:p-10 rounded-xl relative overflow-hidden">
-          <div class="relative z-10 space-y-6">
-            <h4 class="font-headline font-bold text-xl md:text-2xl">Summary of Contributions</h4>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-8">
-              <div>
-                <span class="block text-2xl md:text-3xl font-mono font-bold text-on-surface tabular-nums">${String(entries.length).padStart(2, '0')}</span>
-                <span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Total Activities</span>
-              </div>
-              <div>
-                <span class="block text-2xl md:text-3xl font-mono font-bold text-on-surface tabular-nums">${String(importantCount).padStart(2, '0')}</span>
-                <span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Key Milestones</span>
-              </div>
-              <div>
-                <span class="block text-2xl md:text-3xl font-mono font-bold text-on-surface tabular-nums">${String(cryptoCount).padStart(2, '0')}</span>
-                <span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Crypto Related</span>
-              </div>
-              <div>
-                <span class="block text-2xl md:text-3xl font-mono font-bold text-on-surface tabular-nums">${String(uniqueOrgs).padStart(2, '0')}</span>
-                <span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Organizations</span>
-              </div>
-            </div>
-          </div>
-          <div class="absolute -right-10 -bottom-10 opacity-5 pointer-events-none">
-            <span class="material-symbols-outlined text-[200px]">architecture</span>
-          </div>
-        </div>
-      </section>`;
-  };
-
-  // Experience Filter Logic (Timeline version with keyword filters + search)
-  const initExperienceFilters = () => {
-    const container = document.getElementById('experienceTableContainer');
-    if (!container) return;
-
-    const kwButtons = container.querySelectorAll('.exp-kw-btn');
-    const searchInput = container.querySelector('#expSearchInput');
-    const timelineEntries = container.querySelectorAll('.timeline-entry');
-    const yearGroups = container.querySelectorAll('.timeline-year-group');
-    const countEl = container.querySelector('.exp-entry-count');
-    const totalCount = timelineEntries.length;
-
-    let activeKw = 'All';
-    let searchQuery = '';
-
-    const applyFilters = () => {
-      let visibleCount = 0;
-
-      timelineEntries.forEach((entry) => {
-        const entryCats = entry.dataset.categories.split(',');
-        const matchKw = activeKw === 'All'
-          ? true
-          : activeKw === 'Importance'
-            ? entry.dataset.importance === '1'
-            : entryCats.includes(activeKw);
-        const matchSearch = !searchQuery || entry.dataset.search.includes(searchQuery);
-        const show = matchKw && matchSearch;
-        entry.style.display = show ? '' : 'none';
-        if (show) visibleCount++;
-      });
-
-      // Hide year groups with no visible entries
-      yearGroups.forEach((group) => {
-        const visibleEntries = group.querySelectorAll('.timeline-entry:not([style*="display: none"])');
-        group.style.display = visibleEntries.length > 0 ? '' : 'none';
-      });
-
-      if (countEl) {
-        countEl.textContent = `Showing ${visibleCount} of ${totalCount} entries`;
-      }
-    };
-
-    const updateButtonStyles = (buttons, activeValue) => {
-      buttons.forEach((btn) => {
-        if (btn.dataset.filter === activeValue) {
-          btn.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
-          btn.classList.add('bg-primary', 'text-on-primary');
-        } else {
-          btn.classList.remove('bg-primary', 'text-on-primary');
-          btn.classList.add('bg-surface-container-low', 'text-on-surface-variant');
-        }
-      });
-    };
-
-    kwButtons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        activeKw = btn.dataset.filter;
-        updateButtonStyles(kwButtons, activeKw);
-        applyFilters();
-      });
-    });
-
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        searchQuery = e.target.value.trim().toLowerCase();
-        applyFilters();
-      });
-    }
   };
 
   // Initialize
@@ -1352,16 +1076,12 @@
     const config = await loadPortfolioConfig();
     if (config) {
       renderTagline(config);
-      renderFocusAreas(config);
       renderAbout();
-      renderNow(config);
       renderSelected(config);
       renderLedger(getSortedReports(config));
       initLedgerFacets(config);
-      renderLearning(config);
-      proofOfWorkEntries = await loadProofOfWork();
-      renderExperience(config, proofOfWorkEntries);
-      initExperienceFilters();
+      const proofOfWorkEntries = await loadProofOfWork();
+      renderExperience(proofOfWorkEntries);
       renderCV(config);
     }
     initPdfModal();

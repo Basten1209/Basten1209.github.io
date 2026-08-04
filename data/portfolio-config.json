@@ -5,32 +5,9 @@
     "email": "seungjunoh@postech.ac.kr",
     "emailAlt": "seungjun@postech-dao.xyz",
     "image": "assets/images/profile.jpg",
-    "tagline": "An aspiring <strong>quantitative researcher</strong> specializing in the <strong>cryptocurrency</strong> domain. I translate the market structure and data of crypto into quantitative models and trading strategies, grounded in <strong>financial engineering</strong> and high-frequency data analysis.",
+    "tagline": "Undergraduate researcher at POSTECH studying high-frequency and high-dimensional financial data, with a focus on cryptocurrency markets.",
     "status": "Aspiring Quantitative Researcher",
     "heroIdentity": "Quantitative Research · Cryptocurrency · Financial Engineering",
-    "focusAreas": [
-      {
-        "icon": "query_stats",
-        "title": "Quantitative Research",
-        "description": "Analyzing high-frequency financial data at POSTECH FBDA Lab and building quant alpha strategies at WorldQuant IQC."
-      },
-      {
-        "icon": "token",
-        "title": "Cryptocurrency Markets",
-        "description": "Published crypto market reports as a Bithumb research intern and led Web3 community research through PDAO."
-      },
-      {
-        "icon": "link",
-        "title": "Blockchain Technology",
-        "description": "Produced and coordinated technical research on ZKP and Solana through PDAO, while developing blockchain core education content at B-Harvest."
-      }
-    ],
-    "now": [
-      { "role": "Undergraduate Researcher", "org": "POSTECH FBDA Lab", "note": "Quant · HF Finance · DeFi" },
-      { "role": "Undergraduate Researcher", "org": "POSTECH CCBR", "note": "Blockchain" },
-      { "role": "Organizer", "org": "PDAO (POSTECH DAO)", "note": "Web3" },
-      { "role": "Brain Consultant", "org": "WorldQuant", "note": "Alpha Research" }
-    ],
     "social": {
       "linkedin": "https://www.linkedin.com/in/seungjun5/",
       "twitter": "https://x.com/seungjun_x",
@@ -297,7 +274,6 @@
       "type": "pdf"
     }
   ],
-  "learning": [],
   "cv": {
     "lastUpdated": "2026.01.22",
     "subtitle": "",

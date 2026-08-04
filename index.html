@@ -172,8 +172,6 @@
       <div class="hidden md:flex items-center gap-6 lg:gap-10 font-headline font-bold tracking-tight text-on-surface">
         <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="home" href="#home">Home</a>
         <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="articles" href="#articles">Articles</a>
-        <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="learning" href="#learning">Learning</a>
-        <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="experience" href="#experience">Experience</a>
         <a class="nav__link pb-1 hover:opacity-80 transition-opacity duration-200" data-section="cv" href="#cv">CV</a>
       </div>
       <a href="mailto:seungjunoh@postech.ac.kr" class="hidden md:inline-block bg-primary text-on-primary px-6 py-2.5 rounded-full font-headline font-bold tracking-tight hover:bg-primary-dim transition-all">
@@ -192,8 +190,6 @@
       <nav class="flex flex-col gap-6 font-headline font-bold text-lg text-on-surface">
         <a class="mobile-nav__link py-2" data-section="home" href="#home">Home</a>
         <a class="mobile-nav__link py-2" data-section="articles" href="#articles">Articles</a>
-        <a class="mobile-nav__link py-2" data-section="learning" href="#learning">Learning</a>
-        <a class="mobile-nav__link py-2" data-section="experience" href="#experience">Experience</a>
         <a class="mobile-nav__link py-2" data-section="cv" href="#cv">CV</a>
       </nav>
       <a href="mailto:seungjunoh@postech.ac.kr" class="mt-8 block text-center bg-primary text-on-primary px-6 py-3 rounded-full font-headline font-bold">
@@ -212,25 +208,19 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-20 items-center">
           <!-- Text Column -->
           <div class="lg:col-span-7">
-            <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4">
+            <div class="mb-4">
               <p class="font-label text-sm uppercase tracking-[0.15em] text-primary font-semibold" id="heroIdentity">Cryptocurrency, Blockchain, Finance, Engineering</p>
-              <img
-                src="https://hits.sh/seungjun.site.svg?style=flat-square&label=views&color=0052ff&labelColor=eef1f5"
-                alt="Total site views"
-                class="h-5 w-fit"
-                referrerpolicy="no-referrer-when-downgrade"
-              >
             </div>
             <h1 class="font-headline font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-8xl text-on-surface leading-[1.05] tracking-tighter mb-8">
               Seungjun <br>
               <span class="text-primary">Oh</span>
             </h1>
             <p class="font-body text-xl md:text-2xl text-on-surface-variant leading-relaxed max-w-2xl mb-12" id="heroTagline">
-              Highly motivated student with a strong background in the <strong>cryptocurrency industry</strong>. I have acquired expertise in various domains (<strong>crypto-blockchain</strong>, <strong>financial engineering</strong>), complemented by practical working experience.
+              Undergraduate researcher at POSTECH studying high-frequency and high-dimensional financial data, with a focus on cryptocurrency markets.
             </p>
             <div class="flex flex-wrap gap-4 md:gap-6 items-center">
               <a id="heroResearchCta" class="bg-primary text-on-primary px-6 py-3 md:px-8 md:py-4 rounded-full font-headline font-bold text-base md:text-lg hover:bg-primary-dim transition-colors shadow-[0_10px_28px_-6px_rgba(0,82,255,0.35)]" href="#articles" data-section="articles">
-                Explore My Research
+                Selected Research
               </a>
               <a class="font-headline font-bold text-lg text-primary flex items-center gap-2 group" href="data/resume/resume_eng.pdf" download>
                 Download CV
@@ -247,41 +237,15 @@
         </div>
       </div>
 
-      <!-- Interest -->
-      <div class="max-w-7xl mx-auto px-6 md:px-8 py-12 md:py-20 bg-surface-container-low rounded-3xl mb-20 md:mb-32 lg:mb-40" id="focusAreasContainer">
-        <div class="flex items-center gap-4 text-on-surface-variant font-label text-sm uppercase tracking-[0.2em] mb-8">
-          <span class="w-12 h-[1px] bg-outline-variant"></span>
-          <span>Interest</span>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="focusAreasGrid">
-          <!-- Populated by JS from portfolio-config.json -->
-        </div>
-      </div>
-
-      <!-- About Me & Career Summary -->
+      <!-- About Me -->
       <div class="max-w-7xl mx-auto px-6 md:px-8 pb-20 md:pb-32 lg:pb-40">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
-          <!-- About Me -->
-          <div class="lg:col-span-7">
-            <div class="flex items-center gap-4 text-on-surface-variant font-label text-sm uppercase tracking-[0.2em] mb-6">
-              <span class="w-12 h-[1px] bg-outline-variant"></span>
-              <span>About Me</span>
-            </div>
-            <div id="aboutContent" class="font-body text-xl text-on-surface-variant leading-relaxed space-y-4">
-              <!-- Populated by JS from data/profile-intro.md -->
-            </div>
+        <div class="max-w-3xl">
+          <div class="flex items-center gap-4 text-on-surface-variant font-label text-sm uppercase tracking-[0.2em] mb-6">
+            <span class="w-12 h-[1px] bg-outline-variant"></span>
+            <span>About Me</span>
           </div>
-          <!-- Now — 간결한 현재 약력 (config.profile.now) -->
-          <div class="lg:col-span-5">
-            <div class="flex items-center gap-4 text-on-surface-variant font-label text-sm uppercase tracking-[0.2em] mb-6">
-              <span class="w-12 h-px bg-hairline"></span>
-              <span>Now</span>
-            </div>
-            <div id="nowContent"></div>
-            <a href="#experience" data-section="experience" class="mt-8 inline-flex items-center gap-1.5 font-headline font-bold text-sm text-primary group">
-              Full experience history
-              <span class="material-symbols-outlined text-base group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
-            </a>
+          <div id="aboutContent" class="font-body text-xl text-on-surface-variant leading-relaxed space-y-4">
+            <!-- Populated by JS from data/profile-intro.md -->
           </div>
         </div>
       </div>
@@ -376,52 +340,29 @@
       </div>
     </div>
 
-    <!-- ==================== LEARNING SECTION ==================== -->
-    <section id="learning" class="section">
-      <div class="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-24">
-
-        <!-- Masthead -->
-        <header class="mb-10 md:mb-14 space-y-3 md:space-y-4">
-          <div class="flex items-center gap-4 text-on-surface-variant font-label text-sm uppercase tracking-[0.2em]">
-            <span class="w-12 h-px bg-outline-variant"></span>
-            <span>Study Notes</span>
-          </div>
-          <h2 class="text-3xl sm:text-5xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface leading-none">
-            Learning <span class="text-primary">Notes</span>
-          </h2>
-          <p class="max-w-2xl text-xl text-on-surface-variant font-body leading-relaxed pt-4">
-            제가 직접 정리한 학습 노트와 가이드를 모아 둘 공간입니다.
-          </p>
-        </header>
-
-        <!-- Notes list (populated by JS; shows a TBD state until materials are added) -->
-        <div id="learningList"></div>
-
-      </div>
-    </section>
-
     <!-- ==================== EXPERIENCE SECTION ==================== -->
     <section id="experience" class="section">
       <div class="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-24">
         <!-- Editorial Header -->
         <header class="mb-12 md:mb-20 space-y-3 md:space-y-4">
+          <a href="#cv" data-section="cv" class="inline-flex items-center gap-1.5 font-headline font-bold text-sm text-primary group mb-4">
+            <span class="material-symbols-outlined text-base group-hover:-translate-x-0.5 transition-transform">arrow_back</span>
+            Back to CV
+          </a>
           <div class="flex items-center gap-4 text-on-surface-variant font-label text-sm uppercase tracking-[0.2em]">
             <span class="w-12 h-[1px] bg-outline-variant"></span>
-            <span>The Editorial Archive</span>
+            <span>CV / Detailed Experience</span>
           </div>
           <h2 class="text-3xl sm:text-5xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface leading-none">
             Experience <span class="text-primary">History</span>
           </h2>
           <p class="max-w-2xl text-xl text-on-surface-variant font-body leading-relaxed pt-4">
-            A structured documentation of professional milestones, technical research, and institutional contributions across military, tech, and community sectors.
+            A chronological record of my research, work, and community activities.
           </p>
         </header>
 
         <!-- Table Container (populated by JS) -->
         <div id="experienceTableContainer"></div>
-
-        <!-- Summary + Evolution (populated by JS) -->
-        <div id="experienceInsights"></div>
       </div>
     </section>
 
@@ -443,6 +384,16 @@
           <div id="cvAwards"></div>
           <div id="cvCertificates"></div>
           <div id="cvEducation"></div>
+          <div class="bg-surface-container-low rounded-xl p-6 md:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+            <div>
+              <h2 class="font-headline text-lg font-extrabold tracking-tight text-on-surface">Detailed Experience</h2>
+              <p class="mt-1 font-body text-sm text-on-surface-variant">View the complete chronological record of my activities and milestones.</p>
+            </div>
+            <a href="#experience" data-section="experience" class="inline-flex items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-full font-headline font-bold text-sm hover:bg-primary-dim transition-colors sm:shrink-0">
+              View detailed experience
+              <span class="material-symbols-outlined text-lg">arrow_forward</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -455,6 +406,12 @@
       <div class="text-center md:text-left">
         <span class="font-headline font-semibold text-on-surface block mb-2">Seungjun Oh</span>
         <p class="font-body text-base md:text-lg text-on-surface-variant">&copy; <span id="currentYear" class="font-mono tabular-nums"></span> Seungjun Oh. All rights reserved.</p>
+        <img
+          src="https://hits.sh/seungjun.site.svg?style=flat-square&label=views&color=0052ff&labelColor=eef1f5"
+          alt="Total site views"
+          class="h-5 w-fit mt-3 mx-auto md:mx-0 opacity-70"
+          referrerpolicy="no-referrer-when-downgrade"
+        >
       </div>
       <div class="flex flex-wrap justify-center gap-4 md:gap-8 font-body text-base md:text-lg" id="footerLinks">
         <a class="text-on-surface-variant hover:text-primary transition-all hover:-translate-y-1" href="mailto:seungjunoh@postech.ac.kr">Email</a>
