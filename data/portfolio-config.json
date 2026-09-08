@@ -31,6 +31,16 @@
   ],
   "reports": [
     {
+      "id": "postech-dynamic-factor-copula-models",
+      "title": "[Paper Review] Dynamic Factor Copula Models with Estimated Cluster Assignments",
+      "description": "데이터에서 추정한 군집과 동적 요인 코퓰라를 활용해 고차원 자산의 시간가변 의존구조를 모델링하는 방법을 정리한 paper study 아티클.",
+      "contribution": "Author",
+      "date": "2026-08",
+      "category": "POSTECH",
+      "type": "url",
+      "url": "https://seungjunoh.notion.site/Dynamic-Factor-Copula-Models-with-Estimated-Cluster-Assignments-JoE-23-3cc92b914dfc803c9d00e6989ab5430a?source=copy_link"
+    },
+    {
       "id": "postech-predictable-losses-liquidity-provision",
       "title": "[Paper Review] Predictable Losses of Liquidity Provision in Constant Function Markets and Concentrated Liquidity Markets",
       "description": "DEX LP의 Risk 측정법인 Predictable Loss에 관한 설명을 다룬 paper study 아티클.",
