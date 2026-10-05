@@ -895,12 +895,20 @@
         const linkBadge = award.link
           ? ` <a href="${award.link}" target="_blank" rel="noopener noreferrer" class="font-label text-xs text-primary hover:underline inline-flex items-center gap-0.5" aria-label="Related article"><span class="material-symbols-outlined" style="font-size:14px;line-height:1;">link</span></a>`
           : '';
+        const issuer = award.issuer
+          ? ` <span class="font-label text-sm text-on-surface-variant ml-2">${award.issuer}</span>`
+          : '';
+        const tracks = award.tracks?.length
+          ? `<ul class="mt-1 mb-1 space-y-0.5 font-label text-sm text-on-surface-variant">
+              ${award.tracks.map((track) => `<li>${track.name} — <strong class="font-semibold text-on-surface">${track.result}</strong></li>`).join('')}
+            </ul>`
+          : '';
         return `
-          <div class="flex items-baseline gap-4 py-0.5">
+          <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 py-0.5">
             <span class="font-mono text-sm text-on-surface-variant tabular-nums shrink-0 w-28">${award.date}</span>
-            <div class="flex-1">
-              <span class="font-headline font-bold text-sm">${award.title}</span>${valueBadge}${linkBadge}
-              <span class="font-label text-sm text-on-surface-variant ml-2">${award.issuer}</span>
+            <div class="flex-1 min-w-0">
+              <span class="font-headline font-bold text-sm">${award.title}</span>${valueBadge}${linkBadge}${issuer}
+              ${tracks}
             </div>
           </div>
         `;

@@ -461,6 +461,18 @@
       { "year": "2023", "role": "Session Speaker", "title": "Crypto Insight Meetup (Off-line)", "link": "https://youtu.be/u_HYu8At6aI?si=HLDMhtpJVX9S_Xa9&t=41" }
     ],
     "awards": [
+      {
+        "date": "2026.10",
+        "title": "Four Pillars Research Challenge 2026",
+        "issuer": "Four Pillars",
+        "link": "https://4pillars.io/en/blog/four-pillars-to-host-four-pillars-research-challenge-2026-for-university-blockchain-clubs-across-south-korea",
+        "tracks": [
+          { "name": "MetaMask Track", "result": "1st Place" },
+          { "name": "Surf AI Track", "result": "2nd Place" },
+          { "name": "Solana Foundation Track", "result": "2nd Place" }
+        ]
+      },
+      { "date": "2026.09", "title": "2026 이공 우수인재 장학생", "value": "12,000,000 won", "issuer": "BrainKorea21 Four" },
       { "date": "2026.05", "title": "2026 AI·Blockchain Business Model Competition: Excellence Award", "issuer": "Korea University College of Informatics · Council of AI·SW-Centered Universities", "link": "https://biz.heraldcorp.com/article/10736228" },
       { "date": "2025.12", "title": "Overseas Assignment Scholar for Nobel Week 2025", "value": "2.5 million won", "issuer": "POSTECH" },
       { "date": "2025.07", "title": "Monad Blitz Seoul 4th Prize", "issuer": "Monad Foundation - B-Harvest - Chainlink" },
