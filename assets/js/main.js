@@ -900,7 +900,12 @@
           : '';
         const tracks = award.tracks?.length
           ? `<ul class="mt-1 mb-1 space-y-0.5 font-label text-sm text-on-surface-variant">
-              ${award.tracks.map((track) => `<li>${track.name} — <strong class="font-semibold text-on-surface">${track.result}</strong></li>`).join('')}
+              ${award.tracks.map((track) => {
+                const trackLink = track.link
+                  ? ` <a href="${track.link}" target="_blank" rel="noopener noreferrer" class="font-label text-xs text-primary hover:underline inline-flex items-center gap-0.5 align-middle" aria-label="${track.name} award article" title="Read award article"><span class="material-symbols-outlined" aria-hidden="true" style="font-size:14px;line-height:1;">link</span></a>`
+                  : '';
+                return `<li>${track.name} — <strong class="font-semibold text-on-surface">${track.result}</strong>${trackLink}</li>`;
+              }).join('')}
             </ul>`
           : '';
         return `

@@ -467,7 +467,7 @@
         "issuer": "Four Pillars",
         "link": "https://4pillars.io/en/blog/four-pillars-to-host-four-pillars-research-challenge-2026-for-university-blockchain-clubs-across-south-korea",
         "tracks": [
-          { "name": "MetaMask Track", "result": "1st Place" },
+          { "name": "MetaMask Track", "result": "1st Place", "link": "https://www.nexblock.co.kr/article/1003109" },
           { "name": "Surf AI Track", "result": "2nd Place" },
           { "name": "Solana Foundation Track", "result": "2nd Place" }
         ]
