@@ -1,234 +1,117 @@
-# 포트폴리오 콘텐츠 업데이트 가이드
+# 콘텐츠 관리
 
-이 문서는 포트폴리오 사이트의 콘텐츠를 업데이트하는 방법을 안내합니다.
-모든 콘텐츠는 `data/portfolio-config.json` 중앙 설정 파일에서 관리됩니다.
+콘텐츠를 수정한 뒤 `npm test && npm run build`로 데이터·파일 연결을 확인합니다. 레이아웃이나 탐색을 바꿨다면 `npm run test:e2e`도 실행합니다.
 
----
+웹사이트는 언어 전환 없이 영어로 운영합니다. 표시되는 제목·설명·기여·역할·수업명·링크 문구와 접근성 텍스트는 모두 영어로 작성합니다. 원본 PDF·표지 이미지·링크·파일명·ID·날짜는 보존합니다. 자료가 한국어인 경우 `Korean` 또는 `Korean edition`으로 안내합니다. 관리 문서와 화면에 표시하지 않는 원문 정보는 한국어로 보존할 수 있습니다.
 
-## 1. Home 섹션 텍스트 수정
+## 소개
 
-**파일**: `data/portfolio-config.json` > `profile`
+- 홈 한 문장 소개: `data/portfolio-config.json`의 `profile.tagline`. 소속 나열 대신 하는 일과 목적을 담습니다.
+- 홈 약력: `profile.background`에서 CV 항목의 `section`, `id`를 참조합니다.
+- 한국어 소개 원본: `data/profile-intro.md`에 보존합니다. 현재 홈에는 표시하지 않습니다.
+- CV에는 Summary를 표시하지 않습니다.
 
-| 필드 | 설명 |
-|------|------|
-| `tagline` | 히어로 영역 태그라인 (HTML `<strong>` 지원) |
-| `status` | 상태 배지 텍스트 (예: "Available for Technical Research") |
-| `focusAreas[]` | 3개 포커스 카드 (`icon`, `title`, `description`) |
+## Writing
 
-```json
-{
-  "profile": {
-    "tagline": "Investigating the convergence of <strong>Crypto Markets</strong>...",
-    "status": "Available for Technical Research",
-    "focusAreas": [
-      { "icon": "token", "title": "Crypto Markets", "description": "..." }
-    ]
-  }
-}
-```
+글은 `reports`에 추가합니다. `id`, `title`, `description`, `contribution`, `date`(YYYY-MM), `category`, `kind`, `type`이 필요합니다.
 
----
+- `kind`: `Article`, `Report`, `Paper Review`.
+- `type: "url"`: `url`에 원문 주소.
+- `type: "pdf"`: `filename`에 `data/reports/` 안 파일명. 페이지에서 미리보기와 원본 다운로드를 제공합니다.
 
-## 2. 리포트/아티클 추가 (Articles 섹션)
+공저서는 `publications`에 등록합니다. 표지·제목·출판사·출간일·기여 설명·서점 링크만 노출합니다. 책 본문은 올리지 않습니다. 표지의 세로 비율은 유지됩니다.
 
-**파일**: `data/portfolio-config.json` > `reports[]`
+공저서의 `title`은 영어 표시 제목, `originalTitle`은 검색에만 사용하는 원제입니다. `publisher`는 영문 표기, `language: "ko"`는 한국어판 안내에 사용합니다. 기여 설명은 `description`을 CV와 Writing에서 함께 사용합니다.
 
-### PDF 리포트 추가
+## Projects
 
-1. PDF 파일을 `data/reports/` 폴더에 추가
-2. `reports[]` 배열에 메타데이터 추가:
+`projects` 배열이 단일 원본입니다. 기본 필드는 `id`, `title`, `subtitle`, `description`, `year`, `category`, `status`, `stack`, `links`, `audiences`입니다.
 
-```json
-{
-  "id": "unique-id",
-  "filename": "파일명.pdf",
-  "title": "리포트 제목",
-  "description": "리포트 요약 설명 (카드에 표시됨)",
-  "contribution": "주 저자",
-  "date": "2025-03",
-  "category": "PDAO",
-  "type": "pdf"
-}
-```
+- 선택 필드: `details`, `role`, `highlights`, `award`. `award`에는 대회명을 반복하지 않고 수상 결과만 기록합니다. 작업 맥락 아래에 별도로 표시됩니다.
+- `links`: `{ "label": "GitHub", "url": "https://..." }` 형태.
+- `reportIds`: 관련 Writing 항목 ID. 보고서 내용과 링크를 복사하지 않고 참조합니다.
+- `date`: 확인된 YYYY-MM 날짜가 있으면 연도보다 정밀하게 정렬합니다. 없으면 `year`를 씁니다.
+- `context`: 작업 유형과 맥락을 분리한 필수 객체입니다. `type`은 `In-class term project`, `Competition`, `Research project`, `Side project`, `Startup project`, `Personal project` 중 하나입니다. `name`에는 정식 수업명·대회명·소속 기관명을 넣습니다. 수업명을 연구 주제나 팀 번호로 대체하지 않습니다. 수업의 `courseCode`는 관리용으로 보존하며 화면에는 정식 명칭을 표시합니다.
+- 예: `{ "type": "In-class term project", "name": "Product and Production Process Design II: Capstone Design", "courseCode": "IMEN330" }`, `{ "type": "Competition", "name": "Monad Blitz Seoul" }`, `{ "type": "Side project", "name": "POSTECH FBDA Lab" }`.
+- `category`는 주제 분류이며 작업 유형이나 소속을 대신해 표시하지 않습니다. 확인된 프로젝트 설명만 등록하며 계획 단계는 설명에도 명시합니다.
+- `featuredProjectIds`: Projects 상단 이미지 카드 3개의 ID. 각 프로젝트에 실제 작업 이미지 `cover`, 이미지 설명 `coverAlt`, 맞춤 방식 `coverFit` (`contain` 또는 `cover`)을 등록합니다. 카드에는 이미지와 제목만 표시하고, 전체 목록은 별도로 최신순 정렬됩니다.
+- 2021~2022 수업 프로젝트와 수업 복습·퀴즈 사이트는 표시하지 않습니다. NFT Hub의 2022년 전시 포스터와 Robust Alpha Generation의 2025년 IQC 발표자료는 `data/projects/`에 보관하고 각 프로젝트에서 연결합니다.
+- 발표자료는 `data/projects/`에 두고 `links`에서 상대 경로로 연결할 수 있습니다. 비공개 저장소를 공개로 바꾸거나 접근 불가능한 링크를 방문자에게 제공하지 않습니다.
+- `status`: 확인한 상태만 기록합니다. 실제 배포를 확인하지 않은 프로젝트에 Live를 붙이지 않습니다.
+- 새 프로젝트의 공개 링크·역할·수상 관련성을 확인한 후 정보를 추가합니다.
 
-### 외부 링크 (Medium, 블로그 등) 추가
+프로젝트는 `#projects/<id>`로 해당 목록 위치에 바로 이동합니다. 별도 상세 페이지나 모달은 없습니다.
 
-PDF 없이 외부 URL로 연결할 수 있습니다:
+전체 프로젝트 목록은 **All / In-class / Other**로 필터링합니다. `context.type`이 `In-class term project`인 항목만 In-class이며, 나머지는 Other입니다. 대표작 카드 3개는 필터와 무관하게 유지합니다. `#projects?type=inclass`, `#projects?type=other`로 선택을 공유할 수 있고, 프로젝트 바로가기 링크는 All로 돌아가 해당 항목을 보여줍니다.
 
-```json
-{
-  "id": "medium-article-1",
-  "title": "아티클 제목",
-  "description": "아티클 요약 설명",
-  "contribution": "주 저자",
-  "date": "2025-03",
-  "category": "Personal",
-  "type": "url",
-  "url": "https://medium.com/@seungjun-oh/article-slug"
-}
-```
+## CV: All / Finance / Crypto
 
-### 필드 설명
+Work experience와 Research experience는 세 버전에서 항목·설명·내부 순서를 모두 공유합니다. 두 섹션은 원본 배열 순서를 사용하며 분야 필터와 재정렬을 적용하지 않습니다. 경력을 임의로 숨기거나 WorldQuant 등을 특정 버전에서만 위로 옮기지 않습니다.
 
-| 필드 | 필수 | 설명 |
-|------|------|------|
-| `id` | O | 고유 식별자 |
-| `title` | O | 제목 |
-| `description` | O | 요약 설명 (행/카드에 표시) |
-| `contribution` | O | 기여도 → 자동으로 영문 역할 라벨로 변환됨 (아래 표 참고) |
-| `date` | O | 발간 날짜 (YYYY-MM 형식, 연도별 그룹 + 최신순 정렬) |
-| `category` | O | 카테고리 (스파인 색상 결정: PDAO=크림슨, Bithumb=슬레이트, POSTECH=인디고) |
-| `type` | O | `"pdf"` 또는 `"url"` |
-| `filename` | PDF일 때 | PDF 파일명 (`data/reports/` 내 파일명과 일치) |
-| `url` | URL일 때 | 외부 링크 주소 |
-| `selected` | 선택 | `true`로 지정 시 상단 **Selected Works**(표지 썸네일 카드)에 노출. **딱 3개 권장** |
+분야별 우선순위는 `cv.views.<view>.sections`로 고정합니다. 다른 작업을 하면서 이 순서를 변경하지 않습니다.
 
-### Selected Works (엄선작) 지정
+- Finance: Education → Research → Work → Publication → Projects → Awards → Qualifications → Extracurricular.
+- Crypto: Work → Publication → Research → Projects → Awards → Events → Extracurricular → Qualifications → Education.
+- All: Work → Publication → Research → Projects → Awards → Extracurricular → Events → Qualifications → Education.
 
-상단 "Selected Works" 영역은 `reports[]`에서 `"selected": true`가 붙은 항목만 카드로 보여줍니다.
-PDF 항목은 첫 페이지가 표지 썸네일로 자동 렌더됩니다 (lazy load). **3개를 권장**하며, 노출 순서는
-`renderSelected`의 `order` 배열(`assets/js/main.js`)에서 id로 제어합니다. 표지가 너무 무거운 대용량
-PDF(20MB+)는 피하고, 가능하면 PDF 타입을 고르세요(외부 링크는 타이포그래픽 표지로 대체됨).
+Publication은 모든 버전에서 Work 바로 다음에 둡니다. Education은 Finance에서 첫 번째, All·Crypto에서 마지막이며 중간에 넣지 않습니다. Expertise와 그 하위 관심 분야·기술 목록은 CV에서 제거했습니다.
 
-### 기여도(contribution) → 영문 역할 자동 변환
+PDAO, Base Korea, Undergrad AI Study의 활동은 `cv.extracurricular`에서 관리합니다. Base Korea의 Based Advocate 활동은 Work 대신 이 섹션에 두며, PDAO와 함께 Finance·Crypto 양쪽에 포함됩니다.
 
-행/카드에는 한글 기여도가 아래 규칙으로 정규화되어 영문으로 표시되며, 필터의 Role 축은 3단계 티어로 묶입니다.
+NinjaLabsKR, SuperteamKR, POSTECH CCBR은 `cv.affiliations`에서 관리하고, **Crypto에서만** Extracurricular 끝에 `Affiliations · NinjaLabsKR · SuperteamKR · POSTECH CCBR` 한 줄로 표시합니다. 별도의 큰 섹션은 만들지 않으며 All·Finance에는 표시하지 않습니다. 역할·기간·설명은 데이터에 보존하되 CV 화면과 인쇄에서는 소속명만 보여줍니다. 항목 이동 시 ID도 보존합니다.
 
-| 입력값(예시) | 표시 라벨 | 필터 티어 |
-|------|------|------|
-| `주 저자` | Lead Author | Lead Author |
-| `리포트 코디네이팅 …` | Coordinator | Coordinator |
-| `프로젝트 리더` | Project Lead | Contributor |
-| `Research Assistant로 참여` | Research Assistant | Contributor |
-| `데이터 수집 및 전처리` 등 | Data & Preprocessing 등 | Contributor |
-
-> 새로운 기여도 문자열을 쓰면 매핑되지 않아 원문 그대로 표시될 수 있습니다.
-> 매핑을 추가하려면 `assets/js/main.js`의 `ROLE_MAP` / `normalizeRole` / `roleTier`를 수정하세요.
-
----
-
-## 2-1. 학습자료 추가 (Learning / Study Notes 섹션)
-
-**파일**: `data/portfolio-config.json` > `learning[]`
-
-본인이 직접 만든 학습 노트·가이드(또는 참고 링크)를 모아 두는 **단순 링크 모음** 섹션입니다.
-하나의 평면 리스트로 표시되며 별도 그룹/필터는 없습니다. **배열이 비어 있으면 "준비 중 (TBD)" 상태**가 표시됩니다.
+나머지 섹션에는 필요할 때만 분야별 노출과 우선순위를 설정할 수 있습니다.
 
 ```json
 {
-  "id": "note-1",
-  "title": "노트/가이드 제목",
-  "source": "출처 또는 게시 위치 (선택)",
-  "level": "note",
-  "type": "url",
-  "url": "https://...",
-  "note": "한 줄 설명 (선택)"
+  "id": "extracurricular-example",
+  "period": "2025.06 - Present",
+  "role": "Member",
+  "organization": "Organization",
+  "audiences": ["finance", "crypto"],
+  "order": { "all": 2, "finance": 0, "crypto": 3 },
+  "highlights": ["공통 성과", "추가 설명"],
+  "highlightsByView": { "finance": ["금융 지원에서 강조할 사실"] }
 }
 ```
 
-| 필드 | 필수 | 설명 |
-|------|------|------|
-| `id` | O | 고유 식별자 |
-| `title` | O | 자료 제목 |
-| `source` | 선택 | 출처/게시 위치 |
-| `level` | 선택 | 좌측 아이콘: `note`(편집) / `foundational`(학교) / `paper`(문서) / `repo`(코드) / `course` / `book` |
-| `type` | O | `"url"`(외부 링크) 또는 `"pdf"`(`data/reports/` 내 파일) |
-| `url` / `filename` | 타입별 | 외부 URL 또는 PDF 파일명 |
-| `note` | 선택 | 한 줄 설명 |
+- **All**은 일반 CV 항목을 모두 표시합니다. 보조 정보인 Affiliations 한 줄은 사용자 지정으로 Crypto에서만 표시하는 예외입니다.
+- `audiences`: 해당 항목을 보여줄 분야. 생략하면 공통 항목입니다. Work·Research에는 적용하지 않습니다.
+- `order`: 보기별 정렬 우선순위. 작은 숫자가 먼저 나오며, 없으면 원래 배열 순서를 유지합니다. Work·Research에는 적용하지 않습니다.
+- `highlightsByView`: 보기별로 강조할 사실. 없으면 공통 `highlights`를 사용합니다. Work·Research는 항상 공통 설명을 표시합니다. 날짜·직책·성과를 과장하거나 새로 만들지 않습니다.
+- `cv.views`: 보기별 탭 이름과 섹션 순서를 관리합니다.
+- `cv.publicationIds` / `cv.projectIds`: 위에서 등록한 책·프로젝트의 ID만 넣습니다. 같은 자료를 CV에 중복 입력하지 않습니다.
 
-> 현재는 비어 있어 "준비 중 (TBD)" 상태입니다. 본인 자료가 준비되면 위 형식으로 추가하세요.
+`#cv?view=finance`, `#cv?view=crypto` 링크를 공유할 수 있습니다. **Print current view**는 화면과 동일한 문서 구조로 현재 CV를 인쇄합니다. 모든 경력 상세는 화면에서도 펼쳐집니다. 기존 영문·한글 프린트 파일은 **PDF · English / PDF · Korean**으로 직접 열 수 있습니다. 원본 PDF는 별도 관리하며 자동으로 덮어쓰지 않습니다.
 
----
+## History
 
-## 3. Experience History 수정
+`data/proof-of-work.json`은 대외활동과 직무·커뮤니티 활동의 시간 기록입니다. 사소한 활동도 남길 수 있으며 CV 필터와 무관합니다. 수업에서 수행한 프로젝트는 History에 추가하지 않고 Projects에서 관리합니다. 대회 프로젝트는 제작 이력 대신 대회 참가 또는 수상으로 기록하며, 같은 활동을 중복 추가하지 않습니다. 원본 63개 항목을 보존한 상태에서 사용자가 승인한 활동을 추가합니다.
 
-**파일**: `data/proof-of-work.xlsx`
+BlockHack Korea / DeFi Compass와 Block AI*26은 같은 대회이며, History에서는 예선 참가 한 건으로 관리합니다. Uniswap V3 LP Risk Analysis는 사용자가 History에서 제외했습니다.
 
-스프레드시트를 직접 수정 후 저장합니다. Experience 섹션에서 자동으로 로딩됩니다.
-
-또는 `data/portfolio-config.json` > `cv.experience[]`에서 구조화 데이터를 수정할 수 있습니다:
+2026년 6월 이후 승인된 활동은 `history-067`~`history-074`에 반영했습니다. FBDA 연구는 CV에 명시된 두 기간에 맞춰 기존 `history-045`를 2025.06–12로 정리하고, 2026.06 이후 재개를 `history-074`에 기록했습니다. 다른 기존 기록은 유지합니다.
 
 ```json
 {
-  "period": "2025.12 -",
-  "role": "Technical Writer (Intern)",
-  "team": "TechBD team",
-  "organization": "B-Harvest",
-  "url": "https://bharvest.io",
-  "type": "Technical",
-  "highlights": ["업무 내용 1", "업무 내용 2"]
+  "id": "history-075",
+  "start": "2026.11",
+  "end": "2026.11",
+  "contents": "Participated in a community event.",
+  "tags": ["Community"],
+  "importance": false,
+  "crypto": false
 }
 ```
 
-**type 값**: `Technical`, `Military`, `Community`, `Leadership`
+- 같은 달에 끝난 활동은 `start`와 `end`를 같게 둡니다.
+- 자격 취득처럼 한 번의 사건은 `kind: "qualification"`을 붙이면 종료일이 없어도 진행 중인 기간처럼 표시하지 않습니다.
+- `importance`는 타임라인에서 주요 전환점을 강조합니다. 작은 경험을 지우는 필터가 아닙니다.
+- `href`는 선택 사항. `#writing/book/digital-asset-era` 또는 대회 참가·수상 기록에 연결된 `#projects/mintme`처럼 관련 결과물로 연결합니다.
+- 기존 기록과 CV의 기간이 다를 경우 실제 날짜를 확인한 뒤 수정합니다. 예전 기록을 보고 종료일을 추측하지 않습니다.
 
----
+## 파일과 배포
 
-## 4. CV 업데이트
+원본 PDF와 이미지 경로는 유지됩니다. 빌드 시 `data/`, `assets/images/`가 `dist/`에 복사됩니다. 새 파일을 추가한 뒤 검증을 실행하면 빠진 파일과 잘못된 참조를 확인할 수 있습니다.
 
-### 방법 A: 구조화 데이터 (권장)
-
-`data/portfolio-config.json` > `cv` 섹션의 각 카테고리를 직접 수정:
-
-- `cv.education[]` - 학력
-- `cv.experience[]` - 경력
-- `cv.research[]` - 연구 경험
-- `cv.skills` - 기술 스택 및 관심 분야
-- `cv.publication[]` - 출판물
-- `cv.projects[]` - 프로젝트
-- `cv.events[]` - 발표 및 이벤트
-- `cv.awards[]` - 수상 및 장학금
-- `cv.certificates` - 자격증 (finance, cs, general)
-
----
-
-## 5. 이력서 PDF 추가
-
-**파일**: `data/portfolio-config.json` > `resumes[]`
-
-1. PDF 파일을 `data/resume/` 폴더에 추가
-2. 메타데이터 추가:
-
-```json
-{
-  "id": "resume_2025",
-  "title": "Resume 2025",
-  "file": "data/resume/resume_2025.pdf",
-  "language": "en"
-}
-```
-
----
-
-## 6. 프로필 정보 수정
-
-**파일**: `data/portfolio-config.json` > `profile`
-
-- `email`, `emailAlt` - 이메일
-- `social.linkedin`, `social.twitter`, `social.github`, `social.medium` - 소셜 링크
-- `image` - 프로필 사진 경로 (`assets/images/profile.jpg` 교체)
-
----
-
-## 배포
-
-```bash
-# JSON 유효성 검증
-npm run validate-json
-
-# 로컬 테스트
-npm run serve
-# http://localhost:8080 접속
-
-# 배포 (main 브랜치에 푸시)
-git add data/portfolio-config.json
-git commit -m "docs: update portfolio content"
-git push origin main
-```
-
-GitHub Pages가 자동으로 1-2분 내 배포합니다.
-
----
-
-**업데이트 날짜**: 2026-06-05
-**버전**: 4.0 (Articles 아카이브 리디자인 + Learning 섹션)
+`npm run generate-lists`는 보조 파일 목록을 갱신합니다. 사이트 표시는 위 JSON 기록을 기준으로 하며 파일명만 추가했다고 자동으로 글이 발행되지는 않습니다.

@@ -6,9 +6,10 @@
       "POSTECH",
       "Engineering"
     ],
-    "contents": "joined POSTECH BS Program",
+    "contents": "Entered the POSTECH B.S. program",
     "importance": true,
-    "crypto": false
+    "crypto": false,
+    "id": "history-001"
   },
   {
     "start": "2021.02",
@@ -16,9 +17,10 @@
     "tags": [
       "POSTECH"
     ],
-    "contents": "Local Talent Scholar (Full Schalor)",
+    "contents": "Received the Local Talent Scholarship (full scholarship)",
     "importance": false,
-    "crypto": false
+    "crypto": false,
+    "id": "history-002"
   },
   {
     "start": "2021.02",
@@ -26,9 +28,10 @@
     "tags": [
       "POSTECH"
     ],
-    "contents": "Joined POSTECH Dormitory Union, worked general task.",
+    "contents": "Joined the POSTECH Dormitory Union and supported general operations",
     "importance": false,
-    "crypto": false
+    "crypto": false,
+    "id": "history-003"
   },
   {
     "start": "2021.05",
@@ -37,9 +40,10 @@
       "POSTECH",
       "Finance"
     ],
-    "contents": "joined POSTECH trivia Tutoring Program as tutor (about stock investment)",
+    "contents": "Tutored students in stock investing through the POSTECH trivia tutoring program",
     "importance": false,
-    "crypto": false
+    "crypto": false,
+    "id": "history-004"
   },
   {
     "start": "2021.05",
@@ -48,9 +52,10 @@
       "POSTECH",
       "Finance"
     ],
-    "contents": "operated POSTECH investment Open kakaotalk Channel in a year. (about 100 members)",
+    "contents": "Ran a POSTECH investment discussion group on KakaoTalk for a year, with about 100 members",
     "importance": true,
-    "crypto": false
+    "crypto": false,
+    "id": "history-005"
   },
   {
     "start": "2021.12",
@@ -58,9 +63,10 @@
     "tags": [
       "POSTECH"
     ],
-    "contents": "Joined POSTECH Dormitory Union, worked general task.",
+    "contents": "Joined the POSTECH Dormitory Union and supported general operations",
     "importance": false,
-    "crypto": false
+    "crypto": false,
+    "id": "history-006"
   },
   {
     "start": "2022.01",
@@ -69,9 +75,10 @@
       "POSTECH",
       "Engineering"
     ],
-    "contents": "Won a Special Prize in 'Tech-Review Techathon'",
+    "contents": "Won a Special Prize at the Tech-Review Techathon",
     "importance": false,
-    "crypto": false
+    "crypto": false,
+    "id": "history-007"
   },
   {
     "start": "2022.02",
@@ -79,9 +86,10 @@
     "tags": [
       "POSTECH"
     ],
-    "contents": "Joined 'APGC-Lab Ideathon'",
+    "contents": "Participated in the APGC-Lab Ideathon",
     "importance": false,
-    "crypto": false
+    "crypto": false,
+    "id": "history-008"
   },
   {
     "start": "2022.02",
@@ -89,9 +97,10 @@
     "tags": [
       "POSTECH"
     ],
-    "contents": "Joined a Mentor(인솔자) in 2022 POSTECH Freshman Orentation",
+    "contents": "Served as a mentor at the 2022 POSTECH Freshman Orientation",
     "importance": false,
-    "crypto": false
+    "crypto": false,
+    "id": "history-009"
   },
   {
     "start": "2022.02",
@@ -100,9 +109,10 @@
       "PDAO",
       "Blockchain"
     ],
-    "contents": "Join PDAO as Genesis member",
+    "contents": "Joined PDAO as a Genesis Member",
     "importance": true,
-    "crypto": true
+    "crypto": true,
+    "id": "history-010"
   },
   {
     "start": "2022.03",
@@ -110,9 +120,10 @@
     "tags": [
       "POSTECH"
     ],
-    "contents": "Joined POSTECH APGC-Lab CDPlayer (Customer Discovery Player) Program",
+    "contents": "Participated in the POSTECH APGC-Lab CDPlayer (Customer Discovery Player) program",
     "importance": false,
-    "crypto": false
+    "crypto": false,
+    "id": "history-011"
   },
   {
     "start": "2022.04",
@@ -120,9 +131,10 @@
     "tags": [
       "POSTECH"
     ],
-    "contents": "Won a encouragement prize in 'Metaverse Application Idea Contest'",
+    "contents": "Won an Encouragement Award at the Metaverse Application Idea Contest",
     "importance": true,
-    "crypto": false
+    "crypto": false,
+    "id": "history-012"
   },
   {
     "start": "2022.04",
@@ -131,9 +143,11 @@
       "POSTECH",
       "Blockchain"
     ],
-    "contents": "Finalist in Promising Student Startup 300 (U300) in Growth Track - \"NFT Hub\" Project",
+    "contents": "Reached the Growth Track finals of the Promising Student Startup 300 (U300) program with NFT Hub",
     "importance": true,
-    "crypto": true
+    "crypto": true,
+    "id": "history-013",
+    "href": "#projects/nft-hub"
   },
   {
     "start": "2022.04",
@@ -142,9 +156,11 @@
       "POSTECH",
       "Blockchain"
     ],
-    "contents": "Joined in '2022 Pohang-si Innopolis Campus Program' - \"NFT Hub\" Project",
+    "contents": "Participated in the 2022 Pohang Innopolis Campus Program with NFT Hub",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-014",
+    "href": "#projects/nft-hub"
   },
   {
     "start": "2022.06",
@@ -155,9 +171,10 @@
       "Blockchain",
       "Engineering"
     ],
-    "contents": "Undergraduate Researcher in DPNM Lab(Distributed Processing & Network Management Lab)",
+    "contents": "Worked as an undergraduate researcher at the Distributed Processing and Network Management (DPNM) Lab",
     "importance": true,
-    "crypto": true
+    "crypto": true,
+    "id": "history-015"
   },
   {
     "start": "2022.06",
@@ -167,9 +184,10 @@
       "NEAR Protocol",
       "Blockchain"
     ],
-    "contents": "Joined PDAO Launch Project, Worked genereal tasks in dev-NEAR team & Strategy team",
+    "contents": "Joined the PDAO Launch Project and supported the dev-NEAR and strategy teams",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-016"
   },
   {
     "start": "2022.09",
@@ -178,9 +196,10 @@
       "Bithumb",
       "Blockchain"
     ],
-    "contents": "Research Intern in Research Center, Bithumb Economic Research Institute",
+    "contents": "Worked as a research intern at the Bithumb Economic Research Institute's Research Center",
     "importance": true,
-    "crypto": true
+    "crypto": true,
+    "id": "history-017"
   },
   {
     "start": "2022.11",
@@ -189,9 +208,11 @@
       "POSTECH",
       "Blockchain"
     ],
-    "contents": "Joined Poster Exhibition in 2022 Industrial-Academic Cooperation EXPO - \"NFT Hub\" Project",
+    "contents": "Presented the NFT Hub poster at the 2022 Industry-Academia Cooperation EXPO",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-018",
+    "href": "#projects/nft-hub"
   },
   {
     "start": "2023.01",
@@ -199,9 +220,10 @@
     "tags": [
       "Bithumb"
     ],
-    "contents": "Took a Youtube Video about \"2023 Crypto Market Prediction\"",
+    "contents": "Participated in a YouTube video on the 2023 crypto market outlook",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-019"
   },
   {
     "start": "2023.02",
@@ -211,9 +233,10 @@
       "Ethereum",
       "Blockchain"
     ],
-    "contents": "Offline Session about \"2023 Etherum Upgrade\" in \"Crypto Insight Meetup\"",
+    "contents": "Presented a session on the 2023 Ethereum upgrade at the Crypto Insight Meetup",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-020"
   },
   {
     "start": "2023.02",
@@ -223,9 +246,10 @@
       "Ethereum",
       "Blockchain"
     ],
-    "contents": "Took a Youtube Video about \"2023 Ethereum Upgrade\"",
+    "contents": "Participated in a YouTube video on the 2023 Ethereum upgrade",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-021"
   },
   {
     "start": "2023.02",
@@ -235,9 +259,11 @@
       "Blockchain",
       "Finance"
     ],
-    "contents": "Co-Authered a book \"디지털자산 시대가 온다\"",
+    "contents": "Co-authored \"The Digital Asset Era Is Coming\"",
     "importance": true,
-    "crypto": true
+    "crypto": true,
+    "id": "history-022",
+    "href": "#writing/book/digital-asset-era"
   },
   {
     "start": "2023.03",
@@ -245,9 +271,10 @@
     "tags": [
       "ROKAF"
     ],
-    "contents": "Served Millitary in ROKAF (honorable discharged as Sergeant)",
+    "contents": "Served in the Republic of Korea Air Force and was honorably discharged as a Sergeant",
     "importance": true,
-    "crypto": false
+    "crypto": false,
+    "id": "history-023"
   },
   {
     "start": "2023.05",
@@ -256,9 +283,10 @@
       "ROKAF",
       "Engineering"
     ],
-    "contents": "Worked as a Fusion System Developer in Fusion System Office, Logistic Command I&C Dept.",
+    "contents": "Worked as a Fusion System Developer in the Fusion System Office, Logistics Command I&C Department",
     "importance": false,
-    "crypto": false
+    "crypto": false,
+    "id": "history-024"
   },
   {
     "start": "2023.10",
@@ -267,9 +295,10 @@
       "ROKAF",
       "Engineering"
     ],
-    "contents": "Completed in 'AI-SW training for military personnel' (AI course) as Outstanding Student ",
+    "contents": "Completed the AI course in the AI-SW training program for military personnel as an outstanding student",
     "importance": false,
-    "crypto": false
+    "crypto": false,
+    "id": "history-025"
   },
   {
     "start": "2023.12",
@@ -278,9 +307,11 @@
       "Certification",
       "Engineering"
     ],
-    "contents": "SQLD (SQL 개발자) 취득",
+    "contents": "Earned the SQL Developer (SQLD) certification",
     "importance": false,
-    "crypto": false
+    "crypto": false,
+    "id": "history-026",
+    "kind": "qualification"
   },
   {
     "start": "2024.01",
@@ -289,9 +320,10 @@
       "ROKAF",
       "Engineering"
     ],
-    "contents": "Worked as a System Developer in Logistic-Training System Development team, ROKAF Intelligent Information System Management Group",
+    "contents": "Worked as a System Developer on the Logistics-Training System Development Team at the ROKAF Intelligent Information System Management Group",
     "importance": false,
-    "crypto": false
+    "crypto": false,
+    "id": "history-027"
   },
   {
     "start": "2024.04",
@@ -300,9 +332,11 @@
       "Certification",
       "Finance"
     ],
-    "contents": "자산관리사(FP) 취득",
+    "contents": "Earned the Financial Planner (FP) certification",
     "importance": true,
-    "crypto": false
+    "crypto": false,
+    "id": "history-028",
+    "kind": "qualification"
   },
   {
     "start": "2024.06",
@@ -311,9 +345,11 @@
       "Certification",
       "Finance"
     ],
-    "contents": "투자자산운용사 취득",
+    "contents": "Earned the Certified Investment Manager qualification",
     "importance": true,
-    "crypto": false
+    "crypto": false,
+    "id": "history-029",
+    "kind": "qualification"
   },
   {
     "start": "2024.07",
@@ -322,9 +358,11 @@
       "Certification",
       "Finance"
     ],
-    "contents": "외환전문역 I종 취득",
+    "contents": "Earned the Certified Foreign Exchange Specialist I qualification",
     "importance": false,
-    "crypto": false
+    "crypto": false,
+    "id": "history-030",
+    "kind": "qualification"
   },
   {
     "start": "2024.08",
@@ -332,9 +370,10 @@
     "tags": [
       "ROKAF"
     ],
-    "contents": "Appointment as Squad Leader",
+    "contents": "Appointed Squad Leader",
     "importance": false,
-    "crypto": false
+    "crypto": false,
+    "id": "history-031"
   },
   {
     "start": "2024.08",
@@ -342,9 +381,11 @@
     "tags": [
       "Certification"
     ],
-    "contents": "비서 1급 취득",
+    "contents": "Earned the Secretarial Administrator Level I qualification",
     "importance": false,
-    "crypto": false
+    "crypto": false,
+    "id": "history-032",
+    "kind": "qualification"
   },
   {
     "start": "2024.08",
@@ -352,9 +393,11 @@
     "tags": [
       "Certification"
     ],
-    "contents": "워드프로세서 취득",
+    "contents": "Earned the Word Processor Specialist qualification",
     "importance": false,
-    "crypto": false
+    "crypto": false,
+    "id": "history-033",
+    "kind": "qualification"
   },
   {
     "start": "2024.09",
@@ -363,9 +406,11 @@
       "Certification",
       "Engineering"
     ],
-    "contents": "정보처리산업기사 취득",
+    "contents": "Earned the Industrial Engineer Information Processing qualification",
     "importance": false,
-    "crypto": false
+    "crypto": false,
+    "id": "history-034",
+    "kind": "qualification"
   },
   {
     "start": "2024.09",
@@ -374,9 +419,11 @@
       "Certification",
       "Engineering"
     ],
-    "contents": "ADsP (데이터분석 준전문가) 취득",
+    "contents": "Earned the Advanced Data Analytics Semi-Professional (ADsP) certification",
     "importance": false,
-    "crypto": false
+    "crypto": false,
+    "id": "history-035",
+    "kind": "qualification"
   },
   {
     "start": "2024.10",
@@ -385,9 +432,11 @@
       "Certification",
       "Finance"
     ],
-    "contents": "재경관리사 취득",
+    "contents": "Earned the Certified Accounting Manager qualification",
     "importance": true,
-    "crypto": false
+    "crypto": false,
+    "id": "history-036",
+    "kind": "qualification"
   },
   {
     "start": "2025.01",
@@ -396,9 +445,10 @@
       "PDAO",
       "Blockchain"
     ],
-    "contents": "Organizing (Head of) PDAO",
+    "contents": "Led PDAO as its Organizer",
     "importance": true,
-    "crypto": true
+    "crypto": true,
+    "id": "history-037"
   },
   {
     "start": "2025.01",
@@ -407,9 +457,10 @@
       "PDAO",
       "SuperteamKR"
     ],
-    "contents": "Worked about 'SuperteamKR Guild Lead Program' as representative of PDAO",
+    "contents": "Represented PDAO in the SuperteamKR Guild Lead Program",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-038"
   },
   {
     "start": "2025.03",
@@ -419,9 +470,10 @@
       "PDAO",
       "SuperteamKR"
     ],
-    "contents": "Led on \"Dive-in Crypto-Blockchain! (in Pohang)\" Offline Event Project",
+    "contents": "Led the \"Dive-in Crypto-Blockchain! (in Pohang)\" event project",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-039"
   },
   {
     "start": "2025.03",
@@ -430,9 +482,10 @@
       "PDAO",
       "Blockchain"
     ],
-    "contents": "Coordinated 2025-1 PDAO Study Session",
+    "contents": "Coordinated the PDAO study sessions for the first semester of 2025",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-040"
   },
   {
     "start": "2025.04",
@@ -441,9 +494,10 @@
       "SuperteamKR",
       "Solana"
     ],
-    "contents": "Member of Superteam",
+    "contents": "Joined Superteam as a member",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-041"
   },
   {
     "start": "2025.04",
@@ -453,9 +507,11 @@
       "WorldQuant",
       "Finance"
     ],
-    "contents": "Korea 3rd Prize in 2025 WorldQuant IQC (International Quant Championship)",
+    "contents": "Placed third in Korea in the 2025 WorldQuant International Quant Championship (IQC)",
     "importance": true,
-    "crypto": false
+    "crypto": false,
+    "id": "history-042",
+    "href": "#projects/robust-alpha"
   },
   {
     "start": "2025.05",
@@ -466,9 +522,10 @@
       "Solana",
       "Blockchain"
     ],
-    "contents": "Won a Earn project - Write content for a deep dive on Solayer InfiniSVM",
+    "contents": "Won a Superteam Earn bounty for a deep dive on Solayer InfiniSVM",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-043"
   },
   {
     "start": "2025.06",
@@ -478,22 +535,24 @@
       "SuperteamKR",
       "Solana"
     ],
-    "contents": "Worked on planning & staff in \"모바일 개발자, 블록체인 맛보기\" Event",
+    "contents": "Helped plan and staff the \"A Taste of Blockchain for Mobile Developers\" event",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-044"
   },
   {
     "start": "2025.06",
-    "end": "",
+    "end": "2025.12",
     "tags": [
       "POSTECH",
       "FBDA Lab",
       "Finance",
       "Engineering"
     ],
-    "contents": "Undergraduate Researcher in FBDA Lab(Financial Big Data Analysis Lab)",
+    "contents": "Worked as an undergraduate researcher at the Financial Big Data Analysis (FBDA) Lab",
     "importance": true,
-    "crypto": true
+    "crypto": true,
+    "id": "history-045"
   },
   {
     "start": "2025.07",
@@ -504,9 +563,10 @@
       "Blockchain",
       "Engineering"
     ],
-    "contents": "4th prize in 'Monad Blitz Seoul'",
+    "contents": "Won fourth prize at Monad Blitz Seoul",
     "importance": true,
-    "crypto": true
+    "crypto": true,
+    "id": "history-046"
   },
   {
     "start": "2025.07",
@@ -516,9 +576,10 @@
       "CCBR",
       "Blockchain"
     ],
-    "contents": "Join CCBR as a Member",
+    "contents": "Joined POSTECH CCBR as a member",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-047"
   },
   {
     "start": "2025.08",
@@ -527,9 +588,10 @@
       "PDAO",
       "SuperteamKR"
     ],
-    "contents": "Working about 'SuperteamKR Guild Lead Program' as representative of PDAO",
+    "contents": "Represented PDAO in the SuperteamKR Guild Lead Program",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-048"
   },
   {
     "start": "2025.08",
@@ -538,9 +600,10 @@
       "PDAO",
       "SuperteamKR"
     ],
-    "contents": "Led on \"PDAO in Seoul!\" Offline Event Project",
+    "contents": "Led the \"PDAO in Seoul!\" event project",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-049"
   },
   {
     "start": "2025.09",
@@ -548,9 +611,10 @@
     "tags": [
       "NinjaLabsKR"
     ],
-    "contents": "Join NinjaLabsKR 1st Cohort Member",
+    "contents": "Joined the first cohort of NinjaLabsKR",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-050"
   },
   {
     "start": "2025.09",
@@ -561,9 +625,10 @@
       "Blockchain",
       "Engineering"
     ],
-    "contents": "Joined in Sui-mming Hackerthon",
+    "contents": "Participated in the Sui-mming Hackathon",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-051"
   },
   {
     "start": "2025.09",
@@ -573,9 +638,10 @@
       "SuperteamKR",
       "Solana"
     ],
-    "contents": "joined in \"Startup Village Seoul\" as Event Operations Part-Time Staff ",
+    "contents": "Worked as part-time event operations staff at Startup Village Seoul",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-052"
   },
   {
     "start": "2025.09",
@@ -585,9 +651,10 @@
       "SuperteamKR",
       "Solana"
     ],
-    "contents": "Won a Earn project - \"BICF(Busan Indie Connect Festival) Field Note — Constructive Feedback Report\"",
+    "contents": "Won a Superteam Earn bounty for \"BICF (Busan Indie Connect Festival) Field Note — Constructive Feedback Report\"",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-053"
   },
   {
     "start": "2025.09",
@@ -595,9 +662,10 @@
     "tags": [
       "NinjaLabsKR"
     ],
-    "contents": "Worked as a staff in NinjaLabsKR's KBW2025 Side Event",
+    "contents": "Supported operations at NinjaLabsKR's KBW 2025 side event",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-054"
   },
   {
     "start": "2025.10",
@@ -607,9 +675,10 @@
       "SuperteamKR",
       "NinjaLabsKR"
     ],
-    "contents": "Led on \"Blockchains for TradFi:전통금융과 블록체인의 만남\" Offline Event",
+    "contents": "Led the \"Blockchains for TradFi: Where Traditional Finance Meets Blockchain\" event",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-055"
   },
   {
     "start": "2025.11",
@@ -618,9 +687,10 @@
       "PDAO",
       "BNB Chain"
     ],
-    "contents": "Panel Speaker in \"QuackAI Global Universities Autumn Camp 2025 | Korean Edition\"",
+    "contents": "Spoke on a panel at \"QuackAI Global Universities Autumn Camp 2025 | Korean Edition\"",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-056"
   },
   {
     "start": "2025.11",
@@ -631,9 +701,10 @@
       "Blockchain",
       "Engineering"
     ],
-    "contents": "Joined in 'Monad Blitz Seoul 3rd'",
+    "contents": "Participated in the third Monad Blitz Seoul",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-057"
   },
   {
     "start": "2025.12",
@@ -642,9 +713,10 @@
       "B-Harvest",
       "Blockchain"
     ],
-    "contents": "Tech BD (Technical Writer) Intern in B-Harvest",
+    "contents": "Worked as a Tech BD (Technical Writer) Intern at B-Harvest",
     "importance": true,
-    "crypto": true
+    "crypto": true,
+    "id": "history-058"
   },
   {
     "start": "2026.02",
@@ -653,9 +725,10 @@
       "B-Harvest",
       "Blockchain"
     ],
-    "contents": "Tech BD (Freelancer) in B-Harvest",
+    "contents": "Worked as a Tech BD freelancer at B-Harvest",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-059"
   },
   {
     "start": "2026.02",
@@ -663,9 +736,10 @@
     "tags": [
       "PDAO"
     ],
-    "contents": "Panel Speaker in \"DE-FERENCE 2026\"",
+    "contents": "Spoke on a panel at DE-FERENCE 2026",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-060"
   },
   {
     "start": "2025.12",
@@ -673,9 +747,10 @@
     "tags": [
       "Base"
     ],
-    "contents": "Based Advocate (Ambassador) in Base Korea",
+    "contents": "Served as a Based Advocate (Ambassador) at Base Korea",
     "importance": true,
-    "crypto": true
+    "crypto": true,
+    "id": "history-061"
   },
   {
     "start": "2026.01",
@@ -684,9 +759,10 @@
       "PDAO",
       "BNB Chain"
     ],
-    "contents": "Panel Speaker in \"BNB Martian Night: Learn & Network\"",
+    "contents": "Spoke on a panel at \"BNB Martian Night: Learn & Network\"",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-062"
   },
   {
     "start": "2026.06",
@@ -696,6 +772,144 @@
     ],
     "contents": "Hosted \"Web3 Career Meetup: Crypto Career Mentoring\"",
     "importance": false,
-    "crypto": true
+    "crypto": true,
+    "id": "history-063"
+  },
+  {
+    "start": "2026.04",
+    "end": "2026.05",
+    "tags": [
+      "AI",
+      "Blockchain"
+    ],
+    "contents": "Received an Excellence Award at the AI·Blockchain Business Model Competition.",
+    "importance": true,
+    "crypto": true,
+    "id": "history-064"
+  },
+  {
+    "start": "2026.03",
+    "end": "2026.04",
+    "tags": [
+      "Xangle",
+      "Hanwha Investment & Securities",
+      "Blockchain"
+    ],
+    "contents": "Participated in the preliminary round of the Startup Career Challenge AI-Blockchain idea competition hosted by Xangle and Hanwha Investment & Securities.",
+    "importance": false,
+    "crypto": true,
+    "id": "history-065"
+  },
+  {
+    "start": "2025.12",
+    "end": "2025.12",
+    "tags": [
+      "POSTECH",
+      "Scholarship"
+    ],
+    "contents": "Selected as an overseas assignment scholar for Nobel Week 2025.",
+    "importance": true,
+    "crypto": false,
+    "id": "history-066"
+  },
+  {
+    "start": "2026.10",
+    "end": "2026.10",
+    "tags": [
+      "POSTECH",
+      "AI"
+    ],
+    "contents": "Received an Encouragement Award at the Digital Twin AI Agent Hackathon.",
+    "importance": true,
+    "crypto": false,
+    "id": "history-067",
+    "href": "#projects/run2-guryongpo"
+  },
+  {
+    "start": "2026.07",
+    "end": "2026.10",
+    "tags": [
+      "Four Pillars",
+      "Blockchain"
+    ],
+    "contents": "Won first place in the MetaMask track and second place in the Solana and Surf AI tracks at Four Pillars Research Challenge 2026.",
+    "importance": true,
+    "crypto": true,
+    "id": "history-068"
+  },
+  {
+    "start": "2026.09",
+    "end": "2026.09",
+    "tags": [
+      "BrainKorea21 Four",
+      "Scholarship"
+    ],
+    "contents": "Selected for the 2026 Outstanding Science and Engineering Talent Scholarship.",
+    "importance": true,
+    "crypto": false,
+    "id": "history-069"
+  },
+  {
+    "start": "2026.09",
+    "end": "2026.09",
+    "tags": [
+      "AI",
+      "Blockchain"
+    ],
+    "contents": "Participated in the preliminary round of the Block AI*26 blockchain and AI hackathon.",
+    "importance": false,
+    "crypto": true,
+    "id": "history-070",
+    "href": "#projects/defi-compass"
+  },
+  {
+    "start": "2026.08",
+    "end": "2026.08",
+    "tags": [
+      "Digital Asset",
+      "Competition"
+    ],
+    "contents": "Participated in SCAN 2026, placing 87th out of 416 teams.",
+    "importance": false,
+    "crypto": true,
+    "id": "history-071"
+  },
+  {
+    "start": "2026.06",
+    "end": "2026.07",
+    "tags": [
+      "LG AI Research",
+      "AI"
+    ],
+    "contents": "Participated in the LG AI Research XForecast Challenge, placing 30th out of 51 teams.",
+    "importance": false,
+    "crypto": false,
+    "id": "history-072"
+  },
+  {
+    "start": "2026.06",
+    "end": "2026.08",
+    "tags": [
+      "AI",
+      "Undergrad AI Study"
+    ],
+    "contents": "Participated in the third cohort of Undergrad AI Study, studying deep learning theory and presenting on generative AI models.",
+    "importance": false,
+    "crypto": false,
+    "id": "history-073"
+  },
+  {
+    "start": "2026.06",
+    "end": "",
+    "tags": [
+      "POSTECH",
+      "FBDA Lab",
+      "Finance",
+      "Engineering"
+    ],
+    "contents": "Resumed undergraduate research at the Financial Big Data Analysis (FBDA) Lab at POSTECH.",
+    "importance": true,
+    "crypto": true,
+    "id": "history-074"
   }
 ]

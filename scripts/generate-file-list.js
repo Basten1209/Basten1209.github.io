@@ -104,7 +104,7 @@ function generateFileLists() {
 
     // Check for missing files
     const missingReports = (portfolioConfig.reports || [])
-      .filter(item => !reportFiles.includes(item.filename))
+      .filter(item => item.type !== 'url' && !reportFiles.includes(item.filename))
       .map(item => item.filename);
 
     const missingResumes = (portfolioConfig.resumes || [])

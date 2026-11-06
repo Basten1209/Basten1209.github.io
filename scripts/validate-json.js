@@ -1,128 +1,145 @@
-/**
- * JSON Validation Script
- *
- * Validates all JSON configuration files to ensure they are properly formatted
- * and contain required fields.
- *
- * Usage:
- *   node scripts/validate-json.js
- */
+/** Validate content, references, and local files before a static build. */
+const fs = require('node:fs')
+const path = require('node:path')
+const root = path.join(__dirname, '..')
 
-const fs = require('fs');
-const path = require('path');
-
-// Configuration files to validate
-const jsonFiles = [
-  {
-    path: 'data/portfolio-config.json',
-    required: ['profile', 'resumes', 'reports'],
-    schema: {
-      profile: ['name', 'email', 'image', 'social'],
-      resumes: ['id', 'title', 'file'],
-      reports: ['filename', 'title', 'contribution']
+function validatePortfolio(config, history, fileExists = (p) => fs.existsSync(path.join(root, p))) {
+  const errors = []
+  const requireField = (record, field, label) => {
+    if (!record?.[field]) errors.push(`${label}: missing ${field}`)
+  }
+  const localFile = (file, label) => {
+    if (!file || !fileExists(file)) errors.push(`${label}: missing file ${file || '(empty)'}`)
+  }
+  const checkURL = (url, label) => {
+    try {
+      if (!['https:', 'http:'].includes(new URL(url).protocol)) throw Error()
+    } catch {
+      errors.push(`${label}: invalid URL`)
     }
   }
-];
-
-/**
- * Validate a single JSON file
- */
-function validateJSONFile(fileConfig) {
-  const filePath = path.join(__dirname, '..', fileConfig.path);
-
-  // Check if file exists
-  if (!fs.existsSync(filePath)) {
-    console.error(`✗ File not found: ${fileConfig.path}`);
-    return false;
+  for (const field of ['profile', 'resumes', 'reports', 'publications', 'projects', 'cv'])
+    requireField(config, field, 'portfolio')
+  if (errors.length) return errors
+  for (const field of ['name', 'email', 'image', 'tagline', 'heroIdentity'])
+    requireField(config.profile, field, 'profile')
+  localFile(config.profile.image, 'profile')
+  for (const { section, id } of config.profile.background || []) {
+    if (!config.cv[section]?.some((entry) => entry.id === id))
+      errors.push(`profile: unknown background entry ${id}`)
   }
-
-  try {
-    // Parse JSON
-    const content = fs.readFileSync(filePath, 'utf8');
-    const data = JSON.parse(content);
-
-    console.log(`\nValidating: ${fileConfig.path}`);
-
-    // Check if it's an array when expected
-    if (fileConfig.isArray) {
-      if (!Array.isArray(data)) {
-        console.error(`  ✗ Expected array, got ${typeof data}`);
-        return false;
-      }
-
-      // Validate each item in array
-      data.forEach((item, index) => {
-        fileConfig.required.forEach(field => {
-          if (!(field in item)) {
-            console.warn(`  ⚠️  Item ${index}: Missing required field "${field}"`);
-          }
-        });
-      });
-
-      console.log(`  ✓ Valid array with ${data.length} items`);
-    } else {
-      // Validate top-level required fields
-      fileConfig.required.forEach(field => {
-        if (!(field in data)) {
-          console.error(`  ✗ Missing required field: "${field}"`);
-          return false;
-        }
-      });
-
-      // Validate nested schemas if defined
-      if (fileConfig.schema) {
-        Object.keys(fileConfig.schema).forEach(key => {
-          if (Array.isArray(data[key])) {
-            data[key].forEach((item, index) => {
-              fileConfig.schema[key].forEach(field => {
-                if (!(field in item)) {
-                  console.warn(`  ⚠️  ${key}[${index}]: Missing recommended field "${field}"`);
-                }
-              });
-            });
-          }
-        });
-      }
-
-      console.log(`  ✓ Valid JSON structure`);
+  for (const [name, records] of Object.entries({
+    reports: config.reports,
+    publications: config.publications,
+    projects: config.projects,
+    resumes: config.resumes,
+    history,
+  })) {
+    if (!Array.isArray(records)) {
+      errors.push(`${name}: expected array`)
+      continue
     }
-
-    return true;
-  } catch (error) {
-    console.error(`✗ Error parsing ${fileConfig.path}:`);
-    console.error(`  ${error.message}`);
-    return false;
+    const ids = new Set()
+    for (const record of records) {
+      requireField(record, 'id', name)
+      if (ids.has(record.id)) errors.push(`${name}: duplicate id ${record.id}`)
+      ids.add(record.id)
+      if (record.cover) localFile(record.cover, record.id)
+    }
   }
+  if (errors.length) return errors
+  for (const r of config.reports) {
+    for (const key of ['title', 'description', 'contribution', 'date', 'kind'])
+      requireField(r, key, r.id)
+    if (r.type === 'url') checkURL(r.url, r.id)
+    else if (r.type === 'pdf') localFile(`data/reports/${r.filename}`, r.id)
+    else errors.push(`${r.id}: invalid report type`)
+  }
+  for (const r of config.resumes) localFile(r.file, r.id)
+  for (const b of config.publications) {
+    requireField(b, 'title', b.id)
+    checkURL(b.url, b.id)
+    localFile(b.cover, b.id)
+  }
+  for (const p of config.projects) {
+    for (const key of ['title', 'description', 'year', 'category', 'status', 'stack', 'links'])
+      requireField(p, key, p.id)
+    const types = [
+      'In-class term project',
+      'Competition',
+      'Research project',
+      'Side project',
+      'Startup project',
+      'Personal project',
+    ]
+    if (!types.includes(p.context?.type)) errors.push(`${p.id}: invalid project context type`)
+    if (
+      ['In-class term project', 'Competition', 'Research project', 'Side project'].includes(
+        p.context?.type,
+      )
+    )
+      requireField(p.context, 'name', `${p.id} context`)
+    for (const link of p.links || []) {
+      if (link.url?.startsWith('data/projects/')) localFile(link.url, p.id)
+      else checkURL(link.url, p.id)
+    }
+    for (const id of p.reportIds || [])
+      if (!config.reports.some((r) => r.id === id)) errors.push(`${p.id}: unknown report ${id}`)
+  }
+  for (const id of config.featuredProjectIds || []) {
+    const project = config.projects.find((p) => p.id === id)
+    if (!project) errors.push(`unknown featured project ${id}`)
+    else {
+      requireField(project, 'cover', id)
+      requireField(project, 'coverAlt', id)
+    }
+  }
+  for (const [key, source] of [
+    ['publicationIds', 'publications'],
+    ['projectIds', 'projects'],
+  ]) {
+    for (const id of config.cv[key] || [])
+      if (!config[source].some((x) => x.id === id)) errors.push(`cv: unknown ${source} ${id}`)
+  }
+  for (const view of ['all', 'finance', 'crypto']) {
+    requireField(config.cv.views, view, 'CV views')
+    requireField(config.cv.views?.[view], 'sections', `CV ${view}`)
+  }
+  for (const e of history) {
+    if (!/^\d{4}\.\d{2}$/.test(e.start)) errors.push(`${e.id}: invalid start date`)
+    requireField(e, 'contents', e.id)
+    if (!Array.isArray(e.tags)) errors.push(`${e.id}: tags must be an array`)
+    if (
+      e.href?.startsWith('#projects/') &&
+      !config.projects.some((p) => e.href === `#projects/${p.id}`)
+    )
+      errors.push(`${e.id}: unknown project link`)
+    if (
+      e.href?.startsWith('#writing/book/') &&
+      !config.publications.some((p) => e.href === `#writing/book/${p.id}`)
+    )
+      errors.push(`${e.id}: unknown book link`)
+  }
+  return errors
 }
 
-/**
- * Main validation function
- */
-function validateAll() {
-  console.log('Starting JSON validation...');
-
-  let allValid = true;
-
-  jsonFiles.forEach(fileConfig => {
-    const isValid = validateJSONFile(fileConfig);
-    if (!isValid) {
-      allValid = false;
-    }
-  });
-
-  console.log('\n' + '='.repeat(50));
-  if (allValid) {
-    console.log('✓ All JSON files are valid');
-    process.exit(0);
-  } else {
-    console.error('✗ Some JSON files have errors');
-    process.exit(1);
-  }
-}
-
-// Run validation
 if (require.main === module) {
-  validateAll();
+  try {
+    const config = JSON.parse(
+      fs.readFileSync(path.join(root, 'data/portfolio-config.json'), 'utf8'),
+    )
+    const history = JSON.parse(fs.readFileSync(path.join(root, 'data/proof-of-work.json'), 'utf8'))
+    const errors = validatePortfolio(config, history)
+    if (errors.length) {
+      console.error(errors.join('\n'))
+      process.exitCode = 1
+    } else
+      console.log(
+        `Content validated: ${config.reports.length} writings, ${config.publications.length} book, ${config.projects.length} projects, ${history.length} history entries.`,
+      )
+  } catch (error) {
+    console.error(error.message)
+    process.exitCode = 1
+  }
 }
-
-module.exports = { validateAll, validateJSONFile };
+module.exports = { validatePortfolio }

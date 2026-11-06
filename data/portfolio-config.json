@@ -5,15 +5,37 @@
     "email": "seungjunoh@postech.ac.kr",
     "emailAlt": "seungjun@postech-dao.xyz",
     "image": "assets/images/profile.jpg",
-    "tagline": "Undergraduate researcher at POSTECH studying high-frequency and high-dimensional financial data, with a focus on cryptocurrency markets.",
+    "tagline": "I study digital asset markets through blockchain research and financial econometrics to understand and predict market behavior.",
     "status": "Aspiring Quantitative Researcher",
-    "heroIdentity": "Quantitative Research · Cryptocurrency · Financial Engineering",
+    "heroIdentity": "Digital Asset Markets · Blockchain · Financial Econometrics",
     "social": {
       "linkedin": "https://www.linkedin.com/in/seungjun5/",
       "twitter": "https://x.com/seungjun_x",
       "github": "https://github.com/Basten1209",
       "medium": "https://medium.com/@seungjun-oh"
-    }
+    },
+    "background": [
+      {
+        "section": "research",
+        "id": "research-1"
+      },
+      {
+        "section": "experience",
+        "id": "experience-2"
+      },
+      {
+        "section": "experience",
+        "id": "experience-4"
+      },
+      {
+        "section": "experience",
+        "id": "experience-6"
+      },
+      {
+        "section": "education",
+        "id": "education-1"
+      }
+    ]
   },
   "resumes": [
     {
@@ -24,7 +46,7 @@
     },
     {
       "id": "resume_kor",
-      "title": "이력서 (한글)",
+      "title": "Resume (Korean)",
       "file": "data/resume/resume_kor.pdf",
       "language": "ko"
     }
@@ -33,255 +55,282 @@
     {
       "id": "postech-dynamic-factor-copula-models",
       "title": "[Paper Review] Dynamic Factor Copula Models with Estimated Cluster Assignments",
-      "description": "데이터에서 추정한 군집과 동적 요인 코퓰라를 활용해 고차원 자산의 시간가변 의존구조를 모델링하는 방법을 정리한 paper study 아티클.",
+      "description": "A paper review on modeling time-varying dependence across high-dimensional assets using estimated clusters and dynamic factor copulas.",
       "contribution": "Author",
       "date": "2026-08",
       "category": "POSTECH",
       "type": "url",
-      "url": "https://seungjunoh.notion.site/Dynamic-Factor-Copula-Models-with-Estimated-Cluster-Assignments-JoE-23-3cc92b914dfc803c9d00e6989ab5430a?source=copy_link"
+      "url": "https://seungjunoh.notion.site/Dynamic-Factor-Copula-Models-with-Estimated-Cluster-Assignments-JoE-23-3cc92b914dfc803c9d00e6989ab5430a?source=copy_link",
+      "kind": "Paper Review"
     },
     {
       "id": "postech-predictable-losses-liquidity-provision",
       "title": "[Paper Review] Predictable Losses of Liquidity Provision in Constant Function Markets and Concentrated Liquidity Markets",
-      "description": "DEX LP의 Risk 측정법인 Predictable Loss에 관한 설명을 다룬 paper study 아티클.",
+      "description": "A paper review explaining Predictable Loss as a measure of risk for liquidity providers on decentralized exchanges.",
       "contribution": "Author",
       "date": "2026-07",
       "category": "POSTECH",
       "type": "url",
-      "url": "https://seungjunoh.notion.site/Predictable-Losses-of-Liquidity-Provision-in-Constant-Function-Markets-and-Concentrated-Liquidity-Ma-39792b914dfc8089b520e709c5dd6ae3?source=copy_link"
+      "url": "https://seungjunoh.notion.site/Predictable-Losses-of-Liquidity-Provision-in-Constant-Function-Markets-and-Concentrated-Liquidity-Ma-39792b914dfc8089b520e709c5dd6ae3?source=copy_link",
+      "kind": "Paper Review"
     },
     {
       "id": "postech-uniswap-v3-lp-risk-return",
       "title": "[Paper Review] Risks and Returns of Uniswap V3 Liquidity Providers",
-      "description": "Uniswap V3에서의 liquidity provision risk-return 구조를 paper study 형식으로 정리한 아티클.",
-      "contribution": "주 저자",
+      "description": "A paper review of the risks and returns of providing liquidity on Uniswap V3.",
+      "contribution": "Lead author",
       "date": "2026-07",
       "category": "POSTECH",
       "type": "url",
-      "url": "https://seungjunoh.notion.site/Risks-and-Returns-of-Uniswap-V3-Liquidity-Providers-AFT-22-38e92b914dfc80d4b84cc42b7f58da7a"
+      "url": "https://seungjunoh.notion.site/Risks-and-Returns-of-Uniswap-V3-Liquidity-Providers-AFT-22-38e92b914dfc80d4b84cc42b7f58da7a",
+      "kind": "Paper Review"
     },
     {
       "id": "postech-crypto-price-patterns",
       "filename": "Heterogenous price patterns of cryptocurrency between exchanges.pdf",
-      "title": "Heterogenous Price Patterns of Cryptocurrency Between Exchanges",
-      "description": "실현변동성에 기반한 거래소간 / 대륙 기축화폐 간 가상자산 가격 변동 패턴 분석.",
-      "contribution": "데이터 수집 및 전처리",
+      "title": "Heterogeneous Cryptocurrency Price Patterns Across Exchanges",
+      "description": "An analysis of cryptocurrency price patterns across exchanges and fiat currency markets using realized volatility.",
+      "contribution": "Data collection & preprocessing",
       "date": "2025-12",
       "category": "POSTECH",
-      "type": "pdf"
+      "type": "pdf",
+      "kind": "Report"
     },
     {
       "id": "postech-coinone-pair-analysis",
       "filename": "Term project_Coinone_pair_analysis-v1.pdf",
-      "title": "Integrated Case Study about Korea Cryptocurrency Exchange (CEX) : Coinone (with Quality Engineering Method)",
-      "description": "코인원 플랫폼에 대한 House of Quality 분석 및, Upbit와의 BTC/KRW 페어 갭 분석에 관한 품질공학 관점의 통계 분석",
-      "contribution": "프로젝트 리더",
+      "title": "A Quality Engineering Case Study of Coinone",
+      "description": "A House of Quality assessment of Coinone and a statistical analysis of BTC/KRW price differences between Coinone and Upbit.",
+      "contribution": "Project lead",
       "date": "2025-12",
       "category": "POSTECH",
-      "type": "pdf"
+      "type": "pdf",
+      "kind": "Report"
     },
     {
       "id": "postech-lift-framework",
       "selected": true,
       "title": "LIFT - A Unified Framework for High-Dimensional Covariance Estimation",
-      "description": "계층적 클러스터링 기반 고차원 금융데이터 분석 프레임워크 연구.",
-      "contribution": "데이터 처리 및 모델 구현, 일부 문서 작성",
+      "description": "Research on a framework for high-dimensional financial data analysis using hierarchical clustering.",
+      "contribution": "Data processing, implementation & writing",
       "date": "2025-10",
       "category": "POSTECH",
       "type": "url",
-      "url": "https://github.com/Basten1209/LIFT_FDBAProject1/blob/main/LIFT.pdf"
+      "url": "https://github.com/Basten1209/LIFT_FDBAProject1/blob/main/LIFT.pdf",
+      "kind": "Report"
     },
     {
       "id": "medium-crypto-blockchain-summary",
       "title": "Super Simple Summary about Crypto-Blockchain",
-      "description": "블록체인 기초 및 크립토 생태계 입문 가이드.",
-      "contribution": "주 저자",
+      "description": "An introductory guide to blockchain fundamentals and the crypto ecosystem.",
+      "contribution": "Lead author",
       "date": "2025-10",
       "category": "PDAO",
       "type": "url",
-      "url": "https://medium.com/postech-dao/super-simple-summary-about-crypto-blockchain-2d2088f1be15"
+      "url": "https://medium.com/postech-dao/super-simple-summary-about-crypto-blockchain-2d2088f1be15",
+      "kind": "Article"
     },
     {
       "id": "medium-basic-hotstuff",
-      "title": "Basic HotStuff 에 대한 이해",
-      "description": "HotStuff 합의 알고리즘과 pBFT로부터의 발전 과정 분석.",
-      "contribution": "주 저자",
+      "title": "Understanding Basic HotStuff",
+      "description": "An analysis of the HotStuff consensus algorithm and its evolution from PBFT.",
+      "contribution": "Lead author",
       "date": "2025-10",
       "category": "PDAO",
       "type": "url",
-      "url": "https://medium.com/postech-dao/basic-hotstuff-%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4-d0d4a9fd9691"
+      "url": "https://medium.com/postech-dao/basic-hotstuff-%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4-d0d4a9fd9691",
+      "kind": "Article"
     },
     {
       "id": "medium-solana-bic",
-      "title": "솔라나는 왜 BIC를 후원했을까?",
-      "description": "솔라나의 BIC 후원과 Web3 게임 생태계 전략 분석.",
-      "contribution": "주 저자",
+      "title": "Why Did Solana Sponsor BIC?",
+      "description": "An analysis of Solana's BIC sponsorship and its strategy for the Web3 gaming ecosystem.",
+      "contribution": "Lead author",
       "date": "2025-08",
       "category": "PDAO",
       "type": "url",
-      "url": "https://medium.com/postech-dao/%EC%86%94%EB%9D%BC%EB%82%98%EB%8A%94-%EC%99%9C-bic%EB%A5%BC-%ED%9B%84%EC%9B%90%ED%96%88%EC%9D%84%EA%B9%8C-0c90d1b3c4b4"
+      "url": "https://medium.com/postech-dao/%EC%86%94%EB%9D%BC%EB%82%98%EB%8A%94-%EC%99%9C-bic%EB%A5%BC-%ED%9B%84%EC%9B%90%ED%96%88%EC%9D%84%EA%B9%8C-0c90d1b3c4b4",
+      "kind": "Article"
     },
     {
       "id": "medium-solayer-infinisvm",
-      "title": "Solayer's InfiniSVM — 하드웨어 가속기반 SVM 구조",
-      "description": "Solayer Project 소개 - $200 Bounty by Superteam Earn.",
-      "contribution": "주 저자",
+      "title": "Solayer's InfiniSVM: A Hardware-Accelerated SVM Architecture",
+      "description": "An introduction to Solayer, awarded a $200 bounty through Superteam Earn.",
+      "contribution": "Lead author",
       "date": "2025-05",
       "category": "PDAO",
       "type": "url",
-      "url": "https://seungjun-oh.medium.com/solayers-infinisvm-%ED%95%98%EB%93%9C%EC%9B%A8%EC%96%B4-%EA%B0%80%EC%86%8D%EA%B8%B0%EB%B0%98-svm-%EA%B5%AC%EC%A1%B0-8565f823e444"
+      "url": "https://seungjun-oh.medium.com/solayers-infinisvm-%ED%95%98%EB%93%9C%EC%9B%A8%EC%96%B4-%EA%B0%80%EC%86%8D%EA%B8%B0%EB%B0%98-svm-%EA%B5%AC%EC%A1%B0-8565f823e444",
+      "kind": "Article"
     },
     {
       "id": "medium-bitcoin-mining",
-      "title": "비트코인 채굴기업 산업 분석",
-      "description": "비트코인 채굴기업의 BM과 확장전략, 주요 채굴기업의 소개.",
-      "contribution": "주 저자",
+      "title": "An Industry Analysis of Bitcoin Mining Companies",
+      "description": "An overview of major Bitcoin mining companies, their business models, and expansion strategies.",
+      "contribution": "Lead author",
       "date": "2025-03",
       "category": "PDAO",
       "type": "url",
-      "url": "https://seungjun-oh.medium.com/%EB%B9%84%ED%8A%B8%EC%BD%94%EC%9D%B8-%EC%B1%84%EA%B5%B4%EA%B8%B0%EC%97%85-%EC%82%B0%EC%97%85-%EB%B6%84%EC%84%9D-45e8d7e7b701"
+      "url": "https://seungjun-oh.medium.com/%EB%B9%84%ED%8A%B8%EC%BD%94%EC%9D%B8-%EC%B1%84%EA%B5%B4%EA%B8%B0%EC%97%85-%EC%82%B0%EC%97%85-%EB%B6%84%EC%84%9D-45e8d7e7b701",
+      "kind": "Article"
     },
     {
       "id": "pdao-zkp-sp1",
       "selected": true,
       "filename": "[PDAO] From ZKP to SP1 Hypercube (KOR).pdf",
-      "title": "From ZKP to SP1 Hypercube (KOR)",
-      "description": "ZKP(영지식 증명)의 기초부터 Succinct의 SP1 Hypercube까지, Realtime Proving 실현 과정을 분석한 기술 리포트.",
-      "contribution": "주 저자",
+      "title": "From ZKP to SP1 Hypercube (Korean)",
+      "description": "A technical report tracing the path to real-time proving, from zero-knowledge proof fundamentals to Succinct's SP1 Hypercube.",
+      "contribution": "Lead author",
       "date": "2025-11",
       "category": "PDAO",
-      "type": "pdf"
+      "type": "pdf",
+      "kind": "Report",
+      "cover": "assets/images/covers/zkp-sp1.jpg"
     },
     {
       "id": "pdao-krw-stablecoin",
       "filename": "[PDAO] KRWstablecoin (KOR).pdf",
-      "title": "KRWstablecoin (KOR)",
-      "description": "한국 원화 기반 스테이블코인의 설계, 규제 환경, 그리고 시장 가능성에 대한 종합 분석.",
-      "contribution": "리포트 코디네이팅, 일부 범위 리포트 작성/교열 및 편집",
+      "title": "KRW Stablecoins (Korean)",
+      "description": "An analysis of the design, regulatory environment, and market potential of Korean won stablecoins.",
+      "contribution": "Coordination, writing & editing",
       "date": "2025-11",
       "category": "PDAO",
-      "type": "pdf"
+      "type": "pdf",
+      "kind": "Report"
     },
     {
       "id": "pdao-zk-sol-eng",
       "filename": "[PDAO] ZK in SOL (ENG).pdf",
-      "title": "ZK in SOL (ENG)",
-      "description": "Examining Zero-Knowledge proof implementations on the Solana blockchain ecosystem.",
-      "contribution": "리포트 코디네이팅, 전 범위 리포트 교열 및 편집",
+      "title": "Zero-Knowledge Proofs on Solana (English)",
+      "description": "An analysis of zero-knowledge proof implementations in the Solana ecosystem.",
+      "contribution": "Coordination & editing",
       "date": "2025-06",
       "category": "PDAO",
-      "type": "pdf"
+      "type": "pdf",
+      "kind": "Report"
     },
     {
       "id": "pdao-zk-sol-kor",
       "filename": "[PDAO] ZK in SOL (KOR).pdf",
-      "title": "ZK in SOL (KOR)",
-      "description": "솔라나 블록체인 생태계에서의 영지식 증명 구현에 대한 분석.",
-      "contribution": "리포트 코디네이팅, 전 범위 리포트 교열 및 편집",
+      "title": "Zero-Knowledge Proofs on Solana (Korean)",
+      "description": "An analysis of zero-knowledge proof implementations in the Solana ecosystem.",
+      "contribution": "Coordination & editing",
       "date": "2025-06",
       "category": "PDAO",
-      "type": "pdf"
+      "type": "pdf",
+      "kind": "Report"
     },
     {
       "id": "crypto-notes-2",
       "filename": "CRYPTO NOTES 2호.pdf",
-      "title": "CRYPTO NOTES 2호 - Unstoppable Ethereum",
-      "description": "이더리움의 기술적 발전과 생태계 확장에 대한 심층 분석 리포트.",
-      "contribution": "주 저자",
+      "title": "CRYPTO NOTES 2 — Unstoppable Ethereum",
+      "description": "An in-depth report on Ethereum's technical development and ecosystem expansion.",
+      "contribution": "Lead author",
       "date": "2023-04",
       "category": "Bithumb",
-      "type": "pdf"
+      "type": "pdf",
+      "kind": "Report"
     },
     {
       "id": "crypto-notes-1",
       "selected": true,
       "filename": "CRYPTO NOTES 1호.pdf",
-      "title": "CRYPTO NOTES 1호 - The Big Wave is Coming",
-      "description": "크립토 시장의 거시적 흐름과 다가올 대규모 변화에 대한 전망 리포트.",
-      "contribution": "주 저자",
+      "title": "CRYPTO NOTES 1 — The Big Wave Is Coming",
+      "description": "A report on macro trends in crypto markets and the major changes ahead.",
+      "contribution": "Lead author",
       "date": "2023-02",
       "category": "Bithumb",
-      "type": "pdf"
+      "type": "pdf",
+      "kind": "Report",
+      "cover": "assets/images/covers/crypto-notes.jpg"
     },
     {
       "id": "crypto-insights-14",
       "filename": "Crypto Insights 14호.pdf",
-      "title": "Crypto Insights 14호 - 2023 Crypto Market Outlook",
-      "description": "2023년 크립토 시장 전망 및 주요 트렌드 분석.",
-      "contribution": "Research Assistant로 참여",
+      "title": "Crypto Insights 14 — 2023 Crypto Market Outlook",
+      "description": "An outlook on crypto markets and key trends for 2023.",
+      "contribution": "Research assistant",
       "date": "2023-01",
       "category": "Bithumb",
-      "type": "pdf"
+      "type": "pdf",
+      "kind": "Report"
     },
     {
       "id": "crypto-insights-13",
       "filename": "Crypto Insights 13호.pdf",
-      "title": "Crypto Insights 13호 - 2022 Dec FOMC Preview",
-      "description": "2022년 12월 FOMC 회의 프리뷰 및 크립토 시장 영향 분석.",
-      "contribution": "Research Assistant로 참여",
+      "title": "Crypto Insights 13 — December 2022 FOMC Preview",
+      "description": "A preview of the December 2022 FOMC meeting and its implications for crypto markets.",
+      "contribution": "Research assistant",
       "date": "2022-12",
       "category": "Bithumb",
-      "type": "pdf"
+      "type": "pdf",
+      "kind": "Report"
     },
     {
       "id": "crypto-insights-12",
       "filename": "Crypto Insights 12호.pdf",
-      "title": "Crypto Insights 12호 - FTX Collaspe",
-      "description": "FTX 거래소 붕괴 사건의 원인, 영향, 그리고 시장 여파 분석.",
-      "contribution": "Research Assistant로 참여",
+      "title": "Crypto Insights 12 — The FTX Collapse",
+      "description": "An analysis of the causes and market consequences of FTX's collapse.",
+      "contribution": "Research assistant",
       "date": "2022-11",
       "category": "Bithumb",
-      "type": "pdf"
+      "type": "pdf",
+      "kind": "Report"
     },
     {
       "id": "crypto-insights-11",
       "filename": "Crypto Insights 11호.pdf",
-      "title": "Crypto Insights 11호 - Effect about US midterm elections",
-      "description": "미국 중간선거가 크립토 시장에 미치는 영향 분석.",
-      "contribution": "Research Assistant로 참여",
+      "title": "Crypto Insights 11 — The Impact of US Midterm Elections",
+      "description": "An analysis of how US midterm elections affect crypto markets.",
+      "contribution": "Research assistant",
       "date": "2022-11",
       "category": "Bithumb",
-      "type": "pdf"
+      "type": "pdf",
+      "kind": "Report"
     },
     {
       "id": "crypto-insights-10",
       "filename": "Crypto Insights 10호.pdf",
-      "title": "Crypto Insights 10호 - SOL, BNB Chain Hacked",
-      "description": "솔라나 및 BNB 체인 해킹 사건 분석과 보안 시사점.",
-      "contribution": "Research Assistant로 참여",
+      "title": "Crypto Insights 10 — Solana and BNB Chain Hacks",
+      "description": "An analysis of security incidents involving Solana and BNB Chain and their implications.",
+      "contribution": "Research assistant",
       "date": "2022-10",
       "category": "Bithumb",
-      "type": "pdf"
+      "type": "pdf",
+      "kind": "Report"
     },
     {
       "id": "crypto-insights-9",
       "filename": "Crypto Insights 9호.pdf",
-      "title": "Crypto Insights 9호 - Relationship about Fiat Money & Bitcoin",
-      "description": "법정화폐와 비트코인의 관계성에 대한 거시경제학적 분석.",
-      "contribution": "Research Assistant로 참여",
+      "title": "Crypto Insights 9 — Fiat Money and Bitcoin",
+      "description": "A macroeconomic analysis of the relationship between fiat money and Bitcoin.",
+      "contribution": "Research assistant",
       "date": "2022-10",
       "category": "Bithumb",
-      "type": "pdf"
+      "type": "pdf",
+      "kind": "Report"
     },
     {
       "id": "crypto-insights-8",
       "filename": "Crypto Insights 8호.pdf",
-      "title": "Crypto Insights 8호 - 2022 Sep FOMC Review",
-      "description": "2022년 9월 FOMC 회의 리뷰 및 크립토 시장 영향.",
-      "contribution": "Research Assistant로 참여",
+      "title": "Crypto Insights 8 — September 2022 FOMC Review",
+      "description": "A review of the September 2022 FOMC meeting and its impact on crypto markets.",
+      "contribution": "Research assistant",
       "date": "2022-09",
       "category": "Bithumb",
-      "type": "pdf"
+      "type": "pdf",
+      "kind": "Report"
     },
     {
       "id": "crypto-insights-7",
       "filename": "Crypto Insights 7호.pdf",
-      "title": "Crypto Insights 7호 - Ethereum Price Scenario after The Merge",
-      "description": "이더리움 머지 이후 가격 시나리오 전망.",
-      "contribution": "Research Assistant로 참여",
+      "title": "Crypto Insights 7 — Ethereum Price Scenarios After the Merge",
+      "description": "An outlook on Ethereum price scenarios following the Merge.",
+      "contribution": "Research assistant",
       "date": "2022-09",
       "category": "Bithumb",
-      "type": "pdf"
+      "type": "pdf",
+      "kind": "Report"
     }
   ],
   "cv": {
@@ -292,13 +341,14 @@
         "period": "2021.02 - (Expected) 2028.02",
         "institution": "Pohang University of Science and Technology (POSTECH)",
         "url": "https://www.postech.ac.kr/",
-        "degree": "B.S. in Industrial & Management Engineering (Full Scholar)"
+        "degree": "B.S. in Industrial & Management Engineering (Full Scholar)",
+        "id": "education-1",
+        "audiences": [
+          "finance",
+          "crypto"
+        ]
       }
     ],
-    "skills": {
-      "interests": ["Quantitative Finance", "Financial Engineering", "High-Frequency Finance", "Blockchain & Cryptocurrency", "Data Analysis", "AI Application (AI with Blockchain / Finance)"],
-      "technical": ["R", "Python", "C/C++", "SQL", "Git", "MS Office"]
-    },
     "experience": [
       {
         "period": "2026.02 - 2026.06",
@@ -311,7 +361,8 @@
           "Developed PoC about Blockchain Learning Platform",
           "Developed educational contents about blockchain core",
           "Supported Altus' internship program recruiting"
-        ]
+        ],
+        "id": "experience-1"
       },
       {
         "period": "2025.12 - 2026.02",
@@ -323,18 +374,8 @@
         "highlights": [
           "Studying blockchain core technology - had an internal seminar about Tempo blockchain",
           "Participated in company rebranding like Tech Blog - HR Strategy reference research"
-        ]
-      },
-      {
-        "period": "2025.12 - Present",
-        "role": "Based Advocate (Ambassador)",
-        "organization": "Base Korea (Daehanbase)",
-        "url": "https://x.com/daehan_base",
-        "type": "Community",
-        "highlights": [
-          "Supported the execution of several Base Korea's offline meetups",
-          "Wrote Articles about Base Builders in South Korea - Building tips on Base Chain"
-        ]
+        ],
+        "id": "experience-2"
       },
       {
         "period": "2025.06 - Present",
@@ -344,7 +385,8 @@
         "type": "Technical",
         "highlights": [
           "Contracted as a Consultant after being awarded 3rd place in the 2025 IQC (Korea Final)"
-        ]
+        ],
+        "id": "experience-4"
       },
       {
         "period": "2023.03 - 2024.12",
@@ -355,7 +397,8 @@
         "highlights": [
           "Participated in the Database Operation & Management of Logistic systems for departments of the Air Force",
           "Served as a squad leader (Aug 2024 - Dec 2024)"
-        ]
+        ],
+        "id": "experience-5"
       },
       {
         "period": "2022.09 - 2023.02",
@@ -369,19 +412,11 @@
           "Published blockchain research report 'CRYPTO NOTES' series (2 reports)",
           "Presented a session at the offline seminar, 'Crypto Insight meetup' (Topic: 2023 ETH Upgrade)",
           "Assisted with the filming of the company's official YouTube content 'Bitconomy report' and 'Crypto talk'"
-        ]
+        ],
+        "id": "experience-6"
       }
     ],
     "extracurricular": [
-      {
-        "period": "2026.06 - 2026.08",
-        "role": "3rd Cohort Member",
-        "organization": "Undergrad AI Study",
-        "url": "https://sites.google.com/view/sangwoomo/join-us",
-        "highlights": [
-          "Studying deep learning theory and presenting on generative AI models."
-        ]
-      },
       {
         "period": "2025.01 - Present",
         "role": "Organizer (Head)",
@@ -389,6 +424,11 @@
         "url": "https://dao.postech.ac.kr",
         "highlights": [
           "Managed overall tasks and led decision-making for building the open community"
+        ],
+        "id": "extracurricular-2",
+        "audiences": [
+          "finance",
+          "crypto"
         ]
       },
       {
@@ -398,6 +438,37 @@
         "url": "https://dao.postech.ac.kr",
         "highlights": [
           "Joined the PDAO Launch Project and assisted with general operations"
+        ],
+        "id": "extracurricular-3",
+        "audiences": [
+          "finance",
+          "crypto"
+        ]
+      },
+      {
+        "period": "2025.12 - Present",
+        "role": "Based Advocate (Ambassador)",
+        "organization": "Base Korea (Daehanbase)",
+        "url": "https://x.com/daehan_base",
+        "type": "Community",
+        "highlights": [
+          "Supported the execution of several Base Korea's offline meetups",
+          "Wrote Articles about Base Builders in South Korea - Building tips on Base Chain"
+        ],
+        "id": "experience-3"
+      },
+      {
+        "period": "2026.06 - 2026.08",
+        "role": "3rd Cohort Member",
+        "organization": "Undergrad AI Study",
+        "url": "https://sites.google.com/view/sangwoomo/join-us",
+        "highlights": [
+          "Studying deep learning theory and presenting on generative AI models."
+        ],
+        "id": "extracurricular-1",
+        "audiences": [
+          "finance",
+          "crypto"
         ]
       }
     ],
@@ -408,7 +479,8 @@
         "lab": "POSTECH FBDA Lab",
         "url": "https://sites.google.com/view/minseokshin",
         "advisor": "Prof. Min-Seok Shin",
-        "focus": "Studying Financial Data Analysis in High-Dimensional statistics and High-Frequency conditions"
+        "focus": "Studying Financial Data Analysis in High-Dimensional statistics and High-Frequency conditions",
+        "id": "research-1"
       },
       {
         "period": "2022.06 - 2022.08",
@@ -416,89 +488,793 @@
         "lab": "POSTECH DPNM Lab",
         "url": "https://dpnm.postech.ac.kr",
         "advisor": "Prof. James Won-ki Hong",
-        "focus": "Studied the basics and fundamentals of Cryptocurrency and Blockchain Technology"
-      }
-    ],
-    "publication": [
-      {
-        "title": "Digital Asset Era is Coming",
-        "isbn": "9791192445502",
-        "role": "Co-Author",
-        "url": "https://product.kyobobook.co.kr/detail/S000209213039",
-        "description": "Wrote bitcoin/blockchain introduction and technology chapter."
-      }
-    ],
-    "projects": [
-      {
-        "year": "2025",
-        "title": "Robust Alpha Generation",
-        "description": "Making Robust Alphas (Trading Strategies) on the WorldQuant Brain Platform for 2025 IQC.",
-        "highlights": [
-          "Developed quantitative signals based on fundamental financial data",
-          "Improved alpha performance through iterative refinement and validation",
-          "Presented alpha strategies at the Korea regional finals"
-        ]
-      },
-      {
-        "year": "2022",
-        "title": "NFT Hub: NFT Asset Portfolio Platform",
-        "description": "Project leader for NFT asset portfolio platform.",
-        "highlights": [
-          "Selected in 2022 Pohang-si innopolis campus business team",
-          "Selected and completed in 2022 student start-up 300 team",
-          "Rewarded for exhibition in 2022 industry & academic cooperation EXPO"
-        ]
+        "focus": "Studied the basics and fundamentals of Cryptocurrency and Blockchain Technology",
+        "id": "research-2"
       }
     ],
     "events": [
-      { "year": "2026", "role": "Host", "title": "Web3 Career Meetup: Crypto Career Mentoring", "link": "https://luma.com/e08xe5lo" },
-      { "year": "2026", "role": "Panel Speaker", "title": "DE-FERENCE 2026", "link": "https://deference.co.kr/ko" },
-      { "year": "2026", "role": "Panel Speaker", "title": "BNB Martian Night: Learn & Network", "link": "https://luma.com/tcxy45tl" },
-      { "year": "2025", "role": "Panel Speaker", "title": "AI+Blockchain Autumn Camp - Korean Offline Workshop", "link": "https://luma.com/4wzmaumh" },
-      { "year": "2025", "role": "Host", "title": "Blockchains for TradFi: 전통금융과 블록체인의 만남", "link": "https://www.linkedin.com/posts/pdao_%EC%A7%80%EB%82%9C-10%EC%9B%94-31%EC%9D%BC%EA%B8%88-pdao%EC%97%90%EC%84%9C-%EC%A3%BC%EC%B5%9C%ED%95%9C-blockchains-for-activity-7390426035869323264-FnP9" },
-      { "year": "2025", "role": "Host & Speaker", "title": "PDAO in Seoul!", "link": "https://luma.com/2yot059s" },
-      { "year": "2025", "role": "Host", "title": "Dive in Crypto-Blockchain! (in Pohang)", "link": "https://luma.com/memo9l05" },
-      { "year": "2023", "role": "Session Speaker", "title": "Crypto Insight Meetup (Off-line)", "link": "https://youtu.be/u_HYu8At6aI?si=HLDMhtpJVX9S_Xa9&t=41" }
+      {
+        "year": "2026",
+        "role": "Host",
+        "title": "Web3 Career Meetup: Crypto Career Mentoring",
+        "link": "https://luma.com/e08xe5lo",
+        "id": "events-1",
+        "audiences": [
+          "crypto"
+        ]
+      },
+      {
+        "year": "2026",
+        "role": "Panel Speaker",
+        "title": "DE-FERENCE 2026",
+        "link": "https://deference.co.kr/ko",
+        "id": "events-2",
+        "audiences": [
+          "crypto"
+        ]
+      },
+      {
+        "year": "2026",
+        "role": "Panel Speaker",
+        "title": "BNB Martian Night: Learn & Network",
+        "link": "https://luma.com/tcxy45tl",
+        "id": "events-3",
+        "audiences": [
+          "crypto"
+        ]
+      },
+      {
+        "year": "2025",
+        "role": "Panel Speaker",
+        "title": "AI+Blockchain Autumn Camp - Korean Offline Workshop",
+        "link": "https://luma.com/4wzmaumh",
+        "id": "events-4",
+        "audiences": [
+          "crypto"
+        ]
+      },
+      {
+        "year": "2025",
+        "role": "Host",
+        "title": "Blockchains for TradFi: Where Traditional Finance Meets Blockchain",
+        "link": "https://www.linkedin.com/posts/pdao_%EC%A7%80%EB%82%9C-10%EC%9B%94-31%EC%9D%BC%EA%B8%88-pdao%EC%97%90%EC%84%9C-%EC%A3%BC%EC%B5%9C%ED%95%9C-blockchains-for-activity-7390426035869323264-FnP9",
+        "id": "events-5",
+        "audiences": [
+          "crypto"
+        ]
+      },
+      {
+        "year": "2025",
+        "role": "Host & Speaker",
+        "title": "PDAO in Seoul!",
+        "link": "https://luma.com/2yot059s",
+        "id": "events-6",
+        "audiences": [
+          "crypto"
+        ]
+      },
+      {
+        "year": "2025",
+        "role": "Host",
+        "title": "Dive in Crypto-Blockchain! (in Pohang)",
+        "link": "https://luma.com/memo9l05",
+        "id": "events-7",
+        "audiences": [
+          "crypto"
+        ]
+      },
+      {
+        "year": "2023",
+        "role": "Session Speaker",
+        "title": "Crypto Insight Meetup (Off-line)",
+        "link": "https://youtu.be/u_HYu8At6aI?si=HLDMhtpJVX9S_Xa9&t=41",
+        "id": "events-8",
+        "audiences": [
+          "crypto"
+        ]
+      }
     ],
     "awards": [
-      { "date": "2026.10", "title": "2026 Digital Twin AI Agent Hackathon: Encouragement Award", "issuer": "POSTECH", "link": "https://dtaiagent.imweb.me/" },
+      {
+        "date": "2026.10",
+        "title": "2026 Digital Twin AI Agent Hackathon: Encouragement Award",
+        "issuer": "POSTECH",
+        "link": "https://dtaiagent.imweb.me/",
+        "id": "awards-1",
+        "audiences": [
+          "crypto"
+        ]
+      },
       {
         "date": "2026.10",
         "title": "Four Pillars Research Challenge 2026",
         "issuer": "Four Pillars",
         "link": "https://4pillars.io/en/blog/four-pillars-to-host-four-pillars-research-challenge-2026-for-university-blockchain-clubs-across-south-korea",
         "tracks": [
-          { "name": "MetaMask Track", "result": "1st Place", "link": "https://www.nexblock.co.kr/article/1003109" },
-          { "name": "Surf AI Track", "result": "2nd Place" },
-          { "name": "Solana Foundation Track", "result": "2nd Place" }
+          {
+            "name": "MetaMask Track",
+            "result": "1st Place",
+            "link": "https://www.nexblock.co.kr/article/1003109"
+          },
+          {
+            "name": "Surf AI Track",
+            "result": "2nd Place"
+          },
+          {
+            "name": "Solana Foundation Track",
+            "result": "2nd Place"
+          }
+        ],
+        "id": "awards-2",
+        "audiences": [
+          "crypto"
         ]
       },
-      { "date": "2026.09", "title": "2026 이공 우수인재 장학생", "value": "12 million won", "issuer": "BrainKorea21 Four" },
-      { "date": "2026.05", "title": "2026 AI·Blockchain Business Model Competition: Excellence Award", "issuer": "Korea University College of Informatics · Council of AI·SW-Centered Universities", "link": "https://biz.heraldcorp.com/article/10736228" },
-      { "date": "2025.12", "title": "Overseas Assignment Scholar for Nobel Week 2025", "value": "2.5 million won", "issuer": "POSTECH" },
-      { "date": "2025.07", "title": "Monad Blitz Seoul 4th Prize", "issuer": "Monad Foundation - B-Harvest - Chainlink" },
-      { "date": "2025.07", "title": "2025 IQC Korea 3rd", "issuer": "WorldQuant" },
-      { "date": "2022.05", "title": "POSTECH Metaverse Contest Encourage Award", "issuer": "POSTECH" },
-      { "date": "2021.03 - Present", "title": "Local Talent Scholarship", "value": "Full Scholarship", "issuer": "KOSAF" }
+      {
+        "date": "2026.09",
+        "title": "2026 Outstanding Science and Engineering Talent Scholarship",
+        "value": "12 million won",
+        "issuer": "BrainKorea21 Four",
+        "id": "awards-3",
+        "audiences": [
+          "finance",
+          "crypto"
+        ]
+      },
+      {
+        "date": "2026.05",
+        "title": "2026 AI·Blockchain Business Model Competition: Excellence Award",
+        "issuer": "Korea University College of Informatics · Council of AI·SW-Centered Universities",
+        "link": "https://biz.heraldcorp.com/article/10736228",
+        "id": "awards-4",
+        "audiences": [
+          "crypto"
+        ]
+      },
+      {
+        "date": "2025.12",
+        "title": "Overseas Assignment Scholar for Nobel Week 2025",
+        "value": "2.5 million won",
+        "issuer": "POSTECH",
+        "id": "awards-5",
+        "audiences": [
+          "finance",
+          "crypto"
+        ]
+      },
+      {
+        "date": "2025.07",
+        "title": "Monad Blitz Seoul 4th Prize",
+        "issuer": "Monad Foundation - B-Harvest - Chainlink",
+        "id": "awards-6",
+        "audiences": [
+          "crypto"
+        ]
+      },
+      {
+        "date": "2025.07",
+        "title": "2025 IQC Korea 3rd",
+        "issuer": "WorldQuant",
+        "id": "awards-7",
+        "audiences": [
+          "finance"
+        ]
+      },
+      {
+        "date": "2022.05",
+        "title": "POSTECH Metaverse Contest Encourage Award",
+        "issuer": "POSTECH",
+        "id": "awards-8",
+        "audiences": [
+          "crypto"
+        ]
+      },
+      {
+        "date": "2021.03 - Present",
+        "title": "Local Talent Scholarship",
+        "value": "Full Scholarship",
+        "issuer": "KOSAF",
+        "id": "awards-9",
+        "audiences": [
+          "finance",
+          "crypto"
+        ]
+      }
     ],
     "certificates": {
       "finance": [
-        { "name": "Certified Investment Manager", "issuer": "KOFIA" },
-        { "name": "Certified Accounting Manager", "issuer": "Samil PwC" },
-        { "name": "Financial Planner", "issuer": "Korea Banking Institute" },
-        { "name": "Certified Foreign Exchange Specialist I", "issuer": "Korea Banking Institute" }
+        {
+          "name": "Certified Investment Manager",
+          "issuer": "KOFIA"
+        },
+        {
+          "name": "Certified Accounting Manager",
+          "issuer": "Samil PwC"
+        },
+        {
+          "name": "Financial Planner",
+          "issuer": "Korea Banking Institute"
+        },
+        {
+          "name": "Certified Foreign Exchange Specialist I",
+          "issuer": "Korea Banking Institute"
+        }
       ],
       "cs": [
-        { "name": "SQL Developer", "issuer": "Kdata" },
-        { "name": "ADsP (Advanced Data Analytics Semi-Professional)", "issuer": "Kdata" },
-        { "name": "Craftsman Information Industrial Engineer", "issuer": "HRD Korea" }
+        {
+          "name": "SQL Developer",
+          "issuer": "Kdata"
+        },
+        {
+          "name": "ADsP (Advanced Data Analytics Semi-Professional)",
+          "issuer": "Kdata"
+        },
+        {
+          "name": "Craftsman Information Industrial Engineer",
+          "issuer": "HRD Korea"
+        }
       ],
       "general": [
-        { "name": "ITQ OA Master", "issuer": "Korea Productivity Center" },
-        { "name": "Word Processor Specialist", "issuer": "KCCI" },
-        { "name": "Secretarial Administrator Level-I", "issuer": "KCCI" },
-        { "name": "TOEIC Speaking: IH / Writing: AM", "issuer": "ETS" }
+        {
+          "name": "ITQ OA Master",
+          "issuer": "Korea Productivity Center"
+        },
+        {
+          "name": "Word Processor Specialist",
+          "issuer": "KCCI"
+        },
+        {
+          "name": "Secretarial Administrator Level-I",
+          "issuer": "KCCI"
+        },
+        {
+          "name": "TOEIC Speaking: IH / Writing: AM",
+          "issuer": "ETS"
+        }
       ]
+    },
+    "publicationIds": [
+      "digital-asset-era"
+    ],
+    "projectIds": [
+      "robust-alpha",
+      "nft-hub"
+    ],
+    "views": {
+      "all": {
+        "label": "All",
+        "sections": [
+          "experience",
+          "publications",
+          "research",
+          "projects",
+          "awards",
+          "extracurricular",
+          "events",
+          "certificates",
+          "education"
+        ]
+      },
+      "finance": {
+        "label": "Finance",
+        "sections": [
+          "education",
+          "research",
+          "experience",
+          "publications",
+          "projects",
+          "awards",
+          "certificates",
+          "extracurricular"
+        ]
+      },
+      "crypto": {
+        "label": "Crypto",
+        "sections": [
+          "experience",
+          "publications",
+          "research",
+          "projects",
+          "awards",
+          "events",
+          "extracurricular",
+          "certificates",
+          "education"
+        ]
+      }
+    },
+    "affiliations": [
+      {
+        "id": "affiliation-ninjalabs",
+        "organization": "NinjaLabsKR",
+        "role": "1st Cohort Member",
+        "period": "2025.09 - Present",
+        "audiences": [
+          "crypto"
+        ],
+        "highlights": [
+          "Supported event operations for the KBW 2025 side event."
+        ]
+      },
+      {
+        "id": "affiliation-superteam",
+        "organization": "SuperteamKR",
+        "role": "Member",
+        "period": "2025.04 - Present",
+        "audiences": [
+          "crypto"
+        ],
+        "highlights": [
+          "Represented PDAO in the SuperteamKR Guild Lead Program."
+        ]
+      },
+      {
+        "id": "affiliation-ccbr",
+        "organization": "POSTECH CCBR",
+        "role": "Member",
+        "period": "2025.07 - Present",
+        "audiences": [
+          "crypto"
+        ]
+      }
+    ]
+  },
+  "publications": [
+    {
+      "title": "The Digital Asset Era Is Coming",
+      "isbn": "9791192445502",
+      "role": "Co-Author",
+      "url": "https://product.kyobobook.co.kr/detail/S000209213039",
+      "description": "Contributed introductory and technical sections on Bitcoin and blockchain.",
+      "id": "digital-asset-era",
+      "date": "2023-10",
+      "publisher": "Gyeongiroum",
+      "cover": "assets/images/covers/digital-asset-era.jpg",
+      "coverSource": "https://image.yes24.com/goods/122575426/XL",
+      "audiences": [
+        "finance",
+        "crypto"
+      ],
+      "originalTitle": "디지털자산 시대가 온다",
+      "language": "ko"
     }
-  }
+  ],
+  "projects": [
+    {
+      "id": "run2-guryongpo",
+      "title": "RUN2 Guryongpo",
+      "subtitle": "Travel after the finish line",
+      "year": "2026",
+      "category": "Hackathon",
+      "status": "Prototype",
+      "description": "An AI agent that plans trips after running events around return times and travel constraints.",
+      "details": "A mobile PWA for planning sightseeing after a run, finding places, arranging travel, and revising itineraries. It combines natural-language requests with public data and checks time and travel constraints before suggesting a plan.",
+      "stack": [
+        "React",
+        "TanStack Start",
+        "Vercel AI SDK"
+      ],
+      "links": [
+        {
+          "label": "Demo",
+          "url": "https://run2-pohang-demo.vercel.app/"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/Basten1209/pohang-agent"
+        }
+      ],
+      "audiences": [
+        "crypto"
+      ],
+      "visual": "run2",
+      "date": "2026-10",
+      "award": "Encouragement Award",
+      "cover": "assets/images/projects/run2-mascot.png",
+      "coverAlt": "The RUN2 Guryongpo seagull mascot holding a map",
+      "coverFit": "contain",
+      "context": {
+        "type": "Competition",
+        "name": "Digital Twin AI Agent Hackathon"
+      }
+    },
+    {
+      "id": "lift",
+      "title": "LIFT",
+      "subtitle": "High-dimensional covariance estimation",
+      "year": "2025",
+      "category": "Quant Research",
+      "status": "Research",
+      "description": "Research on a framework for high-dimensional financial data analysis using hierarchical clustering.",
+      "details": "A research project on high-dimensional covariance estimation. Contributed to data processing, model implementation, and parts of the written report.",
+      "role": "Data & implementation",
+      "stack": [
+        "Covariance estimation",
+        "Clustering"
+      ],
+      "reportIds": [
+        "postech-lift-framework"
+      ],
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/Basten1209/LIFT_FDBAProject1"
+        },
+        {
+          "label": "Presentation (PDF)",
+          "url": "https://github.com/Basten1209/LIFT_FDBAProject1/blob/main/presentation/IMEN891M_Team1_Final.pdf"
+        }
+      ],
+      "audiences": [
+        "finance"
+      ],
+      "visual": "lift",
+      "date": "2025-12",
+      "cover": "assets/images/projects/lift-paper-cover.png",
+      "coverAlt": "The research framework illustration from the LIFT term paper cover",
+      "coverFit": "contain",
+      "context": {
+        "type": "In-class term project",
+        "name": "Special Topics: Financial Big Data Analysis",
+        "courseCode": "IMEN891M"
+      }
+    },
+    {
+      "year": "2025",
+      "title": "Robust Alpha Generation",
+      "description": "Making Robust Alphas (Trading Strategies) on the WorldQuant Brain Platform for 2025 IQC.",
+      "highlights": [
+        "Developed quantitative signals based on fundamental financial data",
+        "Improved alpha performance through iterative refinement and validation",
+        "Presented alpha strategies at the Korea regional finals"
+      ],
+      "id": "robust-alpha",
+      "subtitle": "WorldQuant International Quant Championship",
+      "category": "Quant Research",
+      "status": "Completed",
+      "role": "Alpha research",
+      "stack": [
+        "Financial data",
+        "Trading signals"
+      ],
+      "audiences": [
+        "finance"
+      ],
+      "visual": "alpha",
+      "award": "Korea 3rd",
+      "links": [
+        {
+          "label": "Presentation (PDF)",
+          "url": "data/projects/robust-alpha-iqc-2025-presentation.pdf"
+        }
+      ],
+      "date": "2025-07",
+      "context": {
+        "type": "Competition",
+        "name": "WorldQuant International Quant Championship (IQC)"
+      }
+    },
+    {
+      "year": "2022",
+      "title": "NFT Hub: NFT Asset Portfolio Platform",
+      "description": "Project leader for NFT asset portfolio platform.",
+      "highlights": [
+        "Selected in 2022 Pohang-si innopolis campus business team",
+        "Selected and completed in 2022 student start-up 300 team",
+        "Rewarded for exhibition in 2022 industry & academic cooperation EXPO"
+      ],
+      "id": "nft-hub",
+      "subtitle": "NFT asset portfolio platform",
+      "category": "Blockchain",
+      "status": "Archived",
+      "role": "Project lead",
+      "stack": [
+        "NFT",
+        "Portfolio"
+      ],
+      "audiences": [
+        "crypto"
+      ],
+      "visual": "nft",
+      "links": [
+        {
+          "label": "Poster (PDF)",
+          "url": "data/projects/nft-hub-poster-2022.pdf"
+        }
+      ],
+      "context": {
+        "type": "Startup project"
+      }
+    },
+    {
+      "id": "mintme",
+      "title": "MintMe",
+      "year": "2025",
+      "category": "Hackathon",
+      "description": "A Web3 service that uses AI to analyze personal profiles and create nameplate NFTs. Built at the Monad Blitz Seoul hackathon.",
+      "status": "Completed",
+      "stack": [],
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://monad-blitz-seoul-mintme-nextjs.vercel.app/"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/Basten1209/monad-blitz-seoul_mintme"
+        },
+        {
+          "label": "Presentation (PDF)",
+          "url": "data/projects/mintme-presentation.pdf"
+        }
+      ],
+      "date": "2025-07",
+      "award": "4th prize",
+      "audiences": [
+        "crypto"
+      ],
+      "cover": "assets/images/projects/mintme-homepage.png",
+      "coverAlt": "The homepage of the original MintMe deployment",
+      "coverFit": "contain",
+      "context": {
+        "type": "Competition",
+        "name": "Monad Blitz Seoul"
+      }
+    },
+    {
+      "id": "stablecoin-deposit",
+      "title": "Stablecoin Deposit Recommendation System",
+      "year": "2025",
+      "category": "Course project",
+      "description": "A project that builds portfolios across six stablecoins using depegging risk and expected APY, evaluated with rolling windows.",
+      "status": "Completed",
+      "stack": [],
+      "links": [
+        {
+          "label": "Presentation (PDF)",
+          "url": "data/projects/stablecoin-deposit.pdf"
+        }
+      ],
+      "date": "2025-05",
+      "role": "Concept development, research, interim presentation, and industry interviews",
+      "audiences": [
+        "finance",
+        "crypto"
+      ],
+      "context": {
+        "type": "In-class term project",
+        "name": "Product and Production Process Design I: Capstone Design",
+        "courseCode": "IMEN230"
+      }
+    },
+    {
+      "id": "crypto-vol-fund",
+      "title": "Volatility-Based Digital Asset Fund",
+      "year": "2026",
+      "category": "Course project",
+      "description": "A system that estimates covariance matrices from high-frequency price data and constructs minimum-variance portfolios, with backtesting and a portfolio management dashboard.",
+      "status": "Completed",
+      "stack": [],
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/Basten1209/crypto-vol-fund"
+        },
+        {
+          "label": "Presentation (PDF)",
+          "url": "data/projects/crypto-vol-fund.pdf"
+        }
+      ],
+      "date": "2026-06",
+      "audiences": [
+        "finance",
+        "crypto"
+      ],
+      "context": {
+        "type": "In-class term project",
+        "name": "Product and Production Process Design II: Capstone Design",
+        "courseCode": "IMEN330"
+      }
+    },
+    {
+      "id": "nongshim-production",
+      "title": "Nongshim North America Production Allocation",
+      "year": "2026",
+      "category": "Course project",
+      "description": "A decision-support demo that combines exchange-rate and ocean freight lead-time forecasts with inventory and capacity constraints to recommend a balance between exports from Korea and production in North America.",
+      "status": "Completed",
+      "stack": [],
+      "links": [
+        {
+          "label": "Presentation (PPTX)",
+          "url": "data/projects/nongshim-production.pptx"
+        }
+      ],
+      "date": "2026-06",
+      "audiences": [
+        "finance"
+      ],
+      "context": {
+        "type": "In-class term project",
+        "name": "Production and Operations Management",
+        "courseCode": "IMEN376"
+      }
+    },
+    {
+      "id": "cognitive-twin",
+      "title": "CognitiveTwin",
+      "year": "2026",
+      "category": "Course project",
+      "description": "An experiment and web prototype that assess individual cognitive fatigue using PVT, N-back, and Stroop tasks alongside self-reported fatigue, then provide behavioral guidance.",
+      "status": "Completed",
+      "stack": [],
+      "links": [
+        {
+          "label": "Demo",
+          "url": "https://finalergonomics.vercel.app/CognitiveTwin"
+        },
+        {
+          "label": "Presentation",
+          "url": "https://finalergonomics.vercel.app/"
+        }
+      ],
+      "date": "2026-06",
+      "context": {
+        "type": "In-class term project",
+        "name": "Ergonomics and Human Factors Engineering",
+        "courseCode": "IMEN343"
+      }
+    },
+    {
+      "id": "kakao-t-system",
+      "title": "CallCast",
+      "year": "2026",
+      "category": "Course project",
+      "description": "A decision-support prototype that estimates taxi demand from city events and public data, then maps ride opportunities using driver location and estimated arrival times. The presentation demo uses saved AI predictions.",
+      "status": "Completed",
+      "stack": [],
+      "links": [
+        {
+          "label": "Presentation",
+          "url": "https://sad-ppt-final.vercel.app/"
+        },
+        {
+          "label": "Demo",
+          "url": "https://vercel-pohang-prototype.vercel.app/"
+        }
+      ],
+      "date": "2026-06",
+      "context": {
+        "type": "In-class term project",
+        "name": "System Analysis and Design",
+        "courseCode": "IMEN483"
+      }
+    },
+    {
+      "id": "suiworld",
+      "title": "SuiWorld",
+      "year": "2025",
+      "category": "Hackathon",
+      "description": "A Sui-based SocialFi project with token incentives for posting, evaluation, and community management. Implemented wallet connections, messaging, proposals, and voting.",
+      "status": "Completed",
+      "stack": [],
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/Basten1209/SuiWorld-Contracts"
+        }
+      ],
+      "date": "2025-09",
+      "audiences": [
+        "crypto"
+      ],
+      "context": {
+        "type": "Competition",
+        "name": "Sui-mming Hackathon"
+      }
+    },
+    {
+      "id": "defi-compass",
+      "title": "DeFi Compass",
+      "year": "2026",
+      "category": "Hackathon",
+      "description": "A product mockup for exploring on-chain positions and activity across chains and platforms. The interface uses demo data.",
+      "status": "Completed",
+      "stack": [],
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/Basten1209/Blockhackkr2026-demo"
+        },
+        {
+          "label": "Demo",
+          "url": "https://deficompassdemo.vercel.app/"
+        }
+      ],
+      "date": "2026-09",
+      "audiences": [
+        "crypto"
+      ],
+      "context": {
+        "type": "Competition",
+        "name": "BlockHack Korea 2026"
+      }
+    },
+    {
+      "id": "uniswap-lp-risk",
+      "title": "Uniswap V3 LP Risk Analysis",
+      "year": "2026",
+      "category": "Research",
+      "description": "Research reconstructing real WETH/USDT liquidity positions to compare impermanent loss, loss-versus-rebalancing, Predictable Loss, and realized returns. Data collection and metric calculation code are publicly available.",
+      "status": "In progress",
+      "stack": [],
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/Basten1209/Uniswap-ETH-risk-analysis"
+        }
+      ],
+      "date": "2026-08",
+      "audiences": [
+        "finance",
+        "crypto"
+      ],
+      "context": {
+        "type": "Side project",
+        "name": "POSTECH FBDA Lab"
+      }
+    },
+    {
+      "id": "crypto-data-r",
+      "title": "Cryptocurrency Market Data Analysis in R",
+      "year": "2024",
+      "category": "Personal project",
+      "description": "R scripts for collecting CoinGecko market data, comparing BTC and ETH prices and volumes, and analyzing correlations and DeFi data.",
+      "status": "Completed",
+      "stack": [],
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/Basten1209/coingecko_r"
+        }
+      ],
+      "audiences": [
+        "finance",
+        "crypto"
+      ],
+      "context": {
+        "type": "Personal project"
+      }
+    },
+    {
+      "id": "crypto-minimum-variance",
+      "title": "Cross-Exchange Cryptocurrency Minimum-Variance Portfolio",
+      "year": "2025",
+      "date": "2025-11",
+      "category": "Course project",
+      "status": "Proposal",
+      "stack": [],
+      "description": "A research proposal on estimating high-frequency covariance and constructing minimum-variance portfolios while accounting for cryptocurrency price differences across exchanges. Proposal slides are available.",
+      "audiences": [
+        "finance",
+        "crypto"
+      ],
+      "links": [
+        {
+          "label": "Proposal slides (PDF)",
+          "url": "data/projects/crypto-minimum-variance-proposal.pdf"
+        }
+      ],
+      "context": {
+        "type": "In-class term project",
+        "name": "Special Topics: Financial Big Data Analysis",
+        "courseCode": "IMEN891M"
+      }
+    }
+  ],
+  "featuredProjectIds": [
+    "lift",
+    "mintme",
+    "run2-guryongpo"
+  ]
 }
