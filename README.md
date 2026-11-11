@@ -61,4 +61,4 @@ The deployable artifact is **`dist/`**, not the source repository root. The Vite
 
 `.github/workflows/update-portfolio.yml` validates and tests pull requests, then deploys `dist` when main is updated. When deploying this migration, set **Settings → Pages → Build and deployment → Source → GitHub Actions**. Keep the custom domain `seungjun.site`. Local preview does not change the live site or remote Pages settings.
 
-CV **Print current view** prints the same document structure shown on screen, with all details visible. **PDF · English** and **PDF · Korean** open the original, independently maintained print résumés. Neither source PDF is regenerated or replaced.
+CV **Print current view** prints the same document structure shown on screen, with all details visible. **PDF · English** opens the original, independently maintained English résumé. The Korean PDF link is not shown. Original résumé files are preserved rather than regenerated or replaced.

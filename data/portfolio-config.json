@@ -43,12 +43,6 @@
       "title": "Resume (English)",
       "file": "data/resume/resume_eng.pdf",
       "language": "en"
-    },
-    {
-      "id": "resume_kor",
-      "title": "Resume (Korean)",
-      "file": "data/resume/resume_kor.pdf",
-      "language": "ko"
     }
   ],
   "reports": [
@@ -612,7 +606,7 @@
       },
       {
         "date": "2026.09",
-        "title": "2026 Outstanding Science and Engineering Talent Scholarship",
+        "title": "2026 Outstanding STEM Talent Scholarship",
         "value": "12 million won",
         "issuer": "BrainKorea21 Four",
         "id": "awards-3",

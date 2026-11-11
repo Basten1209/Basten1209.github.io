@@ -201,10 +201,7 @@ test('CV focus persists on reload and print contains only the chosen CV', async 
     'href',
     'data/resume/resume_eng.pdf',
   )
-  await expect(page.getByRole('link', { name: 'PDF · Korean', exact: true })).toHaveAttribute(
-    'href',
-    'data/resume/resume_kor.pdf',
-  )
+  await expect(page.getByRole('link', { name: 'PDF · Korean', exact: true })).toHaveCount(0)
   const screenContent = await page.locator('.cv-document').textContent()
   await page.emulateMedia({ media: 'print' })
   await expect(page.locator('.site-header')).toBeHidden()

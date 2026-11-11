@@ -82,7 +82,9 @@ NinjaLabsKR, SuperteamKR, POSTECH CCBR은 `cv.affiliations`에서 관리하고, 
 - `cv.views`: 보기별 탭 이름과 섹션 순서를 관리합니다.
 - `cv.publicationIds` / `cv.projectIds`: 위에서 등록한 책·프로젝트의 ID만 넣습니다. 같은 자료를 CV에 중복 입력하지 않습니다.
 
-`#cv?view=finance`, `#cv?view=crypto` 링크를 공유할 수 있습니다. **Print current view**는 화면과 동일한 문서 구조로 현재 CV를 인쇄합니다. 모든 경력 상세는 화면에서도 펼쳐집니다. 기존 영문·한글 프린트 파일은 **PDF · English / PDF · Korean**으로 직접 열 수 있습니다. 원본 PDF는 별도 관리하며 자동으로 덮어쓰지 않습니다.
+`#cv?view=finance`, `#cv?view=crypto` 링크를 공유할 수 있습니다. **Print current view**는 화면과 동일한 문서 구조로 현재 CV를 인쇄합니다. 모든 경력 상세는 화면에서도 펼쳐집니다. 다운로드 링크는 **PDF · English**만 표시하며 한국어 PDF 링크는 표시하지 않습니다. 원본 PDF는 별도 관리하며 자동으로 덮어쓰지 않습니다.
+
+2026년 이공 우수인재 장학의 영문명은 CV와 History 모두 **Outstanding STEM Talent Scholarship**으로 표기합니다.
 
 ## History
 
