@@ -328,96 +328,108 @@
     }
   ],
   "cv": {
-    "lastUpdated": "2026.01.22",
+    "lastUpdated": "2026.11.16",
     "subtitle": "",
     "education": [
       {
         "period": "2021.02 - (Expected) 2028.02",
-        "institution": "Pohang University of Science and Technology (POSTECH)",
+        "institution": "POSTECH (Pohang University of Science & Technology)",
         "url": "https://www.postech.ac.kr/",
-        "degree": "B.S. in Industrial & Management Engineering (Full Scholar)",
+        "degree": "Bachelor of Industrial & Management Engineering",
         "id": "education-1",
         "audiences": [
           "finance",
           "crypto"
-        ]
+        ],
+        "degreeNote": "Full Scholar"
       }
     ],
     "experience": [
       {
         "period": "2026.02 - 2026.06",
-        "role": "Freelancer (Research)",
-        "team": "TechBD team",
-        "organization": "Altus (formerly B-Harvest)",
+        "role": "Researcher",
+        "team": "TechBD",
+        "organization": "B-Harvest",
         "url": "https://bharvest.io",
         "type": "Technical",
         "highlights": [
-          "Developed PoC about Blockchain Learning Platform",
-          "Developed educational contents about blockchain core",
-          "Supported Altus' internship program recruiting"
+          "Developed **all educational content** for a **blockchain learning platform mockup** under senior review, receiving **positive CEO feedback**",
+          "Supported recruitment for Altus' internship program"
         ],
-        "id": "experience-1"
+        "id": "experience-1",
+        "organizationNote": "now Altus",
+        "employmentType": "Freelance"
       },
       {
         "period": "2025.12 - 2026.02",
-        "role": "Tech BD (Technical Writer) Intern",
-        "team": "TechBD team",
-        "organization": "Altus (formerly B-Harvest)",
+        "role": "Technical Writer",
+        "team": "TechBD",
+        "organization": "B-Harvest",
         "url": "https://bharvest.io",
         "type": "Technical",
         "highlights": [
-          "Studying blockchain core technology - had an internal seminar about Tempo blockchain",
-          "Participated in company rebranding like Tech Blog - HR Strategy reference research"
+          "Researched **Tempo blockchain** and presented findings in **a company-wide seminar**",
+          "Proposed and implemented a **shift toward rebranding and HR strategy** aligned with company priorities; positive CEO feedback led to a **remote freelance extension** alongside university studies",
+          "Contributed to tech blog development and researched references for HR strategy"
         ],
-        "id": "experience-2"
+        "id": "experience-2",
+        "organizationNote": "now Altus",
+        "employmentType": "Internship"
       },
       {
         "period": "2025.06 - Present",
-        "role": "Brain Platform Consultant (Freelancer)",
+        "role": "Consultant",
         "organization": "WorldQuant",
         "url": "https://www.worldquant.com/",
         "type": "Technical",
         "highlights": [
-          "Contracted as a Consultant after being awarded 3rd place in the 2025 IQC (Korea Final)"
+          "Contracted as a Consultant after being awarded **3rd Place in 2025 IQC Korea Final**",
+          "Developed diverse alphas (investment strategies) on the WorldQuant BRAIN platform"
         ],
-        "id": "experience-4"
+        "id": "experience-4",
+        "team": "BRAIN Platform",
+        "employmentType": "Freelance"
       },
       {
         "period": "2023.03 - 2024.12",
-        "role": "Sergeant / System Development Specialist",
-        "team": "HQ - Logistic Command",
-        "organization": "R.O.K.A.F. (Military Service)",
+        "role": "System Developer",
+        "team": "Logistics Command",
+        "organization": "R.O.K.A.F.",
         "type": "Military",
         "highlights": [
-          "Participated in the Database Operation & Management of Logistic systems for departments of the Air Force",
+          "Participated in database operation and management of logistics systems for Air Force departments",
           "Served as a squad leader (Aug 2024 - Dec 2024)"
         ],
-        "id": "experience-5"
+        "id": "experience-5",
+        "employmentType": "Military service",
+        "rank": "Sergeant"
       },
       {
         "period": "2022.09 - 2023.02",
-        "role": "Research Intern",
-        "team": "Research Center, Bithumb Economy Research Institute",
+        "role": "Researcher",
+        "team": "Research Center",
         "organization": "Bithumb",
         "url": "https://www.bithumbcorp.com",
         "type": "Technical",
         "highlights": [
-          "Participated in the macro-cryptocurrency report 'Crypto Insights' series (8 reports)",
-          "Published blockchain research report 'CRYPTO NOTES' series (2 reports)",
-          "Presented a session at the offline seminar, 'Crypto Insight meetup' (Topic: 2023 ETH Upgrade)",
+          "Assisted with research for **8 reports** on macroeconomics and cryptocurrency markets",
+          "**Independently authored** 2 blockchain research reports with review from a senior colleague",
+          "Presented at the Crypto Insight offline meetup (Topic: **2023 ETH Upgrade**)",
           "Assisted with the filming of the company's official YouTube content 'Bitconomy report' and 'Crypto talk'"
         ],
-        "id": "experience-6"
+        "id": "experience-6",
+        "employmentType": "Internship"
       }
     ],
     "extracurricular": [
       {
         "period": "2025.01 - Present",
-        "role": "Organizer (Head)",
+        "role": "Head (Organizer)",
         "organization": "PDAO (POSTECH DAO)",
         "url": "https://dao.postech.ac.kr",
         "highlights": [
-          "Managed overall tasks and led decision-making for building the open community"
+          "Led operations and decision-making for **PDAO, an open blockchain community**",
+          "Secured **~US$6,000 in grants** and hosted or co-hosted **5 offline events (200+ total participants)**"
         ],
         "id": "extracurricular-2",
         "audiences": [
@@ -427,11 +439,11 @@
       },
       {
         "period": "2022.02 - Present",
-        "role": "Genesis Member",
+        "role": "Launch Member",
         "organization": "PDAO (POSTECH DAO)",
         "url": "https://dao.postech.ac.kr",
         "highlights": [
-          "Joined the PDAO Launch Project and assisted with general operations"
+          "Contributed to launching PDAO and supported general operations"
         ],
         "id": "extracurricular-3",
         "audiences": [
@@ -440,14 +452,14 @@
         ]
       },
       {
-        "period": "2025.12 - Present",
-        "role": "Based Advocate (Ambassador)",
-        "organization": "Base Korea (Daehanbase)",
+        "period": "2025.12 - 2026.05",
+        "role": "Based Advocate / Ambassador",
+        "organization": "Base Korea",
         "url": "https://x.com/daehan_base",
         "type": "Community",
         "highlights": [
-          "Supported the execution of several Base Korea's offline meetups",
-          "Wrote Articles about Base Builders in South Korea - Building tips on Base Chain"
+          "Supported the execution of multiple offline meetups for Base Korea",
+          "Authored articles on Base builders in South Korea and development tips for the Base chain"
         ],
         "id": "experience-3"
       },
@@ -457,7 +469,7 @@
         "organization": "Undergrad AI Study",
         "url": "https://sites.google.com/view/sangwoomo/join-us",
         "highlights": [
-          "Studying deep learning theory and presenting on generative AI models."
+          "Studied deep learning theory and presented on generative AI models"
         ],
         "id": "extracurricular-1",
         "audiences": [
@@ -470,20 +482,25 @@
       {
         "period": "2025.06 - 2025.12, 2026.06 - Present",
         "role": "Undergraduate Researcher",
-        "lab": "POSTECH FBDA Lab",
+        "lab": "FBDA Lab",
         "url": "https://sites.google.com/view/minseokshin",
         "advisor": "Prof. Min-Seok Shin",
-        "focus": "Studying Financial Data Analysis in High-Dimensional statistics and High-Frequency conditions",
-        "id": "research-1"
+        "focus": "Researching financial data analysis, focusing on high-dimensional statistics and high-frequency data",
+        "id": "research-1",
+        "institution": "POSTECH",
+        "highlights": [
+          "Selected as an **Outstanding STEM Talent Career Development Scholar** (**12M KRW**) by BrainKorea21"
+        ]
       },
       {
         "period": "2022.06 - 2022.08",
         "role": "Undergraduate Researcher",
-        "lab": "POSTECH DPNM Lab",
+        "lab": "DPNM Lab",
         "url": "https://dpnm.postech.ac.kr",
-        "advisor": "Prof. James Won-ki Hong",
-        "focus": "Studied the basics and fundamentals of Cryptocurrency and Blockchain Technology",
-        "id": "research-2"
+        "advisor": "Prof. James Won-Ki Hong",
+        "focus": "Studied the fundamentals of cryptocurrency and blockchain technology",
+        "id": "research-2",
+        "institution": "POSTECH"
       }
     ],
     "events": [
@@ -513,6 +530,17 @@
         "title": "BNB Martian Night: Learn & Network",
         "link": "https://luma.com/tcxy45tl",
         "id": "events-3",
+        "audiences": [
+          "crypto"
+        ]
+      },
+      {
+        "id": "events-9",
+        "date": "2026.01",
+        "year": "2026",
+        "role": "Co-host",
+        "title": "AI x Web3 in 2026 | Seoul Summit",
+        "link": "https://luma.com/6of8fnsy",
         "audiences": [
           "crypto"
         ]
@@ -560,7 +588,7 @@
       {
         "year": "2023",
         "role": "Session Speaker",
-        "title": "Crypto Insight Meetup (Off-line)",
+        "title": "Crypto Insight Meetup",
         "link": "https://youtu.be/u_HYu8At6aI?si=HLDMhtpJVX9S_Xa9&t=41",
         "id": "events-8",
         "audiences": [
@@ -571,24 +599,27 @@
     "awards": [
       {
         "date": "2026.10",
-        "title": "2026 Digital Twin AI Agent Hackathon: Encouragement Award",
+        "title": "Digital Twin AI Agent Hackathon",
         "issuer": "POSTECH",
         "link": "https://dtaiagent.imweb.me/",
         "id": "awards-1",
         "audiences": [
           "crypto"
-        ]
+        ],
+        "result": "Encouragement Award",
+        "topic": "AI based Run-trip planning Agent"
       },
       {
         "date": "2026.10",
-        "title": "Four Pillars Research Challenge 2026",
+        "title": "Four Pillars Research Challenge",
         "issuer": "Four Pillars",
         "link": "https://4pillars.io/en/blog/four-pillars-to-host-four-pillars-research-challenge-2026-for-university-blockchain-clubs-across-south-korea",
         "tracks": [
           {
             "name": "MetaMask Track",
             "result": "1st Place",
-            "link": "https://www.nexblock.co.kr/article/1003109"
+            "link": "https://www.nexblock.co.kr/article/1003109",
+            "topic": "Guardrail for Agent Wallet"
           },
           {
             "name": "Surf AI Track",
@@ -606,29 +637,32 @@
       },
       {
         "date": "2026.09",
-        "title": "2026 Outstanding STEM Talent Career Development Scholar",
-        "value": "12 million won",
-        "issuer": "BrainKorea21 Four",
+        "title": "Outstanding STEM Talent Career Development Scholar",
+        "value": "12M KRW",
+        "issuer": "BrainKorea21",
         "id": "awards-3",
         "audiences": [
           "finance",
           "crypto"
-        ]
+        ],
+        "dateLabel": "Selected",
+        "fundingPeriod": "2026.03 - 2027.02"
       },
       {
         "date": "2026.05",
-        "title": "2026 AI·Blockchain Business Model Competition: Excellence Award",
+        "title": "AI·Blockchain Business Model Competition",
         "issuer": "Korea University College of Informatics · Council of AI·SW-Centered Universities",
         "link": "https://biz.heraldcorp.com/article/10736228",
         "id": "awards-4",
         "audiences": [
           "crypto"
-        ]
+        ],
+        "result": "Excellence Award"
       },
       {
         "date": "2025.12",
         "title": "Overseas Assignment Scholar for Nobel Week 2025",
-        "value": "2.5 million won",
+        "value": "2.5M KRW",
         "issuer": "POSTECH",
         "id": "awards-5",
         "audiences": [
@@ -638,30 +672,34 @@
       },
       {
         "date": "2025.07",
-        "title": "Monad Blitz Seoul 4th Prize",
-        "issuer": "Monad Foundation - B-Harvest - Chainlink",
+        "title": "Monad Blitz Seoul",
+        "issuer": "Monad Foundation · B-Harvest · Chainlink",
         "id": "awards-6",
         "audiences": [
           "crypto"
-        ]
+        ],
+        "result": "4th Prize",
+        "topic": "AI-powered profile NFT platform"
       },
       {
         "date": "2025.07",
-        "title": "2025 IQC Korea 3rd",
+        "title": "2025 IQC Korea Final",
         "issuer": "WorldQuant",
         "id": "awards-7",
         "audiences": [
           "finance"
-        ]
+        ],
+        "result": "3rd Place"
       },
       {
         "date": "2022.05",
-        "title": "POSTECH Metaverse Contest Encourage Award",
+        "title": "POSTECH Metaverse Contest",
         "issuer": "POSTECH",
         "id": "awards-8",
         "audiences": [
           "crypto"
-        ]
+        ],
+        "result": "Encouragement Award"
       },
       {
         "date": "2021.03 - Present",
@@ -687,24 +725,24 @@
         },
         {
           "name": "Financial Planner",
-          "issuer": "Korea Banking Institute"
+          "issuer": "KBI"
         },
         {
           "name": "Certified Foreign Exchange Specialist I",
-          "issuer": "Korea Banking Institute"
+          "issuer": "KBI"
         }
       ],
       "cs": [
         {
           "name": "SQL Developer",
-          "issuer": "Kdata"
+          "issuer": "K-DATA"
         },
         {
-          "name": "ADsP (Advanced Data Analytics Semi-Professional)",
-          "issuer": "Kdata"
+          "name": "ADsP",
+          "issuer": "K-DATA"
         },
         {
-          "name": "Craftsman Information Industrial Engineer",
+          "name": "Industrial Engineer Information Processing",
           "issuer": "HRD Korea"
         }
       ],
@@ -735,45 +773,21 @@
       "nft-hub"
     ],
     "views": {
+      "onepager": {
+        "label": "One-pager"
+      },
       "all": {
         "label": "All",
         "sections": [
-          "experience",
-          "publications",
-          "research",
-          "projects",
-          "awards",
-          "extracurricular",
-          "events",
-          "certificates",
-          "education"
-        ]
-      },
-      "finance": {
-        "label": "Finance",
-        "sections": [
           "education",
-          "research",
-          "experience",
-          "publications",
-          "projects",
-          "awards",
-          "certificates",
-          "extracurricular"
-        ]
-      },
-      "crypto": {
-        "label": "Crypto",
-        "sections": [
           "experience",
           "publications",
           "research",
           "projects",
           "awards",
-          "events",
           "extracurricular",
-          "certificates",
-          "education"
+          "events",
+          "certificates"
         ]
       }
     },
@@ -830,7 +844,11 @@
         "crypto"
       ],
       "originalTitle": "디지털자산 시대가 온다",
-      "language": "ko"
+      "language": "ko",
+      "cv": {
+        "title": "Digital Asset Era Is Coming",
+        "description": "Contributed the chapter on **Bitcoin and Blockchain** fundamentals & technology"
+      }
     }
   ],
   "projects": [
@@ -946,6 +964,9 @@
       "context": {
         "type": "Competition",
         "name": "WorldQuant International Quant Championship (IQC)"
+      },
+      "cv": {
+        "description": "Developed alphas (investment strategies) on the WorldQuant BRAIN platform for the 2025 IQC"
       }
     },
     {
@@ -978,6 +999,14 @@
       ],
       "context": {
         "type": "Startup project"
+      },
+      "cv": {
+        "description": "Led the development of an NFT asset portfolio platform",
+        "highlights": [
+          "Selected for the 2022 Pohang-si Innopolis Campus business team program",
+          "Selected for and completed the 2022 Student Startup 300 program",
+          "Received recognition for an exhibition at the 2022 Industry & Academic Cooperation EXPO"
+        ]
       }
     },
     {

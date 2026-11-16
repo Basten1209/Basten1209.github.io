@@ -3,7 +3,9 @@ import { Printer, Download, Check, Link } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { PageHeading } from '@/components/shared'
-import { cvEntries, sharedCVSections, views } from '@/lib/portfolio.mjs'
+import { cvEntries, cvPeriod, sharedCVSections, views } from '@/lib/portfolio.mjs'
+import { inlineTokens } from '@/lib/one-pager.mjs'
+import OnePager from '@/components/OnePager'
 
 const labels = {
   research: 'Research experience',
@@ -30,9 +32,20 @@ function CVLink({ href, children }) {
   )
 }
 
-function CVEntry({ entry, section, view, continuation }) {
+function CVText({ text, tokens = inlineTokens(text) }) {
+  return tokens.map((token, index) => {
+    if (token.type === 'text') return token.text
+    const children = <CVText tokens={token.children} />
+    if (token.type === 'strong') return <strong key={index}>{children}</strong>
+    if (token.type === 'em') return <em key={index}>{children}</em>
+    if (token.type === 'strongEm') return <strong key={index}><em>{children}</em></strong>
+    return <CVLink key={index} href={token.href}>{children}</CVLink>
+  })
+}
+
+function CVEntry({ entry, section, continuation }) {
   const title = entry.organization || entry.lab || entry.institution || entry.titleEn || entry.title
-  const period = entry.period || entry.date || entry.year
+  const period = cvPeriod(entry.period || entry.date || entry.year)
   const href =
     section === 'projects'
       ? `#projects/${entry.id}`
@@ -42,49 +55,55 @@ function CVEntry({ entry, section, view, continuation }) {
   const role = entry.role || entry.degree
   const highlights = sharedCVSections.includes(section)
     ? entry.highlights
-    : entry.highlightsByView?.[view] || entry.highlights
+    : entry.highlightsByView?.all || entry.highlights
   const bullets = [entry.focus, entry.description, ...(highlights || [])].filter(Boolean)
   return (
-    <article className={`cv-entry${continuation ? ' cv-continuation' : ''}`}>
-      {!continuation && (
-        <div className="cv-entry-top">
-          <h3>
-            <CVLink href={href}>{title}</CVLink>
-            {entry.advisor && <span> (Advisor: {entry.advisor})</span>}
-            {entry.isbn && <span> (ISBN: {entry.isbn})</span>}
-          </h3>
-          {!role && <span className="cv-period">{period}</span>}
+    <article className={`cv-entry${continuation ? ' cv-continuation' : ''}`} data-entry={entry.id}>
+      <div className="cv-entry-top">
+        <div className="cv-entry-main">
+          {!continuation && (
+            <>
+              <h3 className={entry.result ? 'cv-award-title' : undefined}>
+                {entry.result && <><strong>{entry.result}</strong> in </>}
+                <CVLink href={href}>{title}</CVLink>
+                {entry.value && <span> ({entry.value})</span>}
+              </h3>{' '}
+              {entry.organizationNote && <span className="cv-entry-detail">({entry.organizationNote}) </span>}
+              {entry.advisor && <span className="cv-entry-detail">(Advisor: {entry.advisor}) </span>}
+              {entry.lab && entry.institution && <span className="cv-entry-detail">{entry.institution} </span>}
+              {entry.isbn && <span className="cv-entry-detail">(ISBN: {entry.isbn}) </span>}
+            </>
+          )}
+          {role && section !== 'education' && (
+            <span className="cv-role">
+              {entry.team && <>{entry.team} · </>}
+              <em>{role}</em>
+              {entry.employmentType && <> ({entry.employmentType})</>}
+            </span>
+          )}
         </div>
-      )}
-      {role && (
-        <div className="cv-role-line">
-          <p className={section === 'education' ? 'cv-degree' : ''}>
-            {role}
-            {entry.team && <span> · {entry.team}</span>}
-          </p>
-          <span className="cv-period">{period}</span>
-        </div>
-      )}
+        <span className="cv-period">{entry.dateLabel && `${entry.dateLabel} `}{period}</span>
+      </div>
+      {section === 'education' && <p><em>{role}</em>{entry.degreeNote && ` (${entry.degreeNote})`}</p>}
+      {entry.rank && <p>Rank: {entry.rank}</p>}
       {!!bullets.length && (
         <ul className="cv-bullets">
           {bullets.map((b) => (
-            <li key={b}>{b}</li>
+            <li key={b}><CVText text={b} /></li>
           ))}
         </ul>
       )}
-      {entry.issuer && (
-        <p>
-          {entry.issuer}
-          {entry.value && ` · ${entry.value}`}
-        </p>
-      )}
+      {entry.issuer && <p>by {entry.issuer}</p>}
+      {entry.topic && <p>Topic: {entry.topic}</p>}
+      {entry.fundingPeriod && <p>Funding period: {cvPeriod(entry.fundingPeriod)}</p>}
       {entry.tracks && (
         <ul className="cv-bullets">
           {entry.tracks.map((t) => (
             <li key={t.name}>
               <CVLink href={t.link}>
-                {t.name} · {t.result}
+                <strong>{t.result}</strong> · {t.name}
               </CVLink>
+              {t.topic && <> · Topic: {t.topic}</>}
             </li>
           ))}
         </ul>
@@ -96,10 +115,8 @@ function CVEntry({ entry, section, view, continuation }) {
 export default function CV({ config, view }) {
   const [copied, setCopied] = useState(false)
   const [copyError, setCopyError] = useState(false)
-  const current = config.cv.views[view]
-  const affiliations = cvEntries(config, 'affiliations', view)
-  const sections = current.sections.filter(
-    (s) => s === 'certificates' || cvEntries(config, s, view).length,
+  const sections = config.cv.views.all.sections.filter(
+    (s) => s === 'certificates' || cvEntries(config, s).length,
   )
   const copy = async () => {
     try {
@@ -119,11 +136,11 @@ export default function CV({ config, view }) {
       <Tabs
         value={view}
         onValueChange={(v) => {
-          location.hash = v === 'all' ? 'cv' : `cv?view=${v}`
+          location.hash = v === 'onepager' ? 'cv' : `cv?view=${v}`
         }}
       >
         <div className="cv-toolbar no-print">
-          <TabsList aria-label="CV focus">
+          <TabsList aria-label="CV view">
             {views.map((v) => (
               <TabsTrigger value={v} key={v}>
                 {config.cv.views[v].label}
@@ -145,7 +162,7 @@ export default function CV({ config, view }) {
           {config.resumes.map((r) => (
             <a key={r.id} href={r.file} target="_blank" rel="noopener noreferrer">
               <Download size={15} />
-              {r.language === 'en' ? 'PDF · English' : 'PDF · Korean'}
+              {r.language === 'en' ? 'PDF · One-pager' : 'PDF · Korean'}
             </a>
           ))}
         </div>
@@ -154,73 +171,65 @@ export default function CV({ config, view }) {
             Copy the address from your browser to share this view.
           </p>
         )}
-        {views.map((v) => (
-          <TabsContent value={v} key={v}>
-            <div className="cv-document" aria-label={`${current.label} CV`}>
-              <header className="cv-document-header">
-                <h2>{config.profile.name}</h2>
-                <p>
-                  Pohang, South Korea <span>·</span>{' '}
-                  <a href={`mailto:${config.profile.email}`}>{config.profile.email}</a>{' '}
-                  <span>·</span>{' '}
-                  <a
-                    href={config.profile.social.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    LinkedIn
-                  </a>{' '}
-                  <span>·</span> <a href="https://seungjun.site">Homepage</a>
-                </p>
-              </header>
-              {sections.map((section) => (
-                <section className="cv-section" key={section} data-section={section}>
-                  <h2>{labels[section]}</h2>
-                  {section === 'certificates' ? (
-                    <div className="cv-qualifications">
-                      {Object.entries(config.cv.certificates)
-                        .filter(([key]) => view !== 'crypto' || key !== 'finance')
-                        .map(([key, items]) => (
-                          <div key={key}>
-                            <h3>
-                              {{ finance: 'Finance', cs: 'Computing', general: 'General' }[key]}
-                            </h3>
-                            <ul>
-                              {items.map((i) => (
-                                <li key={i.name}>
-                                  {i.name} <span>({i.issuer})</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-                    </div>
-                  ) : (
-                    cvEntries(config, section, view).map((entry, i, entries) => (
-                      <CVEntry
-                        key={entry.id}
-                        entry={entry}
-                        section={section}
-                        view={view}
-                        continuation={
-                          i > 0 &&
-                          !!entry.organization &&
-                          entry.organization === entries[i - 1].organization
-                        }
-                      />
-                    ))
-                  )}
-                  {section === 'extracurricular' && affiliations.length > 0 && (
-                    <p className="cv-affiliations">
-                      <strong>Affiliations</strong> ·{' '}
-                      {affiliations.map((entry) => entry.organization).join(' · ')}
-                    </p>
-                  )}
-                </section>
-              ))}
-            </div>
-          </TabsContent>
-        ))}
+        <TabsContent value="onepager">
+          <OnePager />
+        </TabsContent>
+        <TabsContent value="all">
+          <div className="cv-document" aria-label="All CV">
+            <header className="cv-document-header">
+              <h2>{config.profile.name}</h2>
+              <p>
+                Pohang, South Korea <span>·</span>{' '}
+                <a href={`mailto:${config.profile.email}`}>{config.profile.email}</a>{' '}
+                <span>·</span>{' '}
+                <a
+                  href={config.profile.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>{' '}
+                <span>·</span> <a href="https://seungjun.site">Homepage</a>
+              </p>
+            </header>
+            {sections.map((section) => (
+              <section className="cv-section" key={section} data-section={section}>
+                <h2>{labels[section]}</h2>
+                {section === 'certificates' ? (
+                  <div className="cv-qualifications">
+                    {Object.entries(config.cv.certificates).map(([key, items]) => (
+                      <div key={key}>
+                        <h3>
+                          {{ finance: 'Finance', cs: 'Computing', general: 'General' }[key]}
+                        </h3>
+                        <ul>
+                          {items.map((i) => (
+                            <li key={i.name}>
+                              {i.name} <span>({i.issuer})</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  cvEntries(config, section).map((entry, i, entries) => (
+                    <CVEntry
+                      key={entry.id}
+                      entry={entry}
+                      section={section}
+                      continuation={
+                        i > 0 &&
+                        !!entry.organization &&
+                        entry.organization === entries[i - 1].organization
+                      }
+                    />
+                  ))
+                )}
+              </section>
+            ))}
+          </div>
+        </TabsContent>
       </Tabs>
     </div>
   )

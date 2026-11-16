@@ -32,7 +32,11 @@ export default function Home({ config }) {
             <div className="background-entry" key={entry.id}>
               <div>
                 <h3>{entry.organization || entry.lab || entry.institution}</h3>
-                <p>{entry.role || entry.degree}</p>
+                <p>
+                  {entry.role || entry.degree}
+                  {entry.employmentType && ` (${entry.employmentType})`}
+                  {entry.degreeNote && ` (${entry.degreeNote})`}
+                </p>
               </div>
               <span>{entry.period}</span>
             </div>

@@ -7,6 +7,7 @@ import {
   writingItems,
   filterWriting,
   cvEntries,
+  cvPeriod,
   historyGroups,
   historyPeriod,
 } from '../src/lib/portfolio.mjs'
@@ -18,8 +19,10 @@ test('legacy links, unknown pages, and invalid CV views remain usable', () => {
   assert.equal(parseRoute('#articles').page, 'writing')
   assert.equal(parseRoute('#experience').page, 'history')
   assert.equal(parseRoute('#does-not-exist').page, 'home')
-  assert.equal(parseRoute('#cv?view=finance').view, 'finance')
-  assert.equal(parseRoute('#cv?view=invalid').view, 'all')
+  assert.equal(parseRoute('#cv').view, 'onepager')
+  assert.equal(parseRoute('#cv?view=all').view, 'all')
+  for (const view of ['onepager', 'finance', 'crypto', 'invalid'])
+    assert.equal(parseRoute(`#cv?view=${view}`).view, 'onepager')
   assert.equal(parseRoute('#projects?type=inclass').projectFilter, 'inclass')
   assert.equal(parseRoute('#projects?type=other').projectFilter, 'other')
   assert.equal(parseRoute('#projects?type=invalid').projectFilter, 'all')
@@ -42,55 +45,48 @@ test('the co-authored book is searchable alongside all existing writing', () => 
     ),
   )
 })
-test('CV audience views retain facts and use shared project/publication records', () => {
-  for (const section of ['experience', 'research']) {
-    for (const view of ['all', 'finance', 'crypto']) {
-      assert.deepEqual(cvEntries(config, section, view), config.cv[section])
-    }
-  }
-  assert.equal(config.cv.views.finance.sections[0], 'education')
-  assert.equal(config.cv.views.all.sections.at(-1), 'education')
-  assert.equal(config.cv.views.crypto.sections.at(-1), 'education')
-  const financeActivities = cvEntries(config, 'extracurricular', 'finance')
-  assert.equal(financeActivities.filter((e) => e.organization.includes('PDAO')).length, 2)
-  assert.ok(!financeActivities.some((e) => e.organization === 'NinjaLabsKR'))
-  assert.deepEqual(cvEntries(config, 'affiliations', 'all'), [])
-  assert.deepEqual(cvEntries(config, 'affiliations', 'finance'), [])
+test('All CV retains archive records, chronology, and shared project/publication references', () => {
+  assert.deepEqual(Object.keys(config.cv.views), ['onepager', 'all'])
+  const sections = config.cv.views.all.sections
+  assert.equal(sections[0], 'education')
+  assert.equal(sections[sections.indexOf('experience') + 1], 'publications')
+  assert.ok(!sections.includes('affiliations'))
+  assert.ok(!sections.includes('expertise'))
+  assert.deepEqual(cvEntries(config, 'affiliations'), [])
+  const book = cvEntries(config, 'publications')[0]
+  assert.equal(book.id, config.publications[0].id)
+  assert.equal(book.url, config.publications[0].url)
+  assert.equal(book.isbn, config.publications[0].isbn)
+  assert.equal(book.title, config.publications[0].cv.title)
+  assert.equal(config.publications[0].title, 'The Digital Asset Era Is Coming')
   assert.deepEqual(
-    cvEntries(config, 'affiliations', 'crypto').map((e) => e.organization),
-    ['NinjaLabsKR', 'SuperteamKR', 'POSTECH CCBR'],
+    new Set(cvEntries(config, 'projects').map((entry) => entry.id)),
+    new Set(config.cv.projectIds),
   )
-  for (const view of ['all', 'finance', 'crypto']) {
-    const sections = config.cv.views[view].sections
-    assert.equal(sections[sections.indexOf('experience') + 1], 'publications')
-    assert.ok(!sections.includes('expertise'))
-    assert.ok(!cvEntries(config, 'experience', view).some((e) => e.id === 'experience-3'))
-    assert.equal(
-      cvEntries(config, 'extracurricular', view).filter((e) => e.id === 'experience-3').length,
-      1,
-    )
-    assert.equal(config.cv.views[view].sections.filter((s) => s === 'extracurricular').length, 1)
-    assert.ok(!config.cv.views[view].sections.includes('affiliations'))
-    assert.ok(
-      cvEntries(config, 'extracurricular', view).every(
-        (entry) => !config.cv.affiliations.some((affiliation) => affiliation.id === entry.id),
-      ),
-    )
-  }
-  assert.equal(cvEntries(config, 'publications', 'all')[0], config.publications[0])
-  assert.ok(cvEntries(config, 'projects', 'finance').every((p) => p.audiences.includes('finance')))
-  assert.equal(cvEntries(config, 'experience', 'all').length, config.cv.experience.length)
+  for (const section of ['experience', 'research'])
+    assert.deepEqual(cvEntries(config, section), config.cv[section])
+  assert.ok(!cvEntries(config, 'experience').some((entry) => entry.id === 'experience-3'))
+  assert.equal(
+    cvEntries(config, 'extracurricular').filter((entry) => entry.id === 'experience-3').length,
+    1,
+  )
 })
-test('common CV experience cannot be hidden or reranked by view metadata', () => {
+test('CV month formatting retains distinct research periods and date precision', () => {
+  assert.equal(cvPeriod('2025.06 - 2025.12, 2026.06 - Present'), 'Jun 2025 - Dec 2025, Jun 2026 - Present')
+  assert.equal(cvPeriod('2021.02 - (Expected) 2028.02'), 'Feb 2021 - (Expected) Feb 2028')
+  assert.equal(cvPeriod('2023-10'), 'Oct 2023')
+  assert.equal(cvPeriod('2026'), '2026')
+})
+test('All CV ignores legacy audience filters and preserves canonical employment chronology', () => {
   const edited = structuredClone(config)
   for (const section of ['experience', 'research']) {
     edited.cv[section][0].audiences = ['crypto']
-    edited.cv[section][0].order = { finance: 99, crypto: 99 }
-    edited.cv[section][1].order = { finance: 0, crypto: 0 }
-    for (const view of ['finance', 'crypto']) {
-      assert.deepEqual(cvEntries(edited, section, view), edited.cv[section])
-    }
+    edited.cv[section][0].order = { all: 99 }
+    edited.cv[section][1].order = { all: 0 }
+    assert.deepEqual(cvEntries(edited, section), edited.cv[section])
   }
+  edited.cv.extracurricular[0].audiences = ['crypto']
+  assert.equal(cvEntries(edited, 'extracurricular').length, edited.cv.extracurricular.length)
 })
 test('all historical records survive grouping and search', () => {
   const groups = historyGroups(history)

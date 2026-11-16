@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test'
 import { readFileSync } from 'node:fs'
+import { getDocument } from 'pdfjs-dist/legacy/build/pdf.mjs'
+import { cvEntries, cvPeriod } from '../../src/lib/portfolio.mjs'
+import { inlineText } from '../../src/lib/one-pager.mjs'
 
 const config = JSON.parse(
   readFileSync(new URL('../../data/portfolio-config.json', import.meta.url)),
@@ -161,95 +164,107 @@ test('project filters preserve chronology, reload, history, and featured deep li
   await expect(page.locator('#project-lift')).toBeInViewport()
   await expect(page.locator('.project-entry')).toHaveCount(config.projects.length)
 })
-test('CV focus persists on reload and print contains only the chosen CV', async ({ page }) => {
+test('One-pager is the default CV and its PDF contains the same content on one page', async ({ page, request }) => {
   await page.goto('/#cv')
-  await expect(page.locator('.cv-document')).toBeVisible()
-  await expect(page.locator('.cv-section').last()).toHaveAttribute('data-section', 'education')
-  await expect(
-    page.locator('[data-section="experience"] + [data-section="publications"]'),
-  ).toHaveCount(1)
-  await expect(page.getByRole('heading', { name: 'Expertise', exact: true })).toHaveCount(0)
-  await expect(page.locator('.cv-affiliations')).toHaveCount(0)
-  for (const affiliation of config.cv.affiliations) {
-    await expect(page.locator('.cv-document')).not.toContainText(affiliation.organization)
-  }
-  await page.getByRole('tab', { name: 'Finance', exact: true }).click()
-  await expect(page).toHaveURL(/view=finance/)
-  await page.reload()
-  await expect(page.getByRole('tab', { name: 'Finance', exact: true })).toHaveAttribute(
-    'aria-selected',
-    'true',
-  )
-  await expect(page.locator('.cv-document')).toContainText('WorldQuant')
-  await expect(page.locator('.cv-document')).toContainText('Base Korea')
-  await expect(page.locator('[data-section="experience"]')).not.toContainText('Base Korea')
-  await expect(page.locator('[data-section="extracurricular"]')).toContainText('Base Korea')
-  await expect(page.getByRole('heading', { name: 'Affiliations', exact: true })).toHaveCount(0)
-  await expect(page.locator('.cv-section').first()).toHaveAttribute('data-section', 'education')
-  await expect(
-    page.locator('[data-section="experience"] + [data-section="publications"]'),
-  ).toHaveCount(1)
-  await expect(page.getByRole('heading', { name: 'Expertise', exact: true })).toHaveCount(0)
-  await expect(page.locator('.cv-document')).toContainText('PDAO (POSTECH DAO)')
-  await expect(page.locator('.cv-document')).not.toContainText('NinjaLabsKR')
-  await expect(page.locator('.cv-affiliations')).toHaveCount(0)
-  const sharedText = {}
-  for (const section of ['experience', 'research']) {
-    sharedText[section] = await page.locator(`[data-section="${section}"]`).textContent()
-  }
-  await expect(page.getByRole('link', { name: 'PDF · English', exact: true })).toHaveAttribute(
-    'href',
-    'data/resume/resume_eng.pdf',
-  )
+  const document = page.getByRole('article', { name: 'One-pager CV', exact: true })
+  await expect(document).toBeVisible()
+  await expect(page.getByRole('tab')).toHaveText(['One-pager', 'All'])
+  await expect(page.getByRole('tab', { name: 'One-pager', exact: true })).toHaveAttribute('aria-selected', 'true')
+  expect(await document.locator('.onepager-section').evaluateAll((sections) =>
+    sections.map((section) => section.dataset.section),
+  )).toEqual(['summary', 'education', 'experience', 'publications', 'research', 'extracurricular', 'awards', 'certifications'])
+  await expect(document.locator('[data-section="summary"] li')).toHaveCount(0)
+  await expect(document.locator('[data-section="summary"] > p')).toHaveCount(1)
+  const work = document.locator('[data-section="experience"]')
+  await expect(work.locator('.onepager-entry')).toHaveCount(4)
+  await expect(work.locator('.onepager-entry').first().locator('h3')).toHaveText('B-Harvest TechBD · Technical Writer (Internship); Researcher (Freelance)')
+  await expect(work.locator('.onepager-entry').first().locator('em')).toHaveText(['Technical Writer', 'Researcher'])
+  await expect(work.locator('strong').filter({ hasText: /^3rd Place in 2025 IQC Korea Final$/ })).toHaveCount(1)
+  await expect(work).not.toContainText('Base Korea')
+  await expect(document.locator('[data-section="extracurricular"]')).toContainText('Base Korea')
+  await expect(document.locator('[data-section="research"]')).toContainText('Scholar (12M KRW) by BrainKorea21')
+  await expect(document.locator('.onepager-section > h2').first()).toHaveCSS('text-transform', 'none')
+  await expect(page.getByRole('link', { name: 'PDF · One-pager', exact: true })).toHaveAttribute('href', 'data/resume/resume_eng.pdf')
   await expect(page.getByRole('link', { name: 'PDF · Korean', exact: true })).toHaveCount(0)
-  const screenContent = await page.locator('.cv-document').textContent()
+  const screenContent = await document.innerText()
+  const response = await request.get('/data/resume/resume_eng.pdf')
+  expect(response.ok()).toBe(true)
+  const loadingTask = getDocument({ data: new Uint8Array(await response.body()) })
+  const pdf = await loadingTask.promise
+  try {
+    expect(pdf.numPages).toBe(1)
+    const text = await (await pdf.getPage(1)).getTextContent()
+    const normalize = (value) => value.normalize('NFKC').replace(/[\s•●·]/gu, '')
+    expect(normalize(text.items.map((item) => item.str || '').join(' '))).toBe(normalize(screenContent))
+  } finally {
+    await loadingTask.destroy()
+  }
   await page.emulateMedia({ media: 'print' })
   await expect(page.locator('.site-header')).toBeHidden()
-  await expect(page.locator('.cv-document')).toBeVisible()
-  await expect(page.locator('.cv-document')).toHaveAccessibleName('Finance CV')
-  expect(await page.locator('.cv-document').textContent()).toBe(screenContent)
-  await page.emulateMedia({ media: 'screen' })
-  await page.getByRole('tab', { name: 'Crypto', exact: true }).click()
-  await expect(page.locator('.cv-document')).toContainText('Base Korea')
-  await expect(page.locator('.cv-document')).toContainText('Brain Platform Consultant')
-  for (const section of ['experience', 'research']) {
-    expect(await page.locator(`[data-section="${section}"]`).textContent()).toBe(
-      sharedText[section],
-    )
-  }
-  await expect(page.locator('.cv-section').first()).toHaveAttribute('data-section', 'experience')
-  await expect(page.locator('.cv-section').last()).toHaveAttribute('data-section', 'education')
-  await expect(
-    page.locator('[data-section="experience"] + [data-section="publications"]'),
-  ).toHaveCount(1)
-  await expect(page.getByRole('heading', { name: 'Expertise', exact: true })).toHaveCount(0)
-  for (const activity of [
-    'PDAO (POSTECH DAO)',
-    'Base Korea',
-    'NinjaLabsKR',
-    'SuperteamKR',
-    'POSTECH CCBR',
-    'Undergrad AI Study',
-  ]) {
-    await expect(page.locator('[data-section="extracurricular"]')).toContainText(activity)
-  }
-  await expect(page.locator('[data-section="extracurricular"]')).toHaveCount(1)
-  await expect(page.locator('.cv-affiliations')).toHaveText(
-    'Affiliations · NinjaLabsKR · SuperteamKR · POSTECH CCBR',
-  )
-  await expect(page.locator('[data-section="extracurricular"] .cv-entry')).toHaveCount(4)
-  const cryptoContent = await page.locator('.cv-document').textContent()
-  await page.emulateMedia({ media: 'print' })
-  await expect(page.locator('.cv-affiliations')).toBeVisible()
-  expect(await page.locator('.cv-document').textContent()).toBe(cryptoContent)
-  await page.emulateMedia({ media: 'screen' })
-  await expect(page.locator('[data-section="experience"]')).not.toContainText('Base Korea')
+  await expect(page.locator('.cv-toolbar')).toBeHidden()
+  await expect(page.locator('.cv-downloads')).toBeHidden()
+  await expect(document).toBeVisible()
+  expect(await document.innerText()).toBe(screenContent)
+})
+
+test('All CV preserves the archive and supports reload, browser history, and printing', async ({ page }) => {
+  await page.goto('/#cv')
+  await page.getByRole('tab', { name: 'All', exact: true }).click()
+  await expect(page).toHaveURL(/#cv\?view=all$/)
   await page.reload()
-  expect(
-    await page
-      .locator('.cv-section')
-      .evaluateAll((sections) => sections.map((section) => section.dataset.section)),
-  ).toEqual(config.cv.views.crypto.sections)
+  await expect(page.getByRole('tab', { name: 'All', exact: true })).toHaveAttribute('aria-selected', 'true')
+  const document = page.locator('.cv-document')
+  await expect(document).toHaveAccessibleName('All CV')
+  await expect(page.locator('.onepager')).toHaveCount(0)
+  expect(await document.locator('.cv-section').evaluateAll((sections) =>
+    sections.map((section) => section.dataset.section),
+  )).toEqual(config.cv.views.all.sections)
+  for (const section of config.cv.views.all.sections.filter((section) => section !== 'certificates')) {
+    const entries = cvEntries(config, section)
+    const displayed = document.locator(`[data-section="${section}"]`)
+    await expect(displayed.locator('.cv-entry')).toHaveCount(entries.length)
+    for (const entry of entries) {
+      for (const text of [entry.role, entry.focus, entry.description, ...(entry.highlightsByView?.all || entry.highlights || [])].filter(Boolean))
+        await expect(displayed).toContainText(inlineText(text))
+      await expect(displayed.locator(`[data-entry="${entry.id}"] .cv-period`)).toContainText(
+        cvPeriod(entry.period || entry.date || entry.year),
+      )
+    }
+  }
+  const certificates = Object.values(config.cv.certificates).flat()
+  await expect(document.locator('.cv-qualifications li')).toHaveCount(certificates.length)
+  for (const item of certificates) await expect(document).toContainText(item.name)
+  await expect(document.locator('.cv-affiliations')).toHaveCount(0)
+  for (const affiliation of config.cv.affiliations)
+    await expect(document).not.toContainText(affiliation.organization)
+  await expect(document.locator('.cv-section > h2').first()).toHaveText('Education')
+  await expect(document.locator('.cv-section > h2').first()).toHaveCSS('text-transform', 'none')
+  const bithumb = document.locator('[data-entry="experience-6"]')
+  await expect(bithumb.locator('li strong')).toHaveText(['8 reports', 'Independently authored', '2023 ETH Upgrade'])
+  await expect(bithumb.locator('.cv-role em')).toHaveText('Researcher')
+  await expect(bithumb.locator('.cv-role')).toContainText('Research Center · Researcher (Internship)')
+  await expect(document.locator('[data-entry="experience-3"] .cv-period')).toHaveText('Dec 2025 - May 2026')
+  await expect(document.locator('[data-entry="digital-asset-era"] li strong')).toHaveText('Bitcoin and Blockchain')
+  await expect(document.locator('[data-entry="events-9"] .cv-role')).toHaveText('Co-host')
+  await expect(document.locator('[data-entry="awards-2"] li')).toHaveCount(3)
+  await expect(document.locator('[data-entry="awards-3"]')).toContainText('Funding period: Mar 2026 - Feb 2027')
+  await expect(document.locator('[data-entry="awards-3"] .cv-period')).toHaveText('Selected Sep 2026')
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
+  const screenContent = await document.innerText()
+  await page.emulateMedia({ media: 'print' })
+  await expect(page.locator('.site-header')).toBeHidden()
+  await expect(document).toBeVisible()
+  expect(await document.innerText()).toBe(screenContent)
+  await page.emulateMedia({ media: 'screen' })
+  await page.goBack()
+  await expect(page.getByRole('tab', { name: 'One-pager', exact: true })).toHaveAttribute('aria-selected', 'true')
+  await page.goForward()
+  await expect(page.getByRole('tab', { name: 'All', exact: true })).toHaveAttribute('aria-selected', 'true')
+  for (const legacy of ['finance', 'crypto']) {
+    await page.goto(`/#cv?view=${legacy}`)
+    await expect(page.getByRole('article', { name: 'One-pager CV', exact: true })).toBeVisible()
+    await expect(page.getByRole('tab', { name: 'One-pager', exact: true })).toHaveAttribute('aria-selected', 'true')
+  }
 })
 test('personal history retains the archive and links back to the book', async ({ page }) => {
   await page.goto('/#experience')

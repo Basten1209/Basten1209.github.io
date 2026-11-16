@@ -521,7 +521,7 @@
   text-decoration: underline;
 }
 .cv-document {
-  font-family: 'Spectral', 'Times New Roman', 'Pretendard Variable', serif;
+  font-family: 'Spectral Resume', 'Times New Roman', 'Pretendard Variable', serif;
   color: #111;
   font-size: 16px;
   line-height: 1.35;
@@ -553,7 +553,7 @@
   margin-top: 26px;
 }
 .cv-section > h2 {
-  text-transform: uppercase;
+  text-transform: none;
   font-size: 18px;
   font-weight: 700;
   border-bottom: 1px solid #111;
@@ -568,29 +568,31 @@
 .cv-entry.cv-continuation {
   margin-top: -8px;
 }
-.cv-entry-top,
-.cv-role-line {
+.cv-entry-top {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   gap: 20px;
 }
+.cv-entry-main {
+  min-width: 0;
+}
 .cv-entry-top h3 {
+  display: inline;
+  margin-inline-end: 0.6em;
   font-size: inherit;
-  text-transform: uppercase;
+  text-transform: none;
   font-weight: 700;
   line-height: inherit;
-  text-wrap: pretty;
 }
-.cv-entry-top h3 > span {
-  text-transform: none;
-  font-size: 0.95em;
+.cv-entry-top .cv-award-title {
+  font-weight: 400;
 }
-.cv-role-line {
-  font-weight: 700;
+.cv-entry-detail {
+  margin-inline-end: 0.4em;
 }
-.cv-degree {
-  font-style: italic;
+.cv-role {
+  font-weight: 400;
 }
 .cv-period {
   flex-shrink: 0;
@@ -1187,8 +1189,7 @@
   .cv-document-header p {
     font-size: 14px;
   }
-  .cv-entry-top,
-  .cv-role-line {
+  .cv-entry-top {
     flex-direction: column;
     gap: 2px;
   }
@@ -1271,8 +1272,7 @@
   .cv-entry.cv-continuation {
     margin-top: -4pt;
   }
-  .cv-entry-top,
-  .cv-role-line {
+  .cv-entry-top {
     flex-direction: row;
     gap: 14pt;
   }

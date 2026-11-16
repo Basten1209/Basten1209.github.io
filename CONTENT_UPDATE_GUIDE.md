@@ -2,14 +2,14 @@
 
 콘텐츠를 수정한 뒤 `npm test && npm run build`로 데이터·파일 연결을 확인합니다. 레이아웃이나 탐색을 바꿨다면 `npm run test:e2e`도 실행합니다.
 
-웹사이트는 언어 전환 없이 영어로 운영합니다. 표시되는 제목·설명·기여·역할·수업명·링크 문구와 접근성 텍스트는 모두 영어로 작성합니다. 원본 PDF·표지 이미지·링크·파일명·ID·날짜는 보존합니다. 자료가 한국어인 경우 `Korean` 또는 `Korean edition`으로 안내합니다. 관리 문서와 화면에 표시하지 않는 원문 정보는 한국어로 보존할 수 있습니다.
+웹사이트는 언어 전환 없이 영어로 운영합니다. 표시되는 제목·설명·기여·역할·수업명·링크 문구와 접근성 텍스트는 모두 영어로 작성합니다. 원본 자료·표지 이미지·링크·파일명·ID·날짜는 보존합니다. 영문 CV PDF는 아래 One-pager 절차에 따라 갱신합니다. 자료가 한국어인 경우 `Korean` 또는 `Korean edition`으로 안내합니다. 관리 문서와 화면에 표시하지 않는 원문 정보는 한국어로 보존할 수 있습니다.
 
 ## 소개
 
 - 홈 한 문장 소개: `data/portfolio-config.json`의 `profile.tagline`. 소속 나열 대신 하는 일과 목적을 담습니다.
 - 홈 약력: `profile.background`에서 CV 항목의 `section`, `id`를 참조합니다.
 - 한국어 소개 원본: `data/profile-intro.md`에 보존합니다. 현재 홈에는 표시하지 않습니다.
-- CV에는 Summary를 표시하지 않습니다.
+- CV One-pager의 Summary는 기존 첫 문장을 bullet 없는 한 문단으로 표시합니다. 문구를 줄여 물리적인 한 줄로 맞추지 않습니다. All에는 Summary를 추가하지 않습니다.
 
 ## Writing
 
@@ -21,7 +21,7 @@
 
 공저서는 `publications`에 등록합니다. 표지·제목·출판사·출간일·기여 설명·서점 링크만 노출합니다. 책 본문은 올리지 않습니다. 표지의 세로 비율은 유지됩니다.
 
-공저서의 `title`은 영어 표시 제목, `originalTitle`은 검색에만 사용하는 원제입니다. `publisher`는 영문 표기, `language: "ko"`는 한국어판 안내에 사용합니다. 기여 설명은 `description`을 CV와 Writing에서 함께 사용합니다.
+공저서의 `title`은 영어 표시 제목, `originalTitle`은 검색에만 사용하는 원제입니다. `publisher`는 영문 표기, `language: "ko"`는 한국어판 안내에 사용합니다. 기본 기여 설명은 `description`이며, All CV에서만 표현을 달리할 경우 해당 공저서의 `cv.description`을 사용합니다.
 
 ## Projects
 
@@ -44,47 +44,54 @@
 
 전체 프로젝트 목록은 **All / In-class / Other**로 필터링합니다. `context.type`이 `In-class term project`인 항목만 In-class이며, 나머지는 Other입니다. 대표작 카드 3개는 필터와 무관하게 유지합니다. `#projects?type=inclass`, `#projects?type=other`로 선택을 공유할 수 있고, 프로젝트 바로가기 링크는 All로 돌아가 해당 항목을 보여줍니다.
 
-## CV: All / Finance / Crypto
+## CV: One-pager / All
 
-Work experience와 Research experience는 세 버전에서 항목·설명·내부 순서를 모두 공유합니다. 두 섹션은 원본 배열 순서를 사용하며 분야 필터와 재정렬을 적용하지 않습니다. 경력을 임의로 숨기거나 WorldQuant 등을 특정 버전에서만 위로 옮기지 않습니다.
+기본 화면 `#cv`는 **One-pager**이고, **All**은 `#cv?view=all`로 공유합니다. Finance·Crypto 탭은 제거했으며, 예전 링크는 One-pager를 보여줍니다. 두 탭 모두 **Print current view**로 현재 문서를 인쇄할 수 있습니다.
 
-분야별 우선순위는 `cv.views.<view>.sections`로 고정합니다. 다른 작업을 하면서 이 순서를 변경하지 않습니다.
+### One-pager와 PDF
 
-- Finance: Education → Research → Work → Publication → Projects → Awards → Qualifications → Extracurricular.
-- Crypto: Work → Publication → Research → Projects → Awards → Events → Extracurricular → Qualifications → Education.
-- All: Work → Publication → Research → Projects → Awards → Extracurricular → Events → Qualifications → Education.
+`data/resume/one-pager.md`가 웹 화면과 영문 PDF의 공통 원본입니다. 승인된 문구와 순서를 유지합니다: Summary → Education → Work → Publication → Research → Extracurricular → Selected Awards → Selected Certifications. All 데이터의 설명을 자동으로 가져오거나 그쪽 문구를 덮어쓰지 않습니다.
 
-Publication은 모든 버전에서 Work 바로 다음에 둡니다. Education은 Finance에서 첫 번째, All·Crypto에서 마지막이며 중간에 넣지 않습니다. Expertise와 그 하위 관심 분야·기술 목록은 CV에서 제거했습니다.
+지원하는 Markdown은 다음과 같습니다.
 
-PDAO, Base Korea, Undergrad AI Study의 활동은 `cv.extracurricular`에서 관리합니다. Base Korea의 Based Advocate 활동은 Work 대신 이 섹션에 두며, PDAO와 함께 Finance·Crypto 양쪽에 포함됩니다.
+- `# 이름`, 그 다음 연락처 한 줄, `## 섹션 이름`, `- bullet`을 사용합니다. Summary는 bullet 없는 일반 문단을 지원합니다.
+- 기관 첫 줄은 `**[기관명](https://...)** | *직급* | 기간` 형태입니다. 마지막 ` | ` 뒤는 오른쪽 열로 표시합니다. 학위 등 추가 행에도 같은 구분자를 사용합니다.
+- Work experience는 `회사명 소속 · *직무* (계약형태) | 기간`으로 통일하며 회사명 뒤에 구분선 대신 CSS 간격을 둡니다. 직무만 기울임, 소속·계약형태는 일반체, 날짜는 우측 볼드입니다. B-Harvest의 두 단계는 `*Technical Writer* (Internship); *Researcher* (Freelance)`로 연결합니다.
+- `**주요 키워드**`, `*직급*`, `***학위***`, `[링크](https://...)`를 지원합니다. HTML은 렌더링하지 않습니다.
+- 섹션 제목은 sentence case, bullet 끝은 마침표 없이 통일합니다. 약어의 점은 유지합니다.
+- PDAO의 커뮤니티 설명·출범·2025년 1월 이후 운영 이력과 그랜트·행사 성과는 Extracurricular에서 두 줄로 묶습니다. Summary에 반복하지 않습니다.
+- 제목은 `Selected Certifications (10+ total)`로 쓰고, 본문은 자격증 이름과 괄호 안 발급기관을 두 bullet·인쇄 두 줄로 표시하며, 자격증명에는 볼드를 적용하지 않습니다. 발급기관은 Samil PwC, KOFIA, KBI, K-DATA, HRD Korea를 사용합니다. 첫 줄은 재경관리사·투자자산운용사·Financial Planner, 둘째 줄은 SQL Developer·정보처리산업기사·ADsP이며 Hold와 including은 쓰지 않습니다. ADsP는 풀어 쓰지 않습니다. 정보처리산업기사의 영문명은 `Industrial Engineer Information Processing`입니다. 전체를 국가공인 민간자격이라고 쓰지 않습니다. [금융투자협회 안내](https://license.kofia.or.kr/resources/etc/PLIO.pdf)는 투자자산운용사를 등록민간자격으로, [Q-net](https://www.q-net.or.kr/crf005.do?id=crf00505&jmCd=2290&tabGbn=1)은 정보처리산업기사를 국가자격으로 안내합니다.
+- Selected Awards의 bullet 마지막 ` | 연도`는 화면에서 구분선을 표시하지 않고 오른쪽 굵은 연도로 배치합니다.
+- Publication은 책 제목·ISBN·기울임 Co-Author를 한 행에 쓰고, 마지막 열에는 출간일을 둡니다. 위치나 별도 역할 행을 추가하지 않습니다.
+- 장학금은 **Outstanding STEM Talent Career Development Scholar** (**12M KRW**) by BrainKorea21로 한 줄에 표기하고 지원 기간은 생략합니다. 금액은 Scholar 바로 뒤 괄호에 넣고, 금액과 단위 사이에는 줄바꿈 방지 공백을 사용합니다.
 
-NinjaLabsKR, SuperteamKR, POSTECH CCBR은 `cv.affiliations`에서 관리하고, **Crypto에서만** Extracurricular 끝에 `Affiliations · NinjaLabsKR · SuperteamKR · POSTECH CCBR` 한 줄로 표시합니다. 별도의 큰 섹션은 만들지 않으며 All·Finance에는 표시하지 않습니다. 역할·기간·설명은 데이터에 보존하되 CV 화면과 인쇄에서는 소속명만 보여줍니다. 항목 이동 시 ID도 보존합니다.
+본문은 데스크톱·인쇄에서 **10pt**로 유지하며, 남는 공간은 추후 항목 추가를 위해 남깁니다. 회사명·직급·날짜는 데스크톱과 인쇄에서 한 줄로 배치합니다. 모바일에서는 읽기 쉽도록 줄을 나눕니다. One-pager 전용 스타일은 `src/components/one-pager.css`, 렌더러는 `src/components/OnePager.jsx`, 제한된 Markdown 파서는 `src/lib/one-pager.mjs`입니다. Spectral 폰트는 `assets/fonts/spectral/`에서 로컬로 제공합니다.
 
-나머지 섹션에는 필요할 때만 분야별 노출과 우선순위를 설정할 수 있습니다.
+문구가 확정되거나 사용자가 요청했을 때 PDF를 생성합니다. 편집 중 반복 생성하지 않습니다.
 
-```json
-{
-  "id": "extracurricular-example",
-  "period": "2025.06 - Present",
-  "role": "Member",
-  "organization": "Organization",
-  "audiences": ["finance", "crypto"],
-  "order": { "all": 2, "finance": 0, "crypto": 3 },
-  "highlights": ["공통 성과", "추가 설명"],
-  "highlightsByView": { "finance": ["금융 지원에서 강조할 사실"] }
-}
+```sh
+npm run export-one-pager
+npm test
+npm run test:e2e
 ```
 
-- **All**은 일반 CV 항목을 모두 표시합니다. 보조 정보인 Affiliations 한 줄은 사용자 지정으로 Crypto에서만 표시하는 예외입니다.
-- `audiences`: 해당 항목을 보여줄 분야. 생략하면 공통 항목입니다. Work·Research에는 적용하지 않습니다.
-- `order`: 보기별 정렬 우선순위. 작은 숫자가 먼저 나오며, 없으면 원래 배열 순서를 유지합니다. Work·Research에는 적용하지 않습니다.
-- `highlightsByView`: 보기별로 강조할 사실. 없으면 공통 `highlights`를 사용합니다. Work·Research는 항상 공통 설명을 표시합니다. 날짜·직책·성과를 과장하거나 새로 만들지 않습니다.
-- `cv.views`: 보기별 탭 이름과 섹션 순서를 관리합니다.
-- `cv.publicationIds` / `cv.projectIds`: 위에서 등록한 책·프로젝트의 ID만 넣습니다. 같은 자료를 CV에 중복 입력하지 않습니다.
+내보내기 명령은 사이트를 빌드하고 임시 로컬 서버에서 One-pager를 출력합니다. 외부 요청 없이 로컬 폰트를 사용하며, **정확히 1페이지인지, 웹과 PDF의 텍스트가 같은지** 검사한 뒤 `data/resume/resume_eng.pdf`를 갱신합니다. 줄바꿈·겹침·잘림은 PDF를 열어 시각적으로 확인합니다. 일반 빌드는 PDF를 재생성하지 않습니다. 다운로드 링크는 **PDF · One-pager**이며 한국어 PDF와 그 숨김 상태는 유지합니다.
 
-`#cv?view=finance`, `#cv?view=crypto` 링크를 공유할 수 있습니다. **Print current view**는 화면과 동일한 문서 구조로 현재 CV를 인쇄합니다. 모든 경력 상세는 화면에서도 펼쳐집니다. 다운로드 링크는 **PDF · English**만 표시하며 한국어 PDF 링크는 표시하지 않습니다. 원본 PDF는 별도 관리하며 자동으로 덮어쓰지 않습니다.
+### All 아카이브
 
-2026년 이공 우수인재 장학의 영문명은 CV와 History 모두 **Outstanding STEM Talent Career Development Scholar**로 표기합니다.
+`data/portfolio-config.json`의 전체 CV 이력을 유지하면서, 공통 경험의 명칭·역할·성과는 승인된 One-pager에 맞춥니다. `cv.views.all.sections` 순서는 Education → Work → Publication → Research → Projects → Awards → Extracurricular → Events → Qualifications입니다.
+
+- Work·Research는 원본 배열 순서를 그대로 사용합니다. 다른 섹션은 `order.all`이 있으면 해당 순서를 따릅니다.
+- 모든 일반 CV 항목을 표시합니다. 이전 `audiences`, Finance·Crypto용 순서·강조 데이터는 보존하지만 현재 화면에서 사용하지 않습니다.
+- Work·Research는 공통 `highlights`를, 다른 섹션은 `highlightsByView.all`이 있으면 해당 설명을 사용합니다.
+- All의 설명은 안전한 인라인 Markdown(`**키워드**` 등)을 지원합니다. 대분류·기관명은 강제 대문자를 사용하지 않으며, 직급만 이탤릭으로 표시합니다. `team`, `role`, `employmentType`을 구분하고 날짜는 원본 값을 유지한 채 `Mon YYYY`로 표시합니다.
+- B-Harvest의 인턴·프리랜서 기간과 PDAO의 Head·Launch Member 기간은 각각 보존합니다. Base Korea의 종료일은 May 2026입니다. BK21의 선정일 Sep 2026과 지원 기간 Mar 2026–Feb 2027을 구분합니다.
+- Awards의 `result`, `topic`, `fundingPeriod`, `dateLabel`로 수상 결과·주제·지원 기간·선정일을 구분합니다. Four Pillars의 주제는 MetaMask 트랙에만 연결하며 다른 두 트랙도 유지합니다. `events-9`는 AI x Web3 in 2026 | Seoul Summit의 Co-host 이력입니다.
+- PDAO, Base Korea, Undergrad AI Study는 `cv.extracurricular`에 유지합니다. Base Korea를 Work로 옮기지 않습니다.
+- NinjaLabsKR, SuperteamKR, POSTECH CCBR의 `cv.affiliations` 데이터는 보존하되 화면에 표시하지 않습니다.
+- `cv.publicationIds` / `cv.projectIds`는 책·프로젝트의 공통 원본 ID를 참조합니다.
+- 책·프로젝트의 All 전용 문구는 원본 항목의 `cv` 객체(`title`, `description`, `highlights`)에 둡니다. `cvEntries`에서만 적용하므로 Writing·Projects의 문구나 공통 링크는 바뀌지 않습니다.
+- Summary, Expertise, 기술 목록을 All에 추가하지 않습니다.
 
 ## History
 

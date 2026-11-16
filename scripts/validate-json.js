@@ -101,10 +101,11 @@ function validatePortfolio(config, history, fileExists = (p) => fs.existsSync(pa
     for (const id of config.cv[key] || [])
       if (!config[source].some((x) => x.id === id)) errors.push(`cv: unknown ${source} ${id}`)
   }
-  for (const view of ['all', 'finance', 'crypto']) {
+  for (const view of ['onepager', 'all']) {
     requireField(config.cv.views, view, 'CV views')
-    requireField(config.cv.views?.[view], 'sections', `CV ${view}`)
+    requireField(config.cv.views?.[view], 'label', `CV ${view}`)
   }
+  requireField(config.cv.views?.all, 'sections', 'CV All')
   for (const e of history) {
     if (!/^\d{4}\.\d{2}$/.test(e.start)) errors.push(`${e.id}: invalid start date`)
     requireField(e, 'contents', e.id)

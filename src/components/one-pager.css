@@ -1,0 +1,95 @@
+@font-face {
+  font-family: 'Spectral Resume';
+  src: url('../../assets/fonts/spectral/regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Spectral Resume';
+  src: url('../../assets/fonts/spectral/bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Spectral Resume';
+  src: url('../../assets/fonts/spectral/italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Spectral Resume';
+  src: url('../../assets/fonts/spectral/bold-italic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+.onepager {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 816px;
+  min-height: 1056px;
+  margin: 0 auto;
+  padding: 8mm 11mm;
+  background: #fff;
+  color: #111;
+  border: 1px solid #e4e7ec;
+  font-family: 'Spectral Resume', Georgia, serif;
+  font-size: 10pt;
+  line-height: 1.17;
+}
+.onepager strong { font-weight: 700; }
+.onepager em { font-style: italic; }
+.onepager a {
+  color: #0052ff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.onepager-header { text-align: center; margin-bottom: 8pt; }
+.onepager-header h2 { font-size: 24pt; font-weight: 700; line-height: 1.1; margin-bottom: 5pt; }
+.onepager-header p { font-size: 9pt; line-height: 1.2; }
+.onepager-section { margin-top: 7pt; }
+.onepager-section > h2 {
+  font-size: 11pt;
+  font-weight: 700;
+  line-height: 1.15;
+  text-transform: none;
+  border-bottom: 0.7pt solid #111;
+  padding-bottom: 2pt;
+  margin-bottom: 4pt;
+  break-after: avoid;
+}
+.onepager-entry { margin-bottom: 4pt; break-inside: avoid; }
+.onepager-entry:last-child { margin-bottom: 0; }
+.onepager-row { display: flex; justify-content: space-between; align-items: baseline; gap: 10pt; }
+.onepager-row-main { font-size: inherit; font-weight: 400; min-width: 0; }
+.onepager-inline-gap { display: inline-block; width: 0.8em; }
+.onepager-section[data-section='experience'] .onepager-row-main > strong:first-child {
+  margin-inline-end: 0.6em;
+}
+.onepager-period { font-weight: 700; flex-shrink: 0; text-align: right; }
+.onepager-bullets { list-style: disc; padding-left: 18pt; margin: 0; }
+.onepager-bullets li { padding-left: 2pt; }
+
+@media screen and (max-width: 760px) {
+  .onepager { padding: 0; border: 0; min-height: 0; font-size: 15px; line-height: 1.4; }
+  .onepager-header h2 { font-size: 31px; }
+  .onepager-header p { font-size: 13px; line-height: 1.6; }
+  .onepager-section { margin-top: 22px; }
+  .onepager-section > h2 { font-size: 17px; margin-bottom: 8px; }
+  .onepager-entry { margin-bottom: 14px; }
+  .onepager-row { flex-direction: column; gap: 2px; }
+  .onepager-period { text-align: left; }
+  .onepager-bullets { margin-top: 4px; padding-left: 22px; }
+}
+
+@page onepager { size: letter; margin: 8mm 11mm; }
+@media print {
+  body:has(.onepager) { page: onepager; }
+  .onepager { max-width: none; min-height: 0; padding: 0; border: 0; margin: 0; }
+  .page-cv:has(.onepager) [data-slot='tabs'] { display: block; }
+  .onepager a { color: #0052ff; }
+}

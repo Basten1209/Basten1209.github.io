@@ -1,5 +1,5 @@
 export const pages = ['home', 'writing', 'projects', 'cv', 'history']
-export const views = ['all', 'finance', 'crypto']
+export const views = ['onepager', 'all']
 export const sharedCVSections = ['experience', 'research']
 
 export function parseRoute(hash = '') {
@@ -13,7 +13,8 @@ export function parseRoute(hash = '') {
   return {
     page,
     parts,
-    view: views.includes(requestedView) ? requestedView : 'all',
+    // Old Finance/Crypto links now open the curated one-pager.
+    view: views.includes(requestedView) ? requestedView : 'onepager',
     projectFilter:
       page === 'projects' && !parts[0] && ['inclass', 'other'].includes(requestedType)
         ? requestedType
@@ -26,8 +27,14 @@ export function reportHref(report) {
 }
 
 export const dateLabel = (date) => date?.replaceAll('-', '.') || ''
-export const inView = (entry, view) =>
-  view === 'all' || !entry.audiences || entry.audiences.includes(view)
+
+// Keep the original month precision, multiple periods, and expected/current labels.
+export function cvPeriod(value = '') {
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  return value.replace(/\b(\d{4})[.-](0[1-9]|1[0-2])\b/g, (_, year, month) =>
+    `${months[Number(month) - 1]} ${year}`,
+  )
+}
 
 export function writingItems(config) {
   return [
@@ -55,19 +62,21 @@ export function filterWriting(items, { kind = 'All', query = '', organization = 
   )
 }
 
-export function cvEntries(config, section, view) {
-  // Memberships are supporting context shown only in Crypto, not in All or Finance.
-  if (section === 'affiliations' && view !== 'crypto') return []
+export function cvEntries(config, section) {
+  // Preserve the existing All view, which never displayed supporting affiliations.
+  if (section === 'affiliations') return []
   let entries
   if (section === 'publications')
     entries = config.cv.publicationIds.map((id) => config.publications.find((p) => p.id === id))
   else if (section === 'projects')
     entries = config.cv.projectIds.map((id) => config.projects.find((p) => p.id === id))
   else entries = config.cv[section] || []
-  // Employment and research are a shared chronology, never audience-filtered or reranked.
+  // CV wording may be tailored without rewriting the Writing/Projects pages.
+  if (section === 'publications' || section === 'projects')
+    entries = entries.map((entry) => entry?.cv ? { ...entry, ...entry.cv } : entry)
+  // Employment and research retain their canonical chronology.
   if (sharedCVSections.includes(section)) return entries.filter(Boolean)
-  const result = entries.filter(Boolean).filter((entry) => inView(entry, view))
-  return [...result].sort((a, b) => (a.order?.[view] ?? 99) - (b.order?.[view] ?? 99))
+  return entries.filter(Boolean).sort((a, b) => (a.order?.all ?? 99) - (b.order?.all ?? 99))
 }
 
 export function historyGroups(entries, { query = '', year = 'All' } = {}) {
