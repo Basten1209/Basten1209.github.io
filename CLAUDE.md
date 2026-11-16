@@ -23,7 +23,7 @@
 - Native hash links preserve browser back/forward. `#articles` aliases Writing; `#experience` aliases History. `#cv?view=finance` is shareable.
 - PDFs use a lazy-loaded PDF.js modal. Original direct file URLs remain available. Book links always leave for the bookstore.
 - CV Print current view prints the same visible document. Only the original English résumé has a PDF link; do not show a Korean PDF link. Preserve the original résumé files rather than replacing them with generated PDFs.
-- Use "Outstanding STEM Talent Scholarship" for the 2026 scholarship in both CV and History, as specified by the user.
+- Use "Outstanding STEM Talent Career Development Scholar" for the 2026 scholarship in both CV and History, as specified by the user.
 - No decorative eyebrow labels, slogans, page descriptions, CV summary, or CV sidebar. Use plain headings and chronological lists.
 - Do not add decorative arrows to links or featured cards. The header's email action is labeled Contact. Preserve the footer's original hits.sh/seungjun.site views badge and its counter URL.
 - Projects: only the three featured projects (LIFT, MintMe, RUN2) use image cards, with actual project assets and a title. Keep the archive below as a chronological list. Exclude 2021–2022 coursework and the course review/quiz sites. Home shows a short background, not selected work.

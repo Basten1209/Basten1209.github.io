@@ -84,7 +84,7 @@ NinjaLabsKR, SuperteamKR, POSTECH CCBR은 `cv.affiliations`에서 관리하고, 
 
 `#cv?view=finance`, `#cv?view=crypto` 링크를 공유할 수 있습니다. **Print current view**는 화면과 동일한 문서 구조로 현재 CV를 인쇄합니다. 모든 경력 상세는 화면에서도 펼쳐집니다. 다운로드 링크는 **PDF · English**만 표시하며 한국어 PDF 링크는 표시하지 않습니다. 원본 PDF는 별도 관리하며 자동으로 덮어쓰지 않습니다.
 
-2026년 이공 우수인재 장학의 영문명은 CV와 History 모두 **Outstanding STEM Talent Scholarship**으로 표기합니다.
+2026년 이공 우수인재 장학의 영문명은 CV와 History 모두 **Outstanding STEM Talent Career Development Scholar**로 표기합니다.
 
 ## History
 
