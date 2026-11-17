@@ -9,7 +9,7 @@ import {
   SheetDescription,
   SheetTrigger,
 } from '@/components/ui/sheet'
-import { parseRoute } from '@/lib/portfolio.mjs'
+import { legacyHref, pageHref, routeFromLocation } from '@/lib/site.mjs'
 import config from '../data/portfolio-config.json'
 import history from '../data/proof-of-work.json'
 import Home from '@/pages/Home'
@@ -27,8 +27,8 @@ const navigation = [
   ['history', 'History'],
 ]
 
-export default function App() {
-  const [route, setRoute] = useState(() => parseRoute(window.location.hash))
+export default function App({ initialRoute }) {
+  const [route, setRoute] = useState(initialRoute)
   const [menuOpen, setMenuOpen] = useState(false)
   const [pdf, setPDF] = useState(null)
   const pdfTrigger = useRef(null)
@@ -38,22 +38,19 @@ export default function App() {
   }
   useEffect(() => {
     const update = () => {
-      setRoute(parseRoute(window.location.hash))
+      const legacy = legacyHref(window.location.hash)
+      if (legacy) {
+        window.location.replace(legacy)
+        return
+      }
+      setRoute(routeFromLocation(window.location))
       setMenuOpen(false)
       setPDF(null)
     }
+    update()
     window.addEventListener('hashchange', update)
-    if (/^#(articles|experience)(?:$|\/|\?)/.test(location.hash)) {
-      location.replace(
-        location.hash.replace(/^#articles/, '#writing').replace(/^#experience/, '#history'),
-      )
-    }
     return () => window.removeEventListener('hashchange', update)
   }, [])
-  useEffect(() => {
-    if (route.page !== 'projects' || !route.parts[0])
-      window.scrollTo({ top: 0, behavior: 'instant' })
-  }, [route.page, route.parts[0]])
 
   return (
     <>
@@ -69,13 +66,13 @@ export default function App() {
       </a>
       <header className="site-header">
         <div className="header-inner">
-          <a className="wordmark" href="#home" aria-label="Seungjun Oh — Home">
+          <a className="wordmark" href="/" aria-label="Seungjun Oh — Home">
             SEUNGJUN OH
           </a>
           <nav className="desktop-nav" aria-label="Main navigation">
             {navigation.map(([page, label]) => (
               <a
-                href={`#${page}`}
+                href={pageHref(page)}
                 key={page}
                 aria-current={route.page === page ? 'page' : undefined}
               >
@@ -105,7 +102,7 @@ export default function App() {
               <nav aria-label="Mobile navigation">
                 {navigation.map(([page, label]) => (
                   <a
-                    href={`#${page}`}
+                    href={pageHref(page)}
                     key={page}
                     onClick={() => setMenuOpen(false)}
                     aria-current={route.page === page ? 'page' : undefined}
@@ -133,7 +130,7 @@ export default function App() {
       <footer className="site-footer">
         <div className="footer-inner">
           <div>
-            <a href="#home" className="footer-name">
+            <a href="/" className="footer-name">
               Seungjun Oh
             </a>
           </div>

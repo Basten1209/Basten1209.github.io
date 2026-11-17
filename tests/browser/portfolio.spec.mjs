@@ -48,7 +48,7 @@ test('navigation preserves history and mobile navigation closes after use', asyn
     })
     .getByRole('link', { name: 'Writing', exact: true })
     .click()
-  await expect(page).toHaveURL(/#writing$/)
+  await expect(page).toHaveURL(/\/writing\/$/)
   if (isMobile) await expect(page.getByRole('dialog')).toHaveCount(0)
   await page.goBack()
   await expect(page.getByRole('heading', { name: 'Seungjun Oh', exact: true })).toBeVisible()
@@ -92,7 +92,7 @@ test('featured projects link to the chronological archive and book deep links wo
     await page
       .locator('.featured-projects a')
       .evaluateAll((links) => links.map((link) => link.getAttribute('href'))),
-  ).toEqual(config.featuredProjectIds.map((id) => `#projects/${id}`))
+  ).toEqual(config.featuredProjectIds.map((id) => `/projects/#project-${id}`))
   await expect(page.locator('.project-entry')).toHaveCount(config.projects.length)
   await expect(page.locator('#project-uniswap-lp-risk .project-context')).toHaveText(
     'Side project · POSTECH FBDA Lab',
@@ -129,7 +129,7 @@ test('project filters preserve chronology, reload, history, and featured deep li
     ['Other', 'other'],
   ]) {
     await page.getByRole('tab', { name: label, exact: true }).click()
-    await expect(page).toHaveURL(new RegExp(`#projects\\?type=${filter}$`))
+    await expect(page).toHaveURL(new RegExp(`/projects/\\?type=${filter}$`))
     const expected = sorted
       .filter((p) => (p.context.type === 'In-class term project') === (filter === 'inclass'))
       .map((p) => `project-${p.id}`)
@@ -184,7 +184,7 @@ test('One-pager is the default CV and its PDF contains the same content on one p
   await expect(document.locator('[data-section="extracurricular"]')).toContainText('Base Korea')
   await expect(document.locator('[data-section="research"]')).toContainText('Scholar (₩12M) by BrainKorea21')
   await expect(document.locator('.onepager-section > h2').first()).toHaveCSS('text-transform', 'none')
-  await expect(page.getByRole('link', { name: 'PDF · One-pager', exact: true })).toHaveAttribute('href', 'data/resume/resume_eng.pdf')
+  await expect(page.getByRole('link', { name: 'PDF · One-pager', exact: true })).toHaveAttribute('href', '/data/resume/resume_eng.pdf')
   await expect(page.getByRole('link', { name: 'PDF · Korean', exact: true })).toHaveCount(0)
   const screenContent = await document.innerText()
   const response = await request.get('/data/resume/resume_eng.pdf')
@@ -210,7 +210,7 @@ test('One-pager is the default CV and its PDF contains the same content on one p
 test('All CV preserves the archive and supports reload, browser history, and printing', async ({ page }) => {
   await page.goto('/#cv')
   await page.getByRole('tab', { name: 'All', exact: true }).click()
-  await expect(page).toHaveURL(/#cv\?view=all$/)
+  await expect(page).toHaveURL(/\/cv\/all\/$/)
   await page.reload()
   await expect(page.getByRole('tab', { name: 'All', exact: true })).toHaveAttribute('aria-selected', 'true')
   const document = page.locator('.cv-document')
@@ -268,12 +268,12 @@ test('All CV preserves the archive and supports reload, browser history, and pri
 })
 test('personal history retains the archive and links back to the book', async ({ page }) => {
   await page.goto('/#experience')
-  await expect(page).toHaveURL(/#history$/)
+  await expect(page).toHaveURL(/\/history\/$/)
   await expect(page.locator('.history-entry')).toHaveCount(history.length)
   await page.getByRole('textbox', { name: 'Search history' }).fill('Co-authored')
   await expect(page.locator('.history-entry')).toHaveCount(1)
   await page.getByRole('link', { name: 'View work' }).click()
-  await expect(page).toHaveURL(/#writing\/book\/digital-asset-era/)
+  await expect(page).toHaveURL(/\/writing\/book\/digital-asset-era\/$/)
   await expect(
     page.getByRole('heading', { name: 'The Digital Asset Era Is Coming', exact: true }),
   ).toBeVisible()

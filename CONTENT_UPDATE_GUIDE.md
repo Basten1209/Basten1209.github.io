@@ -40,13 +40,13 @@
 - `status`: 확인한 상태만 기록합니다. 실제 배포를 확인하지 않은 프로젝트에 Live를 붙이지 않습니다.
 - 새 프로젝트의 공개 링크·역할·수상 관련성을 확인한 후 정보를 추가합니다.
 
-프로젝트는 `#projects/<id>`로 해당 목록 위치에 바로 이동합니다. 별도 상세 페이지나 모달은 없습니다.
+프로젝트는 `/projects/#project-<id>`로 해당 목록 위치에 바로 이동합니다. 별도 상세 페이지나 모달은 없습니다.
 
-전체 프로젝트 목록은 **All / In-class / Other**로 필터링합니다. `context.type`이 `In-class term project`인 항목만 In-class이며, 나머지는 Other입니다. 대표작 카드 3개는 필터와 무관하게 유지합니다. `#projects?type=inclass`, `#projects?type=other`로 선택을 공유할 수 있고, 프로젝트 바로가기 링크는 All로 돌아가 해당 항목을 보여줍니다.
+전체 프로젝트 목록은 **All / In-class / Other**로 필터링합니다. `context.type`이 `In-class term project`인 항목만 In-class이며, 나머지는 Other입니다. 대표작 카드 3개는 필터와 무관하게 유지합니다. `/projects/?type=inclass`, `/projects/?type=other`로 선택을 공유할 수 있고, 프로젝트 바로가기 링크는 All로 돌아가 해당 항목을 보여줍니다.
 
 ## CV: One-pager / All
 
-기본 화면 `#cv`는 **One-pager**이고, **All**은 `#cv?view=all`로 공유합니다. Finance·Crypto 탭은 제거했으며, 예전 링크는 One-pager를 보여줍니다. 두 탭 모두 **Print current view**로 현재 문서를 인쇄할 수 있습니다.
+기본 화면 `/cv/`는 **One-pager**이고, **All**은 `/cv/all/`로 공유합니다. Finance·Crypto 탭은 제거했으며, 예전 링크는 One-pager를 보여줍니다. 두 탭 모두 **Print current view**로 현재 문서를 인쇄할 수 있습니다.
 
 웹 CV의 PDF 다운로드 링크 옆에는 `cv.lastUpdated`를 `Last updated: Nov 18, 2026` 형식으로 표시합니다. 실제 CV 내용을 수정한 날짜를 사용하며 접속일이나 빌드·배포일로 자동 갱신하지 않습니다. 이 표시는 인쇄와 PDF에서 제외합니다.
 
@@ -127,3 +127,9 @@ BlockHack Korea / DeFi Compass와 Block AI*26은 같은 대회이며, History에
 원본 PDF와 이미지 경로는 유지됩니다. 빌드 시 `data/`, `assets/images/`가 `dist/`에 복사됩니다. 새 파일을 추가한 뒤 검증을 실행하면 빠진 파일과 잘못된 참조를 확인할 수 있습니다.
 
 `npm run generate-lists`는 보조 파일 목록을 갱신합니다. 사이트 표시는 위 JSON 기록을 기준으로 하며 파일명만 추가했다고 자동으로 글이 발행되지는 않습니다.
+
+## SEO / AI 검색
+
+`npm run build`가 공개 페이지의 본문 HTML·제목·설명·canonical·공유 메타데이터·JSON-LD·`dist/sitemap.xml`을 함께 생성합니다. 메타데이터와 공개 페이지 목록은 `src/lib/seo.mjs`, 주소 변환은 `src/lib/site.mjs`에서 관리합니다. `dist` 파일을 직접 수정하지 않습니다.
+
+기존 `#writing`, `#projects/<id>`, `#cv?view=all` 링크도 새 주소로 이동합니다. 새로운 내부 링크는 `/writing/`, `/projects/#project-<id>`, `/cv/all/` 형태를 사용합니다. 공저서의 소개 주소는 `/writing/book/<id>/`입니다. 검색엔진 제출과 운영 절차는 [SEO_SETUP.md](SEO_SETUP.md)를 참고합니다.

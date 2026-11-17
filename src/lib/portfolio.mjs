@@ -23,7 +23,7 @@ export function parseRoute(hash = '') {
 }
 
 export function reportHref(report) {
-  return report.type === 'url' ? report.url : `data/reports/${encodeURIComponent(report.filename)}`
+  return report.type === 'url' ? report.url : `/data/reports/${encodeURIComponent(report.filename)}`
 }
 
 export const dateLabel = (date) => date?.replaceAll('-', '.') || ''

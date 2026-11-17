@@ -1,3 +1,4 @@
+import { siteHref } from '@/lib/site.mjs'
 import { useEffect } from 'react'
 import { PageHeading, ExternalLink } from '@/components/shared'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
@@ -30,10 +31,10 @@ export default function Projects({ config, route, onOpenPDF }) {
           <ul>
             {featured.map((p) => (
               <li key={p.id}>
-                <a className="featured-card" href={`#projects/${p.id}`} aria-label={p.title}>
+                <a className="featured-card" href={`/projects/#project-${p.id}`} aria-label={p.title}>
                   <div className={`featured-image featured-image-${p.id}`}>
                     <img
-                      src={p.cover}
+                      src={siteHref(p.cover)}
                       alt={p.coverAlt}
                       style={{ objectFit: p.coverFit || 'cover' }}
                       decoding="async"
@@ -52,16 +53,11 @@ export default function Projects({ config, route, onOpenPDF }) {
         <h2 id="archive-heading" className="sr-only">
           Project archive
         </h2>
-        <Tabs
-          value={route.projectFilter}
-          onValueChange={(value) => {
-            location.hash = value === 'all' ? 'projects' : `projects?type=${value}`
-          }}
-        >
+        <Tabs value={route.projectFilter}>
           <TabsList aria-label="Project type">
-            <TabsTrigger value="all">All</TabsTrigger>
-            <TabsTrigger value="inclass">In-class</TabsTrigger>
-            <TabsTrigger value="other">Other</TabsTrigger>
+            <TabsTrigger value="all" asChild><a href="/projects/">All</a></TabsTrigger>
+            <TabsTrigger value="inclass" asChild><a href="/projects/?type=inclass">In-class</a></TabsTrigger>
+            <TabsTrigger value="other" asChild><a href="/projects/?type=other">Other</a></TabsTrigger>
           </TabsList>
           <TabsContent value={route.projectFilter}>
             {projects.map((p) => (
@@ -69,7 +65,7 @@ export default function Projects({ config, route, onOpenPDF }) {
                 <div className="project-date">{(p.date || p.year).replaceAll('-', '.')}</div>
                 <div className="project-content">
                   <h3>
-                    <a href={`#projects/${p.id}`}>{p.title}</a>
+                    <a href={`/projects/#project-${p.id}`}>{p.title}</a>
                   </h3>
                   <p className="project-context">
                     <span className="project-type">{p.context.type}</span>

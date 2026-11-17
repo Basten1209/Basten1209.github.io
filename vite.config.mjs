@@ -8,7 +8,7 @@ import path from 'node:path'
 const root = fileURLToPath(new URL('.', import.meta.url))
 
 export default defineConfig({
-  base: './',
+  base: '/',
   publicDir: false,
   resolve: { alias: { '@': path.join(root, 'src') } },
   plugins: [
@@ -17,7 +17,7 @@ export default defineConfig({
     {
       name: 'portfolio-static-files',
       closeBundle() {
-        for (const file of ['data', 'assets/images', 'CNAME', 'robots.txt', 'sitemap.xml']) {
+        for (const file of ['data', 'assets/images', 'CNAME', 'robots.txt']) {
           if (existsSync(path.join(root, file)))
             cpSync(path.join(root, file), path.join(root, 'dist', file), { recursive: true })
         }

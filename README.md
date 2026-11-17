@@ -30,7 +30,7 @@ npm run preview
 | CV | One-pager (default) / All views; matching one-page PDF and printing of the selected view |
 | History | Independent chronological record of small experiences and milestones |
 
-Home has an explicit navigation tab; the wordmark also returns to Home. Old `#articles` and `#experience` links still work. Direct links include `#projects/lift`, `#writing/book/digital-asset-era`, and `#cv?view=all`.
+Home has an explicit navigation tab; the wordmark also returns to Home. Public pages use `/writing/`, `/projects/`, `/cv/`, `/cv/all/`, and `/history/`. The book has `/writing/book/digital-asset-era/`; project anchors use `/projects/#project-lift`. Old hash URLs, including `#articles`, `#experience`, and `#cv?view=all`, redirect to the corresponding public URL.
 
 All website copy is in English, including content and accessibility labels. Original documents and cover images retain their source languages. The book's Korean title remains searchable as metadata; it is displayed with an English title and a Korean-edition label.
 
@@ -55,14 +55,18 @@ npx playwright install chromium  # first run only
 npm run test:e2e
 ```
 
-Unit checks cover content integrity, legacy routing, filtering, and shared records. Browser checks use the production build on desktop/mobile and cover navigation, search, book links, project archive deep links, CV views and print styles, History, PDF preview, and viewport overflow.
+Unit checks cover content integrity, legacy routing, filtering, shared records, and metadata escaping. Browser checks use the production build on desktop/mobile and cover navigation, search, book links, project archive deep links, CV views and print styles, History, PDF preview, and viewport overflow. SEO checks verify static HTML, unique metadata, sitemap coverage, local assets, hydration, and navigation without JavaScript.
 
 ## Deployment
 
-The deployable artifact is **`dist/`**, not the source repository root. The Vite build copies original data/files, images, `CNAME`, `robots.txt`, and `sitemap.xml` into it.
+The deployable artifact is **`dist/`**, not the source repository root. The Vite build copies original data/files, images, `CNAME`, and `robots.txt` into it. `scripts/prerender.mjs` then renders the same React components into complete HTML for every public page and generates `sitemap.xml` and `404.html`. No browser or extra runtime server is needed for builds or hosting.
 
 `.github/workflows/update-portfolio.yml` validates and tests pull requests, then deploys `dist` when main is updated. When deploying this migration, set **Settings → Pages → Build and deployment → Source → GitHub Actions**. Keep the custom domain `seungjun.site`. Local preview does not change the live site or remote Pages settings.
 
 CV **Print current view** prints the selected document. **PDF · One-pager** opens the one-page English résumé generated from the same One-pager web view. All retains the full archive. The Korean PDF remains unchanged and its link is hidden. Legacy Finance/Crypto URLs open One-pager.
 
 After finalizing the One-pager source or print styles, run `npm run export-one-pager`. This builds the site, exports the One-pager through Chromium, and checks that it is one A4 page (210 × 297 mm) with text matching the web view before replacing `data/resume/resume_eng.pdf`. The script uses a temporary local preview server, bundled fonts, and no external requests. Visually inspect the PDF before publishing; normal builds do not regenerate it.
+
+## Search visibility
+
+Page metadata, canonical URLs, and JSON-LD are generated from `src/lib/seo.mjs` and the existing content records. Root-relative links keep assets and PDF downloads usable at every page depth. Google/Bing crawlers and OAI-SearchBot can access the public site. See [SEO_SETUP.md](SEO_SETUP.md) for the URL map, maintenance, and post-deploy Search Console submission.

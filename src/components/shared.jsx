@@ -10,6 +10,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { cn } from '@/lib/utils'
+import { siteHref } from '@/lib/site.mjs'
 
 export function PageHeading({ title, children }) {
   return (
@@ -23,7 +24,7 @@ export function PageHeading({ title, children }) {
 export function ExternalLink({ href, children, className = '', ...props }) {
   return (
     <a
-      href={href}
+      href={siteHref(href)}
       target="_blank"
       rel="noopener noreferrer"
       className={cn('external-link', className)}
@@ -102,7 +103,7 @@ export function BookFeature({ book, compact = false }) {
         aria-label={`${book.title} — Book details & purchase`}
       >
         <img
-          src={book.cover}
+          src={siteHref(book.cover)}
           alt={`${book.title} cover`}
           loading="lazy"
           width="810"
@@ -123,7 +124,7 @@ export function BookFeature({ book, compact = false }) {
             </>
           )}
         </p>
-        <h2>{book.title}</h2>
+        <h2><a href={`/writing/book/${book.id}/`}>{book.title}</a></h2>
         <p className="book-contribution">{book.description}</p>
         <ExternalLink href={book.url}>Book details & purchase</ExternalLink>
       </div>

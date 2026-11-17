@@ -1,3 +1,4 @@
+import { siteHref } from '@/lib/site.mjs'
 import { Fragment } from 'react'
 import markdown from '../../data/resume/one-pager.md?raw'
 import { inlineTokens, parseOnePager } from '@/lib/one-pager.mjs'
@@ -13,7 +14,7 @@ function InlineNodes({ tokens }) {
     if (token.type === 'em') return <em key={index}>{children}</em>
     if (token.type === 'strongEm') return <strong key={index}><em>{children}</em></strong>
     return token.href ? (
-      <a key={index} href={token.href} target="_blank" rel="noopener noreferrer">{children}</a>
+      <a key={index} href={siteHref(token.href)} target="_blank" rel="noopener noreferrer">{children}</a>
     ) : <span key={index}>{children}</span>
   })
 }

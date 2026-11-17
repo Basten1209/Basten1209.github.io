@@ -1,3 +1,4 @@
+import { siteHref } from '@/lib/site.mjs'
 import { useState } from 'react'
 import { Printer, Download, Check, Link } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -22,8 +23,8 @@ const labels = {
 function CVLink({ href, children }) {
   return href ? (
     <a
-      href={href}
-      {...(href.startsWith('#') ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+      href={siteHref(href)}
+      {...(href.startsWith('#') || href.startsWith('/') ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
     >
       {children}
     </a>
@@ -137,17 +138,12 @@ export default function CV({ config, view }) {
       <div className="no-print">
         <PageHeading title="CV" />
       </div>
-      <Tabs
-        value={view}
-        onValueChange={(v) => {
-          location.hash = v === 'onepager' ? 'cv' : `cv?view=${v}`
-        }}
-      >
+      <Tabs value={view}>
         <div className="cv-toolbar no-print">
           <TabsList aria-label="CV view">
             {views.map((v) => (
-              <TabsTrigger value={v} key={v}>
-                {config.cv.views[v].label}
+              <TabsTrigger value={v} key={v} asChild>
+                <a href={v === 'all' ? '/cv/all/' : '/cv/'}>{config.cv.views[v].label}</a>
               </TabsTrigger>
             ))}
           </TabsList>
@@ -164,7 +160,7 @@ export default function CV({ config, view }) {
         </div>
         <div className="cv-downloads no-print">
           {config.resumes.map((r) => (
-            <a key={r.id} href={r.file} target="_blank" rel="noopener noreferrer">
+            <a key={r.id} href={siteHref(r.file)} target="_blank" rel="noopener noreferrer">
               <Download size={15} />
               {r.language === 'en' ? 'PDF · One-pager' : 'PDF · Korean'}
             </a>

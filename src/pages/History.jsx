@@ -1,3 +1,4 @@
+import { siteHref } from '@/lib/site.mjs'
 import { useState } from 'react'
 import { PageHeading, SearchInput, FilterSelect, EmptyState } from '@/components/shared'
 import { historyGroups, historyPeriod } from '@/lib/portfolio.mjs'
@@ -53,7 +54,7 @@ export default function History({ entries }) {
                       {entry.tags.map((t) => (
                         <span key={t}>{t}</span>
                       ))}
-                      {entry.href && <a href={entry.href}>View work</a>}
+                      {entry.href && <a href={siteHref(entry.href)}>View work</a>}
                     </div>
                   </div>
                 </article>

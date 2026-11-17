@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# ChatGPT search discovery (separate from model-training crawlers).
+User-agent: OAI-SearchBot
+Allow: /
+
 Sitemap: https://seungjun.site/sitemap.xml

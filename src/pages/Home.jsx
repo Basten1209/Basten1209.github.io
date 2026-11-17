@@ -1,3 +1,5 @@
+import { siteHref } from '@/lib/site.mjs'
+
 export default function Home({ config }) {
   const background = config.profile.background.map(({ section, id }) =>
     config.cv[section].find((entry) => entry.id === id),
@@ -13,7 +15,7 @@ export default function Home({ config }) {
         </div>
         <img
           className="hero-portrait"
-          src={config.profile.image}
+          src={siteHref(config.profile.image)}
           alt="Seungjun Oh’s penguin avatar"
           width="220"
           height="220"
@@ -23,7 +25,7 @@ export default function Home({ config }) {
       <section className="home-background" aria-labelledby="background-heading">
         <div className="section-heading">
           <h2 id="background-heading">Background</h2>
-          <a href="#cv" className="external-link">
+          <a href="/cv/" className="external-link">
             CV
           </a>
         </div>
