@@ -12,13 +12,13 @@ Aspiring **quantitative researcher** specializing in **cryptocurrency**, combini
 
 ***Bachelor of Industrial & Management Engineering*** (Full Scholar) | Feb 2021 - (Expected) Feb 2028
 
-- Scholarship: Nobel Week 2025 Overseas Assignment (₩2.5M)
+- Scholarship: Nobel Week 2025 Overseas Assignment Scholar (₩2.5M)
 
 **[Nanyang Technological University](https://www.ntu.edu.sg/)** | Singapore
 
 *Exchange Student, Division of Mathematical Sciences* | (Incoming) Jan 2027 - May 2027
 
-- Scholarships: Overseas Exchange (₩3.5M) · IME Global (₩2M)
+- Scholarships: Overseas Exchange Scholar (₩3.5M) · IME Global Scholar (₩2M)
 
 ## Work experience
 
