@@ -16,9 +16,9 @@ Aspiring **quantitative researcher** specializing in **cryptocurrency**, combini
 
 **[B-Harvest](https://bharvest.io/)** TechBD · *Technical Writer* (Internship); *Researcher* (Freelance) | Dec 2025 - Jun 2026
 
-- Researched **Tempo blockchain** and presented findings in **a company-wide seminar**
-- Proposed and implemented a **shift toward rebranding and HR strategy** aligned with company priorities; positive CEO feedback led to a **remote freelance extension** alongside university studies
-- Developed **all educational content** for a **blockchain learning platform mockup** under senior review, receiving **positive CEO feedback**
+- Researched the **Tempo blockchain** and presented findings at a **company-wide seminar**
+- Proposed and implemented a shift in my work toward **rebranding and HR strategy**; positive CEO feedback led to a **remote freelance role** alongside university studies
+- Developed **all educational content** for a **blockchain learning platform mockup**, with review from a senior colleague
 
 **[WorldQuant](https://www.worldquant.com/)** BRAIN Platform · *Consultant* (Freelance) | Jun 2025 - Present
 
