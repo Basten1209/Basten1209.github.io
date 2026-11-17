@@ -115,6 +115,10 @@ function CVEntry({ entry, section, continuation }) {
 export default function CV({ config, view }) {
   const [copied, setCopied] = useState(false)
   const [copyError, setCopyError] = useState(false)
+  const lastUpdated = config.cv.lastUpdated?.replaceAll('.', '-')
+  const lastUpdatedLabel = lastUpdated && new Date(`${lastUpdated}T00:00:00Z`).toLocaleDateString('en-US', {
+    year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC',
+  })
   const sections = config.cv.views.all.sections.filter(
     (s) => s === 'certificates' || cvEntries(config, s).length,
   )
@@ -165,6 +169,11 @@ export default function CV({ config, view }) {
               {r.language === 'en' ? 'PDF · One-pager' : 'PDF · Korean'}
             </a>
           ))}
+          {lastUpdated && (
+            <p className="cv-last-updated">
+              Last updated: <time dateTime={lastUpdated}>{lastUpdatedLabel}</time>
+            </p>
+          )}
         </div>
         {copyError && (
           <p role="status" className="no-print">

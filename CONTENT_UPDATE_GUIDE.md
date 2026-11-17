@@ -48,6 +48,8 @@
 
 기본 화면 `#cv`는 **One-pager**이고, **All**은 `#cv?view=all`로 공유합니다. Finance·Crypto 탭은 제거했으며, 예전 링크는 One-pager를 보여줍니다. 두 탭 모두 **Print current view**로 현재 문서를 인쇄할 수 있습니다.
 
+웹 CV의 PDF 다운로드 링크 옆에는 `cv.lastUpdated`를 `Last updated: Nov 18, 2026` 형식으로 표시합니다. 실제 CV 내용을 수정한 날짜를 사용하며 접속일이나 빌드·배포일로 자동 갱신하지 않습니다. 이 표시는 인쇄와 PDF에서 제외합니다.
+
 ### One-pager와 PDF
 
 `data/resume/one-pager.md`가 웹 화면과 영문 PDF의 공통 원본입니다. 승인된 문구와 순서를 유지합니다: Summary → Education → Work → Publication → Research → Extracurricular → Selected Awards → Selected Certifications. All 데이터의 설명을 자동으로 가져오거나 그쪽 문구를 덮어쓰지 않습니다.

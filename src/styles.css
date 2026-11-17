@@ -506,8 +506,9 @@
 .cv-downloads {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 8px 20px;
   margin: 10px 0 28px;
 }
 .cv-downloads a {
@@ -519,6 +520,11 @@
 }
 .cv-downloads a:hover {
   text-decoration: underline;
+}
+.cv-last-updated {
+  color: var(--muted-foreground);
+  font-size: 13px;
+  white-space: nowrap;
 }
 .cv-document {
   font-family: 'Spectral Resume', 'Times New Roman', 'Pretendard Variable', serif;
