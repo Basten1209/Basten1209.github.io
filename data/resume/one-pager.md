@@ -12,13 +12,21 @@ Aspiring **quantitative researcher** specializing in **cryptocurrency**, combini
 
 ***Bachelor of Industrial & Management Engineering*** (Full Scholar) | Feb 2021 - (Expected) Feb 2028
 
+- Scholarship: Nobel Week 2025 Overseas Assignment (₩2.5M)
+
+**[Nanyang Technological University](https://www.ntu.edu.sg/)** | Singapore
+
+*Exchange Student, Division of Mathematical Sciences* | (Incoming) Jan 2027 - May 2027
+
+- Scholarships: Overseas Exchange (₩3.5M) · IME Global (₩2M)
+
 ## Work experience
 
 **[B-Harvest](https://bharvest.io/)** TechBD · *Technical Writer* (Internship); *Researcher* (Freelance) | Dec 2025 - Jun 2026
 
 - Researched the **Tempo blockchain** and presented findings at a **company-wide seminar**
 - Proposed and implemented a shift in my work toward **rebranding and HR strategy**; positive CEO feedback led to a **remote freelance role** alongside university studies
-- Developed **all educational content** for a **blockchain learning platform mockup**, with review from a senior colleague
+- Created **all educational content** for a **blockchain learning platform mockup**, reviewed by a senior colleague
 
 **[WorldQuant](https://www.worldquant.com/)** BRAIN Platform · *Consultant* (Freelance) | Jun 2025 - Present
 
@@ -48,7 +56,7 @@ Aspiring **quantitative researcher** specializing in **cryptocurrency**, combini
 **[FBDA Lab](https://sites.google.com/view/minseokshin/home)** (Advisor: Prof. Min-Seok Shin), POSTECH | Jun 2025 - Dec 2025, Jun 2026 - Present
 
 - Researching financial data analysis, focusing on high-dimensional statistics and high-frequency data
-- Selected as an **Outstanding STEM Talent Career Development Scholar** (**12M KRW**) by BrainKorea21
+- Selected as an **Outstanding STEM Talent Career Development Scholar** (**₩12M**) by BrainKorea21
 
 **[DPNM Lab](http://dpnm.postech.ac.kr/)** (Advisor: Prof. James Won-Ki Hong), POSTECH | Jun 2022 - Aug 2022
 

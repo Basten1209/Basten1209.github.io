@@ -30,8 +30,8 @@
 .onepager {
   box-sizing: border-box;
   width: 100%;
-  max-width: 816px;
-  min-height: 1056px;
+  max-width: 210mm;
+  min-height: 297mm;
   margin: 0 auto;
   padding: 8mm 11mm;
   background: #fff;
@@ -86,7 +86,7 @@
   .onepager-bullets { margin-top: 4px; padding-left: 22px; }
 }
 
-@page onepager { size: letter; margin: 8mm 11mm; }
+@page onepager { size: A4; margin: 8mm 11mm; }
 @media print {
   body:has(.onepager) { page: onepager; }
   .onepager { max-width: none; min-height: 0; padding: 0; border: 0; margin: 0; }

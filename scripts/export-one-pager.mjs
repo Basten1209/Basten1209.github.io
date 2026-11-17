@@ -29,7 +29,8 @@ try {
   if (source !== builtSource) throw new Error('Build is stale; run npm run build first')
 
   browser = await chromium.launch({ headless: true })
-  const page = await browser.newPage({ viewport: { width: 816, height: 1056 } })
+  // Keep the desktop viewport wider than the sheet; @page controls PDF dimensions.
+  const page = await browser.newPage({ viewport: { width: 1280, height: 1200 } })
   // The résumé fonts are bundled locally. Never increment the real visitor counter.
   await page.route('https://**/*', (route) => route.abort())
   await page.goto(`${origin}/#cv`, { waitUntil: 'networkidle' })
@@ -46,7 +47,12 @@ try {
   const pdf = await loadingTask.promise
   try {
     if (pdf.numPages !== 1) throw new Error(`One-pager overflow: ${pdf.numPages} pages; adjust print layout`)
-    const content = await (await pdf.getPage(1)).getTextContent()
+    const firstPage = await pdf.getPage(1)
+    const { width, height } = firstPage.getViewport({ scale: 1 })
+    // Allow sub-point rounding in Chromium's PDF output.
+    if (Math.abs(width - 210 * 72 / 25.4) > 1 || Math.abs(height - 297 * 72 / 25.4) > 1)
+      throw new Error(`One-pager must be A4 (210 × 297 mm); got ${width} × ${height} pt`)
+    const content = await firstPage.getTextContent()
     const pdfText = content.items.map((item) => item.str || '').join(' ')
     const compact = (text) => text.normalize('NFKC').replace(/[\s•●·]/gu, '')
     if (compact(pdfText) !== compact(screenText))
@@ -56,7 +62,7 @@ try {
   }
   await writeFile('data/resume/resume_eng.pdf', buffer)
   await copyFile('data/resume/resume_eng.pdf', 'dist/data/resume/resume_eng.pdf')
-  console.log('Exported data/resume/resume_eng.pdf: 1 page, matching the website text')
+  console.log('Exported data/resume/resume_eng.pdf: 1 A4 page, matching the website text')
 } finally {
   await browser?.close()
   server.kill('SIGTERM')

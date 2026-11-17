@@ -182,7 +182,7 @@ test('One-pager is the default CV and its PDF contains the same content on one p
   await expect(work.locator('strong').filter({ hasText: /^3rd Place in 2025 IQC Korea Final$/ })).toHaveCount(1)
   await expect(work).not.toContainText('Base Korea')
   await expect(document.locator('[data-section="extracurricular"]')).toContainText('Base Korea')
-  await expect(document.locator('[data-section="research"]')).toContainText('Scholar (12M KRW) by BrainKorea21')
+  await expect(document.locator('[data-section="research"]')).toContainText('Scholar (₩12M) by BrainKorea21')
   await expect(document.locator('.onepager-section > h2').first()).toHaveCSS('text-transform', 'none')
   await expect(page.getByRole('link', { name: 'PDF · One-pager', exact: true })).toHaveAttribute('href', 'data/resume/resume_eng.pdf')
   await expect(page.getByRole('link', { name: 'PDF · Korean', exact: true })).toHaveCount(0)

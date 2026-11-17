@@ -63,7 +63,8 @@
 - 제목은 `Selected Certifications (10+ total)`로 쓰고, 본문은 자격증 이름과 괄호 안 발급기관을 두 bullet·인쇄 두 줄로 표시하며, 자격증명에는 볼드를 적용하지 않습니다. 발급기관은 Samil PwC, KOFIA, KBI, K-DATA, HRD Korea를 사용합니다. 첫 줄은 재경관리사·투자자산운용사·Financial Planner, 둘째 줄은 SQL Developer·정보처리산업기사·ADsP이며 Hold와 including은 쓰지 않습니다. ADsP는 풀어 쓰지 않습니다. 정보처리산업기사의 영문명은 `Industrial Engineer Information Processing`입니다. 전체를 국가공인 민간자격이라고 쓰지 않습니다. [금융투자협회 안내](https://license.kofia.or.kr/resources/etc/PLIO.pdf)는 투자자산운용사를 등록민간자격으로, [Q-net](https://www.q-net.or.kr/crf005.do?id=crf00505&jmCd=2290&tabGbn=1)은 정보처리산업기사를 국가자격으로 안내합니다.
 - Selected Awards의 bullet 마지막 ` | 연도`는 화면에서 구분선을 표시하지 않고 오른쪽 굵은 연도로 배치합니다.
 - Publication은 책 제목·ISBN·기울임 Co-Author를 한 행에 쓰고, 마지막 열에는 출간일을 둡니다. 위치나 별도 역할 행을 추가하지 않습니다.
-- 장학금은 **Outstanding STEM Talent Career Development Scholar** (**12M KRW**) by BrainKorea21로 한 줄에 표기하고 지원 기간은 생략합니다. 금액은 Scholar 바로 뒤 괄호에 넣고, 금액과 단위 사이에는 줄바꿈 방지 공백을 사용합니다.
+- 장학금은 **Outstanding STEM Talent Career Development Scholar** (**₩12M**) by BrainKorea21로 한 줄에 표기하고 지원 기간은 생략합니다. 금액은 Scholar 바로 뒤 괄호에 넣습니다. 사이트의 원화 금액은 `₩2.5M`, `₩12M`처럼 원화 기호를 숫자 앞에 붙여 통일합니다.
+- Education의 POSTECH 아래에는 `Scholarship: Nobel Week 2025 Overseas Assignment (₩2.5M)`을, Nanyang Technological University 아래에는 `Scholarships: Overseas Exchange (₩3.5M) · IME Global (₩2M)`을 각각 한 줄로 표시합니다. Nanyang Technological University는 약어 없이 표기합니다. Scholarship(s) 라벨을 사용한 명칭에는 Scholar를 반복하지 않습니다.
 
 본문은 데스크톱·인쇄에서 **10pt**로 유지하며, 남는 공간은 추후 항목 추가를 위해 남깁니다. 회사명·직급·날짜는 데스크톱과 인쇄에서 한 줄로 배치합니다. 모바일에서는 읽기 쉽도록 줄을 나눕니다. One-pager 전용 스타일은 `src/components/one-pager.css`, 렌더러는 `src/components/OnePager.jsx`, 제한된 Markdown 파서는 `src/lib/one-pager.mjs`입니다. Spectral 폰트는 `assets/fonts/spectral/`에서 로컬로 제공합니다.
 
